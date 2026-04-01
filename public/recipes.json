@@ -1,0 +1,178 @@
+[
+  {
+    "id": 1,
+    "title": "Classic Beef Wellington",
+    "chef": "Jean-Luc Rousseau",
+    "difficulty": "Hard",
+    "time": "180 min",
+    "servings": 4,
+    "calories": 750,
+    "image": "https://images.unsplash.com/photo-1544025162-d76694265947b?q=80&w=1000&auto=format&fit=crop",
+    "description": "A show-stopping centerpiece featuring tender beef filet wrapped in savory mushroom duxelles and golden puff pastry.",
+    "ingredients": [
+      "1.5 kg Beef Filet Mignon",
+      "500g Mushrooms",
+      "2 sheets Puff Pastry",
+      "200g Prosciutto",
+      "Fresh Thyme",
+      "Dijon Mustard"
+    ],
+    "instructions": [
+      "Sear the beef filets in a hot pan until browned on all sides, then let cool.",
+      "Finely chop mushrooms and cook down with thyme and sherry until dry (duxelles).",
+      "Spread mustard over the cooled beef, layer with prosciutto and mushroom mixture.",
+      "Wrap in puff pastry, seal edges, and egg wash the top.",
+      "Bake at 200°C (400°F) for 25-30 minutes until golden brown."
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Lemon Herb Salmon",
+    "chef": "Elena Rossi",
+    "difficulty": "Easy",
+    "time": "35 min",
+    "servings": 2,
+    "calories": 450,
+    "image": "https://images.unsplash.com/photo-1467003909585-2f8a7270028d?q=80&w=1000&auto=format&fit=crop",
+    "description": "Fresh, healthy, and bursting with citrus flavor. This salmon is baked to perfection on a bed of asparagus.",
+    "ingredients": [
+      "2 Salmon Fillets",
+      "1 Lemon",
+      "Fresh Dill",
+      "Asparagus",
+      "Olive Oil",
+      "Garlic"
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (400°F). Place asparagus on a baking sheet.",
+      "Mix olive oil, lemon juice, minced garlic, and chopped dill in a small bowl.",
+      "Place salmon on top of asparagus and drizzle with the lemon mixture.",
+      "Bake for 12-15 minutes until salmon flakes easily with a fork."
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Traditional Tiramisu",
+    "chef": "Marcus Thorne",
+    "difficulty": "Medium",
+    "time": "45 min + 4 hours chill",
+    "servings": 8,
+    "calories": 380,
+    "image": "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?q=80&w=1000&auto=format&fit=crop",
+    "description": "The quintessential Italian dessert. Layers of coffee-soaked ladyfingers and rich mascarpone cream.",
+    "ingredients": [
+      "6 Egg Yolks",
+      "500g Mascarpone Cheese",
+      "300ml Espresso",
+      "100g Sugar",
+      "Cocoa Powder",
+      "Ladyfingers"
+    ],
+    "instructions": [
+      "Whisk egg yolks and sugar until thick and pale. Fold in the mascarpone cheese.",
+      "Dip ladyfingers quickly into the espresso and layer them in a dish.",
+      "Spread half the mascarpone mixture, repeat layers, and finish with cocoa dusting.",
+      "Refrigerate for at least 4 hours to set."
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Spicy Thai Basil Chicken",
+    "chef": "Kenji Tanaka",
+    "difficulty": "Easy",
+    "time": "20 min",
+    "servings": 2,
+    "calories": 520,
+    "image": "https://images.unsplash.com/photo-1589302168068-964664d9dc0e?q=80&w=1000&auto=format&fit=crop",
+    "description": "A quick, fiery, and aromatic dish perfect for a weeknight dinner with an authentic street-food flavor.",
+    "ingredients": [
+      "500g Chicken Breast",
+      "Bird's Eye Chilies",
+      "Fresh Thai Basil",
+      "Fish Sauce",
+      "Soy Sauce",
+      "Garlic & Ginger"
+    ],
+    "instructions": [
+      "Stir-fry garlic and ginger in oil until fragrant.",
+      "Add chicken and cook until browned.",
+      "Add chilies, fish sauce, and soy sauce. Toss to coat.",
+      "Finish with a generous handful of fresh basil and serve immediately over rice."
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Wild Mushroom Risotto",
+    "chef": "Priya Patel",
+    "difficulty": "Medium",
+    "time": "45 min",
+    "servings": 4,
+    "calories": 410,
+    "image": "https://images.unsplash.com/photo-1476124369491-e7addf5db371?q=80&w=1000&auto=format&fit=crop",
+    "description": "Creamy, earthy, and comforting. A vegetarian masterpiece made with a mix of wild mushrooms and arborio rice.",
+    "ingredients": [
+      "300g Arborio Rice",
+      "400g Mixed Wild Mushrooms",
+      "1L Vegetable Stock",
+      "White Wine",
+      "Parmesan Cheese",
+      "Truffle Oil"
+    ],
+    "instructions": [
+      "Sauté mushrooms in butter until golden. Remove and set aside.",
+      "Toast rice in the same pan, then deglaze with wine.",
+      "Add warm stock one ladle at a time, stirring constantly until absorbed.",
+      "Stir in mushrooms, parmesan, and finish with truffle oil."
+    ]
+  },
+  {
+    "id": 6,
+    "title": "French Onion Soup",
+    "chef": "Jean-Luc Rousseau",
+    "difficulty": "Medium",
+    "time": "60 min",
+    "servings": 6,
+    "calories": 320,
+    "image": "https://images.unsplash.com/photo-1547592166-23ac45744acd?q=80&w=1000&auto=format&fit=crop",
+    "description": "A rich, comforting soup topped with toasted baguette and melted Gruyère cheese.",
+    "ingredients": [
+      "1kg Yellow Onions",
+      "1L Beef Broth",
+      "100ml Dry White Wine",
+      "Gruyère Cheese",
+      "Baguette",
+      "Thyme & Bay Leaf"
+    ],
+    "instructions": [
+      "Caramelize onions slowly in butter and oil for 30-40 minutes.",
+      "Add wine and cook for 2 minutes, then add broth, thyme, and bay leaf. Simmer.",
+      "Ladle soup into oven-safe bowls, top with baguette slices and lots of cheese.",
+      "Broil until cheese is bubbly and golden brown."
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Chocolate Lava Cake",
+    "chef": "Elena Rossi",
+    "difficulty": "Medium",
+    "time": "25 min",
+    "servings": 4,
+    "calories": 490,
+    "image": "https://images.unsplash.com/photo-1624353365286-3f8d62daad51?q=80&w=1000&auto=format&fit=crop",
+    "description": "Decadent individual chocolate cakes with a molten center. The ultimate chocolate lover's dessert.",
+    "ingredients": [
+      "200g Dark Chocolate",
+      "100g Butter",
+      "2 Eggs",
+      "50g Sugar",
+      "30g Flour",
+      "Vanilla Extract"
+    ],
+    "instructions": [
+      "Melt chocolate and butter together. Whisk eggs and sugar until pale.",
+      "Fold chocolate mix into eggs, then sift in flour and vanilla.",
+      "Pour into greased ramekins and bake at 200°C for 10-12 minutes.",
+      "Center should be soft. Let cool slightly before unmolding."
+    ]
+  }
+]

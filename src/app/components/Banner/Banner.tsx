@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 
 /* ──────────────── Keyframes & Global Styles ──────────────── */
 const keyframes = `
@@ -74,13 +73,12 @@ const InteractiveCard: React.FC<{ delay: number }> = ({ delay }) => {
       }}
     >
       <div className="flex items-start gap-3">
-        <div className="w-12 h-12 rounded-full bg-gray-100 flex-shrink-0 relative overflow-hidden">
-          {/* Requires next.config.js whitelist for images.unsplash.com */}
-          <Image
+        <div className="w-12 h-12 rounded-full bg-gray-100 flex-shrink-0 overflow-hidden">
+          {/* Using standard <img> tag to avoid Next.js config errors */}
+          <img
             src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?q=80&w=100&auto=format&fit=crop"
             alt="Chef"
-            fill
-            className="object-cover"
+            className="w-full h-full object-cover"
           />
         </div>
         <div>
@@ -201,7 +199,7 @@ const Icons = {
   ),
 };
 
-/* ──────────────── REDESIGNED PROFESSIONAL PATH CARD ──────────────── */
+/* ──────────────── REDESIGNED COMPACT PATH CARD ──────────────── */
 
 const PathCard: React.FC<{
   title: string;
@@ -211,32 +209,32 @@ const PathCard: React.FC<{
   return (
     <a
       href="#"
-      className="group relative flex flex-col items-center text-center p-8 rounded-2xl bg-white/80 backdrop-blur-md border border-white/60 shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+      className="group relative flex flex-col items-center text-center p-4 rounded-xl bg-white/80 backdrop-blur-md border border-white/60 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
       style={{
         animation: `fadeSlideUp 0.6s ease-out ${delay}s both`,
       }}
     >
       {/* Subtle Shine Effect on Hover */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl" />
+      <div className="absolute inset-0 bg-gradient-to-b from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-xl" />
 
-      {/* Icon Container */}
-      <div className="w-16 h-16 mb-6 flex items-center justify-center rounded-full bg-gray-50 text-gray-500 group-hover:bg-red-600 group-hover:text-white transition-colors duration-300 shadow-sm group-hover:shadow-md group-hover:scale-110">
-        <div className="w-8 h-8">{icon}</div>
+      {/* Icon Container - Made Smaller */}
+      <div className="w-10 h-10 mb-2 flex items-center justify-center rounded-full bg-gray-50 text-gray-500 group-hover:bg-red-600 group-hover:text-white transition-colors duration-200 shadow-sm group-hover:shadow-md group-hover:scale-110">
+        <div className="w-5 h-5">{icon}</div>
       </div>
 
-      {/* Content */}
-      <h3 className="text-xl font-bold text-gray-900 mb-4 leading-tight uppercase tracking-wide group-hover:text-red-700 transition-colors duration-300">
+      {/* Content - Compact Spacing */}
+      <h3 className="text-xs font-bold text-gray-900 leading-tight uppercase tracking-wide group-hover:text-red-700 transition-colors duration-200 mb-1">
         {title}
       </h3>
 
-      {/* Decorative Line */}
-      <div className="w-12 h-0.5 bg-red-200 rounded-full mb-4 group-hover:w-16 group-hover:bg-red-500 transition-all duration-300" />
+      {/* Decorative Line - Made Thinner/Smaller */}
+      <div className="w-6 h-px bg-red-200 rounded-full mb-2 group-hover:w-8 group-hover:bg-red-500 transition-all duration-300" />
 
-      {/* Reveal Text on Hover */}
-      <span className="text-sm font-semibold text-gray-400 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 flex items-center gap-2">
-        Explore Program
+      {/* Reveal Text on Hover - Absolute Positioned to NOT affect card height */}
+      <span className="absolute bottom-3 left-0 w-full text-[10px] font-semibold text-gray-400 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center gap-1">
+        Explore
         <svg
-          className="w-4 h-4"
+          className="w-3 h-3"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -269,23 +267,15 @@ const PathSection: React.FC = () => {
   ];
 
   return (
-    //
-    // Container: Subtle gradient background to provide contrast for the glass cards.
-    //
     <div className="relative z-20 bg-gradient-to-b from-slate-50 to-slate-100">
       {/* 
          The Stacked Glass Waves Container 
-         - absolute top-0: Aligns with the top of the white box.
-         - transform translateY(-50%): Pulls the whole stack UP by 50% to overlap the video.
       */}
       <div
-        className="absolute top-0 left-0 w-full h-40"
+        className="absolute top-0 left-0 w-full h-40 pointer-events-none"
         style={{ transform: "translateY(-50%)" }}
       >
-        {/* 
-           Wave 3 (Bottom Layer - Deep Glass)
-           - Slightly darker, more transparent.
-        */}
+        {/* Wave 3 (Bottom Layer) */}
         <div
           className="absolute top-[10px] left-0 w-full h-full bg-slate-200/30 backdrop-blur-sm border-b border-white/10"
           style={{
@@ -294,10 +284,7 @@ const PathSection: React.FC = () => {
           }}
         ></div>
 
-        {/* 
-           Wave 2 (Middle Layer - Frosted Glass)
-           - Medium transparency, higher blur.
-        */}
+        {/* Wave 2 (Middle Layer) */}
         <div
           className="absolute top-[5px] left-0 w-full h-full bg-slate-100/40 backdrop-blur-md border-b border-white/20"
           style={{
@@ -306,10 +293,7 @@ const PathSection: React.FC = () => {
           }}
         ></div>
 
-        {/* 
-           Wave 1 (Top Layer - Clear Glass)
-           - Higher opacity, crisp blur, shadow for depth.
-        */}
+        {/* Wave 1 (Top Layer) */}
         <div
           className="absolute top-0 left-0 w-full h-full bg-white/80 backdrop-blur-lg border-b border-white/40 shadow-[0_-10px_40px_rgba(0,0,0,0.05)]"
           style={{
@@ -323,7 +307,7 @@ const PathSection: React.FC = () => {
       <section className="relative z-10 pt-32 pb-32 bg-transparent">
         <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
           {/* Section Header */}
-          <div className="text-center max-w-4xl mx-auto mb-20 px-4">
+          <div className="text-center max-w-4xl mx-auto mb-16 px-4">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 font-serif">
               Choose Your Path
             </h2>
@@ -335,7 +319,7 @@ const PathSection: React.FC = () => {
           </div>
 
           {/* Grid Layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {paths.map((path, index) => (
               <PathCard
                 key={index}
@@ -361,10 +345,10 @@ const Banner: React.FC = () => {
 
   return (
     <>
-      {/* ★★★ Hero Section (Video Background) ★★★ */}
+      {/* Hero Section (Video Background) */}
       <section className="relative w-full min-h-screen flex items-center overflow-hidden font-sans selection:bg-black selection:text-white pb-20">
         {/* Video Background */}
-        <div className="absolute inset-0 z-0 w-full h-full overflow-hidden">
+        <div className="absolute inset-0 z-0 w-full h-full overflow-hidden bg-gray-900">
           <video
             className="absolute top-0 left-0 w-full h-full object-cover scale-105"
             src="/banner1.mp4"
@@ -374,7 +358,7 @@ const Banner: React.FC = () => {
             playsInline
           />
           {/* White Overlay to maintain readability */}
-          <div className="absolute inset-0 bg-gray-900/10 backdrop-blur-[1px]" />
+          <div className="absolute inset-0 bg-gray-900/30 backdrop-blur-[1px]" />
         </div>
 
         <div className="relative z-10 container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 py-20">
@@ -444,7 +428,7 @@ const Banner: React.FC = () => {
             </div>
 
             {/* Right Column: Visual Placeholder */}
-            <div className="order-1 lg:order-2 relative h-[400px] lg:h-[600px] flex items-center justify-center">
+            <div className="order-1 lg:order-2 relative h-[400px] lg:h-[600px] flex items-center justify-center pointer-events-none">
               {/* Decorative Circle behind */}
               <div className="absolute w-[300px] h-[300px] lg:w-[500px] lg:h-[500px] bg-gradient-to-br from-red-500/20 to-blue-500/20 rounded-full blur-3xl opacity-60 animate-pulse" />
             </div>
@@ -454,13 +438,13 @@ const Banner: React.FC = () => {
         {/* Bottom Right Interactive Window */}
         <InteractiveCard delay={mounted ? 1.2 : 0} />
 
-        {/* Global Styles */}
+        {/* Global Styles Injection */}
         <style jsx global>{`
           ${keyframes}
         `}</style>
       </section>
 
-      {/* ★★★ New Section: Choose Your Path (Glassmorphism) ★★★ */}
+      {/* New Section: Choose Your Path (Glassmorphism) */}
       <PathSection />
     </>
   );

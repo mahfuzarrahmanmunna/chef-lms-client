@@ -1,107 +1,272 @@
 [
   {
     "id": 1,
-    "title": "Chicken Tinga",
+    "title": "Professional Mexican Culinary Arts",
     "region": "Mexico",
     "city": "Mexico City",
-    "price": 185,
-    "priceLabel": "Starting from",
+    "price": 5500,
+    "priceLabel": "Full Course Fee",
     "image": "https://images.unsplash.com/photo-1534352956036-cd81e27dd615?q=80&w=1000&auto=format&fit=crop",
-    "tag": "LIVE from Mexico",
-    "description": "Master the art of authentic Mexican cuisine. Learn to shred chicken to perfection and create the rich, spiced sauce that defines Tinga.",
-    "duration": "2 Hours",
+    "tag": "Professional Certification",
+    "type": "Professional",
+    "description": "Master the art of authentic Mexican cuisine over 3 months. Learn to shred chicken to perfection, create rich spiced sauces, and manage a commercial kitchen station.",
+    "duration": "3 Months",
+    "schedule": "2 Days per Week",
     "difficulty": "Intermediate",
-    "ingredients": ["Chicken", "Chipotle", "Tortillas", "Onion"],
-    "chef": "Chef Maria Gonzalez"
+    "coreTopics": [
+      "Chicken Prep",
+      "Chipotle Sauces",
+      "Tortilla Making",
+      "Kitchen Management"
+    ],
+    "chef": "Chef Maria Gonzalez",
+    "features": {
+      "internshipIncluded": true,
+      "placementSupport": true,
+      "placementTracks": [
+        {
+          "type": "Foreign Job Placement",
+          "description": "Support for chef jobs abroad (Europe/USA)."
+        },
+        {
+          "type": "Local Job (Bangladesh)",
+          "description": "Placement support in top restaurants within Bangladesh."
+        }
+      ]
+    }
   },
   {
     "id": 2,
-    "title": "Chowder & Crab Cakes",
+    "title": "Professional Seafood Mastery",
     "region": "New England",
     "city": "Boston",
-    "price": 210,
-    "priceLabel": "Starting from",
+    "price": 6000,
+    "priceLabel": "Full Course Fee",
     "image": "https://images.unsplash.com/photo-1626804475297-411d3c4b0e8b?q=80&w=1000&auto=format&fit=crop",
-    "tag": "LIVE from New England",
-    "description": "A culinary journey to the coast. Learn the secrets behind creamy chowder and the perfect crisp texture of crab cakes.",
-    "duration": "2.5 Hours",
+    "tag": "Professional Certification",
+    "type": "Professional",
+    "description": "A deep dive into coastal cuisine. Master the secrets behind creamy chowders, the perfect crisp texture of crab cakes, and international seafood safety standards.",
+    "duration": "3 Months",
+    "schedule": "2 Days per Week",
     "difficulty": "Intermediate",
-    "ingredients": ["Crab", "Cream", "Potatoes", "Thyme"],
-    "chef": "Chef James O'Connor"
+    "coreTopics": [
+      "Crab Preparation",
+      "Cream Soups",
+      "Seafood Sourcing",
+      "Plating Techniques"
+    ],
+    "chef": "Chef James O'Connor",
+    "features": {
+      "internshipIncluded": true,
+      "placementSupport": true,
+      "placementTracks": [
+        {
+          "type": "Foreign Job Placement",
+          "description": "Support for chef jobs abroad (Europe/USA)."
+        },
+        {
+          "type": "Local Job (Bangladesh)",
+          "description": "Placement support in top restaurants within Bangladesh."
+        }
+      ]
+    }
   },
   {
     "id": 3,
-    "title": "Vegetarian Paella",
+    "title": "Professional Spanish Gastronomy",
     "region": "Spain",
     "city": "Valencia",
-    "price": 195,
-    "priceLabel": "Starting from",
+    "price": 5800,
+    "priceLabel": "Full Course Fee",
     "image": "https://images.unsplash.com/photo-1534080564583-6be75777b70a?q=80&w=1000&auto=format&fit=crop",
-    "tag": "LIVE from Spain",
-    "description": "Discover the soul of Spanish cooking. Learn the proper socarrat technique and how to balance flavors in this iconic rice dish.",
-    "duration": "3 Hours",
+    "tag": "Professional Certification",
+    "type": "Professional",
+    "description": "Discover the soul of Spanish cooking. Learn the proper socarrat technique, rice handling, and the business of running a Paella station in a high-end restaurant.",
+    "duration": "3 Months",
+    "schedule": "2 Days per Week",
     "difficulty": "Advanced",
-    "ingredients": ["Rice", "Saffron", "Vegetables", "Olive Oil"],
-    "chef": "Chef Alejandro Ruiz"
+    "coreTopics": [
+      "Rice Varieties",
+      "Saffron Infusion",
+      "Socarrat Technique",
+      "Spanish Menu Design"
+    ],
+    "chef": "Chef Alejandro Ruiz",
+    "features": {
+      "internshipIncluded": true,
+      "placementSupport": true,
+      "placementTracks": [
+        {
+          "type": "Foreign Job Placement",
+          "description": "Support for chef jobs abroad (Europe/USA)."
+        },
+        {
+          "type": "Local Job (Bangladesh)",
+          "description": "Placement support in top restaurants within Bangladesh."
+        }
+      ]
+    }
   },
   {
     "id": 4,
-    "title": "Sushi & Miso",
+    "title": "Professional Sushi & Japanese Arts",
     "region": "Japan",
     "city": "Tokyo",
-    "price": 225,
-    "priceLabel": "Starting from",
+    "price": 6500,
+    "priceLabel": "Full Course Fee",
     "image": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=1000&auto=format&fit=crop",
-    "tag": "LIVE from Japan",
-    "description": "Precision meets art. Learn the delicate art of rice preparation, fish cutting, and umami-rich broth creation.",
-    "duration": "2.5 Hours",
+    "tag": "Professional Certification",
+    "type": "Professional",
+    "description": "Precision meets art. Master the delicate art of rice preparation, fish cutting, and umami-rich broth creation. Prepare for the rigorous standards of Japanese cuisine globally.",
+    "duration": "3 Months",
+    "schedule": "2 Days per Week",
     "difficulty": "Hard",
-    "ingredients": ["Rice", "Fish", "Nori", "Miso Paste"],
-    "chef": "Chef Kenji Tanaka"
+    "coreTopics": [
+      "Rice Vinegaring",
+      "Fish Filleting",
+      "Sushi Rolling",
+      "Miso Broth Mastery"
+    ],
+    "chef": "Chef Kenji Tanaka",
+    "features": {
+      "internshipIncluded": true,
+      "placementSupport": true,
+      "placementTracks": [
+        {
+          "type": "Foreign Job Placement",
+          "description": "Support for chef jobs abroad (Europe/USA)."
+        },
+        {
+          "type": "Local Job (Bangladesh)",
+          "description": "Placement support in top restaurants within Bangladesh."
+        }
+      ]
+    }
   },
   {
     "id": 5,
-    "title": "Tagliatelle al Ragù",
+    "title": "Professional Italian Pasta & Sauces",
     "region": "Italy",
     "city": "Bologna",
-    "price": 180,
-    "priceLabel": "Starting from",
+    "price": 5000,
+    "priceLabel": "Full Course Fee",
     "image": "https://images.unsplash.com/photo-1626844131082-256783844137?q=80&w=1000&auto=format&fit=crop",
-    "tag": "LIVE from Italy",
-    "description": "Bologna's most famous export. Simmer a traditional ragù for hours and hand-cut the freshest tagliatelle pasta.",
-    "duration": "3 Hours",
+    "tag": "Professional Certification",
+    "type": "Professional",
+    "description": "Bologna's most famous export. Simmer traditional ragù for weeks and hand-cut the freshest tagliatelle pasta. Learn mass production techniques for restaurant settings.",
+    "duration": "3 Months",
+    "schedule": "2 Days per Week",
     "difficulty": "Intermediate",
-    "ingredients": ["Beef", "Pork", "Tomatoes", "Eggs", "Flour"],
-    "chef": "Chef Marco Rossi"
+    "coreTopics": [
+      "Egg Pasta Dough",
+      "Meat Ragù",
+      "Tomato Sauces",
+      "Commercial Pasta Production"
+    ],
+    "chef": "Chef Marco Rossi",
+    "features": {
+      "internshipIncluded": true,
+      "placementSupport": true,
+      "placementTracks": [
+        {
+          "type": "Foreign Job Placement",
+          "description": "Support for chef jobs abroad (Europe/USA)."
+        },
+        {
+          "type": "Local Job (Bangladesh)",
+          "description": "Placement support in top restaurants within Bangladesh."
+        }
+      ]
+    }
   },
   {
     "id": 6,
-    "title": "Beef Bourguignon",
+    "title": "Professional French Classical Cooking",
     "region": "France",
     "city": "Paris",
-    "price": 200,
-    "priceLabel": "Starting from",
+    "price": 6200,
+    "priceLabel": "Full Course Fee",
     "image": "https://images.unsplash.com/photo-1534939561126-855f863dd386?q=80&w=1000&auto=format&fit=crop",
-    "tag": "LIVE from France",
-    "description": "The ultimate French comfort food. Learn the techniques of braising and flavor building that define this rustic stew.",
-    "duration": "3.5 Hours",
+    "tag": "Professional Certification",
+    "type": "Professional",
+    "description": "The ultimate French comfort food training. Learn the techniques of braising, flavor building, and mother sauces that define this rustic stew and fine dining.",
+    "duration": "3 Months",
+    "schedule": "2 Days per Week",
     "difficulty": "Advanced",
-    "ingredients": ["Beef", "Bacon", "Mushrooms", "Red Wine"],
-    "chef": "Chef Sophie Martin"
+    "coreTopics": [
+      "Braising Meats",
+      "Stock Making",
+      "Red Wine Reductions",
+      "Mushroom Prep"
+    ],
+    "chef": "Chef Sophie Martin",
+    "features": {
+      "internshipIncluded": true,
+      "placementSupport": true,
+      "placementTracks": [
+        {
+          "type": "Foreign Job Placement",
+          "description": "Support for chef jobs abroad (Europe/USA)."
+        },
+        {
+          "type": "Local Job (Bangladesh)",
+          "description": "Placement support in top restaurants within Bangladesh."
+        }
+      ]
+    }
   },
   {
     "id": 7,
-    "title": "Lamb Rogan Josh",
+    "title": "Essential Indian Spices",
     "region": "India",
     "city": "Mumbai",
-    "price": 175,
-    "priceLabel": "Starting from",
+    "price": 1200,
+    "priceLabel": "Full Course Fee",
     "image": "https://images.unsplash.com/photo-1585937421612-70a008356f36?q=80&w=1000&auto=format&fit=crop",
-    "tag": "LIVE from India",
-    "description": "Aromatic and spicy. Dive into the world of Kashmiri spices and learn the slow-cooking method for tender lamb.",
-    "duration": "3 Hours",
-    "difficulty": "Intermediate",
-    "ingredients": ["Lamb", "Yogurt", "Ginger", "Garlic", "Spices"],
-    "chef": "Chef Anjali Patel"
+    "tag": "Short Course",
+    "type": "Short Course",
+    "description": "Aromatic and spicy. A 1-month introduction to Kashmiri spices and slow-cooking methods for tender lamb. Perfect for home cooks or beginners.",
+    "duration": "1 Month",
+    "schedule": "2 Days per Week",
+    "difficulty": "Beginner",
+    "coreTopics": [
+      "Spice Identification",
+      "Lamb Marinades",
+      "Slow Cooking",
+      "Basic Curry"
+    ],
+    "chef": "Chef Anjali Patel",
+    "features": {
+      "internshipIncluded": false,
+      "placementSupport": false,
+      "note": "This is a short course. No internship or job placement support is included."
+    }
+  },
+  {
+    "id": 8,
+    "title": "Intro to French Pastry",
+    "region": "France",
+    "city": "Paris",
+    "price": 1000,
+    "priceLabel": "Full Course Fee",
+    "image": "https://images.unsplash.com/photo-1509365465985-25d11c17e812?q=80&w=1000&auto=format&fit=crop",
+    "tag": "Short Course",
+    "type": "Short Course",
+    "description": "Learn the basics of doughs, creams, and tarts. A 1-month crash course for enthusiasts.",
+    "duration": "1 Month",
+    "schedule": "2 Days per Week",
+    "difficulty": "Beginner",
+    "coreTopics": [
+      "Pâte Brisée",
+      "Crème Pâtissière",
+      "Fruit Tarts",
+      "Basic Baking"
+    ],
+    "chef": "Chef Sophie Martin",
+    "features": {
+      "internshipIncluded": false,
+      "placementSupport": false,
+      "note": "This is a short course. No internship or job placement support is included."
+    }
   }
 ]

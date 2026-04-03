@@ -1,16 +1,18 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+// next.config.ts
+const nextConfig = {
   images: {
+    // remotePatterns: [],
     remotePatterns: [
+      new URL("https://assets.example.com/account123/**"),
+      new URL("https://assets.example.com/account123/**?v=1234"),
       {
         protocol: "https",
-        hostname: "images.unsplash.com",
+        hostname: "assets.example.com",
+        port: "",
+        pathname: "/account123/**",
       },
     ],
   },
-  // Optional: allow direct LAN access to dev server origin in Next.js dev mode
-  allowedDevOrigins: ["192.168.0.103"],
 };
 
 export default nextConfig;

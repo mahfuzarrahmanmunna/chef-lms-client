@@ -1,8 +1,15 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import { Clock, Users, Flame, ChefHat, Utensils } from "lucide-react";
+// Removed: import Image from "next/image";
+import {
+  Clock,
+  Users,
+  Flame,
+  ChefHat,
+  Utensils,
+  ArrowRight,
+} from "lucide-react";
 
 /* ──────────────── Types ──────────────── */
 interface Recipe {
@@ -19,16 +26,27 @@ interface Recipe {
   instructions: string[];
 }
 
+/* ──────────────── Utilities ──────────────── */
+const getDifficultyStyles = (level: string) => {
+  switch (level) {
+    case "Easy":
+      return "bg-emerald-50/90 text-emerald-700 border-emerald-100";
+    case "Medium":
+      return "bg-amber-50/90 text-amber-700 border-amber-100";
+    case "Hard":
+      return "bg-rose-50/90 text-rose-700 border-rose-100";
+    default:
+      return "bg-gray-50/90 text-gray-600 border-gray-100";
+  }
+};
+
 /* ──────────────── Sub-Component: Difficulty Badge ──────────────── */
 const DifficultyBadge: React.FC<{ level: string }> = ({ level }) => {
-  let colorClass = "bg-gray-100 text-gray-600";
-  if (level === "Easy") colorClass = "bg-green-100 text-green-700";
-  if (level === "Medium") colorClass = "bg-yellow-100 text-yellow-700";
-  if (level === "Hard") colorClass = "bg-red-100 text-red-700";
-
   return (
     <span
-      className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded ${colorClass}`}
+      className={`inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border backdrop-blur-sm shadow-sm transition-transform hover:scale-105 ${getDifficultyStyles(
+        level,
+      )}`}
     >
       {level}
     </span>
@@ -38,59 +56,53 @@ const DifficultyBadge: React.FC<{ level: string }> = ({ level }) => {
 /* ──────────────── Sub-Component: Recipe Card ──────────────── */
 const RecipeCard: React.FC<{ recipe: Recipe }> = ({ recipe }) => {
   return (
-    <div className="group bg-white rounded-xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-gray-100 flex flex-col h-full">
-      {/* Image Section */}
-      <div className="relative h-64 overflow-hidden">
-        <Image
+    <article className="group flex flex-col h-full bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 ease-out">
+      {/* Image Section with Aspect Ratio */}
+      <div className="relative w-full aspect-[4/3] overflow-hidden bg-gray-100">
+        {/* CHANGED: Used standard <img> instead of Next.js <Image> */}
+        <img
           src={recipe.image}
           alt={recipe.title}
-          fill
-          className="object-cover transition-transform duration-700 group-hover:scale-110"
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
 
         {/* Difficulty Badge Overlay */}
-        <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full shadow-sm border border-white/50">
+        <div className="absolute top-4 right-4 z-10">
           <DifficultyBadge level={recipe.difficulty} />
         </div>
       </div>
 
       {/* Content Section */}
-      <div className="p-6 flex-1 flex flex-col">
+      <div className="p-6 flex flex-col flex-1">
         {/* Header: Title & Chef */}
-        <div className="mb-4">
-          <h3 className="text-xl font-serif font-bold text-gray-900 mb-1 group-hover:text-[#c9a96e] transition-colors">
+        <div className="mb-3">
+          <h3 className="text-xl font-serif font-bold text-gray-900 tracking-tight leading-snug mb-2 group-hover:text-[#c9a96e] transition-colors">
             {recipe.title}
           </h3>
-          <div className="flex items-center gap-2 text-xs text-gray-500">
-            <ChefHat className="w-3 h-3" />
-            <span>{recipe.chef}</span>
+          <div className="flex items-center gap-1.5 text-xs font-medium text-gray-500">
+            <ChefHat className="w-3.5 h-3.5" />
+            <span className="uppercase tracking-wide">{recipe.chef}</span>
           </div>
         </div>
 
         {/* Description */}
-        <p className="text-sm text-gray-600 line-clamp-2 mb-6 flex-1">
+        <p className="text-sm text-gray-600 leading-relaxed line-clamp-2 mb-4 flex-1">
           {recipe.description}
         </p>
 
-        {/* Meta Data (Time, Servings, Calories) */}
-        <div className="grid grid-cols-3 gap-2 mb-6 border-t border-b border-gray-100 py-3">
-          <div className="flex flex-col items-center justify-center text-center">
-            <Clock className="w-4 h-4 text-gray-400 mb-1" />
-            <span className="text-[10px] font-semibold text-gray-600">
-              {recipe.time}
-            </span>
+        {/* Meta Data (Cleaner Layout) */}
+        <div className="flex items-center justify-between py-4 mb-4 border-t border-gray-100 text-xs text-gray-500">
+          <div className="flex items-center gap-1.5">
+            <Clock className="w-4 h-4 text-gray-400" />
+            <span className="font-medium">{recipe.time}</span>
           </div>
-          <div className="flex flex-col items-center justify-center text-center border-l border-r border-gray-100">
-            <Users className="w-4 h-4 text-gray-400 mb-1" />
-            <span className="text-[10px] font-semibold text-gray-600">
-              {recipe.servings} Serves
-            </span>
+          <div className="flex items-center gap-1.5">
+            <Users className="w-4 h-4 text-gray-400" />
+            <span className="font-medium">{recipe.servings} Servings</span>
           </div>
-          <div className="flex flex-col items-center justify-center text-center">
-            <Flame className="w-4 h-4 text-gray-400 mb-1" />
-            <span className="text-[10px] font-semibold text-gray-600">
-              {recipe.calories} Kcal
-            </span>
+          <div className="flex items-center gap-1.5">
+            <Flame className="w-4 h-4 text-gray-400" />
+            <span className="font-medium">{recipe.calories} kcal</span>
           </div>
         </div>
 
@@ -99,17 +111,17 @@ const RecipeCard: React.FC<{ recipe: Recipe }> = ({ recipe }) => {
           <h4 className="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-2">
             Key Ingredients
           </h4>
-          <div className="flex flex-wrap gap-1">
+          <div className="flex flex-wrap gap-1.5">
             {recipe.ingredients.slice(0, 3).map((ing, i) => (
               <span
                 key={i}
-                className="text-[10px] bg-gray-50 text-gray-600 px-2 py-1 rounded"
+                className="text-[11px] font-medium bg-gray-50 text-gray-600 px-2 py-1 rounded-md border border-gray-100"
               >
                 {ing}
               </span>
             ))}
             {recipe.ingredients.length > 3 && (
-              <span className="text-[10px] bg-gray-50 text-gray-400 px-2 py-1 rounded">
+              <span className="text-[11px] font-medium bg-gray-50 text-gray-400 px-2 py-1 rounded-md border border-gray-100">
                 +{recipe.ingredients.length - 3}
               </span>
             )}
@@ -117,14 +129,14 @@ const RecipeCard: React.FC<{ recipe: Recipe }> = ({ recipe }) => {
         </div>
 
         {/* Action Button */}
-        <div className="mt-auto">
-          <button className="w-full cursor-pointer py-2.5 text-sm font-bold uppercase tracking-widest text-white bg-gray-900 hover:bg-[#c9a96e] transition-colors duration-300 rounded flex items-center justify-center gap-2">
-            <Utensils className="w-4 h-4" />
-            View Recipe
+        <div className="mt-auto pt-2">
+          <button className="w-full group/btn flex items-center justify-center gap-2 py-3 px-4 text-xs font-bold uppercase tracking-widest text-white bg-gray-900 rounded-lg hover:bg-[#c9a96e] transition-colors duration-300">
+            <span>View Recipe</span>
+            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-1" />
           </button>
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 
@@ -138,9 +150,7 @@ export default function Recipes() {
     const fetchRecipes = async () => {
       try {
         const response = await fetch("/recipes.json");
-        if (!response.ok) {
-          throw new Error("Failed to fetch recipes");
-        }
+        if (!response.ok) throw new Error("Failed to fetch recipes");
         const data = await response.json();
         setRecipes(data);
       } catch (err) {
@@ -155,52 +165,69 @@ export default function Recipes() {
 
   if (loading) {
     return (
-      <div className="py-20 flex justify-center items-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#c9a96e]"></div>
+      <div className="py-32 flex flex-col justify-center items-center gap-4">
+        <div className="animate-spin rounded-full h-10 w-10 border-2 border-gray-200 border-t-[#c9a96e]" />
+        <p className="text-sm text-gray-500 font-medium animate-pulse">
+          Loading culinary masterpieces...
+        </p>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="py-20 text-center text-red-600 font-bold">
-        Error loading recipes: {error}
+      <div className="py-20 text-center px-6">
+        <div className="inline-block p-4 rounded-full bg-red-50 text-red-600 mb-4">
+          <Utensils className="w-8 h-8" />
+        </div>
+        <h3 className="text-lg font-bold text-gray-900 mb-2">Oops!</h3>
+        <p className="text-red-600">{error}</p>
       </div>
     );
   }
 
   return (
-    <section className="py-24 bg-white relative">
-      {/* Subtle Background Element */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-gray-50/50 skew-x-12 transform translate-x-1/4 z-0"></div>
+    <section className="py-20 md:py-28 bg-white relative overflow-hidden">
+      {/* Subtle Background Decoration */}
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-gray-50/40 -skew-x-12 transform translate-x-1/4 z-0 hidden lg:block" />
 
-      <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 relative z-10">
+      {/* Accent Line */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#c9a96e] via-gray-200 to-transparent z-10" />
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <span className="text-[#c9a96e] font-bold tracking-widest text-xs uppercase mb-2 block">
+        <div className="text-center mb-16 md:mb-24 max-w-3xl mx-auto">
+          <span className="inline-block py-1 px-3 rounded-full bg-red-50 text-red-700 text-[10px] font-bold uppercase tracking-widest mb-4 border border-red-100">
             From Our Kitchen
           </span>
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">
+          <h2 className="text-3xl md:text-5xl font-serif font-bold text-gray-900 mb-6 tracking-tight">
             Featured Recipes
           </h2>
-          <div className="w-24 h-1 bg-[#c9a96e] mx-auto rounded-full" />
-          <p className="mt-4 text-gray-600 max-w-2xl mx-auto text-lg">
+          <div className="flex items-center justify-center gap-2 mb-6">
+            <div className="h-px w-12 bg-gray-300" />
+            <div className="w-2 h-2 rounded-full bg-[#c9a96e]" />
+            <div className="h-px w-12 bg-gray-300" />
+          </div>
+          <p className="text-gray-600 text-base md:text-lg leading-relaxed">
             Explore our curated collection of signature dishes. From quick
-            weeknight meals to gourmet centerpieces.
+            weeknight meals to gourmet centerpieces crafted with passion.
           </p>
         </div>
 
         {/* Recipes Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {recipes.map((recipe) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+          {recipes?.map((recipe) => (
             <RecipeCard key={recipe.id} recipe={recipe} />
           ))}
         </div>
 
         {/* Bottom CTA */}
-        <div className="mt-16 text-center">
-          <button className="inline-block px-8 py-3 text-sm font-bold uppercase tracking-widest border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-all duration-300 rounded-sm">
-            View All Recipes
+        <div className="mt-20 text-center">
+          <button className="group relative inline-flex items-center justify-center px-8 py-3 text-sm font-bold uppercase tracking-widest text-gray-900 border-2 border-gray-900 rounded-lg overflow-hidden transition-all hover:text-white hover:border-[#c9a96e] hover:bg-[#c9a96e] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#c9a96e]">
+            <span className="relative z-10 flex items-center gap-2">
+              View All Recipes
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </span>
           </button>
         </div>
       </div>

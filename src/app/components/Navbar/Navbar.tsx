@@ -128,7 +128,7 @@ const Navbar: React.FC = () => {
               </div>
               <div className="flex flex-col">
                 <span className="text-white text-lg font-serif font-bold tracking-wide leading-tight">
-                  Chef<span className="text-[#c9a96e]">Academy</span>
+                  Chef<span className="text-red-600">Academy</span>
                 </span>
                 <span className="text-white/40 text-[9px] uppercase tracking-[0.3em] font-medium">
                   Est. 1985
@@ -146,7 +146,7 @@ const Navbar: React.FC = () => {
                     href={item.href}
                     className={`relative px-5 py-2 text-[13px] font-medium uppercase tracking-widest transition-all duration-300 group ${
                       isActive
-                        ? "text-[#c9a96e]"
+                        ? "text-red-600"
                         : "text-white/70 hover:text-white"
                     }`}
                   >
@@ -178,7 +178,7 @@ const Navbar: React.FC = () => {
             {/* ── Mobile Menu Button ── */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden relative z-10 w-10 h-10 flex items-center justify-center text-white/80 hover:text-[#c9a96e] transition-colors duration-300 focus:outline-none"
+              className="lg:hidden relative z-10 w-10 h-10 flex items-center justify-center text-white/80 hover:text-red-600 transition-colors duration-300 focus:outline-none"
               aria-label="Toggle menu"
             >
               <HamburgerIcon isOpen={mobileOpen} />
@@ -237,7 +237,7 @@ const Navbar: React.FC = () => {
                       : `opacity-0 translate-y-8`
                   } ${
                     isActive
-                      ? "text-[#c9a96e] pl-4"
+                      ? "text-red-600 pl-4"
                       : "text-white/80 hover:text-white hover:pl-4"
                   }`}
                   style={{
@@ -274,10 +274,10 @@ const Navbar: React.FC = () => {
           <div className="absolute bottom-8 left-8 right-8 flex items-center justify-between text-white/20 text-[10px] uppercase tracking-widest">
             <span>© 2026 ChefAcademy</span>
             <div className="flex gap-4">
-              <a href="#" className="hover:text-[#c9a96e] transition-colors">
+              <a href="#" className="hover:text-red-600 transition-colors">
                 Inst
               </a>
-              <a href="#" className="hover:text-[#c9a96e] transition-colors">
+              <a href="#" className="hover:text-red-600 transition-colors">
                 Fb
               </a>
             </div>

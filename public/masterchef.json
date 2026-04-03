@@ -1,0 +1,63 @@
+{
+  "id": 1,
+  "name": "Chef Henri Lefebvre",
+  "role": "Founder & Grand Executive Chef",
+  "quote": "Cooking is not just about ingredients, recipes, and cooking. It’s about harnessing imagination, empowerment, and creativity. I’ve spent 40 years chasing the perfect flavor, and I’m here to show you how to find it.",
+  "shortBio": "A culinary visionary with over four decades of global experience. Chef Henri has orchestrated kitchens in Michelin-starred restaurants across Paris, Tokyo, and New York before establishing this institute to mold the next generation of masters.",
+  "stats": [
+    {
+      "label": "Years Experience",
+      "value": "40+"
+    },
+    {
+      "label": "Countries Worked",
+      "value": "15+"
+    },
+    {
+      "label": "Awards Won",
+      "value": "50+"
+    },
+    {
+      "label": "Students Mentored",
+      "value": "5k+"
+    }
+  ],
+  "specialties": [
+    "French Haute Cuisine",
+    "Molecular Gastronomy",
+    "Sustainable Farm-to-Table",
+    "Asian Fusion Techniques"
+  ],
+  "countries": [
+    "France",
+    "Japan",
+    "Italy",
+    "Thailand",
+    "United States",
+    "Spain"
+  ],
+  "highlights": [
+    {
+      "year": "1985",
+      "title": "Sous Chef at Le Grand Véfour",
+      "description": "Started my journey in the heart of Paris under the guidance of legendary chefs."
+    },
+    {
+      "year": "1998",
+      "title": "Executive Chef at Sapporo Kaiseki",
+      "description": "Brought French precision to traditional Japanese cuisine in Tokyo."
+    },
+    {
+      "year": "2005",
+      "title": "3 Michelin Stars - New York",
+      "description": "Awarded 3 stars for 'L'Atelier', celebrating modernist French cooking."
+    },
+    {
+      "year": "2015",
+      "title": "Founded The Culinary Institute",
+      "description": "Established a world-class academy to bridge the gap between tradition and modern technique."
+    }
+  ],
+  "image": "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?q=80&w=1000&auto=format&fit=crop",
+  "signature": "Henri Lefebvre"
+}

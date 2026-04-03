@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import { Award, ChefHat } from "lucide-react";
 
 /* ──────────────── Types ──────────────── */
@@ -24,18 +23,18 @@ const TeamCard: React.FC<{ member: TeamMember; index: number }> = ({
     <div className="group relative bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 flex flex-col">
       {/* Image Section */}
       <div className="relative h-80 overflow-hidden">
-        <Image
-          src={member.image}
-          alt={member.name}
-          fill
-          className="object-cover transition-transform duration-700 group-hover:scale-110"
+        {/* CHANGED: Used standard <img> instead of Next.js <Image> */}
+        <img
+          src={member?.image}
+          alt={member?.name}
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
 
         {/* Overlay on Hover for Social Icons */}
         <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
           <a
             href="#"
-            className="p-2 bg-white rounded-full text-gray-900 hover:text-[#c9a96e] transition-colors transform hover:scale-110"
+            className="p-2 bg-white rounded-full text-gray-900 hover:text-red-600 transition-colors transform hover:scale-110"
           >
             {/* <Instagram className="w-5 h-5" /> */}
           </a>
@@ -57,10 +56,10 @@ const TeamCard: React.FC<{ member: TeamMember; index: number }> = ({
 
       {/* Content Section */}
       <div className="p-6 flex-1 flex flex-col items-center text-center">
-        <h3 className="text-xl font-serif font-bold text-gray-900 mb-1 group-hover:text-[#c9a96e] transition-colors">
+        <h3 className="text-xl font-serif font-bold text-gray-900 mb-1 group-hover:text-red-600 transition-colors">
           {member.name}
         </h3>
-        <p className="text-xs font-bold uppercase tracking-widest text-[#c9a96e] mb-4">
+        <p className="text-xs font-bold uppercase tracking-widest text-red-600 mb-4">
           {member.role}
         </p>
 
@@ -132,7 +131,7 @@ export default function Team() {
       <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <span className="text-[#c9a96e] font-bold tracking-widest text-xs uppercase mb-2 block flex items-center justify-center gap-2">
+          <span className="text-red-600 font-bold tracking-widest text-xs uppercase mb-2 block flex items-center justify-center gap-2">
             <ChefHat className="w-4 h-4" />
             Expert Faculty
           </span>
@@ -148,7 +147,7 @@ export default function Team() {
 
         {/* Team Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {team.map((member, index) => (
+          {team?.map((member, index) => (
             <TeamCard key={member.id} member={member} index={index} />
           ))}
         </div>

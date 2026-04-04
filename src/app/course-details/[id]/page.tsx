@@ -17,7 +17,7 @@ import {
   DollarSign,
 } from "lucide-react";
 
-/* ──────────────── Types ──────────────── */
+/*  Types  */
 interface PlacementTrack {
   type: string;
   description: string;
@@ -49,7 +49,7 @@ interface Course {
   features: CourseFeatures;
 }
 
-/* ──────────────── Component ──────────────── */
+/*  Component  */
 export default function CourseDetailsPage() {
   const params = useParams();
   const router = useRouter();

@@ -3,7 +3,7 @@
 import React from "react";
 import { DollarSign, MapPin, TrendingUp, Award, Carrot } from "lucide-react";
 
-/* ──────────────── Keyframes ──────────────── */
+/*  Keyframes  */
 const keyframes = `
 @keyframes fadeSlideUp {
   0%   { opacity: 0; transform: translateY(30px); }
@@ -11,7 +11,7 @@ const keyframes = `
 }
 `;
 
-/* ──────────────── Data & Icons ──────────────── */
+/*  Data & Icons  */
 const features = [
   {
     title: "Financial Aid",
@@ -45,7 +45,7 @@ const features = [
   },
 ];
 
-/* ──────────────── Main Component ──────────────── */
+/*  Main Component  */
 export default function Features() {
   return (
     <>

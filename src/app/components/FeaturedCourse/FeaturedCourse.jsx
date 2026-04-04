@@ -11,7 +11,7 @@ import {
   Star,
 } from "lucide-react";
 
-/* ──────────────── 1. UPDATED JSON DATA (6 COURSES) ──────────────── */
+/*  1. UPDATED JSON DATA (6 COURSES)  */
 const coursesData = [
   {
     id: 1,
@@ -105,7 +105,7 @@ const coursesData = [
   },
 ];
 
-/* ──────────────── SUB-COMPONENTS ──────────────── */
+/*  SUB-COMPONENTS  */
 
 // Removed 'React.FC<>' and ': string' type annotation
 const CourseTypeBadge = ({ type }) => {
@@ -222,7 +222,7 @@ const CourseCard = ({ course, layout = "grid" }) => {
   );
 };
 
-/* ──────────────── MAIN LMS COMPONENT ──────────────── */
+/*  MAIN LMS COMPONENT  */
 export default function FeaturedCourses() {
   // Removed <Course[]> generic type
   const [courses, setCourses] = useState([]);

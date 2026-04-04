@@ -1,48 +1,33 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar/Navbar";
+import dynamic from "next/dynamic";
+import SmoothScroll from "./components/SmoothScroll/SmoothScroll";
+// import SmoothScroll from "./components/SmoothScroll"; // <--- Import here
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+/*  Font Configuration  */
+const inter = Inter({
   subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const poppins = Poppins({
   subsets: ["latin"],
+  variable: "--font-poppins",
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
 });
 
+
+
+/*  Metadata  */
 export const metadata: Metadata = {
   title: "Online Chef Courses | Learn Cooking from Experts",
   description:
     "Join professional chef courses online. Learn cooking, baking, and culinary skills from expert chefs. Beginner to advanced level cooking classes available.",
-  keywords: [
-    "chef course",
-    "online cooking course",
-    "learn cooking",
-    "chef training",
-    "culinary course",
-    "baking course",
-    "professional chef training",
-    "cooking classes online",
-  ],
-  authors: [{ name: "Chef Academy" }],
-  creator: "Chef Academy",
-  metadataBase: new URL("https://yourdomain.com"),
-  openGraph: {
-    title: "Online Chef Courses | Learn Cooking from Experts",
-    description:
-      "Learn cooking from professional chefs. Join online chef courses today.",
-    url: "https://yourdomain.com",
-    siteName: "Chef Academy",
-    locale: "en_US",
-    type: "website",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  // ... (rest of your metadata)
   icons: {
     icon: [{ url: "/favicon.webp", type: "image/webp" }],
     apple: [
@@ -51,6 +36,7 @@ export const metadata: Metadata = {
   },
 };
 
+/*  Root Layout  */
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -59,33 +45,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${poppins.variable} h-full antialiased`}
     >
-      <body
-        cz-shortcut-listen="true"
-        className="min-h-full flex flex-col bg-white"
-      >
+      <body className="min-h-full flex flex-col bg-white text-gray-900 font-sans selection:bg-red-100 selection:text-red-900">
         <Navbar />
-        {/* <AnimatedCursor
-          showSystemCursor={true}
-          color="#fff"
-          innerSize={8}
-          outerSize={35}
-          innerScale={1}
-          outerScale={1.7}
-          outerAlpha={0}
-          outerStyle={{
-            border: "2px solid rgba(0,150,255,0.8)",
-            backgroundColor: "transparent",
-            borderRadius: "50%",
-          }}
-          innerStyle={{
-            backgroundColor: "rgba(0,150,255,1)",
-            borderRadius: "50%",
-          }}
-        /> */}
 
-        <div>{children}</div>
+        {/* <--- ADD SMOOTH SCROLL HERE ---> */}
+        <SmoothScroll />
+
+        <div className="flex-1">{children}</div>
       </body>
     </html>
   );

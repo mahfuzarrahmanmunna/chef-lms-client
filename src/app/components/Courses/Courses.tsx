@@ -5,7 +5,7 @@ import Link from "next/link"; // <--- Added Link import
 import { Clock, MapPin, ArrowRight, Briefcase } from "lucide-react";
 // Removed: import Image from "next/image";
 
-/* ──────────────── Types ──────────────── */
+/*  Types  */
 interface PlacementTrack {
   type: string;
   description: string;
@@ -37,7 +37,7 @@ interface Course {
   features: CourseFeatures;
 }
 
-/* ──────────────── Minimal Card Component ──────────────── */
+/*  Minimal Card Component  */
 const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
   const isProfessional = course.type === "Professional";
 
@@ -114,7 +114,7 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
   );
 };
 
-/* ──────────────── Main Component ──────────────── */
+/*  Main Component  */
 export default function Courses() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);

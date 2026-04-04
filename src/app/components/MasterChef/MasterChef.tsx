@@ -14,7 +14,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 
-/* ──────────────── Types ──────────────── */
+/*  Types  */
 interface Highlight {
   year: string;
   title: string;
@@ -35,7 +35,7 @@ interface MasterChefData {
   signature: string;
 }
 
-/* ──────────────── Sub-Component: Stat Item ──────────────── */
+/*  Sub-Component: Stat Item  */
 const StatItem: React.FC<{
   value: string;
   label: string;
@@ -54,7 +54,7 @@ const StatItem: React.FC<{
   );
 };
 
-/* ──────────────── Main Component ──────────────── */
+/*  Main Component  */
 export default function MasterChef() {
   const [chef, setChef] = useState<MasterChefData | null>(null);
   const [loading, setLoading] = useState(true);

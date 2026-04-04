@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 
-/* ──────────────── Keyframes & Global Styles ──────────────── */
+/*  Keyframes & Global Styles  */
 const keyframes = `
 @keyframes fadeSlideUp {
   0%   { opacity: 0; transform: translateY(30px); }
@@ -22,7 +22,7 @@ const keyframes = `
 }
 `;
 
-/* ──────────────── Sub-Components ──────────────── */
+/*  Sub-Components  */
 
 const AccentLine: React.FC<{ color?: string; delay?: number }> = ({
   color = "bg-red-600",
@@ -110,7 +110,7 @@ const InteractiveCard: React.FC<{ delay: number }> = ({ delay }) => {
   );
 };
 
-/* ──────────────── Path Section Components ──────────────── */
+/*  Path Section Components  */
 
 const Icons = {
   Culinary: (
@@ -199,7 +199,7 @@ const Icons = {
   ),
 };
 
-/* ──────────────── REDESIGNED COMPACT PATH CARD ──────────────── */
+/*  REDESIGNED COMPACT PATH CARD  */
 
 const PathCard: React.FC<{
   title: string;
@@ -251,7 +251,7 @@ const PathCard: React.FC<{
   );
 };
 
-/* ──────────────── Fixed Path Section Component (Professional Glassmorphism) ──────────────── */
+/*  Fixed Path Section Component (Professional Glassmorphism)  */
 
 const PathSection: React.FC = () => {
   const paths = [
@@ -335,7 +335,7 @@ const PathSection: React.FC = () => {
   );
 };
 
-/* ──────────────── Main Banner Component ──────────────── */
+/*  Main Banner Component  */
 const Banner: React.FC = () => {
   const [mounted, setMounted] = useState(false);
 

@@ -15,3 +15,4 @@
 1 they uses here "kepler-std,serif" this font.
 but this font is not available in google font.
 
+** studio-freight/react-lenis

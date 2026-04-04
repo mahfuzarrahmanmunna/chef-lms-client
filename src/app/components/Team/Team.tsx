@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Award, ChefHat } from "lucide-react";
 
-/* ──────────────── Types ──────────────── */
+/*  Types  */
 interface TeamMember {
   id: number;
   name: string;
@@ -14,7 +14,7 @@ interface TeamMember {
   awards: string[];
 }
 
-/* ──────────────── Sub-Component: Team Card ──────────────── */
+/*  Sub-Component: Team Card  */
 const TeamCard: React.FC<{ member: TeamMember; index: number }> = ({
   member,
   index,
@@ -81,7 +81,7 @@ const TeamCard: React.FC<{ member: TeamMember; index: number }> = ({
   );
 };
 
-/* ──────────────── Main Component ──────────────── */
+/*  Main Component  */
 export default function Team() {
   const [team, setTeam] = useState<TeamMember[]>([]);
   const [loading, setLoading] = useState(true);

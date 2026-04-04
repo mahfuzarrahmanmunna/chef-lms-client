@@ -11,7 +11,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 
-/* ──────────────── Types ──────────────── */
+/*  Types  */
 interface Recipe {
   id: number;
   title: string;
@@ -26,7 +26,7 @@ interface Recipe {
   instructions: string[];
 }
 
-/* ──────────────── Utilities ──────────────── */
+/*  Utilities  */
 const getDifficultyStyles = (level: string) => {
   switch (level) {
     case "Easy":
@@ -40,7 +40,7 @@ const getDifficultyStyles = (level: string) => {
   }
 };
 
-/* ──────────────── Sub-Component: Difficulty Badge ──────────────── */
+/*  Sub-Component: Difficulty Badge  */
 const DifficultyBadge: React.FC<{ level: string }> = ({ level }) => {
   return (
     <span
@@ -53,7 +53,7 @@ const DifficultyBadge: React.FC<{ level: string }> = ({ level }) => {
   );
 };
 
-/* ──────────────── Sub-Component: Recipe Card ──────────────── */
+/*  Sub-Component: Recipe Card  */
 const RecipeCard: React.FC<{ recipe: Recipe }> = ({ recipe }) => {
   return (
     <article className="group flex flex-col h-full bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 ease-out">
@@ -140,7 +140,7 @@ const RecipeCard: React.FC<{ recipe: Recipe }> = ({ recipe }) => {
   );
 };
 
-/* ──────────────── Main Component ──────────────── */
+/*  Main Component  */
 export default function Recipes() {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [loading, setLoading] = useState(true);

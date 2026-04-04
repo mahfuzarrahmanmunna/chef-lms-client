@@ -3,14 +3,14 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 
-/* ──────────────── Types ──────────────── */
+/*  Types  */
 interface NavItem {
   label: string;
   href: string;
   children?: NavItem[];
 }
 
-/* ──────────────── Nav Data ──────────────── */
+/*  Nav Data  */
 const navItems: NavItem[] = [
   { label: "Home", href: "#home" },
   { label: "Courses", href: "#courses" },
@@ -18,7 +18,7 @@ const navItems: NavItem[] = [
   { label: "Contact", href: "#contact" },
 ];
 
-/* ──────────────── Animated Hamburger (Refined) ──────────────── */
+/*  Animated Hamburger (Refined)  */
 const HamburgerIcon: React.FC<{ isOpen: boolean }> = ({ isOpen }) => (
   <div className="relative w-6 h-5 flex flex-col justify-between items-end group">
     <span
@@ -39,7 +39,7 @@ const HamburgerIcon: React.FC<{ isOpen: boolean }> = ({ isOpen }) => (
   </div>
 );
 
-/* ──────────────── Main Navbar ──────────────── */
+/*  Main Navbar  */
 const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);

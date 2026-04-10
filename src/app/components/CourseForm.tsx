@@ -14,9 +14,10 @@ interface CourseFormData {
 interface CourseFormProps {
   defaultValues?: Partial<CourseFormData & { id: string }>;
   onSuccess?: () => void;
+  onCancel?: () => void;
 }
 
-export default function CourseForm({ defaultValues = {}, onSuccess }: CourseFormProps) {
+export default function CourseForm({ defaultValues = {}, onSuccess, onCancel }: CourseFormProps) {
   const { register, handleSubmit } = useForm<CourseFormData>({ defaultValues });
 
   const onSubmit = async (data: CourseFormData) => {
@@ -78,12 +79,23 @@ export default function CourseForm({ defaultValues = {}, onSuccess }: CourseForm
           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         />
       </div>
-      <button
-        type="submit"
-        className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
-      >
-        Save Course
-      </button>
+      <div className="flex gap-3">
+        <button
+          type="submit"
+          className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+        >
+          Save Course
+        </button>
+        {onCancel && (
+          <button
+            type="button"
+            onClick={onCancel}
+            className="flex-1 bg-gray-200 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
+          >
+            Cancel
+          </button>
+        )}
+      </div>
     </form>
   );
 }

@@ -2,450 +2,199 @@
 
 import React, { useEffect, useState } from "react";
 
-/*  Keyframes & Global Styles  */
-const keyframes = `
-@keyframes fadeSlideUp {
-  0%   { opacity: 0; transform: translateY(30px); }
+/*  Shared Styles for Fonts & Animations */
+const globalStyles = `
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600&display=swap');
+
+:root {
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Manrope', sans-serif;
+  --font-great: 'Great Vibes', cursive; 
+  --color-red: #b91c1c; 
+  --color-red-hover: #dc2626; 
+  --color-dark: #111827;
+}
+
+@keyframes slowFadeIn {
+  0% { opacity: 0; transform: translateY(30px); }
   100% { opacity: 1; transform: translateY(0); }
-}
-@keyframes lineExpand {
-  0%   { width: 0; }
-  100% { width: 60px; }
-}
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-10px); }
-}
-@keyframes pulseSlow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
-  50%      { box-shadow: 0 0 0 15px rgba(37, 99, 235, 0); }
 }
 `;
 
 /*  Sub-Components  */
 
-const AccentLine: React.FC<{ color?: string; delay?: number }> = ({
-  color = "bg-red-600",
-  delay = 0,
-}) => (
-  <span
-    className={`block h-1 ${color} mb-6`}
-    style={{
-      animation: `lineExpand 0.8s ease-out ${delay}s forwards`,
-      width: 0,
-    }}
-  />
-);
-
-const CTAButton: React.FC<{
+const MinimalButton: React.FC<{
   text: string;
-  variant: "red" | "blue";
-  href: string;
+  onClick?: () => void;
+  variant?: "primary" | "outline";
   delay: number;
-}> = ({ text, variant, href, delay }) => {
+}> = ({ text, onClick, variant = "primary", delay }) => {
   const base =
-    "relative inline-flex items-center justify-center px-8 py-4 text-sm font-bold uppercase tracking-widest rounded-sm transition-all duration-300 ease-out cursor-pointer transform hover:-translate-y-1 shadow-md hover:shadow-xl overflow-hidden";
+    "relative px-10 py-4 overflow-hidden transition-all duration-500 ease-out shadow-sm";
 
-  const variants: Record<string, string> = {
-    red: "bg-red-600 hover:bg-red-700 text-white",
-    blue: "bg-blue-600 hover:bg-blue-700 text-white",
+  const styles = {
+    primary: "bg-red-700 text-white hover:bg-red-600 hover:shadow-md",
+    outline:
+      "bg-transparent border border-red-700 text-red-700 hover:bg-red-700 hover:text-white",
   };
 
   return (
-    <a
-      href={href}
-      className={`${base} ${variants[variant]}`}
+    <button
+      onClick={onClick}
+      className={`${base} ${styles[variant]}`}
       style={{
-        animation: `fadeSlideUp 0.7s ease-out ${delay}s both`,
+        animation: `slowFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s forwards`,
+        opacity: 0,
       }}
     >
-      <span className="relative z-10">{text}</span>
-    </a>
+      <span className="relative z-10 font-medium tracking-widest text-xs uppercase font-bold">
+        {text}
+      </span>
+    </button>
   );
 };
 
-const InteractiveCard: React.FC<{ delay: number }> = ({ delay }) => {
+const StatsBar: React.FC<{ delay: number }> = ({ delay }) => {
   return (
     <div
-      className="absolute bottom-10 right-0 lg:right-10 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-2xl border border-gray-100 max-w-xs z-30"
+      className="hidden md:flex items-center gap-10 bg-white/20 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] px-10 py-5 rounded-sm"
       style={{
-        animation: `fadeSlideUp 0.8s ease-out ${delay}s both, float 6s ease-in-out ${delay + 2}s infinite`,
+        animation: `slowFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s forwards`,
+        opacity: 0,
       }}
     >
-      <div className="flex items-start gap-3">
-        <div className="w-12 h-12 rounded-full bg-gray-100 flex-shrink-0 overflow-hidden">
-          {/* Using standard <img> tag to avoid Next.js config errors */}
-          <img
-            src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?q=80&w=100&auto=format&fit=crop"
-            alt="Chef"
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div>
-          <h4 className="font-serif font-bold text-black text-sm">
-            Start Your Journey
-          </h4>
-          <p className="text-xs text-gray-500 mt-1 mb-2">
-            Join our upcoming semester and master the art of cooking.
-          </p>
-          <button className="text-xs font-bold text-blue-600 hover:text-blue-800 uppercase tracking-wider flex items-center gap-1">
-            Apply Now
-            <svg
-              className="w-3 h-3"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
-        </div>
+      <div className="flex flex-col">
+        <span className="text-red-700 font-serif text-3xl italic font-bold">
+          No. 1
+        </span>
+        <span className="text-gray-400 text-[10px] uppercase tracking-widest font-semibold">
+          Global Ranking
+        </span>
+      </div>
+      <div className="w-px h-8 bg-gray-200"></div>
+      <div className="flex flex-col">
+        <span className="text-gray-900 font-serif text-3xl italic font-bold">
+          20k+
+        </span>
+        <span className="text-gray-400 text-[10px] uppercase tracking-widest font-semibold">
+          Alumni Network
+        </span>
+      </div>
+      <div className="w-px h-8 bg-gray-200"></div>
+      <div className="flex flex-col">
+        <span className="text-gray-900 font-serif text-3xl italic font-bold">
+          98%
+        </span>
+        <span className="text-gray-400 text-[10px] uppercase tracking-widest font-semibold">
+          Employment Rate
+        </span>
       </div>
     </div>
   );
 };
 
-/*  Path Section Components  */
-
-const Icons = {
-  Culinary: (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
-      />
-    </svg>
-  ),
-  Baking: (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"
-      />
-    </svg>
-  ),
-  Entrepreneurship: (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"
-      />
-    </svg>
-  ),
-  PlantBased: (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"
-      />
-    </svg>
-  ),
-  Nutrition: (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
-      />
-    </svg>
-  ),
-  Hospitality: (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z"
-      />
-    </svg>
-  ),
-};
-
-/*  REDESIGNED COMPACT PATH CARD  */
-
-const PathCard: React.FC<{
-  title: string;
-  icon: React.ReactNode;
-  delay: number;
-}> = ({ title, icon, delay }) => {
-  return (
-    <a
-      href="#"
-      className="group relative flex flex-col items-center text-center p-4 rounded-xl bg-white/80 backdrop-blur-md border border-white/60 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-      style={{
-        animation: `fadeSlideUp 0.6s ease-out ${delay}s both`,
-      }}
-    >
-      {/* Subtle Shine Effect on Hover */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-xl" />
-
-      {/* Icon Container - Made Smaller */}
-      <div className="w-10 h-10 mb-2 flex items-center justify-center rounded-full bg-gray-50 text-gray-500 group-hover:bg-red-600 group-hover:text-white transition-colors duration-200 shadow-sm group-hover:shadow-md group-hover:scale-110">
-        <div className="w-5 h-5">{icon}</div>
-      </div>
-
-      {/* Content - Compact Spacing */}
-      <h3 className="text-xs font-bold text-gray-900 leading-tight uppercase tracking-wide group-hover:text-red-700 transition-colors duration-200 mb-1">
-        {title}
-      </h3>
-
-      {/* Decorative Line - Made Thinner/Smaller */}
-      <div className="w-6 h-px bg-red-200 rounded-full mb-2 group-hover:w-8 group-hover:bg-red-500 transition-all duration-300" />
-
-      {/* Reveal Text on Hover - Absolute Positioned to NOT affect card height */}
-      <span className="absolute bottom-3 left-0 w-full text-[10px] font-semibold text-gray-400 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center gap-1">
-        Explore
-        <svg
-          className="w-3 h-3"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M17 8l4 4m0 0l-4 4m4-4H3"
-          />
-        </svg>
-      </span>
-    </a>
-  );
-};
-
-/*  Fixed Path Section Component (Professional Glassmorphism)  */
-
-const PathSection: React.FC = () => {
-  const paths = [
-    { title: "CULINARY ARTS", icon: Icons.Culinary },
-    { title: "BAKING & PASTRY ARTS", icon: Icons.Baking },
-    { title: "FOOD ENTREPRENEURSHIP", icon: Icons.Entrepreneurship },
-    { title: "PLANT-BASED CULINARY ARTS", icon: Icons.PlantBased },
-    { title: "HOLISTIC NUTRITION & WELLNESS", icon: Icons.Nutrition },
-    {
-      title: "HOSPITALITY & RESTAURANT OPERATIONS MANAGEMENT",
-      icon: Icons.Hospitality,
-    },
-  ];
-
-  return (
-    <div className="relative z-20 bg-gradient-to-b from-slate-50 to-slate-100">
-      {/* 
-         The Stacked Glass Waves Container 
-      */}
-      <div
-        className="absolute top-0 left-0 w-full h-40 pointer-events-none"
-        style={{ transform: "translateY(-50%)" }}
-      >
-        {/* Wave 3 (Bottom Layer) */}
-        <div
-          className="absolute top-[10px] left-0 w-full h-full bg-slate-200/30 backdrop-blur-sm border-b border-white/10"
-          style={{
-            borderBottomLeftRadius: "50% 100%",
-            borderBottomRightRadius: "50% 100%",
-          }}
-        ></div>
-
-        {/* Wave 2 (Middle Layer) */}
-        <div
-          className="absolute top-[5px] left-0 w-full h-full bg-slate-100/40 backdrop-blur-md border-b border-white/20"
-          style={{
-            borderBottomLeftRadius: "50% 100%",
-            borderBottomRightRadius: "50% 100%",
-          }}
-        ></div>
-
-        {/* Wave 1 (Top Layer) */}
-        <div
-          className="absolute top-0 left-0 w-full h-full bg-white/80 backdrop-blur-lg border-b border-white/40 shadow-[0_-10px_40px_rgba(0,0,0,0.05)]"
-          style={{
-            borderBottomLeftRadius: "50% 100%",
-            borderBottomRightRadius: "50% 100%",
-          }}
-        ></div>
-      </div>
-
-      {/* Section Content */}
-      <section className="relative z-10 pt-32 pb-32 bg-transparent">
-        <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
-          {/* Section Header */}
-          <div className="text-center max-w-4xl mx-auto mb-16 px-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 font-serif">
-              Choose Your Path
-            </h2>
-            <div className="w-24 h-1.5 bg-red-600 mx-auto rounded-full shadow-md" />
-            <p className="mt-4 text-gray-500 max-w-2xl mx-auto text-lg">
-              Select a specialized track to master your craft and launch your
-              career.
-            </p>
-          </div>
-
-          {/* Grid Layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {paths.map((path, index) => (
-              <PathCard
-                key={index}
-                title={path.title}
-                icon={path.icon}
-                delay={0.2 + index * 0.1}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-    </div>
-  );
-};
-
-/*  Main Banner Component  */
+/*  Main Component  */
 const Banner: React.FC = () => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    // Fix for setState warning
+    const timer = setTimeout(() => {
+      setMounted(true);
+    }, 100);
+    return () => clearTimeout(timer);
   }, []);
 
   return (
     <>
-      {/* Hero Section (Video Background) */}
-      <section className="relative w-full min-h-screen flex items-center overflow-hidden font-sans selection:bg-black selection:text-white pb-20">
+      <style jsx global>
+        {globalStyles}
+      </style>
+
+      <section className="relative w-full h-screen flex items-center justify-center overflow-hidden">
         {/* Video Background */}
-        <div className="absolute inset-0 z-0 w-full h-full overflow-hidden bg-gray-900">
+        <div className="absolute inset-0 z-0 w-full h-full">
           <video
-            className="absolute top-0 left-0 w-full h-full object-cover scale-105"
+            className="absolute top-0 left-0 w-full h-full object-cover opacity-40"
             src="/banner1.mp4"
             autoPlay
             loop
             muted
             playsInline
           />
-          {/* White Overlay to maintain readability */}
-          <div className="absolute inset-0 bg-gray-900/30 backdrop-blur-[1px]" />
+          <div className="absolute inset-0 bg-black/25 border-t border-l border-white/20 shadow-[inset_0_0_10px_rgba(255,255,255,0.1)]" />
         </div>
 
-        <div className="relative z-10 container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-            {/* Left Column: Text Content */}
-            <div className="order-2 lg:order-1 flex flex-col items-start max-w-2xl">
-              <div className="mb-6">
-                <AccentLine color="bg-red-600" delay={mounted ? 0.2 : 0} />
-                <span
-                  className="text-white/90 tracking-[0.25em] text-xs font-bold uppercase mb-4 block drop-shadow-md"
-                  style={{
-                    animation: `fadeSlideUp 0.6s ease-out ${mounted ? 0.3 : 0}s both`,
-                  }}
-                >
-                  The Culinary Institute
-                </span>
-              </div>
-
-              <h1
-                className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-serif font-bold text-white leading-[1.1] mb-6 drop-shadow-lg"
-                style={{
-                  animation: `fadeSlideUp 0.7s ease-out ${mounted ? 0.4 : 0}s both`,
-                }}
-              >
-                YOUR CULINARY <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-blue-400">
-                  FUTURE
-                </span>{" "}
-                STARTS HERE
-              </h1>
-
-              <div
-                className="flex flex-wrap items-center gap-2 text-white/90 font-medium text-sm sm:text-base mb-10 border-l-4 border-white/50 pl-4 bg-white/10 py-2 pr-4 rounded-r-sm backdrop-blur-sm"
-                style={{
-                  animation: `fadeSlideUp 0.7s ease-out ${mounted ? 0.5 : 0}s both`,
-                }}
-              >
-                <span>20,000+ Graduates</span>
-                <span className="text-white/30">|</span>
-                <span>#1 Ranked Culinary School in the World*</span>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-8">
-                <CTAButton
-                  text="Request Info"
-                  variant="red"
-                  href="#request-info"
-                  delay={mounted ? 0.7 : 0}
-                />
-                <CTAButton
-                  text="Enroll Today"
-                  variant="blue"
-                  href="#enroll"
-                  delay={mounted ? 0.8 : 0}
-                />
-              </div>
-
-              <p
-                className="text-xs font-semibold text-white/50 uppercase tracking-widest mt-2 flex items-center gap-2"
-                style={{
-                  animation: `fadeSlideUp 0.7s ease-out ${mounted ? 0.9 : 0}s both`,
-                }}
-              >
-                Choose Your Path
-                <span className="w-8 h-[1px] bg-white/50" />
-              </p>
+        {/* Hero Content */}
+        <div className="relative z-10 container mx-auto px-6 h-full flex flex-col justify-center">
+          <div className="max-w-4xl">
+            {/* Label */}
+            <div
+              className="flex items-center gap-3 mb-6"
+              style={{
+                animation: `slowFadeIn 1s ease-out ${mounted ? 0.2 : 0}s forwards`,
+                opacity: 0,
+              }}
+            >
+              <span className="w-8 h-[1px] bg-red-700"></span>
+              <span className="text-red-700 text-xs font-bold tracking-[0.3em] uppercase">
+                Est. 1995
+              </span>
             </div>
 
-            {/* Right Column: Visual Placeholder */}
-            <div className="order-1 lg:order-2 relative h-[400px] lg:h-[600px] flex items-center justify-center pointer-events-none">
-              {/* Decorative Circle behind */}
-              <div className="absolute w-[300px] h-[300px] lg:w-[500px] lg:h-[500px] bg-gradient-to-br from-red-500/20 to-blue-500/20 rounded-full blur-3xl opacity-60 animate-pulse" />
+            {/* Headline */}
+            <h1
+              className="font-great text-5xl md:text-7xl lg:text-8xl text-gray-900 leading-[0.95] mb-8"
+              style={{
+                animation: `slowFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) ${mounted ? 0.4 : 0}s forwards`,
+                opacity: 0,
+              }}
+            >
+              Crafting the <br />
+              <span className="italic text-red-700">Extraordinary.</span>
+            </h1>
+
+            {/* Description */}
+            <p
+              className="text-gray-600 text-lg md:text-xl max-w-lg font-light leading-relaxed mb-12"
+              style={{
+                animation: `slowFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) ${mounted ? 0.6 : 0}s forwards`,
+                opacity: 0,
+              }}
+            >
+              Join the elite cohort of chefs shaping the future of global
+              gastronomy. Precision. Passion. Perfection.
+            </p>
+
+            {/* Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <MinimalButton
+                text="Apply for Semester"
+                variant="primary"
+                delay={mounted ? 0.8 : 0}
+              />
+              <MinimalButton
+                text="View Programs"
+                variant="outline"
+                delay={mounted ? 0.9 : 0}
+              />
             </div>
+          </div>
+
+          {/* Floating Stats Bar */}
+          <div className="absolute bottom-10 left-6 md:left-auto md:right-10 md:bottom-20">
+            <StatsBar delay={mounted ? 1.2 : 0} />
           </div>
         </div>
 
-        {/* Bottom Right Interactive Window */}
-        <InteractiveCard delay={mounted ? 1.2 : 0} />
-
-        {/* Global Styles Injection */}
-        <style jsx global>{`
-          ${keyframes}
-        `}</style>
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 opacity-40 animate-bounce">
+          <span className="text-[10px] uppercase tracking-widest text-gray-900">
+            Scroll
+          </span>
+          <div className="w-[1px] h-10 bg-gradient-to-b from-gray-900 to-transparent"></div>
+        </div>
       </section>
-
-      {/* New Section: Choose Your Path (Glassmorphism) */}
-      <PathSection />
     </>
   );
 };

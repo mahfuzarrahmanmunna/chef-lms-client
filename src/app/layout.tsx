@@ -1,33 +1,37 @@
 import type { Metadata } from "next";
-import { Inter, Poppins } from "next/font/google";
+import { Raleway, Lato, Great_Vibes } from "next/font/google"; // 1. Import Great Vibes
 import "./globals.css";
-import Navbar from "./components/Navbar/Navbar";
-import dynamic from "next/dynamic";
 import SmoothScroll from "./components/SmoothScroll/SmoothScroll";
-// import SmoothScroll from "./components/SmoothScroll"; // <--- Import here
+import NavbarWrapper from "./components/NavbarWrapper/NavbarWrapper";
+import Footer from "./components/Footer/Footer";
 
 /*  Font Configuration  */
-const inter = Inter({
+const raleway = Raleway({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-raleway",
   display: "swap",
 });
 
-const poppins = Poppins({
+const lato = Lato({
   subsets: ["latin"],
-  variable: "--font-poppins",
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["100", "300", "400", "700", "900"],
+  variable: "--font-lato",
   display: "swap",
 });
 
-
+// 2. Initialize Great Vibes Font
+const greatVibes = Great_Vibes({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-great-vibes", // This creates the CSS variable
+  display: "swap",
+});
 
 /*  Metadata  */
 export const metadata: Metadata = {
   title: "Online Chef Courses | Learn Cooking from Experts",
   description:
-    "Join professional chef courses online. Learn cooking, baking, and culinary skills from expert chefs. Beginner to advanced level cooking classes available.",
-  // ... (rest of your metadata)
+    "Join professional chef courses online. Learn cooking, baking, and culinary skills from expert chefs.",
   icons: {
     icon: [{ url: "/favicon.webp", type: "image/webp" }],
     apple: [
@@ -45,15 +49,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${poppins.variable} h-full antialiased`}
+      // 3. Add the new variable to the className
+      className={`${raleway.variable} ${lato.variable} ${greatVibes.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white text-gray-900 font-sans selection:bg-red-100 selection:text-red-900">
-        <Navbar />
-
-        {/* <--- ADD SMOOTH SCROLL HERE ---> */}
+        <NavbarWrapper />
         <SmoothScroll />
-
         <div className="flex-1">{children}</div>
+        <Footer />
       </body>
     </html>
   );

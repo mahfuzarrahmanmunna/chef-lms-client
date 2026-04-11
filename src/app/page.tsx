@@ -7,6 +7,8 @@ import Team from "./components/Team/Team";
 import Recipes from "./components/Recipes/Recipes";
 import FeaturedCourses from "./components/FeaturedCourse/FeaturedCourse";
 import MasterChef from "./components/MasterChef/MasterChef";
+import VideoSection from "./components/VideoSection/VideoSection";
+import DisciplinesSection from "./components/Banner/DisciplinesSection";
 
 export default function Home() {
   return (
@@ -14,10 +16,12 @@ export default function Home() {
       <Banner />
       <Features />
       <Courses />
+      <DisciplinesSection/>
       <FacebookFeed />
       <MasterChef/>
       <Team />
-      <Recipes />
+      {/* <Recipes /> */}
+      <VideoSection/>
       {/* <FeaturedCourses /> */}
       <div className="mt-24">bottom</div>
     </div>

@@ -1,49 +1,157 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { Clock, MapPin, ArrowRight, Briefcase } from "lucide-react";
+import { Clock, MapPin, ArrowRight, Award, CheckCircle } from "lucide-react";
 
 /*  Types  */
-interface PlacementTrack {
-  type: string;
-  description: string;
-}
-
-interface CourseFeatures {
-  internshipIncluded: boolean;
-  placementSupport: boolean;
-  placementTracks?: PlacementTrack[];
-  note?: string;
-}
-
 interface Course {
   id: number;
   title: string;
-  region: string;
-  city: string;
-  price: number;
-  priceLabel: string;
-  image: string;
-  tag: string;
+  type: "Professional" | "Short Course";
   description: string;
   duration: string;
-  schedule: string;
-  difficulty: string;
-  type: "Professional" | "Short Course";
-  coreTopics: string[];
-  chef: string;
-  features: CourseFeatures;
+  image: string;
+  region: string; // Added for layout consistency
+  city: string; // Added for layout consistency
+  price?: number;
+  oldPrice?: number;
+  currency: string;
+  hasCertificate: boolean;
+  priceLabel?: string; // "Contact for Price" if no price listed
 }
 
-/*  Professional Sharp Card Component  */
-const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
-  const isProfessional = course.type === "Professional";
+/*  Data: Mapped strictly from your Text Content  */
+const coursesData: Course[] = [
+  {
+    id: 1,
+    title: "Professional Chef Course",
+    type: "Professional",
+    description:
+      "Become expert on the basic and advanced techniques of the professional kitchen. A comprehensive 3-month journey designed to transform you from a home cook to a workplace-ready professional.",
+    duration: "3 Months",
+    image:
+      "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?q=80&w=1000&auto=format&fit=crop",
+    region: "Global",
+    city: "Dhaka",
+    price: 40000,
+    oldPrice: 45000,
+    currency: "৳",
+    hasCertificate: true,
+  },
+  {
+    id: 2,
+    title: "Basic Short Courses",
+    type: "Short Course",
+    description:
+      "This course is perfect for beginners or hobbyists looking to master the basics in a professional environment.",
+    duration: "30 Days",
+    image:
+      "https://images.unsplash.com/photo-1556910103-1c02745a30bf?q=80&w=1000&auto=format&fit=crop",
+    region: "Local",
+    city: "Dhaka",
+    price: 3500,
+    oldPrice: 5000,
+    currency: "৳",
+    hasCertificate: true,
+  },
+  {
+    id: 3,
+    title: "International & Arabian Cuisine",
+    type: "Professional",
+    description:
+      "Explore the flavors of the world. From Mediterranean classics to the rich traditions of Arabian food, learn the recipes and presentation styles that high-end hotels demand.",
+    duration: "2 Months", // Assumed based on similar courses
+    image:
+      "https://images.unsplash.com/photo-1544025162-d76690b68f4d?q=80&w=1000&auto=format&fit=crop",
+    region: "Middle East",
+    city: "Dubai/Doha",
+    currency: "৳",
+    hasCertificate: true,
+    priceLabel: "Contact for Price",
+  },
+  {
+    id: 4,
+    title: "Professional Barista Course",
+    type: "Professional",
+    description:
+      "Step into the booming world of coffee culture. Learn bean selection, milk texturing, and latte art from industry experts to become a certified barista.",
+    duration: "1 Month",
+    image:
+      "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1000&auto=format&fit=crop",
+    region: "Global",
+    city: "Dhaka",
+    currency: "৳",
+    hasCertificate: true,
+    priceLabel: "Contact for Price",
+  },
+  {
+    id: 5,
+    title: "Fast Food & Baking Mastery",
+    type: "Professional",
+    description:
+      "A specialized course covering the Big 5 of modern cafes: Pizza, Burgers, Pasta, Sandwiches, and professional Baking techniques.",
+    duration: "2 Months",
+    image:
+      "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1000&auto=format&fit=crop",
+    region: "International",
+    city: "Dhaka",
+    currency: "৳",
+    hasCertificate: true,
+    priceLabel: "Contact for Price",
+  },
+  {
+    id: 6,
+    title: "Catering & Biriyani Specialist",
+    type: "Professional",
+    description:
+      "Master the art of bulk catering and authentic Biriyani. This course is ideal for those looking to start their own catering business or lead traditional commercial kitchens.",
+    duration: "1.5 Months",
+    image:
+      "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?q=80&w=1000&auto=format&fit=crop",
+    region: "Local",
+    city: "Dhaka",
+    currency: "৳",
+    hasCertificate: true,
+    priceLabel: "Contact for Price",
+  },
+  {
+    id: 7,
+    title: "Foreign Career & Language Training",
+    type: "Professional",
+    description:
+      "Planning to work abroad? We combine professional chef training with essential language education to ensure you are super ready for the international job market.",
+    duration: "3 Months",
+    image:
+      "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1000&auto=format&fit=crop",
+    region: "Global",
+    city: "Dhaka",
+    currency: "৳",
+    hasCertificate: true,
+    priceLabel: "Contact for Price",
+  },
+];
 
+/*  Shared Styles  */
+const styles = `
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600&display=swap');
+
+  .font-serif-luxury { font-family: 'Playfair Display', serif; }
+  .font-sans-luxury { font-family: 'Manrope', sans-serif; }
+
+  /* The Angel Shape (Cut Bottom-Right) */
+  .angel-shape {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+  }
+`;
+
+/*  Card Component  */
+const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
   return (
     <Link href={`/course-details/${course.id}`} className="block group h-full">
-      <div className="h-full flex flex-col bg-white border border-gray-200 hover:border-red-700 transition-all duration-300 relative overflow-hidden">
-        {/* Image Section - Full Width, Sharp Edges */}
+      <div className="h-full flex flex-col bg-white border border-gray-200 hover:border-black transition-all duration-300 relative overflow-hidden shadow-sm hover:shadow-xl">
+        {/* Image Section - Angel Shape Applied via Parent or masking? 
+            Applying Angel Shape to the whole card looks cleaner. */}
         <div className="relative w-full aspect-[4/3] overflow-hidden bg-gray-100">
           <img
             src={course.image}
@@ -51,17 +159,25 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
 
-          {/* Top Left Tag: Square Design */}
+          {/* Top Left Tag */}
           <div
-            className={`absolute top-0 left-0 text-white text-[10px] font-bold px-3 py-2 uppercase tracking-widest z-10 ${
-              isProfessional ? "bg-gray-900" : "bg-gray-600"
+            className={`absolute top-0 left-0 text-white text-[10px] font-bold px-4 py-2 uppercase tracking-widest z-20 ${
+              course.type === "Professional" ? "bg-black" : "bg-gray-600"
             }`}
           >
             {course.type}
           </div>
 
-          {/* Bottom Right Badge: Duration (Floating Square) */}
-          <div className="absolute bottom-0 right-0 bg-white border-t border-l border-gray-100 p-2 z-10">
+          {/* Certificate Badge (Top Right) */}
+          {course.hasCertificate && (
+            <div className="absolute top-0 right-0 bg-red-700 text-white px-3 py-1.5 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wide z-20">
+              <CheckCircle className="w-3 h-3" />
+              <span>Free Cert.</span>
+            </div>
+          )}
+
+          {/* Floating Duration Badge (Bottom Right) */}
+          <div className="absolute bottom-0 right-0 bg-white border-t border-l border-gray-100 p-2 z-20">
             <div className="flex items-center gap-2 text-xs font-bold text-gray-900 uppercase tracking-wide">
               <Clock className="w-3 h-3" />
               <span>{course.duration}</span>
@@ -69,9 +185,9 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
           </div>
         </div>
 
-        {/* Content Section - Clean Structure */}
-        <div className="p-6 flex flex-col flex-1 relative">
-          {/* Location - Small Caps */}
+        {/* Content Section */}
+        <div className="p-6 flex flex-col flex-1 relative bg-white">
+          {/* Location */}
           <div className="flex items-center gap-2 mb-3">
             <MapPin className="w-3 h-3 text-red-700" />
             <span className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em]">
@@ -79,43 +195,50 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
             </span>
           </div>
 
-          {/* Title - Serif Font */}
-          <h3 className="text-xl  font-bold text-gray-900 mb-3 leading-tight group-hover:text-red-700 transition-colors">
+          {/* Title */}
+          <h3 className="text-xl font-serif-luxury font-bold text-gray-900 mb-3 leading-tight group-hover:text-red-700 transition-colors">
             {course.title}
           </h3>
 
-          {/* Description (Optional preview) - Small text */}
-          <p className="text-sm text-gray-500 font-light leading-relaxed mb-4 line-clamp-2">
+          {/* Description */}
+          <p className="text-sm text-gray-500 font-sans-luxury font-light leading-relaxed mb-6 line-clamp-3">
             {course.description}
           </p>
 
-          {/* Spacer to push footer down */}
+          {/* Spacer */}
           <div className="flex-1"></div>
 
-          {/* Divider Line */}
+          {/* Divider */}
           <div className="w-full h-px bg-gray-100 my-4"></div>
 
-          {/* Footer: Price & Arrow */}
+          {/* Footer: Price & Action */}
           <div className="flex items-center justify-between">
             <div>
-              <span className="block text-[10px] text-gray-400 font-bold uppercase tracking-widest">
-                {course.priceLabel}
-              </span>
-              <span className="block text-2xl font-bold text-gray-900 ">
-                ${course.price}
-              </span>
+              {course.price ? (
+                <>
+                  {course.oldPrice && (
+                    <span className="block text-[10px] text-gray-400 line-through font-bold">
+                      {course.currency}
+                      {course.oldPrice.toLocaleString()}
+                    </span>
+                  )}
+                  <span className="block text-2xl font-serif-luxury font-bold text-gray-900">
+                    {course.currency}
+                    {course.price.toLocaleString()}
+                  </span>
+                </>
+              ) : (
+                <span className="block text-sm font-bold text-gray-900 uppercase tracking-wide">
+                  {course.priceLabel}
+                </span>
+              )}
             </div>
 
-            {/* Sharp Square Button */}
-            <div className="w-10 h-10 border border-gray-200 flex items-center justify-center bg-white text-gray-900 group-hover:bg-red-700 group-hover:border-red-700 group-hover:text-white transition-all duration-300">
+            {/* Angel Shape Button */}
+            <div className="w-10 h-10 border border-gray-200 flex items-center justify-center bg-white text-gray-900 group-hover:bg-red-700 group-hover:border-red-700 group-hover:text-white transition-all duration-300 angel-shape">
               <ArrowRight className="w-5 h-5" />
             </div>
           </div>
-
-          {/* Placement Indicator - Bottom Accent */}
-          {isProfessional && course.features.placementSupport && (
-            <div className="absolute top-0 left-0 w-full h-1 bg-gray-900 group-hover:bg-red-700 transition-colors duration-300"></div>
-          )}
         </div>
       </div>
     </Link>
@@ -123,114 +246,103 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
 };
 
 /*  Main Component  */
-export default function Courses() {
+export default function CourseCollections() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
+  // Simulating fetch, or you can just use the data directly.
+  // Using the data directly is cleaner for this specific request.
   useEffect(() => {
-    const fetchCourses = async () => {
-      try {
-        const response = await fetch("/courses.json");
-        if (!response.ok) {
-          throw new Error("Failed to fetch courses");
-        }
-        const data: Course[] = await response.json();
-        setCourses(data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "An error occurred");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCourses();
+    // Simulate network delay for loading state
+    const timer = setTimeout(() => {
+      setCourses(coursesData);
+      setLoading(false);
+    }, 500);
+    return () => clearTimeout(timer);
   }, []);
 
-  const foreignProfessionalCourses = courses.filter(
-    (course) => course.type === "Professional",
-  );
-
-  const shortCourses = courses.filter(
-    (course) => course.type === "Short Course",
-  );
+  const professionalCourses = courses.filter((c) => c.type === "Professional");
+  const shortCourses = courses.filter((c) => c.type === "Short Course");
 
   if (loading) {
     return (
-      <div className="py-32 flex justify-center items-center min-h-[400px]">
-        <div className="animate-spin h-8 w-8 border-2 border-gray-900 border-t-transparent"></div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="py-20 text-center text-red-600 font-bold">
-        Error loading courses: {error}
+      <div className="py-32 flex justify-center items-center min-h-[400px] bg-white">
+        <div className="animate-spin h-8 w-8 border-2 border-black border-t-transparent"></div>
       </div>
     );
   }
 
   return (
-    <section className="py-24 bg-white">
-      <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
-        {/* SECTION 1: Professional Courses */}
-        {foreignProfessionalCourses.length > 0 && (
-          <div className="mb-32">
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12 border-b border-gray-200 pb-6">
-              <div>
-                <div className="flex items-center gap-4 mb-2">
-                  <div className="w-1 h-8 bg-red-700"></div>
-                  <span className="text-red-700 font-bold tracking-[0.2em] text-xs uppercase">
-                    Career Programs
-                  </span>
-                </div>
-                <h2 className="text-3xl md:text-4xl  font-bold text-gray-900">
-                  International Culinary Careers
-                </h2>
-              </div>
-              <p className="text-gray-500 text-sm max-w-md mt-4 md:mt-0 font-light">
-                Comprehensive 3-Month Programs including Internship & Placement
-                Support.
-              </p>
-            </div>
+    <>
+      <style jsx global>
+        {styles}
+      </style>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
-              {foreignProfessionalCourses.map((course) => (
-                <CourseCard key={course.id} course={course} />
-              ))}
-            </div>
+      <section className="py-24 bg-[#faf9f6] font-sans-luxury">
+        <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
+          {/* SECTION HEADER */}
+          <div className="text-center max-w-3xl mx-auto mb-20">
+            <span className="text-red-700 font-bold tracking-[0.3em] text-xs uppercase mb-4 block">
+              Course Collections
+            </span>
+            <h2 className="text-4xl md:text-5xl font-serif-luxury font-bold text-gray-900 mb-6">
+              Explore and Select Courses
+            </h2>
+            <p className="text-gray-600 font-light leading-relaxed text-lg">
+              Specialized programs designed to help you improve your skills and
+              advance your culinary arts career.
+            </p>
           </div>
-        )}
 
-        {/* SECTION 2: Short Courses */}
-        {shortCourses.length > 0 && (
-          <div>
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12 border-b border-gray-200 pb-6">
-              <div>
-                <div className="flex items-center gap-4 mb-2">
-                  <div className="w-1 h-8 bg-gray-400"></div>
-                  <span className="text-gray-500 font-bold tracking-[0.2em] text-xs uppercase">
-                    Skill Building
-                  </span>
+          {/* SECTION 1: PROFESSIONAL COURSES */}
+          {professionalCourses.length > 0 && (
+            <div className="mb-24">
+              <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-10 border-b border-gray-200 pb-4">
+                <div>
+                  <h3 className="text-2xl font-serif-luxury font-bold text-gray-900">
+                    Professional Programs
+                  </h3>
+                  <p className="text-sm text-gray-500 mt-2">
+                    Comprehensive training for career advancement.
+                  </p>
                 </div>
-                <h2 className="text-3xl md:text-4xl  font-bold text-gray-900">
-                  Short Courses
-                </h2>
+                {/* Decorative Element */}
+                <div className="hidden md:block w-12 h-1 bg-red-700"></div>
               </div>
-              <p className="text-gray-500 text-sm max-w-md mt-4 md:mt-0 font-light">
-                Focused 1-Month Workshops for enthusiasts and hobbyists.
-              </p>
-            </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10">
-              {shortCourses.map((course) => (
-                <CourseCard key={course.id} course={course} />
-              ))}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {professionalCourses.map((course) => (
+                  <CourseCard key={course.id} course={course} />
+                ))}
+              </div>
             </div>
-          </div>
-        )}
-      </div>
-    </section>
+          )}
+
+          {/* SECTION 2: SHORT COURSES */}
+          {shortCourses.length > 0 && (
+            <div>
+              <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-10 border-b border-gray-200 pb-4">
+                <div>
+                  <h3 className="text-2xl font-serif-luxury font-bold text-gray-900">
+                    Short Courses
+                  </h3>
+                  <p className="text-sm text-gray-500 mt-2">
+                    Quick skill mastery for enthusiasts.
+                  </p>
+                </div>
+                {/* Decorative Element */}
+                <div className="hidden md:block w-12 h-1 bg-gray-900"></div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {shortCourses.map((course) => (
+                  <CourseCard key={course.id} course={course} />
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+    </>
   );
 }

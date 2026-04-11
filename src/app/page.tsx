@@ -9,11 +9,13 @@ import FeaturedCourses from "./components/FeaturedCourse/FeaturedCourse";
 import MasterChef from "./components/MasterChef/MasterChef";
 import VideoSection from "./components/VideoSection/VideoSection";
 import DisciplinesSection from "./components/Banner/DisciplinesSection";
+import FeatureCourse from "./components/FeatureCourse/FeatureCourse";
 
 export default function Home() {
   return (
     <div className=" bg-white">
       <Banner />
+      <FeatureCourse/>
       <Features />
       <Courses />
       <DisciplinesSection/>

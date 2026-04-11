@@ -21,26 +21,30 @@ body {
 /*  Data & Icons  */
 const features = [
   {
-    title: "Financial Aid",
-    subtitle: "Available for those who qualify to start your journey.",
+    title: "Guaranteed Internships",
+    subtitle:
+      "We don’t just teach; we place. Every student gets the opportunity to gain real-world experience through internships at prestigious 3 and 4-star hotels.",
     icon: <DollarSign className="w-7 h-7" />,
     accent: "bg-blue-600",
   },
   {
-    title: "Largest In The USA",
-    subtitle: "Escoffier is the largest culinary school brand nationwide.",
+    title: "Language Integration",
+    subtitle:
+      "For students eyeing abroad chef careers in Europe, the Middle East, or beyond, our curriculum includes dedicated language training to bridge the communication gap.",
     icon: <MapPin className="w-7 h-7" />,
     accent: "bg-red-600",
   },
   {
-    title: "Business-Focused Curriculum",
-    subtitle: "Curriculum includes business & entrepreneurship skills.",
+    title: "Fast-Track Learning",
+    subtitle:
+      "Choose between our intensive 3-month professional programs or our 30-day basic short courses designed for quick skill acquisition.",
     icon: <TrendingUp className="w-7 h-7" />,
     accent: "bg-purple-600",
   },
   {
-    title: "Best Online Schools",
-    subtitle: "Newsweek 5-star award, Top Online Schools 2026.",
+    title: "Professional Certification",
+    subtitle:
+      "Graduate with a credential that is recognized by the hospitality industry, opening doors to kitchens both in Bangladesh and abroad.",
     icon: <Award className="w-7 h-7" />,
     accent: "bg-yellow-500",
   },
@@ -66,7 +70,6 @@ export default function Features() {
          This creates the scrollable space needed to reveal cards while the bg stays sticky.
       */}
       <section className="relative w-full min-h-[300vh] bg-black">
-        
         {/* 
            STICKY BACKGROUND LAYER:
            sticky top-0: Pins the image to the top of the viewport.
@@ -89,12 +92,11 @@ export default function Features() {
            The natural flow of this div will cause it to scroll over the sticky background.
         */}
         <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 py-32">
-          
           <div className="max-w-6xl mx-auto">
             {/* Header Section */}
             <div className="mb-20 text-center">
               <h2 className="text-4xl md:text-6xl font-bold text-white mb-4 tracking-tight uppercase">
-                Why Choose Us
+                Beyond the Plate: The BPSTI Advantage
               </h2>
               {/* Sharp Decorative Line */}
               <div className="h-2 w-20 bg-red-600 mx-auto" />
@@ -108,23 +110,28 @@ export default function Features() {
                   className="group relative bg-white p-8 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
                   style={{
                     // ANGEL SHAPE: Cuts the bottom-right corner (30px)
-                    clipPath: 'polygon(0 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%)',
+                    clipPath:
+                      "polygon(0 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%)",
                     animation: `fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${index * 0.15}s both`,
                   }}
                 >
                   {/* Left Accent Bar */}
-                  <div className={`absolute left-0 top-0 bottom-0 w-2 ${feature.accent}`} />
-                  
+                  <div
+                    className={`absolute left-0 top-0 bottom-0 w-2 ${feature.accent}`}
+                  />
+
                   {/* Content Layout */}
                   <div className="flex flex-col h-full">
                     <div className="flex items-start gap-5 mb-4">
                       {/* Icon Box - Square & Sharp */}
                       <div className="flex-shrink-0 w-12 h-12 bg-gray-100 flex items-center justify-center group-hover:bg-gray-200 transition-colors">
-                        <div className={`text-gray-800 group-hover:scale-110 transition-transform duration-300`}>
+                        <div
+                          className={`text-gray-800 group-hover:scale-110 transition-transform duration-300`}
+                        >
                           {feature.icon}
                         </div>
                       </div>
-                      
+
                       <div>
                         <h3 className="text-xl font-bold text-gray-900 mb-2 uppercase tracking-wide">
                           {feature.title}
@@ -136,12 +143,14 @@ export default function Features() {
                     </div>
 
                     {/* Decorative Bottom Triangle matching the cut */}
-                    <div className={`absolute bottom-0 right-0 w-[30px] h-[30px] ${feature.accent} opacity-20`} />
+                    <div
+                      className={`absolute bottom-0 right-0 w-[30px] h-[30px] ${feature.accent} opacity-20`}
+                    />
                   </div>
                 </div>
               ))}
             </div>
-            
+
             {/* Spacer to ensure smooth scroll out of the sticky area */}
             <div className="h-32 flex items-center justify-center mt-12">
               <p className="text-white/40 text-sm tracking-[0.2em] uppercase animate-pulse">

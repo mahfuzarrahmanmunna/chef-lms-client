@@ -17,8 +17,8 @@
   --font-sans: var(--font-body); 
   --font-serif: var(--font-heading);
   
-  /* --- NEW: Map Great Vibes to 'font-great' --- */
-  --font-great: var(--font-great-vibes);
+  /* --- NEW: Map Allura to 'font-allura' --- */
+  --font-allura: var(--font-allura);
 }
 
 @media (prefers-color-scheme: dark) {

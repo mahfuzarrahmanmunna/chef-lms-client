@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar/Navbar";
 import dynamic from "next/dynamic";
 import SmoothScroll from "./components/SmoothScroll/SmoothScroll";
 import { AuthProvider } from "@/hooks/useAuth"; // Add this import
+import HeroCarousel from "./components/hero";
 
 /*  Font Configuration  */
 const inter = Inter({
@@ -48,7 +49,9 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-white text-gray-900 font-sans selection:bg-red-100 selection:text-red-900">
         <AuthProvider> {/* Wrap everything with AuthProvider */}
           <Navbar />
+          
           <SmoothScroll />
+      
           <div className="flex-1">{children}</div>
         </AuthProvider>
       </body>

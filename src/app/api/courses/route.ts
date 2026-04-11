@@ -1,19 +1,71 @@
-import { prisma } from "@/lib/prisma";
+import clientPromise from "@/lib/db";
 import { NextResponse } from "next/server";
+import { ObjectId } from "mongodb";
 
+// GET all courses
 export async function GET() {
-  const courses = await prisma.course.findMany({
-    include: { reviews: true },
-  });
-  return NextResponse.json(courses);
+  try {
+    const client = await clientPromise;
+    const db = client.db("lms-chef");
+
+    const courses = await db
+      .collection("courses")
+      .find({})
+      .toArray();
+
+    // Convert MongoDB _id to string id
+    const formattedCourses = courses.map(course => ({
+      id: course._id.toString(),
+      title: course.title,
+      description: course.description,
+      price: course.price,
+      level: course.level,
+      duration: course.duration,
+      thumbnail: course.thumbnail,
+      reviews: course.reviews || []
+    }));
+
+    return NextResponse.json(formattedCourses);
+  } catch (error) {
+    console.error("GET Courses Error:", error);
+    return NextResponse.json(
+      { message: "Failed to fetch courses" },
+      { status: 500 }
+    );
+  }
 }
 
+// ➕ Create new course
 export async function POST(req: Request) {
-  const body = await req.json();
+  try {
+    const client = await clientPromise;
+    const db = client.db("lms-chef");
 
-  const course = await prisma.course.create({
-    data: body,
-  });
+    const body = await req.json();
+    
+    const newCourse = {
+      title: body.title,
+      description: body.description,
+      price: body.price,
+      level: body.level,
+      duration: body.duration,
+      thumbnail: body.thumbnail || "",
+      reviews: body.reviews || [],
+      createdAt: new Date(),
+    };
 
-  return NextResponse.json(course);
+    const result = await db.collection("courses").insertOne(newCourse);
+
+    return NextResponse.json({
+      message: "Course created successfully",
+      insertedId: result.insertedId,
+      course: { id: result.insertedId.toString(), ...newCourse }
+    });
+  } catch (error) {
+    console.error("POST Course Error:", error);
+    return NextResponse.json(
+      { message: "Failed to create course" },
+      { status: 500 }
+    );
+  }
 }

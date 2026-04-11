@@ -1,9 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Link from "next/link"; // <--- Added Link import
+import Link from "next/link";
 import { Clock, MapPin, ArrowRight, Briefcase } from "lucide-react";
-// Removed: import Image from "next/image";
 
 /*  Types  */
 interface PlacementTrack {
@@ -37,76 +36,85 @@ interface Course {
   features: CourseFeatures;
 }
 
-/*  Minimal Card Component  */
+/*  Professional Sharp Card Component  */
 const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
   const isProfessional = course.type === "Professional";
 
   return (
-    // Link wraps the whole card for navigation
     <Link href={`/course-details/${course.id}`} className="block group h-full">
-      <div className="bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 flex flex-col h-full relative">
-        {/* Image Section */}
-        <div className="relative h-56 overflow-hidden bg-gray-100">
-          {/* CHANGED: Used standard <img> instead of Next.js <Image> */}
+      <div className="h-full flex flex-col bg-white border border-gray-200 hover:border-red-700 transition-all duration-300 relative overflow-hidden">
+        {/* Image Section - Full Width, Sharp Edges */}
+        <div className="relative w-full aspect-[4/3] overflow-hidden bg-gray-100">
           <img
             src={course.image}
             alt={course.title}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
 
-          {/* Top Left Tag: Type */}
+          {/* Top Left Tag: Square Design */}
           <div
-            className={`absolute top-4 left-4 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm backdrop-blur-sm bg-opacity-90 ${isProfessional ? "bg-blue-900" : "bg-gray-800"}`}
+            className={`absolute top-0 left-0 text-white text-[10px] font-bold px-3 py-2 uppercase tracking-widest z-10 ${
+              isProfessional ? "bg-gray-900" : "bg-gray-600"
+            }`}
           >
             {course.type}
           </div>
 
-          {/* Bottom Right Tag: Duration */}
-          <div className="absolute bottom-4 right-4 bg-white/95 text-gray-900 text-xs font-bold px-2.5 py-1 rounded shadow-sm flex items-center gap-1">
-            <Clock className="w-3 h-3" /> {course.duration}
+          {/* Bottom Right Badge: Duration (Floating Square) */}
+          <div className="absolute bottom-0 right-0 bg-white border-t border-l border-gray-100 p-2 z-10">
+            <div className="flex items-center gap-2 text-xs font-bold text-gray-900 uppercase tracking-wide">
+              <Clock className="w-3 h-3" />
+              <span>{course.duration}</span>
+            </div>
           </div>
         </div>
 
-        {/* Content Section - Minimal */}
-        <div className="p-5 flex flex-col flex-1">
-          {/* Location Row */}
-          <div className="flex items-center gap-1.5 mb-2">
-            <MapPin className="w-3.5 h-3.5 text-red-500" />
-            <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+        {/* Content Section - Clean Structure */}
+        <div className="p-6 flex flex-col flex-1 relative">
+          {/* Location - Small Caps */}
+          <div className="flex items-center gap-2 mb-3">
+            <MapPin className="w-3 h-3 text-red-700" />
+            <span className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em]">
               {course.city}, {course.region}
             </span>
           </div>
 
-          {/* Title */}
-          <h3 className="text-lg font-bold text-gray-900 mb-4 leading-snug group-hover:text-blue-900 transition-colors">
+          {/* Title - Serif Font */}
+          <h3 className="text-xl  font-bold text-gray-900 mb-3 leading-tight group-hover:text-red-700 transition-colors">
             {course.title}
           </h3>
 
-          {/* Footer: Price & Action */}
-          <div className="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between">
+          {/* Description (Optional preview) - Small text */}
+          <p className="text-sm text-gray-500 font-light leading-relaxed mb-4 line-clamp-2">
+            {course.description}
+          </p>
+
+          {/* Spacer to push footer down */}
+          <div className="flex-1"></div>
+
+          {/* Divider Line */}
+          <div className="w-full h-px bg-gray-100 my-4"></div>
+
+          {/* Footer: Price & Arrow */}
+          <div className="flex items-center justify-between">
             <div>
-              <p className="text-[10px] text-gray-400 uppercase font-bold tracking-wider">
+              <span className="block text-[10px] text-gray-400 font-bold uppercase tracking-widest">
                 {course.priceLabel}
-              </p>
-              <p className="text-xl font-bold text-gray-900">${course.price}</p>
+              </span>
+              <span className="block text-2xl font-bold text-gray-900 ">
+                ${course.price}
+              </span>
             </div>
 
-            {/* Changed from <button> to <div> to avoid nesting interactive elements inside <Link> */}
-            <div className="bg-gray-900 group-hover:bg-red-600 text-white p-2.5 rounded-lg transition-colors duration-200 cursor-pointer">
+            {/* Sharp Square Button */}
+            <div className="w-10 h-10 border border-gray-200 flex items-center justify-center bg-white text-gray-900 group-hover:bg-red-700 group-hover:border-red-700 group-hover:text-white transition-all duration-300">
               <ArrowRight className="w-5 h-5" />
             </div>
           </div>
 
-          {/* Subtle indicator for placement (Optional) */}
-          {isProfessional && (
-            <div className="mt-3 pt-3 border-t border-dashed border-gray-100">
-              <p className="flex items-center gap-1.5 text-[10px] text-blue-600 font-semibold uppercase tracking-wide">
-                <Briefcase className="w-3 h-3" />
-                {course.features.placementSupport
-                  ? "Placement Support Available"
-                  : "Professional Certification"}
-              </p>
-            </div>
+          {/* Placement Indicator - Bottom Accent */}
+          {isProfessional && course.features.placementSupport && (
+            <div className="absolute top-0 left-0 w-full h-1 bg-gray-900 group-hover:bg-red-700 transition-colors duration-300"></div>
           )}
         </div>
       </div>
@@ -139,7 +147,6 @@ export default function Courses() {
     fetchCourses();
   }, []);
 
-  // Filter data for the two sections
   const foreignProfessionalCourses = courses.filter(
     (course) => course.type === "Professional",
   );
@@ -150,8 +157,8 @@ export default function Courses() {
 
   if (loading) {
     return (
-      <div className="py-20 flex justify-center items-center min-h-[400px]">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600"></div>
+      <div className="py-32 flex justify-center items-center min-h-[400px]">
+        <div className="animate-spin h-8 w-8 border-2 border-gray-900 border-t-transparent"></div>
       </div>
     );
   }
@@ -165,24 +172,30 @@ export default function Courses() {
   }
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-24 bg-white">
       <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
-        {/* SECTION 1: Featured Professional Courses (Foreign) */}
+        {/* SECTION 1: Professional Courses */}
         {foreignProfessionalCourses.length > 0 && (
-          <div className="mb-24">
-            <div className="mb-10">
-              <span className="text-red-600 font-bold tracking-widest text-[10px] uppercase mb-2 block">
-                Career Programs
-              </span>
-              <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-2">
-                International Culinary Careers
-              </h2>
-              <p className="text-gray-500 text-sm">
-                3-Month Programs with Internship & Placement Support.
+          <div className="mb-32">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12 border-b border-gray-200 pb-6">
+              <div>
+                <div className="flex items-center gap-4 mb-2">
+                  <div className="w-1 h-8 bg-red-700"></div>
+                  <span className="text-red-700 font-bold tracking-[0.2em] text-xs uppercase">
+                    Career Programs
+                  </span>
+                </div>
+                <h2 className="text-3xl md:text-4xl  font-bold text-gray-900">
+                  International Culinary Careers
+                </h2>
+              </div>
+              <p className="text-gray-500 text-sm max-w-md mt-4 md:mt-0 font-light">
+                Comprehensive 3-Month Programs including Internship & Placement
+                Support.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
               {foreignProfessionalCourses.map((course) => (
                 <CourseCard key={course.id} course={course} />
               ))}
@@ -193,19 +206,24 @@ export default function Courses() {
         {/* SECTION 2: Short Courses */}
         {shortCourses.length > 0 && (
           <div>
-            <div className="mb-10">
-              <span className="text-gray-400 font-bold tracking-widest text-[10px] uppercase mb-2 block">
-                For Enthusiasts
-              </span>
-              <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-2">
-                Short Courses
-              </h2>
-              <p className="text-gray-500 text-sm">
-                1-Month Skill Building Workshops.
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12 border-b border-gray-200 pb-6">
+              <div>
+                <div className="flex items-center gap-4 mb-2">
+                  <div className="w-1 h-8 bg-gray-400"></div>
+                  <span className="text-gray-500 font-bold tracking-[0.2em] text-xs uppercase">
+                    Skill Building
+                  </span>
+                </div>
+                <h2 className="text-3xl md:text-4xl  font-bold text-gray-900">
+                  Short Courses
+                </h2>
+              </div>
+              <p className="text-gray-500 text-sm max-w-md mt-4 md:mt-0 font-light">
+                Focused 1-Month Workshops for enthusiasts and hobbyists.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10">
               {shortCourses.map((course) => (
                 <CourseCard key={course.id} course={course} />
               ))}

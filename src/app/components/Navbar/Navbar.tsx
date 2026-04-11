@@ -2,6 +2,9 @@
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Phone, Mail } from "lucide-react";
+import Image from "next/image";
 
 /*  Types  */
 interface NavItem {
@@ -12,14 +15,18 @@ interface NavItem {
 
 /*  Nav Data  */
 const navItems: NavItem[] = [
-  { label: "Home", href: "#home" },
-  { label: "Courses", href: "#courses" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Courses", href: "/courses" },
+  { label: "Contact", href: "/contact" },
+  { label: "Signup", href: "/signup" },
 ];
 
-/*  Animated Hamburger (Refined)  */
-const HamburgerIcon: React.FC<{ isOpen: boolean }> = ({ isOpen }) => (
+/*  Animated Hamburger  */
+const HamburgerIcon: React.FC<{ isOpen: boolean; isScrolled: boolean }> = ({
+  isOpen,
+  isScrolled,
+}) => (
   <div className="relative w-6 h-5 flex flex-col justify-between items-end group">
     <span
       className={`block h-[1.5px] w-full bg-current origin-left transition-all duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] ${
@@ -39,11 +46,12 @@ const HamburgerIcon: React.FC<{ isOpen: boolean }> = ({ isOpen }) => (
   </div>
 );
 
-/*  Main Navbar  */
+/*  Main Navbar Component  */
 const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
+  const pathname = usePathname();
+
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   // ── Scroll detection ──
@@ -76,126 +84,191 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, [mobileOpen]);
 
-  // ── Active section tracking ──
-  useEffect(() => {
-    const sections = navItems
-      .map((item) => document.querySelector(item.href))
-      .filter(Boolean);
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActiveSection(`#${entry.target.id}`);
-        });
-      },
-      { rootMargin: "-40% 0px -60% 0px" },
-    );
-    sections.forEach((section) => section && observer.observe(section));
-    return () => observer.disconnect();
-  }, []);
-
   const handleLinkClick = useCallback(() => setMobileOpen(false), []);
+
+  // ── Active Link Logic ──
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
+  };
 
   return (
     <>
+      {/* ── 1. TOP BAR (Fixed Position) ── */}
+      {/* Fixed at top, z-50, no height in flow. Overlays banner. */}
+      <div className=" w-full h-10 bg-[#0d0d0d] text-gray-300 border-b border-gray-800 z-50 hidden md:flex">
+        <div className="max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-12 h-full flex justify-between items-center text-[10px] font-bold uppercase tracking-widest">
+          {/* Left: Social Icons (SVG) */}
+          <div className="flex items-center gap-6">
+            <a
+              href="#"
+              className="hover:text-white transition-colors flex items-center gap-2"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+              </svg>
+              <span>Facebook</span>
+            </a>
+            <a
+              href="#"
+              className="hover:text-white transition-colors flex items-center gap-2"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+              </svg>
+              <span>Instagram</span>
+            </a>
+            <a
+              href="#"
+              className="hover:text-white transition-colors flex items-center gap-2"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                <rect x="2" y="9" width="4" height="12" />
+                <circle cx="4" cy="4" r="2" />
+              </svg>
+              <span>LinkedIn</span>
+            </a>
+          </div>
+
+          {/* Right: Contact Info */}
+          <div className="flex items-center gap-6">
+            <a
+              href="tel:+1234567890"
+              className="hover:text-white transition-colors flex items-center gap-2"
+            >
+              <Phone className="w-3.5 h-3.5" />
+              <span>+33 1 23 45 67 89</span>
+            </a>
+            <a
+              href="mailto:info@chefacademy.com"
+              className="hover:text-white transition-colors flex items-center gap-2"
+            >
+              <Mail className="w-3.5 h-3.5" />
+              <span>info@chefacademy.com</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
       <nav
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ease-out ${
+        className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ease-out ${
           scrolled
-            ? "bg-[#0d0d0d]/90 backdrop-blur-xl shadow-[0_8px_30px_rgba(0,0,0,0.12)] border-b border-white/[0.05] py-2"
-            : "bg-transparent py-4"
+            ? "bg-[#0d0d0d]/95 backdrop-blur-xl text-white shadow-[0_8px_30px_rgba(0,0,0,0.12)] border-b border-white/[0.05] py-3"
+            : "bg-transparent text-gray-900 py-6"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <div className="flex items-center justify-between h-20">
-            {/* ── Logo (Professional Serif Look) ── */}
-            <a
-              href="#home"
-              className="group flex items-center gap-3 relative z-10"
+            {/* ── Logo ── */}
+            <Link
+              href="/"
+              className="group flex items-center gap-3 relative z-50 "
             >
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#c9a96e] to-[#a0814a] flex items-center justify-center shadow-[0_0_20px_rgba(201,169,110,0.3)] group-hover:scale-105 transition-transform duration-300">
-                <svg
-                  className="w-5 h-5 text-white"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 007.92 12.446A9 9 0 1112 3z"
-                  />
-                </svg>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-white text-lg font-serif font-bold tracking-wide leading-tight">
-                  Chef<span className="text-red-600">Academy</span>
-                </span>
-                <span className="text-white/40 text-[9px] uppercase tracking-[0.3em] font-medium">
-                  Est. 1985
-                </span>
-              </div>
-            </a>
+              <Image 
+                src="/logo.jpg"
+                alt="Chef Academy Logo"
+                width={60}
+                height={60}
+              />
+            </Link>
 
             {/* ── Desktop Menu ── */}
             <div className="hidden lg:flex items-center gap-1">
               {navItems.map((item) => {
-                const isActive = activeSection === item.href;
+                const active = isActive(item.href);
                 return (
-                  <a
+                  <Link
                     key={item.label}
                     href={item.href}
                     className={`relative px-5 py-2 text-[13px] font-medium uppercase tracking-widest transition-all duration-300 group ${
-                      isActive
+                      active
                         ? "text-red-600"
-                        : "text-white/70 hover:text-white"
+                        : scrolled
+                          ? "text-white/70 hover:text-white"
+                          : "text-gray-900 hover:text-red-700"
                     }`}
                   >
                     {item.label}
-                    {/* Active underline with glow */}
+                    {/* Active underline - Red Gradient */}
                     <span
-                      className={`absolute bottom-1 left-1/2 -translate-x-1/2 h-[2px] bg-gradient-to-r from-transparent via-[#c9a96e] to-transparent transition-all duration-500 ${
-                        isActive ? "w-8" : "w-0 group-hover:w-4"
+                      className={`absolute bottom-1 left-1/2 -translate-x-1/2 h-[2px] bg-gradient-to-r from-transparent via-red-600 to-transparent transition-all duration-500 ${
+                        active ? "w-8" : "w-0 group-hover:w-4"
                       }`}
                     />
-                  </a>
+                  </Link>
                 );
               })}
 
               {/* Professional Divider */}
-              <div className="w-[1px] h-6 bg-gradient-to-b from-transparent via-white/10 to-transparent mx-4" />
+              <div
+                className={`w-[1px] h-6 mx-4 transition-opacity duration-300 ${
+                  scrolled
+                    ? "bg-gradient-to-b from-transparent via-white/10 to-transparent"
+                    : "bg-gradient-to-b from-transparent via-gray-200 to-transparent"
+                }`}
+              />
 
-              {/* Refined CTA Button */}
-              <a
-                href="#courses"
-                className="relative px-8 py-2.5 text-[12px] font-bold uppercase tracking-[0.15em] text-[#0d0d0d] bg-gradient-to-r from-[#c9a96e] to-[#d4b06a] rounded hover:shadow-[0_0_15px_rgba(201,169,110,0.4)] hover:-translate-y-0.5 transition-all duration-300 border border-[#c9a96e]/30 backdrop-blur-sm overflow-hidden group"
+              {/* Refined CTA Button - Red Gradient */}
+              <Link
+                href="/signup"
+                className="relative px-8 py-2.5 text-[12px] font-bold uppercase tracking-[0.15em] text-white bg-gradient-to-r from-red-700 to-red-600 rounded hover:shadow-[0_0_15px_rgba(220,38,38,0.4)] hover:-translate-y-0.5 transition-all duration-300 border border-red-700/50 backdrop-blur-sm overflow-hidden group"
               >
                 <span className="relative z-10">Enroll Now</span>
                 {/* Shine Effect */}
                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
-              </a>
+              </Link>
             </div>
 
             {/* ── Mobile Menu Button ── */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden relative z-10 w-10 h-10 flex items-center justify-center text-white/80 hover:text-red-600 transition-colors duration-300 focus:outline-none"
+              className={`lg:hidden relative z-10 w-10 h-10 flex items-center justify-center transition-colors duration-300 focus:outline-none ${
+                scrolled
+                  ? "text-white/80 hover:text-red-600"
+                  : "text-gray-900 hover:text-red-600"
+              }`}
               aria-label="Toggle menu"
             >
-              <HamburgerIcon isOpen={mobileOpen} />
+              <HamburgerIcon isOpen={mobileOpen} isScrolled={scrolled} />
             </button>
           </div>
         </div>
       </nav>
 
-      {/* ── Mobile Menu Overlay (Luxurious Feel) ── */}
+      {/* ── Mobile Menu Overlay ── */}
       <div
-        className={`fixed inset-0 z-40 lg:hidden transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${
+        className={`fixed inset-0 top-0 z-30 lg:hidden transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${
           mobileOpen
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
         }`}
       >
-        {/* Backdrop with texture */}
+        {/* Backdrop */}
         <div
           className={`absolute inset-0 bg-[#0d0d0d] transition-opacity duration-700 ${
             mobileOpen ? "opacity-100" : "opacity-0"
@@ -209,8 +282,8 @@ const Navbar: React.FC = () => {
             mobileOpen ? "translate-y-0" : "translate-y-12"
           }`}
         >
-          {/* Decorative Top Line */}
-          <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-transparent via-[#c9a96e]/30 to-transparent" />
+          {/* Decorative Top Line - Red */}
+          <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-transparent via-red-600/30 to-transparent" />
 
           {/* Decorative Watermark Background */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] text-[#1a1a1a] opacity-10 pointer-events-none">
@@ -225,18 +298,18 @@ const Navbar: React.FC = () => {
 
           <div className="space-y-2">
             {navItems.map((item, i) => {
-              const isActive = activeSection === item.href;
+              const active = isActive(item.href);
               return (
-                <a
+                <Link
                   key={item.label}
                   href={item.href}
                   onClick={handleLinkClick}
-                  className={`block py-4 text-3xl font-serif font-semibold tracking-wide transition-all duration-500 border-b border-white/[0.03] hover:border-[#c9a96e]/20 ${
+                  className={`block py-4 text-3xl font-serif font-semibold tracking-wide transition-all duration-500 border-b border-white/[0.03] hover:border-red-600/20 ${
                     mobileOpen
                       ? `opacity-100 translate-y-0`
                       : `opacity-0 translate-y-8`
                   } ${
-                    isActive
+                    active
                       ? "text-red-600 pl-4"
                       : "text-white/80 hover:text-white hover:pl-4"
                   }`}
@@ -247,12 +320,12 @@ const Navbar: React.FC = () => {
                   }}
                 >
                   {item.label}
-                </a>
+                </Link>
               );
             })}
           </div>
 
-          {/* Mobile CTA with Style */}
+          {/* Mobile CTA - Red Gradient */}
           <div
             className={`mt-12 transition-all duration-700 ${
               mobileOpen
@@ -261,13 +334,13 @@ const Navbar: React.FC = () => {
             }`}
             style={{ transitionDelay: mobileOpen ? "0.6s" : "0s" }}
           >
-            <a
-              href="#courses"
+            <Link
+              href="/signup"
               onClick={handleLinkClick}
-              className="block w-full py-4 text-center text-sm font-bold uppercase tracking-[0.2em] text-[#0d0d0d] bg-gradient-to-r from-[#c9a96e] to-[#d4b06a] rounded shadow-[0_4px_20px_rgba(201,169,110,0.2)]"
+              className="block w-full py-4 text-center text-sm font-bold uppercase tracking-[0.2em] text-white bg-gradient-to-r from-red-700 to-red-600 rounded shadow-[0_4px_20px_rgba(220,38,38,0.2)]"
             >
               Enroll Now
-            </a>
+            </Link>
           </div>
 
           {/* Footer Info inside Menu */}

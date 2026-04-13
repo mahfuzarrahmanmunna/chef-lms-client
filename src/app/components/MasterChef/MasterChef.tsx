@@ -47,8 +47,16 @@ const chefData = {
   ],
 };
 
+/*  FIX: Define Interface for Props  */
+interface StatCardProps {
+  label: string;
+  value: string;
+  icon: React.ReactNode;
+}
+
 /*  Sub-Component: Angel Card Stat  */
-const StatCard = ({ label, value, icon }) => (
+// FIX: Apply the interface here
+const StatCard = ({ label, value, icon }: StatCardProps) => (
   <div className="group relative bg-white p-5 shadow-md border-t-4 border-[#D4AF37] transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
     <div className="angel-shape bg-gray-50 p-4 h-full border border-gray-100 group-hover:bg-[#faf9f6] transition-colors">
       <div className="flex items-center justify-between mb-2">

@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   description:
     "Join professional chef courses online. Learn cooking, baking, and culinary skills from expert chefs.",
   icons: {
-    icon: [{ url: "/favicon.webp", type: "image/webp" }],
+    icon: [{ url: "/logo.jpeg", type: "logo/jpeg" }],
     apple: [
       { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],

@@ -5,9 +5,9 @@ import { serialize } from 'cookie';
 import { NextRequest, NextResponse } from 'next/server';
 import clientPromise, { ObjectId, User } from './db';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-this';
+const JWT_SECRET = process.env.JWT_SECRET ;
 const TOKEN_NAME = 'auth_token';
-const TOKEN_MAX_AGE = 7 * 24 * 60 * 60; // 7 days
+const TOKEN_MAX_AGE = 7 * 24 * 60 * 60; 
 
 // JWT Token Payload
 export interface TokenPayload {

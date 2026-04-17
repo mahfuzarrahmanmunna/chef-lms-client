@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { Clock, Globe, ArrowRight, Award, CheckCircle } from "lucide-react";
+import HeroSection from "../HeroSection";
 
 /*  Styles  */
 const globalStyles = `
@@ -155,6 +156,7 @@ export default function FeatureCourse() {
           </div>
         </div>
       </section>
+   
     </>
   );
 }
@@ -172,6 +174,8 @@ const FeatureItem: React.FC<{ icon: React.ReactNode; text: string }> = ({
       <span className="text-gray-700 font-sans-luxury font-medium group-hover:text-red-700 transition-colors">
         {text}
       </span>
-    </div>
+     
+       </div>
+  
   );
 };

@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Phone, Mail } from "lucide-react";
 import Image from "next/image";
 
+
 /*  Types  */
 interface NavItem {
   label: string;
@@ -376,6 +377,7 @@ const Navbar: React.FC = () => {
       `}</style>
     </>
   );
+ 
 };
 
 export default Navbar;

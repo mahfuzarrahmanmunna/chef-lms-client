@@ -2,6 +2,7 @@
 
 import React from "react";
 import { DollarSign, MapPin, TrendingUp, Award, Carrot } from "lucide-react";
+import HeroSection from "../HeroSection";
 
 /*  Keyframes & Fonts  */
 const keyframes = `
@@ -96,60 +97,14 @@ export default function Features() {
             {/* Header Section */}
             <div className="mb-20 text-center">
               <h2 className="text-4xl md:text-6xl font-bold text-white mb-4 tracking-tight uppercase">
-                Beyond the Plate: The BPSTI Advantage
+                Why Choose BPSTI
               </h2>
               {/* Sharp Decorative Line */}
               <div className="h-2 w-20 bg-red-600 mx-auto" />
             </div>
 
             {/* Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {features.map((feature, index) => (
-                <div
-                  key={index}
-                  className="group relative bg-white p-8 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
-                  style={{
-                    // ANGEL SHAPE: Cuts the bottom-right corner (30px)
-                    clipPath:
-                      "polygon(0 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%)",
-                    animation: `fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${index * 0.15}s both`,
-                  }}
-                >
-                  {/* Left Accent Bar */}
-                  <div
-                    className={`absolute left-0 top-0 bottom-0 w-2 ${feature.accent}`}
-                  />
-
-                  {/* Content Layout */}
-                  <div className="flex flex-col h-full">
-                    <div className="flex items-start gap-5 mb-4">
-                      {/* Icon Box - Square & Sharp */}
-                      <div className="flex-shrink-0 w-12 h-12 bg-gray-100 flex items-center justify-center group-hover:bg-gray-200 transition-colors">
-                        <div
-                          className={`text-gray-800 group-hover:scale-110 transition-transform duration-300`}
-                        >
-                          {feature.icon}
-                        </div>
-                      </div>
-
-                      <div>
-                        <h3 className="text-xl font-bold text-gray-900 mb-2 uppercase tracking-wide">
-                          {feature.title}
-                        </h3>
-                        <p className="text-gray-600 text-sm leading-relaxed font-normal">
-                          {feature.subtitle}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Decorative Bottom Triangle matching the cut */}
-                    <div
-                      className={`absolute bottom-0 right-0 w-[30px] h-[30px] ${feature.accent} opacity-20`}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
+          <HeroSection></HeroSection>
 
             {/* Spacer to ensure smooth scroll out of the sticky area */}
             <div className="h-32 flex items-center justify-center mt-12">

@@ -1,15 +1,15 @@
 // app/layout.tsx
 import type { Metadata } from "next";
-import { Raleway, Lato, Great_Vibes } from "next/font/google"; // 1. Import Great Vibes
+import { Raleway, Lato, Allura } from "next/font/google"; // 1. Import Great Vibes
 import "./globals.css";
 import SmoothScroll from "./components/SmoothScroll/SmoothScroll";
 import NavbarWrapper from "./components/NavbarWrapper/NavbarWrapper";
 import Footer from "./components/Footer/Footer";
-import HeroCarousel from "./components/hero";
 
 /*  Font Configuration  */
 const raleway = Raleway({
   subsets: ["latin"],
+  weight: ["100", "300", "400", "500", "600", "700", "800", "900"],
   variable: "--font-raleway",
   display: "swap",
 });
@@ -22,10 +22,10 @@ const lato = Lato({
 });
 
 // 2. Initialize Great Vibes Font
-const greatVibes = Great_Vibes({
+const allura = Allura({
   subsets: ["latin"],
   weight: ["400"],
-  variable: "--font-great-vibes", // This creates the CSS variable
+  variable: "--font-allura", // This creates the CSS variable
   display: "swap",
 });
 
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   description:
     "Join professional chef courses online. Learn cooking, baking, and culinary skills from expert chefs.",
   icons: {
-    icon: [{ url: "/favicon.webp", type: "image/webp" }],
+    icon: [{ url: "/logo.jpeg", type: "logo/jpeg" }],
     apple: [
       { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
@@ -52,7 +52,7 @@ export default function RootLayout({
     <html
       lang="en"
       // 3. Add the new variable to the className
-      className={`${raleway.variable} ${lato.variable} ${greatVibes.variable} h-full antialiased`}
+      className={`${raleway.variable} ${lato.variable} ${allura.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white text-gray-900 font-sans selection:bg-red-100 selection:text-red-900">
         <NavbarWrapper />

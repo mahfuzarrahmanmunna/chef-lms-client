@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Phone, Mail } from "lucide-react";
 import Image from "next/image";
 
+
 /*  Types  */
 interface NavItem {
   label: string;
@@ -96,7 +97,7 @@ const Navbar: React.FC = () => {
     <>
       {/* ── 1. TOP BAR (Fixed Position) ── */}
       {/* Fixed at top, z-50, no height in flow. Overlays banner. */}
-      <div className=" w-full h-10 bg-[#0d0d0d] text-gray-300 border-b border-gray-800 z-50 hidden md:flex">
+      <div className=" w-full h-10 bg-[#0d0d0d] text-gray-300 border-b border-gray-800 z-10 hidden md:flex">
         <div className="max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-12 h-full flex justify-between items-center text-[10px] font-bold uppercase tracking-widest">
           {/* Left: Social Icons (SVG) */}
           <div className="flex items-center gap-6">
@@ -176,10 +177,10 @@ const Navbar: React.FC = () => {
       </div>
 
       <nav
-        className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ease-out ${
+        className={`fixed  left-0 w-full z-40 transition-all duration-300 ease-out ${
           scrolled
-            ? "bg-[#0d0d0d]/95 backdrop-blur-xl text-white shadow-[0_8px_30px_rgba(0,0,0,0.12)] border-b border-white/[0.05] py-3"
-            : "bg-transparent text-gray-900 py-6"
+            ? "bg-[#0d0d0d]/95 backdrop-blur-xl top-0 text-white shadow-[0_8px_30px_rgba(0,0,0,0.12)] border-b border-white/[0.05] py-2"
+            : "bg-transparent text-gray-900 py-2 top-6"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
@@ -189,8 +190,8 @@ const Navbar: React.FC = () => {
               href="/"
               className="group flex items-center gap-3 relative z-50 "
             >
-              <Image 
-                src="/logo.jpg"
+              <Image
+                src="/logo.jpeg"
                 alt="Chef Academy Logo"
                 width={60}
                 height={60}
@@ -376,6 +377,7 @@ const Navbar: React.FC = () => {
       `}</style>
     </>
   );
+ 
 };
 
 export default Navbar;

@@ -64,39 +64,13 @@ export default function Features() {
       <style jsx global>{`
         ${keyframes}
       `}</style>
-
-      {/* 
-         CONTAINER:
-         min-h-[300vh]: Makes the container 3x the height of the screen.
-         This creates the scrollable space needed to reveal cards while the bg stays sticky.
-      */}
-      <section className="relative w-full min-h-[300vh] bg-black">
-        {/* 
-           STICKY BACKGROUND LAYER:
-           sticky top-0: Pins the image to the top of the viewport.
-           h-screen: Matches the viewport height.
-           z-0: Stays behind content.
-        */}
-        <div className="sticky top-0 z-0 h-screen w-full overflow-hidden">
-          <img
-            src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=2000&auto=format&fit=crop"
-            alt="Chocolate Cake Background"
-            className="w-full h-full object-cover"
-          />
-          {/* Dark Overlay for Contrast */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/90" />
-        </div>
-
-        {/* 
-           SCROLLABLE CONTENT LAYER:
-           relative z-10: Sits on top of the image.
-           The natural flow of this div will cause it to scroll over the sticky background.
-        */}
+      <section className="relative text-black">
+       
         <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 py-32">
           <div className="max-w-6xl mx-auto">
             {/* Header Section */}
             <div className="mb-20 text-center">
-              <h2 className="text-4xl md:text-6xl font-bold text-white mb-4 tracking-tight uppercase">
+              <h2 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight uppercase">
                 Why Choose BPSTI
               </h2>
               {/* Sharp Decorative Line */}

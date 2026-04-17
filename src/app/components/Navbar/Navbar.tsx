@@ -14,6 +14,7 @@ import {
 import Image from "next/image";
 import { useAuth } from "@/hooks/useAuth";
 
+
 /*  Types  */
 interface NavItem {
   label: string;
@@ -520,6 +521,7 @@ const Navbar: React.FC = () => {
       `}</style>
     </>
   );
+ 
 };
 
 export default Navbar;

@@ -122,6 +122,19 @@ const Banner: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  const scrollToCTA = () => {
+    const ctaSection = document.getElementById("ctaCard");
+    if (ctaSection) {
+      ctaSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+  const scrollToCourses = () => {
+    const courseSection = document.getElementById("courses");
+    if (courseSection) {
+      courseSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <>
       <style jsx global>
@@ -192,11 +205,13 @@ const Banner: React.FC = () => {
                 text="View Our Programs"
                 variant="filled"
                 delay={mounted ? 0.8 : 0}
+                onClick={scrollToCourses}
               />
               <MinimalButton
                 text="Enroll Today"
                 variant="outline"
                 delay={mounted ? 0.9 : 0}
+                onClick={scrollToCTA}
               />
             </div>
           </div>

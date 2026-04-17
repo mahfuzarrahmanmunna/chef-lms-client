@@ -165,16 +165,16 @@ export default function Team() {
               <div className="w-1 h-8 bg-red-700"></div>
               <span className="text-red-700 font-bold tracking-[0.2em] text-xs uppercase flex items-center gap-2">
                 <ChefHat className="w-4 h-4" />
-                Faculty
+                Leadership
               </span>
             </div>
             <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900">
-              The Masters
+              The Visionaries Behind the Institute
             </h2>
           </div>
           <p className="text-gray-500 text-sm max-w-md mt-6 md:mt-0 font-light leading-relaxed">
-            Our faculty comprises Michelin-starred chefs and industry leaders
-            dedicated to passing on the art of gastronomy.
+            Meet the strategic minds dedicated to bridging the gap between
+            culinary education and global career success.
           </p>
         </div>
 

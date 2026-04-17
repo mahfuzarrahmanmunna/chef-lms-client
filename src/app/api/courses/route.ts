@@ -2,6 +2,23 @@ import clientPromise from "@/lib/db";
 import { NextResponse } from "next/server";
 import { ObjectId } from "mongodb";
 
+
+// interface CourseDocument {
+//   _id: ObjectId; // or ObjectId from 'mongodb'
+//   title: string;
+//   description: string;
+//   type: string;
+//   price: number;
+//   oldPrice?: number; // Optional because it might not exist
+//   currency: string;
+//   duration: string;
+//   image: string;
+//   region: string;
+//   city: string;
+//   hasCertificate: boolean;
+//   createdAt: Date;
+// }
+
 // GET all courses
 export async function GET() {
   try {
@@ -11,18 +28,24 @@ export async function GET() {
     const courses = await db
       .collection("courses")
       .find({})
+      .sort({ createdAt: -1 }) // Sort by newest first
       .toArray();
 
     // Convert MongoDB _id to string id
-    const formattedCourses = courses.map(course => ({
+    const formattedCourses = courses.map((course: any) => ({
       id: course._id.toString(),
       title: course.title,
       description: course.description,
+      type: course.type, // Added type
       price: course.price,
-      level: course.level,
+      oldPrice: course.oldPrice, // Added oldPrice
+      currency: course.currency, // Added currency
       duration: course.duration,
-      thumbnail: course.thumbnail,
-      reviews: course.reviews || []
+      image: course.image, // Changed from thumbnail to image
+      region: course.region, // Added region
+      city: course.city, // Added city
+      hasCertificate: course.hasCertificate, // Added hasCertificate
+      createdAt: course.createdAt,
     }));
 
     return NextResponse.json(formattedCourses);
@@ -46,11 +69,15 @@ export async function POST(req: Request) {
     const newCourse = {
       title: body.title,
       description: body.description,
-      price: body.price,
-      level: body.level,
+      type: body.type, // Added
+      price: Number(body.price),
+      oldPrice: body.oldPrice ? Number(body.oldPrice) : null, // Added
+      currency: body.currency || "৳", // Added
       duration: body.duration,
-      thumbnail: body.thumbnail || "",
-      reviews: body.reviews || [],
+      image: body.image || "", // Renamed from thumbnail
+      region: body.region, // Added
+      city: body.city, // Added
+      hasCertificate: body.hasCertificate || false, // Added
       createdAt: new Date(),
     };
 
@@ -59,7 +86,7 @@ export async function POST(req: Request) {
     return NextResponse.json({
       message: "Course created successfully",
       insertedId: result.insertedId,
-      course: { id: result.insertedId.toString(), ...newCourse }
+      course: { id: result.insertedId.toString(), ...newCourse },
     });
   } catch (error) {
     console.error("POST Course Error:", error);

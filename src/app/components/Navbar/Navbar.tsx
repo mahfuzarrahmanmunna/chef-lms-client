@@ -2,9 +2,17 @@
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Phone, Mail } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import {
+  Phone,
+  Mail,
+  ChevronDown,
+  LogOut,
+  LayoutDashboard,
+  User,
+} from "lucide-react";
 import Image from "next/image";
+import { useAuth } from "@/hooks/useAuth";
 
 /*  Types  */
 interface NavItem {
@@ -19,7 +27,6 @@ const navItems: NavItem[] = [
   { label: "About", href: "/about" },
   { label: "Courses", href: "/courses" },
   { label: "Contact", href: "/contact" },
-  { label: "Signup", href: "/signup" },
 ];
 
 /*  Animated Hamburger  */
@@ -50,9 +57,14 @@ const HamburgerIcon: React.FC<{ isOpen: boolean; isScrolled: boolean }> = ({
 const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
 
-  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  // FIX: Changed 'signOut' to 'logout' to match useAuth.tsx
+  const { user, logout } = useAuth();
+
+  const profileRef = useRef<HTMLDivElement>(null);
 
   // ── Scroll detection ──
   useEffect(() => {
@@ -61,6 +73,20 @@ const Navbar: React.FC = () => {
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // ── Click Outside for Profile Dropdown ──
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        profileRef.current &&
+        !profileRef.current.contains(event.target as Node)
+      ) {
+        setProfileOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   // ── Lock body scroll ──
@@ -86,19 +112,37 @@ const Navbar: React.FC = () => {
 
   const handleLinkClick = useCallback(() => setMobileOpen(false), []);
 
+  const handleSignOut = async () => {
+    // FIX: Call 'logout' instead of 'signOut'
+    if (logout) {
+      await logout();
+      // Note: useAuth.tsx redirects to '/login', but this redirects to '/'
+      router.push("/");
+    }
+  };
+
   // ── Active Link Logic ──
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
     return pathname.startsWith(href);
   };
 
+  // Get initials for avatar
+  const getInitials = (name: string) => {
+    return name
+      .split(" ")
+      .map((n) => n[0])
+      .join("")
+      .substring(0, 2)
+      .toUpperCase();
+  };
+
   return (
     <>
       {/* ── 1. TOP BAR (Fixed Position) ── */}
-      {/* Fixed at top, z-50, no height in flow. Overlays banner. */}
-      <div className=" w-full h-10 bg-[#0d0d0d] text-gray-300 border-b border-gray-800 z-10 hidden md:flex">
+      <div className="w-full h-10 bg-[#0d0d0d] text-gray-300 border-b border-gray-800 z-10 hidden md:flex">
         <div className="max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-12 h-full flex justify-between items-center text-[10px] font-bold uppercase tracking-widest">
-          {/* Left: Social Icons (SVG) */}
+          {/* Left: Social Icons */}
           <div className="flex items-center gap-6">
             <a
               href="#"
@@ -136,23 +180,6 @@ const Navbar: React.FC = () => {
               </svg>
               <span>Instagram</span>
             </a>
-            <a
-              href="#"
-              className="hover:text-white transition-colors flex items-center gap-2"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                <rect x="2" y="9" width="4" height="12" />
-                <circle cx="4" cy="4" r="2" />
-              </svg>
-              <span>LinkedIn</span>
-            </a>
           </div>
 
           {/* Right: Contact Info */}
@@ -176,7 +203,7 @@ const Navbar: React.FC = () => {
       </div>
 
       <nav
-        className={`fixed  left-0 w-full z-40 transition-all duration-300 ease-out ${
+        className={`fixed left-0 w-full z-40 transition-all duration-300 ease-out ${
           scrolled
             ? "bg-[#0d0d0d]/95 backdrop-blur-xl top-0 text-white shadow-[0_8px_30px_rgba(0,0,0,0.12)] border-b border-white/[0.05] py-2"
             : "bg-transparent text-gray-900 py-2 top-6"
@@ -184,20 +211,21 @@ const Navbar: React.FC = () => {
       >
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <div className="flex items-center justify-between h-20">
-            {/* ── Logo ── */}
+            {/* Logo */}
             <Link
               href="/"
-              className="group flex items-center gap-3 relative z-50 "
+              className="group flex items-center gap-3 relative z-50"
             >
               <Image
                 src="/logo.jpeg"
                 alt="Chef Academy Logo"
                 width={60}
                 height={60}
+                loading="eager"
               />
             </Link>
 
-            {/* ── Desktop Menu ── */}
+            {/* Desktop Menu */}
             <div className="hidden lg:flex items-center gap-1">
               {navItems.map((item) => {
                 const active = isActive(item.href);
@@ -214,7 +242,6 @@ const Navbar: React.FC = () => {
                     }`}
                   >
                     {item.label}
-                    {/* Active underline - Red Gradient */}
                     <span
                       className={`absolute bottom-1 left-1/2 -translate-x-1/2 h-[2px] bg-gradient-to-r from-transparent via-red-600 to-transparent transition-all duration-500 ${
                         active ? "w-8" : "w-0 group-hover:w-4"
@@ -233,18 +260,103 @@ const Navbar: React.FC = () => {
                 }`}
               />
 
-              {/* Refined CTA Button - Red Gradient */}
-              <Link
-                href="/signup"
-                className="relative px-8 py-2.5 text-[12px] font-bold uppercase tracking-[0.15em] text-white bg-gradient-to-r from-red-700 to-red-600 rounded hover:shadow-[0_0_15px_rgba(220,38,38,0.4)] hover:-translate-y-0.5 transition-all duration-300 border border-red-700/50 backdrop-blur-sm overflow-hidden group"
-              >
-                <span className="relative z-10">Enroll Now</span>
-                {/* Shine Effect */}
-                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
-              </Link>
+              {/* AUTH LOGIC: Desktop */}
+              {!user ? (
+                /* Show Enroll Button */
+                <Link
+                  href="/signup"
+                  className="relative px-8 py-2.5 text-[12px] font-bold uppercase tracking-[0.15em] text-white bg-gradient-to-r from-red-700 to-red-600 rounded hover:shadow-[0_0_15px_rgba(220,38,38,0.4)] hover:-translate-y-0.5 transition-all duration-300 border border-red-700/50 backdrop-blur-sm overflow-hidden group"
+                >
+                  <span className="relative z-10">Enroll Now</span>
+                  <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
+                </Link>
+              ) : (
+                /* Show Profile Avatar & Dropdown */
+                <div className="relative" ref={profileRef}>
+                  <button
+                    onClick={() => setProfileOpen(!profileOpen)}
+                    className="flex items-center gap-3 focus:outline-none group"
+                  >
+                    <div className="text-right hidden md:block">
+                      <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wide group-hover:text-white transition-colors">
+                        My Account
+                      </p>
+                      <p className="text-xs font-bold truncate max-w-[100px] text-gray-200 group-hover:text-white transition-colors">
+                        {user.name}
+                      </p>
+                    </div>
+                    <div className="relative w-10 h-10 rounded-full bg-gradient-to-br from-red-700 to-red-900 text-white flex items-center justify-center text-xs font-bold border border-white/10 shadow-md group-hover:ring-2 group-hover:ring-red-500/50 transition-all">
+                      {getInitials(user.name)}
+                      <ChevronDown
+                        className={`absolute -bottom-1 -right-1 w-3 h-3 text-black bg-white rounded-full p-0.5 transition-transform ${profileOpen ? "rotate-180" : ""}`}
+                      />
+                    </div>
+                  </button>
+
+                  {/* Dropdown Menu */}
+                  {profileOpen && (
+                    <div className="absolute right-0 top-full mt-4 w-72 bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden py-2 animate-fade-in z-50">
+                      {/* User Info Header */}
+                      <div className="px-5 py-4 bg-gray-50 border-b border-gray-100">
+                        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">
+                          Signed in as
+                        </p>
+                        <p className="text-sm font-serif font-bold text-gray-900 truncate">
+                          {user.name}
+                        </p>
+                        <p className="text-xs text-gray-500 truncate">
+                          {user.email}
+                        </p>
+                      </div>
+
+                      {/* Admin Dashboard Link */}
+                      {user.role === "admin" && (
+                        <Link
+                          href="/dashboard"
+                          onClick={() => setProfileOpen(false)}
+                          className="flex items-center gap-3 px-5 py-3 hover:bg-gray-50 transition-colors group/item"
+                        >
+                          <div className="p-1.5 rounded bg-blue-50 text-blue-600 group-hover/item:bg-blue-600 group-hover/item:text-white transition-colors">
+                            <LayoutDashboard className="w-4 h-4" />
+                          </div>
+                          <span className="text-sm font-medium text-gray-700">
+                            Dashboard
+                          </span>
+                        </Link>
+                      )}
+
+                      {/* Settings Link */}
+                      <div className="flex items-center gap-3 px-5 py-3 hover:bg-gray-50 transition-colors cursor-pointer group/item">
+                        <div className="p-1.5 rounded bg-gray-100 text-gray-600 group-hover/item:bg-gray-900 group-hover/item:text-white transition-colors">
+                          <User className="w-4 h-4" />
+                        </div>
+                        <span className="text-sm font-medium text-gray-700">
+                          Profile Settings
+                        </span>
+                      </div>
+
+                      {/* Divider */}
+                      <div className="h-px bg-gray-100 my-1"></div>
+
+                      {/* Logout */}
+                      <button
+                        onClick={handleSignOut}
+                        className="w-full flex items-center gap-3 px-5 py-3 hover:bg-red-50 transition-colors text-left group/item"
+                      >
+                        <div className="p-1.5 rounded bg-red-50 text-red-600 group-hover/item:bg-red-600 group-hover/item:text-white transition-colors">
+                          <LogOut className="w-4 h-4" />
+                        </div>
+                        <span className="text-sm font-medium text-red-600 group-hover/item:text-red-700">
+                          Sign Out
+                        </span>
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
 
-            {/* ── Mobile Menu Button ── */}
+            {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className={`lg:hidden relative z-10 w-10 h-10 flex items-center justify-center transition-colors duration-300 focus:outline-none ${
@@ -260,7 +372,7 @@ const Navbar: React.FC = () => {
         </div>
       </nav>
 
-      {/* ── Mobile Menu Overlay ── */}
+      {/* Mobile Menu Overlay */}
       <div
         className={`fixed inset-0 top-0 z-30 lg:hidden transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${
           mobileOpen
@@ -277,25 +389,13 @@ const Navbar: React.FC = () => {
 
         {/* Menu Content */}
         <div
-          ref={mobileMenuRef}
           className={`relative h-full flex flex-col justify-center px-8 transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${
             mobileOpen ? "translate-y-0" : "translate-y-12"
           }`}
         >
-          {/* Decorative Top Line - Red */}
           <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-transparent via-red-600/30 to-transparent" />
 
-          {/* Decorative Watermark Background */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] text-[#1a1a1a] opacity-10 pointer-events-none">
-            <svg
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="w-full h-full"
-            >
-              <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 007.92 12.446A9 9 0 1112 3z" />
-            </svg>
-          </div>
-
+          {/* Links */}
           <div className="space-y-2">
             {navItems.map((item, i) => {
               const active = isActive(item.href);
@@ -323,9 +423,25 @@ const Navbar: React.FC = () => {
                 </Link>
               );
             })}
+
+            {/* Admin Link in Mobile Menu */}
+            {user && user.role === "admin" && (
+              <Link
+                href="/dashboard"
+                onClick={handleLinkClick}
+                className={`block py-4 text-2xl font-serif font-semibold tracking-wide transition-all duration-500 border-b border-white/[0.03] hover:border-red-600/20 ${
+                  mobileOpen
+                    ? `opacity-100 translate-y-0`
+                    : `opacity-0 translate-y-8`
+                } text-red-600 hover:text-red-500 pl-4`}
+                style={{ transitionDelay: mobileOpen ? "0.6s" : "0s" }}
+              >
+                Dashboard
+              </Link>
+            )}
           </div>
 
-          {/* Mobile CTA - Red Gradient */}
+          {/* Mobile Auth Logic */}
           <div
             className={`mt-12 transition-all duration-700 ${
               mobileOpen
@@ -334,16 +450,32 @@ const Navbar: React.FC = () => {
             }`}
             style={{ transitionDelay: mobileOpen ? "0.6s" : "0s" }}
           >
-            <Link
-              href="/signup"
-              onClick={handleLinkClick}
-              className="block w-full py-4 text-center text-sm font-bold uppercase tracking-[0.2em] text-white bg-gradient-to-r from-red-700 to-red-600 rounded shadow-[0_4px_20px_rgba(220,38,38,0.2)]"
-            >
-              Enroll Now
-            </Link>
+            {!user ? (
+              <Link
+                href="/signup"
+                onClick={handleLinkClick}
+                className="block w-full py-4 text-center text-sm font-bold uppercase tracking-[0.2em] text-white bg-gradient-to-r from-red-700 to-red-600 rounded shadow-[0_4px_20px_rgba(220,38,38,0.2)]"
+              >
+                Enroll Now
+              </Link>
+            ) : (
+              <div className="flex flex-col gap-4">
+                <div className="text-center text-white/50 text-xs uppercase tracking-widest">
+                  Welcome back
+                </div>
+                <div className="text-center text-2xl font-serif text-white">
+                  {user.name}
+                </div>
+                <button
+                  onClick={handleSignOut}
+                  className="block w-full py-4 text-center text-sm font-bold uppercase tracking-[0.2em] text-gray-400 border border-gray-700 hover:text-white hover:border-white rounded transition-colors"
+                >
+                  Sign Out
+                </button>
+              </div>
+            )}
           </div>
 
-          {/* Footer Info inside Menu */}
           <div className="absolute bottom-8 left-8 right-8 flex items-center justify-between text-white/20 text-[10px] uppercase tracking-widest">
             <span>© 2026 ChefAcademy</span>
             <div className="flex gap-4">
@@ -358,7 +490,6 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* ── Global Animation Keyframes ── */}
       <style jsx global>{`
         @keyframes navbarSlideDown {
           0% {
@@ -372,6 +503,19 @@ const Navbar: React.FC = () => {
         }
         nav {
           animation: navbarSlideDown 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-fade-in {
+          animation: fade-in 0.2s ease-out forwards;
         }
       `}</style>
     </>

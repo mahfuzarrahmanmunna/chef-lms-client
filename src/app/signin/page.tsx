@@ -3,9 +3,34 @@
 import React, { useState } from "react";
 import { Eye, EyeOff, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation"; // 1. Fixed import path
+import { useAuth } from "@/hooks/useAuth";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const { login } = useAuth();
+  const router = useRouter();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+
+    const result = await login(email, password);
+
+    if (result.success) {
+      router.push("/");
+    } else {
+      setError(result.error || "Login failed");
+    }
+
+    setLoading(false);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col md:flex-row">
@@ -61,7 +86,15 @@ export default function LoginPage() {
             </p>
           </div>
 
-          <form className="space-y-6">
+          {/* 2. Connected onSubmit handler */}
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* 3. Error Display */}
+            {error && (
+              <div className="p-3 bg-red-50 text-red-700 text-sm rounded-lg border border-red-200 text-center">
+                {error}
+              </div>
+            )}
+
             {/* Email */}
             <div className="space-y-2">
               <label className="text-[10px] font-bold uppercase tracking-widest text-gray-500">
@@ -69,6 +102,8 @@ export default function LoginPage() {
               </label>
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full bg-white border border-gray-200 p-3 focus:outline-none focus:border-red-700 transition-colors text-sm text-gray-900 font-light placeholder-gray-400"
                 placeholder="john@example.com"
                 required
@@ -83,6 +118,8 @@ export default function LoginPage() {
               <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="w-full bg-white border border-gray-200 p-3 focus:outline-none focus:border-red-700 transition-colors text-sm text-gray-900 font-light placeholder-gray-400"
                   placeholder="••••••••"
                   required
@@ -127,17 +164,20 @@ export default function LoginPage() {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-red-700 hover:bg-red-800 text-white font-bold py-4 uppercase tracking-widest text-xs transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 group"
+              disabled={loading}
+              className="w-full bg-red-700 hover:bg-red-800 text-white font-bold py-4 uppercase tracking-widest text-xs transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 group disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              Sign In{" "}
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              {loading ? "Signing In..." : "Sign In"}{" "}
+              {!loading && (
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              )}
             </button>
           </form>
 
           {/* Register Link */}
           <div className="mt-8 text-center">
             <p className="text-sm text-gray-600">
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <Link
                 href="/signup"
                 className="text-red-700 font-bold hover:underline"
@@ -149,11 +189,11 @@ export default function LoginPage() {
 
           {/* Social Divider */}
           <div className="relative flex py-6 items-center">
-            <div className="flex-grow border-t border-gray-200"></div>
-            <span className="flex-shrink-0 mx-4 text-gray-400 text-[10px] uppercase tracking-widest">
+            <div className="grow border-t border-gray-200"></div>
+            <span className="shrink-0 mx-4 text-gray-400 text-[10px] uppercase tracking-widest">
               Or continue with
             </span>
-            <div className="flex-grow border-t border-gray-200"></div>
+            <div className="grow border-t border-gray-200"></div>
           </div>
 
           {/* Social Buttons (Static) */}

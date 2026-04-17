@@ -5,6 +5,8 @@ import "./globals.css";
 import SmoothScroll from "./components/SmoothScroll/SmoothScroll";
 import NavbarWrapper from "./components/NavbarWrapper/NavbarWrapper";
 import Footer from "./components/Footer/Footer";
+import { AuthProvider } from "@/hooks/useAuth";
+import FooterWrapper from "./components/FooterWraper/FooterWraper";
 
 /*  Font Configuration  */
 const raleway = Raleway({
@@ -55,10 +57,12 @@ export default function RootLayout({
       className={`${raleway.variable} ${lato.variable} ${allura.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white text-gray-900 font-sans selection:bg-red-100 selection:text-red-900">
-        <NavbarWrapper />
-        <SmoothScroll />
-        <div className="flex-1">{children}</div>
-        <Footer />
+        <AuthProvider>
+          <NavbarWrapper />
+          <SmoothScroll />
+          <div className="flex-1">{children}</div>
+          <FooterWrapper />
+        </AuthProvider>
       </body>
     </html>
   );

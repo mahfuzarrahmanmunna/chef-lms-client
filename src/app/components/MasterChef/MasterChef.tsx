@@ -26,28 +26,36 @@ const styles = `
   }
 `;
 
-/*  Simplified Data  */
+/*  Updated Data: CEO Profile  */
 const chefData = {
-  name: "Julian Moretti",
-  role: "Executive Chef & Founder",
+  name: "Md. Tanvir Hossain",
+  role: "CEO & Visionary Founder",
   quote:
-    "Cooking is an art, but the plate is the canvas where tradition meets innovation.",
-  bio: "With over two decades of experience in Michelin-starred kitchens across Europe and Asia, Chef Julian brings a unique fusion of classical technique and modern sustainability to our curriculum. His philosophy centers on respecting the ingredient while daring to reimagine its potential.",
-  signature: "Julian M.",
+    "True leadership is not just about building an institution, but about empowering the next generation to redefine industry standards globally.",
+  bio: "As the driving force behind BPSTI, our CEO is committed to transforming vocational training in Bangladesh. With a focus on industrial innovation and global partnerships, they ensure that every student has a direct pathway to 4-star hotel environments and international employment.",
+  signature: "Tanvir H.",
   image:
-    "https://images.unsplash.com/photo-1583394838336-acd977736f90?q=80&w=1000&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1000&auto=format&fit=crop",
   stats: [
     {
       label: "Years Exp.",
-      value: "20+",
+      value: "12+",
       icon: <Calendar className="w-5 h-5" />,
     },
-    { label: "Awards", value: "15", icon: <Award className="w-5 h-5" /> },
-    { label: "Michelin Stars", value: "3", icon: <Star className="w-5 h-5" /> },
+    {
+      label: "Global Partners",
+      value: "50+",
+      icon: <Award className="w-5 h-5" />,
+    },
+    {
+      label: "Students Placed",
+      value: "2k+",
+      icon: <Star className="w-5 h-5" />,
+    },
   ],
 };
 
-/*  FIX: Define Interface for Props  */
+/*  Interface for Props  */
 interface StatCardProps {
   label: string;
   value: string;
@@ -55,7 +63,6 @@ interface StatCardProps {
 }
 
 /*  Sub-Component: Angel Card Stat  */
-// FIX: Apply the interface here
 const StatCard = ({ label, value, icon }: StatCardProps) => (
   <div className="group relative bg-white p-5 shadow-md border-t-4 border-[#D4AF37] transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
     <div className="angel-shape bg-gray-50 p-4 h-full border border-gray-100 group-hover:bg-[#faf9f6] transition-colors">
@@ -89,7 +96,7 @@ export default function MasterChef() {
           {/* Header */}
           <div className="text-center mb-16">
             <span className="inline-block py-1 px-3 border border-[#D4AF37] text-[#D4AF37] text-[10px] font-bold uppercase tracking-[0.3em] mb-4">
-              Meet The Artist
+              Meet The Visionary
             </span>
             <h2 className="text-5xl md:text-7xl font-serif-luxury font-bold text-gray-900 mb-2">
               {chefData.name}
@@ -140,8 +147,8 @@ export default function MasterChef() {
                 <div className="absolute top-0 right-0 w-[30px] h-[30px] bg-[#D4AF37]/10" />
 
                 <h3 className="text-sm font-bold uppercase tracking-widest text-[#D4AF37] mb-4 flex items-center gap-2">
-                  <MapPin className="w-4 h-4" />
-                  Philosophy
+                  <Award className="w-4 h-4" />
+                  Vision
                 </h3>
                 <p className="text-gray-600 leading-loose text-justify font-light">
                   {chefData.bio}

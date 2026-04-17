@@ -278,7 +278,7 @@ export default function CourseCollections() {
         {styles}
       </style>
 
-      <section className="py-24 bg-[#faf9f6] font-sans-luxury">
+      <section id="courses" className="py-24 bg-[#faf9f6] font-sans-luxury">
         <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
           {/* SECTION HEADER */}
           <div className="text-center max-w-3xl mx-auto mb-20">

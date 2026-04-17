@@ -10,6 +10,7 @@ import MasterChef from "./components/MasterChef/MasterChef";
 import VideoSection from "./components/VideoSection/VideoSection";
 import DisciplinesSection from "./components/Banner/DisciplinesSection";
 import FeatureCourse from "./components/FeatureCourse/FeatureCourse";
+import ContactCTA from "./components/CTA/CTA";
 
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
       <Team />
       {/* <Recipes /> */}
       <VideoSection/>
+      <ContactCTA/>
       {/* <FeaturedCourses /> */}
       <div className="mt-24">bottom</div>
     </div>

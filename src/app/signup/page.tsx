@@ -1,12 +1,71 @@
 "use client";
 
 import React, { useState } from "react";
-import { Eye, EyeOff, CheckCircle, ArrowRight } from "lucide-react";
+import { Eye, EyeOff, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { useAuth } from "@/hooks/useAuth"; // 1. Import hook
+import { useRouter } from "next/navigation"; // 2. Import router
 
 export default function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  // 3. Fixed 'onst' typo and updated state to match UI (First/Last Name)
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    role: "student",
+  });
+
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const { register } = useAuth();
+  const router = useRouter();
+
+  // 4. Handler to update state when user types
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+
+    if (form.password !== form.confirmPassword) {
+      setError("Passwords do not match");
+      setLoading(false);
+      return;
+    }
+
+    if (form.password.length < 6) {
+      setError("Password must be at least 6 characters");
+      setLoading(false);
+      return;
+    }
+
+    // Combine first and last name for the API
+    const fullName = `${form.firstName} ${form.lastName}`.trim();
+
+    const result = await register(
+      fullName,
+      form.email,
+      form.password,
+      form.role,
+    );
+
+    if (result.success) {
+      router.push("/login");
+    } else {
+      setError(result.error || "Registration failed");
+    }
+
+    setLoading(false);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col md:flex-row">
@@ -82,7 +141,15 @@ export default function RegisterPage() {
             </p>
           </div>
 
-          <form className="space-y-6">
+          {/* 5. Connected onSubmit to the form */}
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Error Message */}
+            {error && (
+              <div className="p-3 bg-red-50 text-red-700 text-sm rounded-lg border border-red-200">
+                {error}
+              </div>
+            )}
+
             {/* Name Row */}
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
@@ -91,6 +158,9 @@ export default function RegisterPage() {
                 </label>
                 <input
                   type="text"
+                  name="firstName" // Matches state key
+                  value={form.firstName} // Controlled input
+                  onChange={handleChange} // Updates state
                   className="w-full bg-white border border-gray-200 p-3 focus:outline-none focus:border-red-700 transition-colors text-sm text-gray-900 font-light placeholder-gray-400"
                   placeholder="John"
                   required
@@ -102,6 +172,9 @@ export default function RegisterPage() {
                 </label>
                 <input
                   type="text"
+                  name="lastName" // Matches state key
+                  value={form.lastName} // Controlled input
+                  onChange={handleChange} // Updates state
                   className="w-full bg-white border border-gray-200 p-3 focus:outline-none focus:border-red-700 transition-colors text-sm text-gray-900 font-light placeholder-gray-400"
                   placeholder="Doe"
                   required
@@ -116,13 +189,16 @@ export default function RegisterPage() {
               </label>
               <input
                 type="email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
                 className="w-full bg-white border border-gray-200 p-3 focus:outline-none focus:border-red-700 transition-colors text-sm text-gray-900 font-light placeholder-gray-400"
                 placeholder="john@example.com"
                 required
               />
             </div>
 
-            {/* Phone */}
+            {/* Phone (Optional, not connected to API logic but included in UI) */}
             <div className="space-y-2">
               <label className="text-[10px] font-bold uppercase tracking-widest text-gray-500">
                 Phone Number
@@ -142,6 +218,9 @@ export default function RegisterPage() {
               <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
+                  name="password"
+                  value={form.password}
+                  onChange={handleChange}
                   className="w-full bg-white border border-gray-200 p-3 focus:outline-none focus:border-red-700 transition-colors text-sm text-gray-900 font-light placeholder-gray-400"
                   placeholder="••••••••"
                   required
@@ -168,6 +247,9 @@ export default function RegisterPage() {
               <div className="relative">
                 <input
                   type={showConfirmPassword ? "text" : "password"}
+                  name="confirmPassword"
+                  value={form.confirmPassword}
+                  onChange={handleChange}
                   className="w-full bg-white border border-gray-200 p-3 focus:outline-none focus:border-red-700 transition-colors text-sm text-gray-900 font-light placeholder-gray-400"
                   placeholder="••••••••"
                   required
@@ -215,10 +297,13 @@ export default function RegisterPage() {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-red-700 hover:bg-red-800 text-white font-bold py-4 uppercase tracking-widest text-xs transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 group"
+              disabled={loading}
+              className="w-full bg-red-700 hover:bg-red-800 text-white font-bold py-4 uppercase tracking-widest text-xs transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 group disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              Create Account{" "}
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              {loading ? "Creating..." : "Create Account"}{" "}
+              {!loading && (
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              )}
             </button>
           </form>
 

@@ -1,56 +1,56 @@
 [
   {
     "id": 1,
-    "name": "Jean-Luc Rousseau",
-    "role": "Executive Chef",
-    "specialty": "French Cuisine & Gastronomy",
-    "image": "https://images.unsplash.com/photo-1583394293214-28ded15ee548?q=80&w=600&auto=format&fit=crop",
-    "bio": "With over 20 years of experience in Michelin-starred kitchens across Paris and New York, Chef Jean-Luc brings classical French techniques to our students.",
-    "awards": ["2 Michelin Stars", "Best Chef 2018"]
+    "name": "Md. Tanvir Hossain",
+    "role": "CEO & Visionary Founder",
+    "specialty": "Chief Executive Officer",
+    "image": "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=600&auto=format&fit=crop",
+    "bio": "As the driving force behind BPSTI, our CEO is committed to transforming vocational training in Bangladesh. With a focus on industrial innovation and global partnerships, they ensure that every student has a direct pathway to 4-star hotel environments and international employment.",
+    "awards": ["Global Partnership Strategy"]
   },
   {
     "id": 2,
-    "name": "Elena Rossi",
-    "role": "Pastry Director",
-    "specialty": "Modern Patisserie",
-    "image": "https://images.unsplash.com/photo-1556910103-1c02745a30bf?q=80&w=600&auto=format&fit=crop",
-    "bio": "Elena is an award-winning pastry artist known for her exquisite desserts that blend traditional Italian flavors with modern architectural designs.",
-    "awards": ["World Pastry Cup Winner", "James Beard Nominee"]
+    "name": "Md. Farhan Ahmed",
+    "role": "Board Member & Strategic Lead",
+    "specialty": "Director of Operations",
+    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=600&auto=format&fit=crop",
+    "bio": "Overseeing the day-to-day excellence of our training facilities, the Director of Operations ensures that our Active Learning labs and internship programs meet the highest professional standards of the hospitality industry.",
+    "awards": ["Operational Excellence"]
   },
   {
     "id": 3,
-    "name": "Kenji Tanaka",
-    "role": "Sushi Master",
-    "specialty": "Japanese Precision",
-    "image": "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?q=80&w=600&auto=format&fit=crop",
-    "bio": "Kenji brings the discipline of Tokyo's finest sushi bars to our academy, teaching the delicate art of knife skills and rice preparation.",
-    "awards": ["Tokyo Culinary Gold", "Sushi Sommelier Master"]
+    "name": "Md. Rakibul Islam",
+    "role": "Board Member & Career Strategist",
+    "specialty": "Head of International Relations",
+    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop",
+    "bio": "Specialized in global mobility, our Head of International Relations manages our language integration programs and coordinates overseas job placements for students looking to build careers in Europe and the Middle East.",
+    "awards": ["Global Career Mobility"]
   },
   {
     "id": 4,
-    "name": "Sarah Jenkins",
-    "role": "Sommelier",
-    "specialty": "Wine & Spirits",
-    "image": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=600&auto=format&fit=crop",
-    "bio": "Sarah holds a Master of Wine certification and travels the globe sourcing rare vintages to teach our students about perfect pairings.",
-    "awards": ["Master of Wine", "Top 100 Sommeliers"]
+    "name": "Mr. Ariful Islam",
+    "role": "Board Member & Industry Liaison",
+    "specialty": "Head of Career Placement",
+    "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=600&auto=format&fit=crop",
+    "bio": "The bridge between our students and the industry. Our Head of Career Placement personally manages our relationships with 3 and 4-star hotels like Pan Pacific Sonargaon, InterContinental, and Radisson Blu, ensuring that every internship and job placement aligns with our students' career goals.",
+    "awards": ["Industry Network Lead"]
   },
   {
     "id": 5,
-    "name": "Marcus Thorne",
-    "role": "Boulanger",
-    "specialty": "Artisan Breads",
-    "image": "https://images.unsplash.com/photo-1581299894007-aaa50297cf16?q=80&w=600&auto=format&fit=crop",
-    "bio": "A master of sourdough and fermentation, Marcus teaches the science and patience required to create world-class breads.",
-    "awards": ["Bread Baking Championship", "Artisan Baker of the Year"]
+    "name": "Ms. Sadia Sultana",
+    "role": "Board Member & Curriculum Strategist",
+    "specialty": "Director of Academic Excellence",
+    "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop",
+    "bio": "Responsible for keeping our training programs at the cutting edge. Our Director of Academic Excellence ensures that our course segments; from the Big 5 fast food mastery to International Cuisine; exceed the pedagogical standards required for global professional certification.",
+    "awards": ["Curriculum Innovation"]
   },
   {
     "id": 6,
-    "name": "Priya Patel",
-    "role": "Vegetarian Expert",
-    "specialty": "Plant-Based Innovation",
-    "image": "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?q=80&w=600&auto=format&fit=crop",
-    "bio": "Priya specializes in modern vegetarian cuisine, transforming traditional recipes into vibrant, nutrient-dense works of art.",
-    "awards": ["Green Chef Award", "Innovator of the Year"]
+    "name": "Mr. Kamal Hossain",
+    "role": "Board Member & Welfare Lead",
+    "specialty": "Student Success Coordinator",
+    "image": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=600&auto=format&fit=crop",
+    "bio": "Dedicated to the journey of the individual. Our Student Success Coordinator oversees student support, from the initial enrollment in our fast-track programs to the successful transition into overseas language training and international career roles.",
+    "awards": ["Student Welfare Champion"]
   }
 ]

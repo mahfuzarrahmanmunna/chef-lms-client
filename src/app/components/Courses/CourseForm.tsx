@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import axios from "axios";
+import Image from "next/image";
 
 interface Review {
   id: string;
@@ -282,11 +283,13 @@ export default function CourseForm({
             />
             {form.thumbnail && !thumbError && (
               <div className="mt-1 rounded-xl overflow-hidden border border-gray-100 h-28 bg-gray-50">
-                <img
+                <Image
                   src={form.thumbnail}
                   alt="Thumbnail preview"
                   className="w-full h-full object-cover"
                   onError={() => setThumbError(true)}
+                  width={500}
+                  height={500}
                 />
               </div>
             )}

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Clock, Award, CheckCircle, ChevronRight, Sparkles } from "lucide-react";
+import Image from "next/image";
 
 interface Module {
   title: string;
@@ -193,24 +194,47 @@ export default function CoursesSection() {
   }
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-2">
       <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
-
         {/* Section Header */}
-        <div className="mb-12">
-          <p className="text-[11px] font-bold uppercase tracking-widest text-red-700 mb-2">
-            আমাদের কোর্সসমূহ
-          </p>
-          <h2 className="text-3xl md:text-5xl font-serif font-bold text-gray-900 leading-tight mb-4">
-            আপনার লক্ষ্য অনুযায়ী <br className="hidden md:block" />
-            সঠিক কোর্সটি বেছে নিন।
-          </h2>
-          <p className="text-sm text-gray-500 max-w-xl leading-relaxed">
-            আমাদের প্রতিটি কোর্স ইন্ডাস্ট্রি-স্ট্যান্ডার্ড কারিকুলাম অনুযায়ী
-            ডিজাইন করা হয়েছে — শুরু থেকে শীর্ষে পৌঁছানোর জন্য।
-          </p>
-        </div>
+        <div className="relative mt-32 mb-10">
+          <div className="bg-gray-100 px-8 md:px-12 flex flex-col md:flex-row items-end justify-between overflow-visible border border-gray-200 min-h-[300px] overflow-x-clip shadow-[inset_0_2px_10px_rgba(0,0,0,0.1)]">
+            {/* Text Content */}
+            <div className="w-full md:w-3/5 pb-12 md:pb-16 pt-12">
+              <p className="text-[11px] font-bold uppercase tracking-widest text-red-700 mb-2">
+                আমাদের কোর্সসমূহ
+              </p>
+              <h2 className="text-xl md:text-3xl font-serif font-bold text-gray-900 leading-tight mb-4">
+                রন্ধনশিল্প আপনার জন্য <br className="hidden md:block" />
+                উপযুক্ত কিনা তা যাচাই করে দেখুন।
+              </h2>
+              <p className="text-sm text-gray-500 max-w-xl leading-relaxed mb-6">
+                আমাদের প্রতিটি কোর্স ইন্ডাস্ট্রি-স্ট্যান্ডার্ড কারিকুলাম
+                অনুযায়ী ডিজাইন করা হয়েছে — শুরু থেকে শীর্ষে পৌঁছানোর জন্য।
+              </p>
 
+              {/* Animated Button */}
+              <button className="relative group overflow-hidden bg-red-600 text-white px-10 py-3 font-semibold transition-all duration-300 ease-out hover:bg-white hover:text-red-600 border border-transparent hover:border-red-600 active:scale-95 shadow-md hover:shadow-red-200">
+                <span className="relative z-10">Take This Short Quiz</span>
+                <div className="absolute inset-0 w-1/4 h-full bg-white/20 skew-x-[-20deg] -translate-x-full group-hover:translate-x-[400%] transition-transform duration-700 ease-in-out"></div>
+              </button>
+            </div>
+
+            {/* Image Section - Bottom Aligned & Overflowing */}
+            <div className="w-full md:w-2/3 flex justify-center md:justify-end self-end">
+              <div className="relative w-52 md:w-80 lg:w-[450px] leading-0">
+                <Image
+                  src={"/image.webp"}
+                  width={500}
+                  height={700}
+                  alt="Course Instructor"
+                  className="object-contain h-auto w-full transform scale-125 lg:scale-150 origin-bottom"
+                  priority
+                />
+              </div>
+            </div>
+          </div>
+        </div>
         {/* Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {courses.map((course) => (

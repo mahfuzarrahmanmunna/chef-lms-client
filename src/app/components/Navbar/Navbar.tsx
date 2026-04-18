@@ -218,9 +218,9 @@ const Navbar: React.FC = () => {
               className="group flex items-center gap-3 relative z-50"
             >
               <Image
-                src="/logo.jpeg"
+                src="/logo1.jpeg"
                 alt="Chef Academy Logo"
-                width={60}
+                width={120}
                 height={60}
                 loading="eager"
               />

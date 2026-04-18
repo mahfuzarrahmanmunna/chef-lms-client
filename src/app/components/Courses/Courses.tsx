@@ -134,24 +134,11 @@ const coursesData: Course[] = [
   },
 ];
 
-/*  Shared Styles  */
-const styles = `
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600&display=swap');
-
-  . { font-family: 'Playfair Display', serif; }
-  .font-sans-luxury { font-family: 'Manrope', sans-serif; }
-
-  /* The Angel Shape (Cut Bottom-Right) */
-  .angel-shape {
-    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
-  }
-`;
-
 /*  Card Component  */
 const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
   return (
     <Link href={`/course-details/${course.id}`} className="block group h-full">
-      <div className="h-full flex flex-col bg-white border border-gray-200 hover:border-black transition-all duration-300 relative overflow-hidden shadow-sm hover:shadow-xl">
+      <div className="h-full flex flex-col border border-gray-200 hover:border-black transition-all duration-300 relative overflow-hidden shadow-sm hover:shadow-xl">
         {/* Image Section */}
         <div className="relative w-full aspect-[4/3] overflow-hidden bg-gray-100">
           <img
@@ -272,11 +259,11 @@ export default function CourseCollections() {
 
   return (
     <>
-      <style jsx global>
+      {/* <style jsx global>
         {styles}
-      </style>
+      </style> */}
 
-      <section id="courses" className="py-24 bg-[#faf9f6] font-sans-luxury">
+      <section id="courses" className="py-24 ">
         <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
           {/* SECTION HEADER - Updated Bengali */}
           <div className="text-center max-w-3xl mx-auto mb-20">

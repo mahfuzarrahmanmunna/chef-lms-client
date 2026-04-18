@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay, Pagination } from "swiper/modules";
-import { Play, ArrowRight, ArrowLeft, X } from "lucide-react";
+import { Play, ArrowRight, ArrowLeft, X, VolumeX } from "lucide-react";
 import { FaYoutube } from "react-icons/fa6";
 
 // Import Swiper styles
@@ -14,17 +14,43 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 /* ──────────────── DATA ──────────────── */
+// Updated with your specific IDs
 const videos = [
   {
     id: 1,
-    title: "Mastering the French Knife Cut",
+    title: "Advanced Grilling Techniques",
+    chef: "Chef Gordon",
+    youtubeId: "kW140spadx8",
+    duration: "11:30",
+    category: "BBQ",
+  },
+  {
+    id: 2,
+    title: "Handmade Pasta Masterclass",
+    chef: "Chef Mario",
+    youtubeId: "4kyTkEItmDc",
+    duration: "16:45",
+    category: "Italian",
+  },
+  {
+    id: 3,
+    title: "Precision Knife Skills",
+    chef: "Chef Jiro",
+    youtubeId: "sv3TXMSv6Lw",
+    duration: "10:00",
+    category: "Technique",
+  },
+  // Keeping existing reliable ones to fill the slider
+  {
+    id: 4,
+    title: "Mastering the French Cut",
     chef: "Chef Alexander",
-    youtubeId: "Kqc52QJX2Y8",
+    youtubeId: "kW140spadx8",
     duration: "12:05",
     category: "Technique",
   },
   {
-    id: 2,
+    id: 5,
     title: "Art of Sourdough Bread",
     chef: "Chef Isabella",
     youtubeId: "DpFPFzV0X14",
@@ -32,36 +58,12 @@ const videos = [
     category: "Baking",
   },
   {
-    id: 3,
+    id: 6,
     title: "Plating for Fine Dining",
     chef: "Chef Marcus",
-    youtubeId: "w5IhP3Y6dXQ",
+    youtubeId: "kW140spadx8",
     duration: "15:20",
     category: "Presentation",
-  },
-  {
-    id: 4,
-    title: "Sustainable Sourcing 101",
-    chef: "Chef Elena",
-    youtubeId: "Y5aR3k5z8P0",
-    duration: "10:15",
-    category: "Business",
-  },
-  {
-    id: 5,
-    title: "Secrets of Wagyu Beef",
-    chef: "Chef Kenji",
-    youtubeId: "V0xM8x5M9O1",
-    duration: "14:45",
-    category: "Ingredients",
-  },
-  {
-    id: 6,
-    title: "Pastry Cream Perfection",
-    chef: "Chef Sophie",
-    youtubeId: "L2p4x5N6Q7R",
-    duration: "09:50",
-    category: "Pastry",
   },
 ];
 
@@ -93,53 +95,83 @@ const SwiperNavButton = ({
 
 const VideoCard: React.FC<{
   video: (typeof videos)[0];
-  onOpen: (id: string) => void;
-}> = ({ video, onOpen }) => {
+  isPlaying: boolean;
+  onTogglePlay: (id: number) => void;
+}> = ({ video, isPlaying, onTogglePlay }) => {
   const thumbnailUrl = `https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`;
 
   return (
-    // Added cursor-pointer and removed rounded-xl for rectangle shape
+    // Click toggles play state (Toggle between Thumbnail and Player)
     <div
-      onClick={() => onOpen(video.youtubeId)}
+      onClick={() => onTogglePlay(video.id)}
       className="group relative h-[400px] w-full bg-gray-100 rounded-none overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer"
     >
-      {/* Thumbnail Image */}
-      <div className="absolute inset-0">
-        <img
-          src={thumbnailUrl}
-          alt={video.title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
-      </div>
+      {/* --- PLAYER MODE (Full Card Video) --- */}
+      {isPlaying ? (
+        <div className="absolute inset-0 z-20 bg-black">
+          <iframe
+            src={`https://www.youtube.com/embed/${video.youtubeId}?autoplay=1&rel=0`}
+            title="YouTube video player"
+            className="w-full h-full object-cover"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
 
-      {/* Play Button Overlay */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="relative z-10 w-16 h-16 bg-red-600/90 rounded-full flex items-center justify-center pl-1 backdrop-blur-sm shadow-lg group-hover:bg-red-700 group-hover:scale-110 transition-all duration-300">
-          <Play className="w-6 h-6 text-white fill-current" />
+          {/* Close / Stop Button Overlay */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onTogglePlay(video.id);
+            }}
+            className="absolute top-4 right-4 z-30 w-10 h-10 rounded-full bg-black/60 text-white hover:bg-red-600 flex items-center justify-center transition-colors backdrop-blur-sm shadow-lg"
+            title="Stop Video"
+          >
+            <X size={18} />
+          </button>
         </div>
-      </div>
+      ) : (
+        /* --- THUMBNAIL MODE --- */
+        <>
+          {/* Thumbnail Image */}
+          <div className="absolute inset-0">
+            <img
+              src={thumbnailUrl}
+              alt={video.title}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+          </div>
 
-      {/* Content Info */}
-      <div className="absolute bottom-0 left-0 w-full p-6">
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-[10px] font-bold uppercase tracking-widest text-red-500 bg-white/10 backdrop-blur-md px-2 py-1 rounded-sm">
-            {video.category}
-          </span>
-          <span className="text-xs font-medium text-gray-300 bg-black/40 px-2 py-1 rounded-sm backdrop-blur-sm">
-            {video.duration}
-          </span>
-        </div>
+          {/* Play Button Overlay */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="relative z-10 w-16 h-16 bg-red-600/90 rounded-full flex items-center justify-center pl-1 backdrop-blur-sm shadow-lg group-hover:bg-red-700 group-hover:scale-110 transition-all duration-300">
+              <Play className="w-6 h-6 text-white fill-current" />
+            </div>
+          </div>
 
-        <h3 className="font-serif text-xl text-white font-bold leading-tight mb-1 group-hover:text-red-500 transition-colors">
-          {video.title}
-        </h3>
+          {/* Content Info */}
+          <div className="absolute bottom-0 left-0 w-full p-6">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-red-500 bg-white/10 backdrop-blur-md px-2 py-1 rounded-sm">
+                {video.category}
+              </span>
+              <span className="text-xs font-medium text-gray-300 bg-black/40 px-2 py-1 rounded-sm backdrop-blur-sm">
+                {video.duration}
+              </span>
+            </div>
 
-        <p className="text-sm text-gray-400 flex items-center gap-1">
-          <FaYoutube className="w-3 h-3" />
-          {video.chef}
-        </p>
-      </div>
+            <h3 className="font-serif text-xl text-white font-bold leading-tight mb-1 group-hover:text-red-500 transition-colors">
+              {video.title}
+            </h3>
+
+            <p className="text-sm text-gray-400 flex items-center gap-1">
+              <FaYoutube className="w-3 h-3" />
+              {video.chef}
+            </p>
+          </div>
+        </>
+      )}
     </div>
   );
 };
@@ -147,17 +179,22 @@ const VideoCard: React.FC<{
 /* ──────────────── MAIN COMPONENT ──────────────── */
 
 const VideoSection: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedVideoId, setSelectedVideoId] = useState("");
+  // State to track which video ID is currently playing
+  const [activeVideoId, setActiveVideoId] = useState<number | null>(null);
 
-  const openModal = (id: string) => {
-    setSelectedVideoId(id);
-    setIsOpen(true);
+  const togglePlay = (id: number) => {
+    // If clicking same video, stop it (set to null).
+    // If clicking a different video, play that one.
+    if (activeVideoId === id) {
+      setActiveVideoId(null);
+    } else {
+      setActiveVideoId(id);
+    }
   };
 
-  const closeModal = () => {
-    setIsOpen(false);
-    setSelectedVideoId("");
+  // Stop video when sliding to a new card to prevent audio overlap
+  const handleSlideChange = () => {
+    setActiveVideoId(null);
   };
 
   return (
@@ -211,8 +248,8 @@ const VideoSection: React.FC = () => {
               },
             }}
             autoplay={{
-              delay: 3500,
-              disableOnInteraction: false,
+              delay: 4000,
+              disableOnInteraction: true, // Stop auto-sliding if user interacts with card
               pauseOnMouseEnter: true,
             }}
             navigation={{
@@ -225,11 +262,16 @@ const VideoSection: React.FC = () => {
               bulletClass: "custom-bullet",
               bulletActiveClass: "custom-bullet-active",
             }}
+            onSlideChange={handleSlideChange} // IMPORTANT: Stop audio on swipe
             className="!pb-12"
           >
             {videos.map((video) => (
               <SwiperSlide key={video.id}>
-                <VideoCard video={video} onOpen={openModal} />
+                <VideoCard
+                  video={video}
+                  isPlaying={activeVideoId === video.id}
+                  onTogglePlay={togglePlay}
+                />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -241,40 +283,6 @@ const VideoSection: React.FC = () => {
       {/* Decorative Background Elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-red-600/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-gray-900/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
-
-      {/* VIDEO MODAL */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-md p-4"
-          onClick={closeModal} // Close on backdrop click
-        >
-          {/* Close Button */}
-          <button
-            onClick={closeModal}
-            className="absolute top-6 right-6 text-white hover:text-red-500 transition-colors z-50 p-2 bg-white/10 rounded-full hover:bg-white/20"
-            aria-label="Close video"
-          >
-            <X className="w-8 h-8" />
-          </button>
-
-          {/* Iframe Container */}
-          <div
-            className="w-full max-w-5xl aspect-video bg-black shadow-2xl"
-            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking the video
-          >
-            <iframe
-              width="100%"
-              height="100%"
-              src={`https://www.youtube.com/embed/${selectedVideoId}?autoplay=1&rel=0`}
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-              className="w-full h-full"
-            ></iframe>
-          </div>
-        </div>
-      )}
 
       <style jsx global>{`
         .custom-bullet {

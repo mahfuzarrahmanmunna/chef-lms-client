@@ -2,22 +2,6 @@
 
 import React from "react";
 
-/*  Shared Styles (Must match HeroBanner to ensure animations/fonts work)  */
-const globalStyles = `
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600&display=swap');
-
-:root {
-  --font-serif: 'Playfair Display', serif;
-  --font-sans: 'Manrope', sans-serif;
-  --font-great: 'Great Vibes', cursive; 
-  --color-red: #b91c1c; 
-}
-
-@keyframes slowFadeIn {
-  0% { opacity: 0; transform: translateY(30px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-`;
 
 /*  Sub-Component: Path Card  */
 const PathCard: React.FC<{
@@ -130,11 +114,8 @@ const DisciplinesSection: React.FC = () => {
   return (
     <>
       {/* We include the style tag here to ensure animations work even if HeroBanner is not present */}
-      <style jsx global>
-        {globalStyles}
-      </style>
 
-      <section className="relative w-full bg-white py-24 px-6 md:px-12 lg:px-20">
+      <section className="relative w-full px-6 md:px-12 lg:px-20">
         {/* Section Header */}
         <div className="container mx-auto mb-20 flex flex-col md:flex-row justify-between items-end border-b border-gray-200 pb-8">
           <div>

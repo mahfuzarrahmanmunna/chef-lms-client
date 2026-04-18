@@ -21,7 +21,7 @@ const MinimalButton: React.FC<MinimalButtonProps> = ({
     "relative px-8 py-3 overflow-hidden transition-all duration-500 ease-out shadow-lg group border border-transparent";
 
   const styles = {
-    filled: "bg-[#D4AF37] text-white hover:bg-[#b5952f] border-[#D4AF37]", // Gold filled
+    filled: "bg-red-600 text-white hover:bg-red-500 border-[#D4AF37]", // Gold filled
     outline:
       "bg-transparent border border-white text-white hover:bg-white hover:text-black",
   };
@@ -53,7 +53,7 @@ const StatsBar: React.FC<{ delay: number }> = ({ delay }) => {
     >
       {/* Stat 1 */}
       <div className="flex flex-col border-r border-white/30 pr-8">
-        <span className="text-[#D4AF37] font-serif text-3xl italic font-bold">
+        <span className="text-red-600 font-serif text-3xl italic font-bold">
           100%
         </span>
         <span className="text-gray-300 text-[10px] uppercase tracking-widest font-bold mt-1">
@@ -63,7 +63,7 @@ const StatsBar: React.FC<{ delay: number }> = ({ delay }) => {
 
       {/* Stat 2 */}
       <div className="flex flex-col border-r border-white/30 pr-8">
-        <span className="text-[#D4AF37] font-serif text-3xl italic font-bold">
+        <span className="text-red-600 font-serif text-3xl italic font-bold">
           3-4
         </span>
         <span className="text-gray-300 text-[10px] uppercase tracking-widest font-bold mt-1">
@@ -74,7 +74,7 @@ const StatsBar: React.FC<{ delay: number }> = ({ delay }) => {
 
       {/* Stat 3 */}
       <div className="flex flex-col">
-        <span className="text-[#D4AF37] font-serif text-3xl italic font-bold">
+        <span className="text-red-600 font-serif text-3xl italic font-bold">
           No.1
         </span>
         <span className="text-gray-300 text-[10px] uppercase tracking-widest font-bold mt-1">
@@ -138,7 +138,7 @@ const ConsultForm: React.FC = () => {
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             placeholder="YOUR NAME"
-            className="w-full h-14 bg-white/10 backdrop-blur-md border border-white/30 text-white placeholder-white/60 px-6 rounded-sm focus:outline-none focus:border-[#D4AF37] focus:bg-white/20 transition-all"
+            className="w-full h-14 bg-white/10 backdrop-blur-md border border-white/30 text-white placeholder-white/60 px-6  focus:outline-none focus:border-blue-400 focus:bg-white/20 transition-all"
             disabled={success}
           />
         </div>
@@ -153,7 +153,7 @@ const ConsultForm: React.FC = () => {
               setFormData({ ...formData, phone: e.target.value })
             }
             placeholder="PHONE NUMBER"
-            className="w-full h-14 bg-white/10 backdrop-blur-md border border-white/30 text-white placeholder-white/60 px-6 rounded-sm focus:outline-none focus:border-[#D4AF37] focus:bg-white/20 transition-all"
+            className="w-full h-14 bg-white/10 backdrop-blur-md border border-white/30 text-white placeholder-white/60 px-6  focus:outline-none focus:border-blue-400 focus:bg-white/20 transition-all"
             disabled={success}
           />
         </div>
@@ -162,7 +162,7 @@ const ConsultForm: React.FC = () => {
         <button
           type="submit"
           disabled={loading || success}
-          className="h-14 px-10 bg-[#D4AF37] hover:bg-[#b5952f] text-white font-bold tracking-widest uppercase rounded-sm transition-all disabled:opacity-70 disabled:cursor-not-allowed whitespace-nowrap shadow-lg flex items-center justify-center"
+          className="h-14 px-10 bg-red-600 hover:bg-red-500 text-white font-bold tracking-widest uppercase  transition-all disabled:opacity-70 disabled:cursor-not-allowed whitespace-nowrap shadow-lg flex items-center justify-center"
         >
           {loading ? <span>...</span> : success ? "SENT" : "Get Consult"}
         </button>
@@ -239,7 +239,7 @@ const Banner: React.FC = () => {
               }}
             >
               আপনার Culinary ক্যারিয়ার <br />
-              <span className="text-[#D4AF37] italic">শুরু হোক এখানেই</span>
+              <span className="text-red-600 italic">শুরু হোক এখানেই</span>
             </h1>
 
             {/* Description */}

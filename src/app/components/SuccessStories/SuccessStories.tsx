@@ -7,12 +7,14 @@ import "videojs-youtube";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
-import { Play, ArrowRight, ArrowLeft } from "lucide-react";
+import { Play, ArrowRight, ArrowLeft, X } from "lucide-react";
 import { FaYoutube } from "react-icons/fa6";
 
 // Import Swiper styles
 import "swiper/css";
+// @ts-ignore
 import "swiper/css/navigation";
+// @ts-ignore
 import "swiper/css/pagination";
 
 // --- TYPES ---
@@ -89,7 +91,7 @@ const SwiperNavButton = ({
   );
 };
 
-// --- VIDEO.JS PLAYER COMPONENT ---
+// --- VIDEO.JS PLAYER COMPONENT (FULL WIDTH) ---
 const InlineVideoPlayer: React.FC<{
   videoId: string;
   type: "short" | "video";
@@ -101,19 +103,20 @@ const InlineVideoPlayer: React.FC<{
     // Prevent double init
     if (!videoRef.current || playerRef.current) return;
 
-    // CRITICAL FIX: Delay initialization to ensure React has placed the element in the DOM
+    // Delay initialization to ensure React DOM is ready
     const initTimer = setTimeout(() => {
       if (!videoRef.current || !videoRef.current.parentNode) return;
 
-      const origin = typeof window !== "undefined" ? window.location.origin : "";
+      const origin =
+        typeof window !== "undefined" ? window.location.origin : "";
 
       const options = {
         controls: true,
         responsive: true,
-        fluid: false, // We use fixed h-full
+        fluid: false, // We use absolute positioning
         autoplay: true,
         preload: "auto",
-        fill: true, // Fills the container
+        fill: true, // Fills container
         techOrder: ["youtube"],
         sources: [
           {
@@ -151,7 +154,7 @@ const InlineVideoPlayer: React.FC<{
         }
         playerRef.current = null;
       };
-    }, 100); // 100ms delay to fix DOM warning
+    }, 50); // Short delay
 
     return () => {
       clearTimeout(initTimer);
@@ -159,7 +162,7 @@ const InlineVideoPlayer: React.FC<{
   }, [videoId, type]);
 
   return (
-    <div className="w-full h-full absolute inset-0 bg-black">
+    <div className="w-full h-full absolute inset-0 bg-black z-20">
       <div data-vjs-player className="w-full h-full">
         <div
           ref={videoRef}
@@ -175,34 +178,48 @@ const StoryCard: React.FC<{
   story: VideoStory;
   isActive: boolean;
   onPlay: (id: string) => void;
-}> = ({ story, isActive, onPlay }) => {
+  onStop: () => void;
+}> = ({ story, isActive, onPlay, onStop }) => {
   const thumbnailUrl = `https://img.youtube.com/vi/${story.videoId}/hqdefault.jpg`;
 
   return (
     <div
-      className={`group relative h-[450px] w-full bg-gray-100 shadow-sm hover:shadow-2xl transition-all duration-300 overflow-hidden ${
-        isActive ? "shadow-red-200 scale-[1.02] z-10" : ""
+      className={`group relative h-[450px] w-full bg-gray-100 shadow-sm hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200 ${
+        isActive ? "ring-2 ring-red-600 z-10" : ""
       }`}
       // ANGEL SHAPE: Bottom right cut
       style={{
-        clipPath: "polygon(0 0, 100% 0, 100% calc(100% - 40px), calc(100% - 40px) 100%, 0 100%)",
+        clipPath:
+          "polygon(0 0, 100% 0, 100% calc(100% - 40px), calc(100% - 40px) 100%, 0 100%)",
       }}
     >
       {isActive ? (
-        // --- PLAYER MODE ---
-        <InlineVideoPlayer videoId={story.videoId} type={story.type} />
+        // --- PLAYER MODE (FULL WIDTH) ---
+        <div className="absolute inset-0 z-30">
+          <InlineVideoPlayer videoId={story.videoId} type={story.type} />
+
+          {/* Close Button for Player */}
+          <button
+            onClick={onStop}
+            className="absolute top-4 right-4 z-40 w-10 h-10 rounded-full bg-black/60 text-white hover:bg-red-600 flex items-center justify-center transition-all backdrop-blur-sm shadow-lg"
+          >
+            <X size={18} />
+          </button>
+        </div>
       ) : (
-        // --- THUMBNAIL MODE ---
+        /* --- THUMBNAIL MODE --- */
         <>
+          {/* Thumbnail Image */}
           <div className="absolute inset-0">
             <img
               src={thumbnailUrl}
               alt={story.title}
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
           </div>
 
+          {/* Type Badge */}
           <div className="absolute top-6 left-6 z-10">
             <span
               className={`text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-sm backdrop-blur-md shadow-sm ${
@@ -215,21 +232,18 @@ const StoryCard: React.FC<{
             </span>
           </div>
 
-          {/* Click Area */}
+          {/* Play Button Area */}
           <div
-            className="absolute inset-0 flex items-center justify-center"
+            className="absolute inset-0 flex items-center justify-center cursor-pointer z-20"
             onClick={() => onPlay(story.id)}
           >
-            <div className="relative z-10 w-20 h-20 bg-red-600/90 rounded-full flex items-center justify-center pl-2 backdrop-blur-sm shadow-lg group-hover:bg-red-700 group-hover:scale-110 transition-all duration-300 cursor-pointer">
+            <div className="relative w-20 h-20 bg-red-600/90 rounded-full flex items-center justify-center pl-2 backdrop-blur-sm shadow-lg group-hover:bg-red-700 group-hover:scale-110 transition-all duration-300">
               <Play className="w-8 h-8 text-white fill-current" />
             </div>
           </div>
 
-          {/* Text Area - Clickable too */}
-          <div
-            className="absolute bottom-0 left-0 w-full p-8 pointer-events-auto cursor-pointer"
-            onClick={() => onPlay(story.id)}
-          >
+          {/* Text Info (Bottom) */}
+          <div className="absolute bottom-0 left-0 w-full p-8 z-10">
             <h3 className="font-serif text-3xl text-white font-bold leading-tight mb-2 group-hover:text-red-500 transition-colors">
               {story.title}
             </h3>
@@ -254,8 +268,12 @@ const SuccessStoriesSlider = () => {
     setActiveVideoId(id);
   };
 
+  const handleStop = () => {
+    setActiveVideoId(null);
+  };
+
   const handleSlideChange = () => {
-    // Stop playing when slide changes to prevent audio overlap
+    // Stop video when sliding to prevent audio overlap
     setActiveVideoId(null);
   };
 
@@ -309,7 +327,7 @@ const SuccessStoriesSlider = () => {
                 slidesPerView: 3,
               },
             }}
-            // CRITICAL: loop={false} prevents the removeChild crash with VideoJS
+            // CRITICAL: loop={false} prevents removeChild crash with VideoJS
             loop={false}
             navigation={{
               nextEl: ".swiper-button-next",
@@ -330,6 +348,7 @@ const SuccessStoriesSlider = () => {
                   story={story}
                   isActive={activeVideoId === story.id}
                   onPlay={handlePlay}
+                  onStop={handleStop}
                 />
               </SwiperSlide>
             ))}

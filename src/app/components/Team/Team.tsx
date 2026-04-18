@@ -159,7 +159,7 @@ export default function Team() {
 
   return (
     <>
-      <section className="py-24 bg-[#faf9f6] font-lato">
+      <section className="font-lato">
         <div className=" mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
           {/* Section Header */}
           <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12 border-b border-gray-200 pb-6">

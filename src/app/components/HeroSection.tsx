@@ -148,7 +148,7 @@ export default function HeroSection() {
 
         {/* VIDEO */}
         <div
-          className="relative w-full lg:w-[52%] rounded-xl overflow-hidden"
+          className="relative w-full lg:w-[52%]  overflow-hidden"
           onMouseEnter={() => setShowControls(true)}
           onMouseLeave={() => setShowControls(false)}
         >
@@ -184,14 +184,14 @@ export default function HeroSection() {
 
               {/* SEEK BAR */}
               <div
-                className="w-full h-1 bg-white/30 rounded cursor-pointer"
+                className="w-full h-1 bg-white/30 cursor-pointer"
                 onClick={handleSeek}
                 onMouseDown={handleMouseDown}
                 onMouseUp={handleMouseUp}
                 onMouseMove={handleMouseMove}
               >
                 <div
-                  className="h-1 bg-[#E87722] rounded"
+                  className="h-1 bg-[#E87722]"
                   style={{ width: `${progress}%` }}
                 />
               </div>

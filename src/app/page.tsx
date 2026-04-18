@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <div className=" bg-white">
       <Banner />
-      <FeatureCourse/>
+      {/* <FeatureCourse/> */}
       <Features />
       <Courses />
       <DisciplinesSection/>

@@ -259,7 +259,7 @@ export default function ContactCTA() {
 
       <section
         id="ctaCard"
-        className="py-24  bg-[#faf9f6] font-sans-luxury overflow-hidden"
+        className="py-24 font-sans-luxury overflow-hidden"
       >
         <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
           <div className="bg-white rounded-sm shadow-lg border border-gray-100 overflow-hidden">

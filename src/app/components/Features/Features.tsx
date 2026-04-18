@@ -66,7 +66,7 @@ export default function Features() {
       `}</style>
       <section className="relative text-black">
        
-        <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 py-32">
+        <div className="relative z-10 w-full">
           <div className="max-w-6xl mx-auto">
             {/* Header Section */}
             <div className="mb-20 text-center">

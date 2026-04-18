@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Contact, Contact2Icon } from "lucide-react";
 
 // --- Icons (SVGs) ---
 const MenuIcon = () => (
@@ -130,6 +131,16 @@ export default function DashboardLayout({
       label: "Manage Courses",
       href: "/dashboard/managecourses",
       icon: <ManageCoursesIcon />,
+    },
+    {
+      label: "Manage Contact",
+      href: "/dashboard/managecontact",
+      icon: <Contact2Icon />,
+    },
+    {
+      label: "Manage Contact",
+      href: "/dashboard/managebannercontact",
+      icon: <Contact />,
     },
     { label: "Review", href: "/dashboard/review", icon: <ReviewIcon /> },
   ];

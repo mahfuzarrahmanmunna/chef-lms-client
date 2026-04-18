@@ -136,7 +136,7 @@ const coursesData: Course[] = [
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600&display=swap');
 
-  .font-serif-luxury { font-family: 'Playfair Display', serif; }
+  . { font-family: 'Playfair Display', serif; }
   .font-sans-luxury { font-family: 'Manrope', sans-serif; }
 
   /* The Angel Shape (Cut Bottom-Right) */
@@ -196,7 +196,7 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
           </div>
 
           {/* Title */}
-          <h3 className="text-xl font-serif-luxury font-bold text-gray-900 mb-3 leading-tight group-hover:text-red-700 transition-colors">
+          <h3 className="text-xl  font-bold text-gray-900 mb-3 leading-tight group-hover:text-red-700 transition-colors">
             {course.title}
           </h3>
 
@@ -222,7 +222,7 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
                       {course.oldPrice.toLocaleString()}
                     </span>
                   )}
-                  <span className="block text-2xl font-serif-luxury font-bold text-gray-900">
+                  <span className="block text-2xl  font-bold text-gray-900">
                     {course.currency}
                     {course.price.toLocaleString()}
                   </span>
@@ -285,7 +285,7 @@ export default function CourseCollections() {
             <span className="text-red-700 font-bold tracking-[0.3em] text-xs uppercase mb-4 block">
               Course Collections
             </span>
-            <h2 className="text-4xl md:text-5xl font-serif-luxury font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl  font-bold text-gray-900 mb-6">
               Explore and Select Courses
             </h2>
             <p className="text-gray-600 font-light leading-relaxed text-lg">
@@ -299,7 +299,7 @@ export default function CourseCollections() {
             <div className="mb-24">
               <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-10 border-b border-gray-200 pb-4">
                 <div>
-                  <h3 className="text-2xl font-serif-luxury font-bold text-gray-900">
+                  <h3 className="text-2xl  font-bold text-gray-900">
                     Professional Programs
                   </h3>
                   <p className="text-sm text-gray-500 mt-2">
@@ -323,7 +323,7 @@ export default function CourseCollections() {
             <div>
               <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-10 border-b border-gray-200 pb-4">
                 <div>
-                  <h3 className="text-2xl font-serif-luxury font-bold text-gray-900">
+                  <h3 className="text-2xl  font-bold text-gray-900">
                     Short Courses
                   </h3>
                   <p className="text-sm text-gray-500 mt-2">

@@ -59,7 +59,7 @@ export default function RegisterPage() {
     );
 
     if (result.success) {
-      router.push("/login");
+      router.push("/signin");
     } else {
       setError(result.error || "Registration failed");
     }
@@ -312,7 +312,7 @@ export default function RegisterPage() {
             <p className="text-sm text-gray-600">
               Already a student?{" "}
               <Link
-                href="/login"
+                href="/signin"
                 className="text-red-700 font-bold hover:underline"
               >
                 Login Here

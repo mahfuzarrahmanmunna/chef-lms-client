@@ -10,7 +10,7 @@ const globalStyles = `
   /* Relying on Layout for Allura, but ensuring Serif/Sans here for fallback */
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600&display=swap');
 
-  .font-serif-luxury { font-family: 'Playfair Display', serif; }
+  . { font-family: 'Playfair Display', serif; }
   .font-sans-luxury { font-family: 'Manrope', sans-serif; }
 
   /* The Angel Shape (Cut Bottom-Right - More Aggressive Cut for Modern Look) */
@@ -57,7 +57,7 @@ export default function FeatureCourse() {
                   <span className="text-[10px] uppercase tracking-[0.2em] text-gray-500 font-bold mb-1">
                     Exclusive
                   </span>
-                  <span className="font-serif-luxury text-2xl font-bold text-gray-900 italic">
+                  <span className=" text-2xl font-bold text-gray-900 italic">
                     Top Pick
                   </span>
                 </div>
@@ -78,7 +78,7 @@ export default function FeatureCourse() {
               </div>
 
               {/* Main Title */}
-              <h2 className="text-5xl md:text-6xl font-serif-luxury font-bold text-gray-900 mb-2 leading-[1.1]">
+              <h2 className="text-5xl md:text-6xl  font-bold text-gray-900 mb-2 leading-[1.1]">
                 Professional Chef Course
               </h2>
 
@@ -95,7 +95,7 @@ export default function FeatureCourse() {
                   <span className="block text-xs text-gray-500 font-bold uppercase tracking-widest mb-1">
                     Full Package Price
                   </span>
-                  <span className="text-4xl font-serif-luxury font-bold text-gray-900">
+                  <span className="text-4xl  font-bold text-gray-900">
                     Tk. 45,000
                   </span>
                 </div>
@@ -110,7 +110,7 @@ export default function FeatureCourse() {
                     <span className="text-xs text-gray-400 font-bold uppercase">
                       Duration
                     </span>
-                    <span className="text-lg font-serif-luxury font-bold">
+                    <span className="text-lg  font-bold">
                       3 Months
                     </span>
                   </div>

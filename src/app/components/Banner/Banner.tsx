@@ -2,30 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 
-/*  Shared Styles for Fonts & Animations  */
-const globalStyles = `
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600&display=swap');
-
-:root {
-  --font-serif: 'Playfair Display', serif;
-  --font-sans: 'Manrope', sans-serif;
-  --color-black: #000000;
-  --color-dark-gray: #1a1a1a;
-  --color-white: #ffffff;
-  --color-light-gray: #f4f4f4;
-}
-
-@keyframes slowFadeIn {
-  0% { opacity: 0; transform: translateY(30px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-/* The Angel Shape (Sharp Cut Corner) */
-.angel-shape {
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
-}
-`;
-
 /*  Sub-Components  */
 
 interface MinimalButtonProps {
@@ -42,13 +18,10 @@ const MinimalButton: React.FC<MinimalButtonProps> = ({
   delay,
 }) => {
   const base =
-    "angel-shape relative px-10 py-4 overflow-hidden transition-all duration-500 ease-out shadow-lg group";
+    "relative px-8 py-3 overflow-hidden transition-all duration-500 ease-out shadow-lg group border border-transparent";
 
-  // Filled: Black bg, White text
-  // Outline: Transparent/White border, White text
   const styles = {
-    filled:
-      "bg-white text-black hover:bg-black hover:text-white hover:border hover:border-white",
+    filled: "bg-red-400 text-white hover:bg-red-500 border-[#D4AF37]", // Gold filled
     outline:
       "bg-transparent border border-white text-white hover:bg-white hover:text-black",
   };
@@ -62,7 +35,7 @@ const MinimalButton: React.FC<MinimalButtonProps> = ({
         opacity: 0,
       }}
     >
-      <span className="relative z-10 font-sans font-semibold tracking-[0.2em] text-xs uppercase">
+      <span className="relative z-10 font-sans font-semibold tracking-[0.15em] text-sm uppercase">
         {text}
       </span>
     </button>
@@ -72,41 +45,122 @@ const MinimalButton: React.FC<MinimalButtonProps> = ({
 const StatsBar: React.FC<{ delay: number }> = ({ delay }) => {
   return (
     <div
-      className="hidden md:flex items-center gap-8 bg-white/90 backdrop-blur-sm px-8 py-6 shadow-2xl angel-shape"
+      className="absolute bottom-10 right-10 z-20 flex flex-col items-end gap-2 text-white/80"
       style={{
         animation: `slowFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s forwards`,
         opacity: 0,
       }}
     >
       {/* Stat 1 */}
-      <div className="flex flex-col border-r border-gray-300 pr-8">
-        <span className="text-black font-serif text-3xl italic font-bold">
-          No. 1
+      <div className="text-right">
+        <span className="block text-xs uppercase tracking-widest font-bold text-red-600">
+          Placement
         </span>
-        <span className="text-gray-500 text-[10px] uppercase tracking-widest font-bold mt-1">
-          Global Ranking
+        <span className="text-sm font-bold italic">
+          100% Internship Support
         </span>
       </div>
 
       {/* Stat 2 */}
-      <div className="flex flex-col border-r border-gray-300 pr-8">
-        <span className="text-black font-serif text-3xl italic font-bold">
-          20k+
+      <div className="text-right">
+        <span className="block text-xs uppercase tracking-widest font-bold text-red-600">
+          Partners
         </span>
-        <span className="text-gray-500 text-[10px] uppercase tracking-widest font-bold mt-1">
-          Alumni Network
-        </span>
+        <span className="text-sm font-bold italic">3-4 Star Hotels</span>
       </div>
 
       {/* Stat 3 */}
-      <div className="flex flex-col">
-        <span className="text-black font-serif text-3xl italic font-bold">
-          98%
+      <div className="text-right">
+        <span className="block text-xs uppercase tracking-widest font-bold text-red-600">
+          Ranking
         </span>
-        <span className="text-gray-500 text-[10px] uppercase tracking-widest font-bold mt-1">
-          Employment
-        </span>
+        <span className="text-sm font-bold italic">No. 1 Career Pathway</span>
       </div>
+    </div>
+  );
+};
+
+/*  Consultation Form Component - Fixed Layout */
+const ConsultForm: React.FC = () => {
+  const [formData, setFormData] = useState({ name: "", phone: "" });
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const res = await fetch("/api/bannerlead", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.message || "Something went wrong");
+      }
+
+      const data = await res.json();
+      console.log("Success:", data);
+      setSuccess(true); // This disables inputs and changes button text to "SENT"
+
+      // Reset form after success if desired
+      // setFormData({ name: "", phone: "" });
+    } catch (error) {
+      console.error("Submission Error:", error);
+      alert("Failed to send request. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="w-full max-w-4xl  mt-8 relative z-30">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col md:flex-row gap-3 items-stretch"
+      >
+        {/* Input 1 */}
+        <div className="flex-1">
+          <input
+            type="text"
+            required
+            value={formData.name}
+            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            placeholder="YOUR NAME"
+            className="w-full h-14 bg-white/10 backdrop-blur-md border border-white/30 text-white placeholder-white/60 px-6 rounded-sm focus:outline-none focus:border-blue-400 focus:bg-white/20 transition-all"
+            disabled={success}
+          />
+        </div>
+
+        {/* Input 2 */}
+        <div className="flex-1">
+          <input
+            type="tel"
+            required
+            value={formData.phone}
+            onChange={(e) =>
+              setFormData({ ...formData, phone: e.target.value })
+            }
+            placeholder="PHONE NUMBER"
+            className="w-full h-14 bg-white/10 backdrop-blur-md border border-white/30 text-white placeholder-white/60 px-6 rounded-sm focus:outline-none focus:border-blue-400 focus:bg-white/20 transition-all"
+            disabled={success}
+          />
+        </div>
+
+        {/* Submit Button */}
+        <button
+          type="submit"
+          disabled={loading || success}
+          className="h-14 px-10 bg-red-400 hover:bg-red-500 text-white font-bold tracking-widest uppercase rounded-sm transition-all disabled:opacity-70 disabled:cursor-not-allowed whitespace-nowrap shadow-lg"
+        >
+          {loading ? "..." : success ? "SENT" : "Get Consult"}
+        </button>
+      </form>
     </div>
   );
 };
@@ -128,6 +182,7 @@ const Banner: React.FC = () => {
       ctaSection.scrollIntoView({ behavior: "smooth" });
     }
   };
+
   const scrollToCourses = () => {
     const courseSection = document.getElementById("courses");
     if (courseSection) {
@@ -137,97 +192,103 @@ const Banner: React.FC = () => {
 
   return (
     <>
-      <style jsx global>
-        {globalStyles}
-      </style>
+      {/* Injecting keyframes directly here to fix the visibility issue */}
+      <style jsx global>{`
+        @keyframes slowFadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
 
-      <section className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-white">
-        {/* Video Background - Grayscale for B&W Luxury Feel */}
-        <div className="absolute inset-0 z-0 w-full h-full">
+      <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-black">
+        {/* Video Background - Added fallback gradient and colors */}
+        <div className="absolute inset-0 z-0 w-full h-full bg-gray-900">
+          {/* If video fails, this gradient ensures visibility */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/80 z-10"></div>
+
           <video
-            className="absolute top-0 left-0 w-full h-full object-cover  "
+            className="absolute top-0 left-0 w-full h-full object-cover opacity-60"
             src="/banner1.mp4"
             autoPlay
             loop
             muted
             playsInline
+            onError={(e) => {
+              // Fallback logic if you want to replace video with image later
+              console.log("Video failed to load");
+            }}
           />
-
-          {/* Subtle Texture/Grain Overlay (Optional for luxury feel) */}
-          <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/noise.png')]"></div>
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-10 container mx-auto px-6 h-full flex flex-col justify-center">
-          <div className="max-w-4xl">
-            {/* Label */}
-            {/* <div
-              className="flex items-center gap-4 mb-8"
-              style={{
-                animation: `slowFadeIn 1s ease-out ${mounted ? 0.2 : 0}s forwards`,
-                opacity: 0,
-              }}
-            >
-              <span className="w-12 h-[1px] bg-white"></span>
-              <span className="text-white/80 text-xs font-bold tracking-[0.4em] uppercase font-sans">
-                Est. 1995
-              </span>
-            </div> */}
-
-            {/* Headline - High Contrast Serif */}
+        <div className="relative z-20 container mx-auto px-6 h-full flex flex-col justify-center py-20">
+          <div className="w-full max-w-6xl mx-auto">
+            {/* Headline */}
             <h1
-              className="font-serif text-6xl md:text-8xl lg:text-9xl text-white leading-[0.9] mb-10"
+              className="text-4xl md:text-6xl lg:text-7xl text-white font-serif leading-tight mb-6"
               style={{
-                animation: `slowFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) ${mounted ? 0.4 : 0}s forwards`,
+                animation: `slowFadeIn 1s ease-out ${mounted ? 0.4 : 0}s forwards`,
                 opacity: 0,
               }}
             >
-              Your Culinary Career Starts Here. <br />
-              <span className="italic text-white/90 font-light"></span>
+              আপনার Culinary ক্যারিয়ার <br />
+              <span className="text-red-600 italic">শুরু হোক এখানেই</span>
             </h1>
 
             {/* Description */}
             <p
-              className="text-gray-300 text-lg md:text-xl max-w-lg font-light leading-relaxed mb-12 font-sans border-l-2 border-white/30 pl-6"
+              className="text-white/90 text-lg md:text-xl max-w-2xl mb-10 font-light leading-relaxed border-l-4 border-[#D4AF37] pl-6"
               style={{
-                animation: `slowFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) ${mounted ? 0.6 : 0}s forwards`,
+                animation: `slowFadeIn 1s ease-out ${mounted ? 0.6 : 0}s forwards`,
                 opacity: 0,
               }}
             >
-              Master global cuisine with expert training and guaranteed
-              internships at prestigious hotels like Pan Pacific Sonargaon,
-              InterContinental, and Radisson Blu.
+              Global cuisine master করুন আমাদের expert training-এর মাধ্যমে।
+              Guaranteed internships দেশের সেরা prestigious hotels-এ।
             </p>
 
+            {/* Consultation Form - Horizontal Row */}
+            <div
+              style={{
+                animation: `slowFadeIn 1s ease-out ${mounted ? 0.8 : 0}s forwards`,
+                opacity: 0,
+              }}
+            >
+              <ConsultForm />
+            </div>
+
             {/* Buttons */}
-            <div className="flex flex-col sm:flex-row gap-6">
+            {/* <div className="flex flex-wrap gap-6 mt-12">
               <MinimalButton
-                text="View Our Programs"
+                text="View Programs"
                 variant="filled"
-                delay={mounted ? 0.8 : 0}
+                delay={mounted ? 1.0 : 0}
                 onClick={scrollToCourses}
               />
               <MinimalButton
-                text="Enroll Today"
+                text="Enroll Now"
                 variant="outline"
-                delay={mounted ? 0.9 : 0}
+                delay={mounted ? 1.1 : 0}
                 onClick={scrollToCTA}
               />
-            </div>
-          </div>
-
-          {/* Floating Stats Bar - Bottom Right */}
-          <div className="absolute bottom-10 left-6 md:left-auto md:right-10 md:bottom-20">
-            <StatsBar delay={mounted ? 1.2 : 0} />
+            </div> */}
           </div>
         </div>
 
-        {/* Scroll Indicator - Minimalist */}
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-3 opacity-50 animate-bounce">
+        {/* Stats Bar - Small, Bottom Right */}
+        <StatsBar delay={mounted ? 1.2 : 0} />
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-10 z-20 hidden md:flex flex-col items-center gap-2 opacity-50 animate-bounce">
           <span className="text-[10px] uppercase tracking-widest text-white font-sans">
             Scroll
           </span>
-          {/* Angel Shape Scroll Arrow */}
           <div className="w-[1px] h-12 bg-gradient-to-b from-white to-transparent"></div>
         </div>
       </section>

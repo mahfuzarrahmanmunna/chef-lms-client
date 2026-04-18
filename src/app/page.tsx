@@ -21,7 +21,6 @@ export default function Home() {
       <Courses />
       <DisciplinesSection/>
       <FacebookFeed />
-      <MasterChef/>
       <Team />
       {/* <Recipes /> */}
       <VideoSection/>

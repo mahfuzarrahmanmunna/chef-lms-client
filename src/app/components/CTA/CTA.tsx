@@ -239,7 +239,7 @@ export default function ContactCTA() {
       {/* Global Styles for Fonts (Same as previous component) */}
       <style jsx global>{`
         @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600&display=swap");
-        .font-serif-luxury {
+        . {
           font-family: "Playfair Display", serif;
         }
         .font-sans-luxury {
@@ -274,7 +274,7 @@ export default function ContactCTA() {
                 <span className="text-red-600 font-bold tracking-[0.3em] text-xs uppercase mb-4">
                   Get In Touch
                 </span>
-                <h2 className="text-4xl lg:text-5xl font-serif-luxury font-bold mb-6 leading-tight">
+                <h2 className="text-4xl lg:text-5xl  font-bold mb-6 leading-tight">
                   Start Your Culinary Journey Today
                 </h2>
                 <p className="text-gray-400 font-light leading-relaxed mb-8">
@@ -292,7 +292,7 @@ export default function ContactCTA() {
                       <p className="text-xs text-gray-500 uppercase tracking-wider font-bold mb-1">
                         Call Us
                       </p>
-                      <p className="text-lg font-serif-luxury">
+                      <p className="text-lg ">
                         +880 1234 567890
                       </p>
                     </div>

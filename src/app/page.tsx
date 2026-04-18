@@ -11,6 +11,7 @@ import VideoSection from "./components/VideoSection/VideoSection";
 import DisciplinesSection from "./components/Banner/DisciplinesSection";
 import FeatureCourse from "./components/FeatureCourse/FeatureCourse";
 import ContactCTA from "./components/CTA/CTA";
+import SuccessStories from "./components/SuccessStories/SuccessStories";
 
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
       <Team />
       {/* <Recipes /> */}
       <VideoSection/>
+      <SuccessStories/>
       <ContactCTA/>
       {/* <FeaturedCourses /> */}
       {/* <div className="mt-24">bottom</div> */}

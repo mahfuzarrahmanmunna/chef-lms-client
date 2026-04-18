@@ -265,7 +265,7 @@ const Banner: React.FC = () => {
             </div>
 
             {/* Buttons */}
-            <div className="flex flex-wrap gap-6 mt-12">
+            {/* <div className="flex flex-wrap gap-6 mt-12">
               <MinimalButton
                 text="View Programs"
                 variant="filled"
@@ -278,7 +278,7 @@ const Banner: React.FC = () => {
                 delay={mounted ? 1.1 : 0}
                 onClick={scrollToCTA}
               />
-            </div>
+            </div> */}
           </div>
         </div>
 

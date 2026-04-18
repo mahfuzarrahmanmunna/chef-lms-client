@@ -90,7 +90,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       await axios.post('/api/auth/logout');
       setUser(null);
-      router.push('/login');
+      router.push("/signin");
     } catch (error) {
       console.error('Logout error:', error);
     }

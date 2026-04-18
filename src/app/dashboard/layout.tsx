@@ -2,267 +2,290 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Contact, Contact2Icon } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+// import { useAuth } from "./useAuth"; // Adjust import path as needed
+import {
+  LayoutDashboard,
+  BookOpen,
+  MessageSquare,
+  Star,
+  LogOut,
+  Menu,
+  X,
+  ChevronDown,
+  User,
+  Bell,
+  Home,
+} from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
 
-// --- Icons (SVGs) ---
-const MenuIcon = () => (
-  <svg
-    width="24"
-    height="24"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-  >
-    <path d="M3 12h18M3 6h18M3 18h18" />
-  </svg>
-);
-
-const CloseIcon = () => (
-  <svg
-    width="24"
-    height="24"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-  >
-    <path d="M18 6L6 18M6 6l12 12" />
-  </svg>
-);
-
-const DashboardIcon = () => (
-  <svg
-    width="20"
-    height="20"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-    strokeWidth="1.8"
-    strokeLinecap="round"
-  >
-    <path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z" />
-  </svg>
-);
-
-const AddCourseIcon = () => (
-  <svg
-    width="20"
-    height="20"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-    strokeWidth="1.8"
-    strokeLinecap="round"
-  >
-    <path d="M12 5v14M5 12h14" />
-    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-  </svg>
-);
-
-const ManageCoursesIcon = () => (
-  <svg
-    width="20"
-    height="20"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-    strokeWidth="1.8"
-    strokeLinecap="round"
-  >
-    <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
-    <circle cx="12" cy="12" r="3" />
-  </svg>
-);
-
-const ReviewIcon = () => (
-  <svg
-    width="20"
-    height="20"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-    strokeWidth="1.8"
-    strokeLinecap="round"
-  >
-    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-  </svg>
-);
+// --- COMPONENT ---
 
 export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // CHANGED: Default state is now true so sidebar is open on desktop load
+  const { user, logout, loading } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
 
-  // Handle Mobile Resize
+  // Handle Window Resize
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        // Keep state true on desktop resize, or toggle based on preference
+      if (window.innerWidth >= 1024) {
         setSidebarOpen(true);
       } else {
-        setSidebarOpen(false); // Default closed on mobile
+        setSidebarOpen(false);
       }
     };
-
-    // Set initial state based on window width
     handleResize();
-
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Logout Handler
+  const handleLogout = async () => {
+    await logout();
+    setIsUserMenuOpen(false);
+  };
+
+  // Navigation Items Configuration
   const navItems = [
-    { label: "Dashboard", href: "/dashboard", icon: <DashboardIcon /> },
+    {
+      label: "Dashboard",
+      href: "/dashboard",
+      icon: <LayoutDashboard size={20} />,
+    },
     {
       label: "Add Courses",
       href: "/dashboard/addcourses",
-      icon: <AddCourseIcon />,
+      icon: <BookOpen size={20} />,
     },
     {
       label: "Manage Courses",
       href: "/dashboard/managecourses",
-      icon: <ManageCoursesIcon />,
+      icon: <BookOpen size={20} />, // You can replace with a different icon if you have one
     },
     {
-      label: "Manage Contact",
-      href: "/dashboard/managecontact",
-      icon: <Contact2Icon />,
-    },
-    {
-      label: "Manage Contact",
+      label: "Banner Leads",
       href: "/dashboard/managebannercontact",
-      icon: <Contact />,
+      icon: <MessageSquare size={20} />,
     },
-    { label: "Review", href: "/dashboard/review", icon: <ReviewIcon /> },
+    {
+      label: "Contact Forms",
+      href: "/dashboard/managecontact",
+      icon: <MessageSquare size={20} />,
+    },
+    {
+      label: "Reviews",
+      href: "/dashboard/review",
+      icon: <Star size={20} />,
+    },
   ];
 
-  const isActive = (href: string) => {
+  // Page Title Logic
+  const getPageTitle = () => {
+    if (pathname === "/dashboard") return "Dashboard";
+    if (pathname.includes("addcourses")) return "Add New Course";
+    if (pathname.includes("managecourses")) return "Manage Courses";
+    if (pathname.includes("managebannercontact")) return "Banner Inquiries";
+    if (pathname.includes("managecontact")) return "Contact Messages";
+    if (pathname.includes("review")) return "Student Reviews";
+    return "Admin Panel";
+  };
+
+  const getPageSubtitle = () => {
+    if (pathname === "/dashboard")
+      return "Welcome back, " + (user?.name || "Admin");
+    if (pathname.includes("addcourses"))
+      return "Create and publish new learning material.";
+    if (pathname.includes("managecourses"))
+      return "Edit curriculum and organize content.";
+    if (pathname.includes("managebannercontact"))
+      return "Leads collected from website banners.";
+    if (pathname.includes("managecontact"))
+      return "Messages from the contact form.";
+    if (pathname.includes("review")) return "Moderate student feedback.";
+    return "Manage your application.";
+  };
+
+  const isActiveLink = (href: string) => {
     if (href === "/dashboard") return pathname === href;
     return pathname.startsWith(href);
   };
 
   return (
-    <div className="flex min-h-screen bg-[#f7f8fc] font-sans">
-      {/* Mobile Overlay */}
+    <div className="flex min-h-screen bg-slate-50 font-sans antialiased selection:bg-indigo-100 selection:text-indigo-700">
+      {/* --- MOBILE OVERLAY --- */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden transition-opacity"
           onClick={() => setSidebarOpen(false)}
         />
       )}
 
-      {/* 
-         SIDEBAR UPDATE:
-         1. Removed 'md:translate-x-0' override.
-         2. Now it strictly follows the 'sidebarOpen' state for both mobile and desktop.
-      */}
+      {/* --- SIDEBAR --- */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-[280px] bg-gradient-to-br from-[#1a1a2e] to-[#16213e] text-white transition-transform duration-300 ease-in-out ${
+        className={`fixed inset-y-0 left-0 z-50 w-72 bg-slate-900 text-white shadow-2xl transition-transform duration-300 ease-in-out flex flex-col ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="flex flex-col h-full">
-          {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b border-white/10">
-            <div>
-              <h2 className="text-xl font-bold bg-gradient-to-r from-white to-[#a0a0ff] bg-clip-text text-transparent">
-                Admin Dashboard
-              </h2>
-              <p className="text-xs text-white/60 mt-1">Control Panel</p>
+        {/* Sidebar Header */}
+        <div className="flex items-center justify-between px-6 py-6 border-b border-slate-700/50">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+              <LayoutDashboard className="text-white" size={24} />
             </div>
-            <button
-              onClick={() => setSidebarOpen(false)}
-              className="p-2 rounded-lg bg-white/10 hover:bg-white/20 md:hidden transition-colors"
-            >
-              <CloseIcon />
-            </button>
+            <div>
+              <h2 className="text-xl font-bold tracking-tight">Admin Panel</h2>
+              <p className="text-xs text-slate-400">Control Center</p>
+            </div>
           </div>
+          <button
+            onClick={() => setSidebarOpen(false)}
+            className="p-2 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white transition-colors lg:hidden"
+          >
+            <X size={20} />
+          </button>
+        </div>
 
-          {/* Navigation */}
-          <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setSidebarOpen(false)} // Close sidebar on mobile link click
-                className={`flex items-center gap-3 p-3 rounded-xl transition-all duration-200 ${
-                  isActive(item.href)
-                    ? "bg-blue-500/20 border-l-4 border-blue-500 text-white"
-                    : "text-white/70 hover:bg-white/5 hover:text-white border-l-4 border-transparent"
+        {/* Navigation */}
+        <nav className="flex-1 overflow-y-auto px-4 py-6 space-y-1">
+          <p className="px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
+            Main Menu
+          </p>
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={() => setSidebarOpen(false)}
+              className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group ${
+                isActiveLink(item.href)
+                  ? "bg-indigo-600 text-white shadow-lg shadow-indigo-900/40"
+                  : "text-slate-400 hover:bg-slate-800 hover:text-white"
+              }`}
+            >
+              <div
+                className={`${
+                  isActiveLink(item.href)
+                    ? "text-white"
+                    : "text-slate-500 group-hover:text-white"
                 }`}
               >
-                <div className="flex-shrink-0">{item.icon}</div>
-                <span className="text-sm font-medium">{item.label}</span>
-              </Link>
-            ))}
-          </nav>
+                {item.icon}
+              </div>
+              <span className="text-sm font-medium">{item.label}</span>
+            </Link>
+          ))}
+        </nav>
+
+        {/* Sidebar Footer / Logout */}
+        <div className="p-4 border-t border-slate-700/50 bg-slate-900/50">
+          <Link
+            href="/"
+            className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-colors"
+          >
+            <Home size={20} />
+            <span className="text-sm font-medium">Back to Website</span>
+          </Link>
+
+          <button
+            onClick={handleLogout}
+            className="w-full mt-2 flex items-center gap-3 px-4 py-3 rounded-xl text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-colors"
+          >
+            <LogOut size={20} />
+            <span className="text-sm font-medium">Logout</span>
+          </button>
         </div>
       </aside>
 
-      {/* 
-         MAIN CONTENT UPDATE:
-         1. Removed static 'md:pl-[280px]'.
-         2. Added dynamic padding based on 'sidebarOpen' state.
-         If sidebar is open -> Add padding. If closed -> No padding.
-      */}
+      {/* --- MAIN CONTENT --- */}
       <main
         className={`flex-1 flex flex-col min-h-screen transition-all duration-300 ${
-          sidebarOpen ? "md:pl-[280px]" : "md:pl-0"
+          sidebarOpen ? "lg:pl-72" : "lg:pl-0"
         }`}
       >
-        {/* Top Bar */}
-        <header className="bg-white border border-gray-100 rounded-xl p-4 m-4 mb-0 flex items-center justify-between shadow-sm sticky top-4 z-30">
-          <div className="flex items-center gap-4">
-            {/* 
-               MENU BUTTON:
-               This toggles the sidebarOpen state.
-               Click once -> Open.
-               Click again -> Hide.
-            */}
-            <button
-              onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="p-2 rounded-lg hover:bg-gray-100 text-gray-700 transition-colors"
-            >
-              <MenuIcon />
-            </button>
+        {/* Top Header */}
+        <header className="bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-30">
+          <div className="px-6 py-4 flex items-center justify-between">
+            {/* Left: Menu Toggle & Breadcrumbs */}
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => setSidebarOpen(!sidebarOpen)}
+                className="p-2.5 rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors border border-slate-200 shadow-sm"
+              >
+                {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
+              </button>
 
-            <div>
-              <h1 className="text-lg font-semibold text-[#1a1a2e]">
-                {pathname === "/dashboard" && "Learning Dashboard"}
-                {pathname === "/courses/addcourses" && "Add New Course"}
-                {pathname === "/courses/managecourses" && "Manage Courses"}
-                {pathname === "/dashboard/review" && "Course Reviews"}
-              </h1>
-              <p className="text-xs text-gray-400">
-                {pathname === "/dashboard" && "Overview · April 2026"}
-                {pathname.includes("addcourses") &&
-                  "Create and publish new courses"}
-                {pathname.includes("managecourses") &&
-                  "Edit and organize curriculum"}
-                {pathname.includes("review") &&
-                  "Moderate student feedback and ratings"}
-              </p>
+              <div className="hidden md:block">
+                <h1 className="text-lg font-bold text-slate-800">
+                  {getPageTitle()}
+                </h1>
+                <p className="text-xs text-slate-500">{getPageSubtitle()}</p>
+              </div>
             </div>
-          </div>
 
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#378ADD] to-[#7F77DD] flex items-center justify-center text-white font-bold text-sm shadow-md">
-              AD
+            {/* Right: Actions & Profile */}
+            <div className="flex items-center gap-3 md:gap-6">
+              {/* Notification Bell (Placeholder) */}
+              <button className="relative p-2 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors">
+                <Bell size={20} />
+                <span className="absolute top-2 right-2.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white" />
+              </button>
+
+              {/* User Profile Dropdown */}
+              <div className="relative">
+                <button
+                  onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                  className="flex items-center gap-3 pl-2 pr-1 py-1 rounded-full hover:bg-slate-100 transition-colors focus:outline-none"
+                >
+                  <div className="text-right hidden md:block">
+                    <p className="text-sm font-semibold text-slate-700 leading-none">
+                      {loading ? "Loading..." : user?.name || "Admin"}
+                    </p>
+                    <p className="text-xs text-slate-500 capitalize mt-1 leading-none">
+                      {user?.role || "Administrator"}
+                    </p>
+                  </div>
+                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-indigo-500 to-violet-600 text-white flex items-center justify-center font-bold text-sm shadow-md ring-2 ring-white">
+                    {user?.name?.charAt(0).toUpperCase() || "A"}
+                  </div>
+                  <ChevronDown
+                    size={16}
+                    className="text-slate-400 hidden md:block"
+                  />
+                </button>
+
+                {/* Dropdown Menu */}
+                {isUserMenuOpen && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-slate-100 py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                    <div className="px-4 py-2 border-b border-slate-50">
+                      <p className="text-xs font-semibold text-slate-400 uppercase">
+                        Signed in as
+                      </p>
+                      <p className="text-sm font-medium text-slate-800 truncate">
+                        {user?.email}
+                      </p>
+                    </div>
+                    <button
+                      onClick={handleLogout}
+                      className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center gap-2 transition-colors"
+                    >
+                      <LogOut size={16} />
+                      Sign out
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </header>
 
-        {/* Page Content */}
-        <div className="p-4 md:p-6">{children}</div>
+        {/* Page Content Container */}
+        <div className="p-4 md:p-8 max-w-7xl mx-auto w-full">{children}</div>
       </main>
     </div>
   );

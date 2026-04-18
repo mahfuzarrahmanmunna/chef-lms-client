@@ -117,7 +117,7 @@ const Navbar: React.FC = () => {
     // FIX: Call 'logout' instead of 'signOut'
     if (logout) {
       await logout();
-      // Note: useAuth.tsx redirects to '/login', but this redirects to '/'
+      // Note: useAuth.tsx redirects to '/signin', but this redirects to '/'
       router.push("/");
     }
   };

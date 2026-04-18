@@ -28,7 +28,7 @@ export function middleware(request: NextRequest): NextResponse {
   // Check if route requires authentication
   if (!token && (isProtectedPath || isAdminPath)) {
     // Redirect to login if not authenticated
-    const loginUrl = new URL('/login', request.url);
+    const loginUrl = new URL("/signin", request.url);
     loginUrl.searchParams.set('from', request.nextUrl.pathname);
     return NextResponse.redirect(loginUrl);
   }
@@ -43,15 +43,19 @@ export function middleware(request: NextRequest): NextResponse {
       }
     } catch {
       // Invalid token, redirect to login
-      const loginUrl = new URL('/login', request.url);
+      const loginUrl = new URL("/signin", request.url);
       loginUrl.searchParams.set('from', request.nextUrl.pathname);
       return NextResponse.redirect(loginUrl);
     }
   }
   
   // Redirect to home if authenticated user tries to access login/register
-  if (token && (request.nextUrl.pathname === '/login' || request.nextUrl.pathname === '/register')) {
-    return NextResponse.redirect(new URL('/', request.url));
+  if (
+    token &&
+    (request.nextUrl.pathname === "/signin" ||
+      request.nextUrl.pathname === "/register")
+  ) {
+    return NextResponse.redirect(new URL("/", request.url));
   }
   
   return NextResponse.next();
@@ -59,11 +63,11 @@ export function middleware(request: NextRequest): NextResponse {
 
 export const config = {
   matcher: [
-    '/dashboard/:path*',
-    '/admin/:path*',
-    '/courses/addcourses/:path*',
-    '/courses/managecourses/:path*',
-    '/login',
-    '/register',
+    "/dashboard/:path*",
+    "/admin/:path*",
+    "/courses/addcourses/:path*",
+    "/courses/managecourses/:path*",
+    "/signin",
+    "/register",
   ],
 };

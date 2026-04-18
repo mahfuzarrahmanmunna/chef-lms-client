@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   icons: {
     icon: [{ url: "/logo.jpeg", type: "logo/jpeg" }],
     apple: [
-      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+      { url: "/logo.jpeg", sizes: "180x180", type: "logo/jpeg" },
     ],
   },
 };

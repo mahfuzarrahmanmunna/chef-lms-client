@@ -67,7 +67,7 @@ export default function Features() {
       <section className="relative text-black">
        
         <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 py-32">
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-7xl mx-auto">
             {/* Header Section */}
             <div className="mb-20 text-center">
               <h2 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight uppercase">

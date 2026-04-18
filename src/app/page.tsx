@@ -27,7 +27,7 @@ export default function Home() {
       <VideoSection/>
       <ContactCTA/>
       {/* <FeaturedCourses /> */}
-      <div className="mt-24">bottom</div>
+      {/* <div className="mt-24">bottom</div> */}
     </div>
   );
 }

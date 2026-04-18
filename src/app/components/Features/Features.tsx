@@ -4,20 +4,7 @@ import React from "react";
 import { DollarSign, MapPin, TrendingUp, Award, Carrot } from "lucide-react";
 import HeroSection from "../HeroSection";
 
-/*  Keyframes & Fonts  */
-const keyframes = `
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700;800&display=swap');
 
-@keyframes fadeSlideUp {
-  0%   { opacity: 0; transform: translateY(40px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-/* Apply Raleway globally for this component scope */
-body {
-  font-family: 'Raleway', sans-serif;
-}
-`;
 
 /*  Data & Icons  */
 const features = [
@@ -61,9 +48,6 @@ const features = [
 export default function Features() {
   return (
     <>
-      <style jsx global>{`
-        ${keyframes}
-      `}</style>
       <section className="relative text-black">
        
         <div className="relative z-10 w-full">

@@ -21,7 +21,7 @@ const MinimalButton: React.FC<MinimalButtonProps> = ({
     "relative px-8 py-3 overflow-hidden transition-all duration-500 ease-out shadow-lg group border border-transparent";
 
   const styles = {
-    filled: "bg-red-400 text-white hover:bg-red-500 border-[#D4AF37]", // Gold filled
+    filled: "bg-[#D4AF37] text-white hover:bg-[#b5952f] border-[#D4AF37]", // Gold filled
     outline:
       "bg-transparent border border-white text-white hover:bg-white hover:text-black",
   };
@@ -52,27 +52,33 @@ const StatsBar: React.FC<{ delay: number }> = ({ delay }) => {
       }}
     >
       {/* Stat 1 */}
-      <div className="text-right">
-        <span className="block text-xs uppercase tracking-widest font-bold text-red-600">
-          Placement
+      <div className="flex flex-col border-r border-white/30 pr-8">
+        <span className="text-[#D4AF37] font-serif text-3xl italic font-bold">
+          100%
         </span>
-        <span className="text-sm font-bold italic">
-          100% Internship Support
+        <span className="text-gray-300 text-[10px] uppercase tracking-widest font-bold mt-1">
+          ইন্টার্নশিপ সাপোর্ট
         </span>
       </div>
 
       {/* Stat 2 */}
-      <div className="text-right">
-        <span className="block text-xs uppercase tracking-widest font-bold text-red-600">
-          Partners
+      <div className="flex flex-col border-r border-white/30 pr-8">
+        <span className="text-[#D4AF37] font-serif text-3xl italic font-bold">
+          3-4
+        </span>
+        <span className="text-gray-300 text-[10px] uppercase tracking-widest font-bold mt-1">
+          স্টার হোটেলে প্লেসমেন্ট
         </span>
         <span className="text-sm font-bold italic">3-4 Star Hotels</span>
       </div>
 
       {/* Stat 3 */}
-      <div className="text-right">
-        <span className="block text-xs uppercase tracking-widest font-bold text-red-600">
-          Ranking
+      <div className="flex flex-col">
+        <span className="text-[#D4AF37] font-serif text-3xl italic font-bold">
+          No.1
+        </span>
+        <span className="text-gray-300 text-[10px] uppercase tracking-widest font-bold mt-1">
+          গ্লোবাল ক্যারিয়ার পাথওয়ে
         </span>
         <span className="text-sm font-bold italic">No. 1 Career Pathway</span>
       </div>
@@ -80,7 +86,7 @@ const StatsBar: React.FC<{ delay: number }> = ({ delay }) => {
   );
 };
 
-/*  Consultation Form Component - Fixed Layout */
+/*  ConsultForm Component - Fixed Layout (Single Definition) */
 const ConsultForm: React.FC = () => {
   const [formData, setFormData] = useState({ name: "", phone: "" });
   const [loading, setLoading] = useState(false);
@@ -108,7 +114,7 @@ const ConsultForm: React.FC = () => {
       console.log("Success:", data);
       setSuccess(true); // This disables inputs and changes button text to "SENT"
 
-      // Reset form after success if desired
+      // Optional: Reset form after success
       // setFormData({ name: "", phone: "" });
     } catch (error) {
       console.error("Submission Error:", error);
@@ -119,7 +125,7 @@ const ConsultForm: React.FC = () => {
   };
 
   return (
-    <div className="w-full max-w-4xl  mt-8 relative z-30">
+    <div className="w-full max-w-4xl mx-auto mt-8 relative z-30">
       <form
         onSubmit={handleSubmit}
         className="flex flex-col md:flex-row gap-3 items-stretch"
@@ -132,7 +138,7 @@ const ConsultForm: React.FC = () => {
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             placeholder="YOUR NAME"
-            className="w-full h-14 bg-white/10 backdrop-blur-md border border-white/30 text-white placeholder-white/60 px-6 rounded-sm focus:outline-none focus:border-blue-400 focus:bg-white/20 transition-all"
+            className="w-full h-14 bg-white/10 backdrop-blur-md border border-white/30 text-white placeholder-white/60 px-6 rounded-sm focus:outline-none focus:border-[#D4AF37] focus:bg-white/20 transition-all"
             disabled={success}
           />
         </div>
@@ -147,7 +153,7 @@ const ConsultForm: React.FC = () => {
               setFormData({ ...formData, phone: e.target.value })
             }
             placeholder="PHONE NUMBER"
-            className="w-full h-14 bg-white/10 backdrop-blur-md border border-white/30 text-white placeholder-white/60 px-6 rounded-sm focus:outline-none focus:border-blue-400 focus:bg-white/20 transition-all"
+            className="w-full h-14 bg-white/10 backdrop-blur-md border border-white/30 text-white placeholder-white/60 px-6 rounded-sm focus:outline-none focus:border-[#D4AF37] focus:bg-white/20 transition-all"
             disabled={success}
           />
         </div>
@@ -156,9 +162,9 @@ const ConsultForm: React.FC = () => {
         <button
           type="submit"
           disabled={loading || success}
-          className="h-14 px-10 bg-red-400 hover:bg-red-500 text-white font-bold tracking-widest uppercase rounded-sm transition-all disabled:opacity-70 disabled:cursor-not-allowed whitespace-nowrap shadow-lg"
+          className="h-14 px-10 bg-[#D4AF37] hover:bg-[#b5952f] text-white font-bold tracking-widest uppercase rounded-sm transition-all disabled:opacity-70 disabled:cursor-not-allowed whitespace-nowrap shadow-lg flex items-center justify-center"
         >
-          {loading ? "..." : success ? "SENT" : "Get Consult"}
+          {loading ? <span>...</span> : success ? "SENT" : "Get Consult"}
         </button>
       </form>
     </div>
@@ -207,9 +213,8 @@ const Banner: React.FC = () => {
       `}</style>
 
       <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-black">
-        {/* Video Background - Added fallback gradient and colors */}
+        {/* Video Background */}
         <div className="absolute inset-0 z-0 w-full h-full bg-gray-900">
-          {/* If video fails, this gradient ensures visibility */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/80 z-10"></div>
 
           <video
@@ -219,10 +224,6 @@ const Banner: React.FC = () => {
             loop
             muted
             playsInline
-            onError={(e) => {
-              // Fallback logic if you want to replace video with image later
-              console.log("Video failed to load");
-            }}
           />
         </div>
 
@@ -238,7 +239,7 @@ const Banner: React.FC = () => {
               }}
             >
               আপনার Culinary ক্যারিয়ার <br />
-              <span className="text-red-600 italic">শুরু হোক এখানেই</span>
+              <span className="text-[#D4AF37] italic">শুরু হোক এখানেই</span>
             </h1>
 
             {/* Description */}
@@ -253,7 +254,7 @@ const Banner: React.FC = () => {
               Guaranteed internships দেশের সেরা prestigious hotels-এ।
             </p>
 
-            {/* Consultation Form - Horizontal Row */}
+            {/* Consultation Form */}
             <div
               style={{
                 animation: `slowFadeIn 1s ease-out ${mounted ? 0.8 : 0}s forwards`,
@@ -264,7 +265,7 @@ const Banner: React.FC = () => {
             </div>
 
             {/* Buttons */}
-            {/* <div className="flex flex-wrap gap-6 mt-12">
+            <div className="flex flex-wrap gap-6 mt-12">
               <MinimalButton
                 text="View Programs"
                 variant="filled"
@@ -277,7 +278,7 @@ const Banner: React.FC = () => {
                 delay={mounted ? 1.1 : 0}
                 onClick={scrollToCTA}
               />
-            </div> */}
+            </div>
           </div>
         </div>
 

@@ -81,30 +81,30 @@ const StatsBar: React.FC<{ delay: number }> = ({ delay }) => {
       {/* Stat 1 */}
       <div className="flex flex-col border-r border-gray-300 pr-8">
         <span className="text-black font-serif text-3xl italic font-bold">
-          No. 1
+          100%
         </span>
         <span className="text-gray-500 text-[10px] uppercase tracking-widest font-bold mt-1">
-          Global Ranking
+          ইন্টার্নশিপ সাপোর্ট
         </span>
       </div>
 
       {/* Stat 2 */}
       <div className="flex flex-col border-r border-gray-300 pr-8">
         <span className="text-black font-serif text-3xl italic font-bold">
-          20k+
+          3-4
         </span>
         <span className="text-gray-500 text-[10px] uppercase tracking-widest font-bold mt-1">
-          Alumni Network
+          স্টার হোটেলে প্লেসমেন্ট
         </span>
       </div>
 
       {/* Stat 3 */}
       <div className="flex flex-col">
         <span className="text-black font-serif text-3xl italic font-bold">
-          98%
+          No.1
         </span>
         <span className="text-gray-500 text-[10px] uppercase tracking-widest font-bold mt-1">
-          Employment
+          গ্লোবাল ক্যারিয়ার পাথওয়ে
         </span>
       </div>
     </div>
@@ -160,30 +160,15 @@ const Banner: React.FC = () => {
         {/* Hero Content */}
         <div className="relative z-10 container mx-auto px-6 h-full flex flex-col justify-center">
           <div className="max-w-4xl">
-            {/* Label */}
-            {/* <div
-              className="flex items-center gap-4 mb-8"
-              style={{
-                animation: `slowFadeIn 1s ease-out ${mounted ? 0.2 : 0}s forwards`,
-                opacity: 0,
-              }}
-            >
-              <span className="w-12 h-[1px] bg-white"></span>
-              <span className="text-white/80 text-xs font-bold tracking-[0.4em] uppercase font-sans">
-                Est. 1995
-              </span>
-            </div> */}
-
             {/* Headline - High Contrast Serif */}
             <h1
-              className="font-serif text-6xl md:text-8xl lg:text-9xl text-white leading-[0.9] mb-10"
+              className="font-serif text-6xl md:text-7xl lg:text-8xl text-white leading-[1.1] mb-10"
               style={{
                 animation: `slowFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) ${mounted ? 0.4 : 0}s forwards`,
                 opacity: 0,
               }}
             >
-              Your Culinary Career Starts Here. <br />
-              <span className="italic text-white/90 font-light"></span>
+              আপনার Culinary ক্যারিয়ার শুরু হোক এখানেই।
             </h1>
 
             {/* Description */}
@@ -194,21 +179,19 @@ const Banner: React.FC = () => {
                 opacity: 0,
               }}
             >
-              Master global cuisine with expert training and guaranteed
-              internships at prestigious hotels like Pan Pacific Sonargaon,
-              InterContinental, and Radisson Blu.
+              Global cuisine master করুন আমাদের expert training-এর মাধ্যমে। সাথে থাকছে guaranteed internships দেশের সবচাইতে prestigious hotels-এ, যেমন: Pan Pacific Sonargaon, InterContinental, এবং Radisson Blu.
             </p>
 
             {/* Buttons */}
             <div className="flex flex-col sm:flex-row gap-6">
               <MinimalButton
-                text="View Our Programs"
+                text="আমাদের প্রোগ্রামগুলো দেখুন"
                 variant="filled"
                 delay={mounted ? 0.8 : 0}
                 onClick={scrollToCourses}
               />
               <MinimalButton
-                text="Enroll Today"
+                text="আজই এনরোল করুন"
                 variant="outline"
                 delay={mounted ? 0.9 : 0}
                 onClick={scrollToCTA}

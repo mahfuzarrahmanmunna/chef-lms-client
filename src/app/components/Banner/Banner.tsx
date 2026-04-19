@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import ChooseYourPath from "../ChoosePath";
+import ChoosePath from "../ChoosePath";
 
 /*  Shared Styles for Fonts & Animations  */
 const globalStyles = `
@@ -213,7 +215,9 @@ const Banner: React.FC = () => {
           {/* Angel Shape Scroll Arrow */}
           <div className="w-[1px] h-12 bg-gradient-to-b from-white to-transparent"></div>
         </div>
+      
       </section>
+        <ChoosePath></ChoosePath>
     </>
   );
 };

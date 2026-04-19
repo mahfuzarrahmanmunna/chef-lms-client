@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import ChooseYourPath from "../ChoosePath";
+import ChoosePath from "../ChoosePath";
 
 /*  Sub-Components  */
 
@@ -292,7 +294,9 @@ const Banner: React.FC = () => {
           </span>
           <div className="w-[1px] h-12 bg-gradient-to-b from-white to-transparent"></div>
         </div>
+      
       </section>
+        <ChoosePath></ChoosePath>
     </>
   );
 };

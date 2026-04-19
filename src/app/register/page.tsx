@@ -54,7 +54,7 @@ export default function RegisterPage() {
         <p className="text-center text-gray-600 mb-8">Join our learning community</p>
         
         {error && (
-          <div className="bg-red-50 text-red-600 p-3 rounded-lg mb-4 text-sm">
+          <div className="bg-red-50 text-[#ea393a] p-3 rounded-lg mb-4 text-sm">
             {error}
           </div>
         )}

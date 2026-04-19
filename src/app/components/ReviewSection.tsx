@@ -154,7 +154,7 @@ export default function ReviewsSection() {
             </p>
           </div>
           <div className="flex flex-wrap gap-3 flex-shrink-0">
-            <button className="bg-red-700 hover:bg-red-800 text-white font-bold py-3 px-5 text-xs uppercase tracking-widest transition-colors">
+            <button className="bg-[#EA393A] hover:bg-red-800 text-white font-bold py-3 px-5 text-xs uppercase tracking-widest transition-colors">
               Browse our courses
             </button>
             <button className="border border-gray-300 hover:border-gray-900 text-gray-700 hover:text-gray-900 font-bold py-3 px-5 text-xs uppercase tracking-widest transition-all">

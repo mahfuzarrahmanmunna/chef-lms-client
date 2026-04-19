@@ -145,7 +145,7 @@ const VideoCard: React.FC<{
 
           {/* Play Button Overlay */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="relative z-10 w-16 h-16 bg-red-600/90 rounded-full flex items-center justify-center pl-1 backdrop-blur-sm shadow-lg group-hover:bg-red-700 group-hover:scale-110 transition-all duration-300">
+            <div className="relative z-10 w-16 h-16 bg-red-600/90 rounded-full flex items-center justify-center pl-1 backdrop-blur-sm shadow-lg group-hover:bg-[#EA393A] group-hover:scale-110 transition-all duration-300">
               <Play className="w-6 h-6 text-white fill-current" />
             </div>
           </div>

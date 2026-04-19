@@ -48,7 +48,7 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
         <span
           className={`px-3 py-1 text-[10px] font-bold uppercase tracking-widest ${
             isFlagship
-              ? "bg-red-700 text-white"
+              ? "bg-[#EA393A] text-white"
               : "bg-gray-900 text-white"
           }`}
         >
@@ -72,12 +72,12 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
         <div>
           <div className="flex items-center gap-3 mb-3 text-xs text-gray-500 font-medium">
             <span className="flex items-center gap-1">
-              <Clock className="w-3.5 h-3.5 text-red-600" />
+              <Clock className="w-3.5 h-3.5 text-[#ea393a]" />
               {course.duration}
             </span>
             <span className="w-px h-3 bg-gray-200" />
             <span className="flex items-center gap-1">
-              <Award className="w-3.5 h-3.5 text-red-600" />
+              <Award className="w-3.5 h-3.5 text-[#ea393a]" />
               {course.certification}
             </span>
           </div>
@@ -117,7 +117,7 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
           <ul className="space-y-2">
             {course.highlights.map((h, i) => (
               <li key={i} className="flex items-start gap-2 text-sm">
-                <Sparkles className="w-3.5 h-3.5 text-red-600 mt-0.5 flex-shrink-0" />
+                <Sparkles className="w-3.5 h-3.5 text-[#ea393a] mt-0.5 flex-shrink-0" />
                 <span>
                   <span className="font-bold text-gray-800">{h.label}: </span>
                   <span className="text-gray-600">{h.description}</span>
@@ -155,7 +155,7 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
          <a    href={`/single-course-details/${course.id}`}
             className={`flex items-center gap-1.5 font-bold text-xs uppercase tracking-widest px-5 py-3 transition-colors ${
               isFlagship
-                ? "bg-red-700 hover:bg-red-800 text-white"
+                ? "bg-[#EA393A] hover:bg-red-800 text-white"
                 : "bg-gray-900 hover:bg-gray-700 text-white"
             }`}
           >
@@ -214,7 +214,7 @@ export default function CoursesSection() {
               </p>
 
               {/* Animated Button */}
-              <button className="relative group overflow-hidden bg-red-600 text-white px-10 py-3 font-semibold transition-all duration-300 ease-out hover:bg-white hover:text-red-600 border border-transparent hover:border-red-600 active:scale-95 shadow-md hover:shadow-red-200">
+              <button className="relative group overflow-hidden bg-red-600 text-white px-10 py-3 font-semibold transition-all duration-300 ease-out hover:bg-white hover:text-[#ea393a] border border-transparent hover:border-red-600 active:scale-95 shadow-md hover:shadow-red-200">
                 <span className="relative z-10">Take This Short Quiz</span>
                 <div className="absolute inset-0 w-1/4 h-full bg-white/20 skew-x-[-20deg] -translate-x-full group-hover:translate-x-[400%] transition-transform duration-700 ease-in-out"></div>
               </button>

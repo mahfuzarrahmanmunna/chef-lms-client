@@ -297,7 +297,7 @@ export default function AboutUs() {
             আমাদের কমিউনিটিতে যুক্ত হয়ে জেনে নিন আমাদের আগামী কোর্সগুলোর deadlines এবং সব লেটেস্ট আপডেট।
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-red-700 hover:bg-red-600 text-white font-bold py-4 px-12 uppercase tracking-widest text-xs transition-colors border border-red-700">
+            <button className="bg-[#EA393A] hover:bg-red-600 text-white font-bold py-4 px-12 uppercase tracking-widest text-xs transition-colors border border-red-700">
               কোর্সগুলো দেখুন
             </button>
             <button className="bg-transparent hover:bg-white hover:text-gray-900 text-white font-bold py-4 px-12 uppercase tracking-widest text-xs transition-colors border border-white/30">

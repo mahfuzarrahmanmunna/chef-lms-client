@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import ChooseYourPath from "../ChoosePath";
+// Removed duplicate import below
 import ChoosePath from "../ChoosePath";
 
 /*  Sub-Components  */
@@ -55,7 +55,7 @@ const StatsBar: React.FC<{ delay: number }> = ({ delay }) => {
     >
       {/* Stat 1 */}
       <div className="flex flex-col border-r border-white/30 pr-8">
-        <span className="text-red-600 font-serif text-3xl italic font-bold">
+        <span className="text-[#ea393a] font-serif text-3xl italic font-bold">
           100%
         </span>
         <span className="text-gray-300 text-[10px] uppercase tracking-widest font-bold mt-1">
@@ -65,7 +65,7 @@ const StatsBar: React.FC<{ delay: number }> = ({ delay }) => {
 
       {/* Stat 2 */}
       <div className="flex flex-col border-r border-white/30 pr-8">
-        <span className="text-red-600 font-serif text-3xl italic font-bold">
+        <span className="text-[#ea393a] font-serif text-3xl italic font-bold">
           3-4
         </span>
         <span className="text-gray-300 text-[10px] uppercase tracking-widest font-bold mt-1">
@@ -76,7 +76,7 @@ const StatsBar: React.FC<{ delay: number }> = ({ delay }) => {
 
       {/* Stat 3 */}
       <div className="flex flex-col">
-        <span className="text-red-600 font-serif text-3xl italic font-bold">
+        <span className="text-[#ea393a] font-serif text-3xl italic font-bold">
           No.1
         </span>
         <span className="text-gray-300 text-[10px] uppercase tracking-widest font-bold mt-1">
@@ -160,13 +160,80 @@ const ConsultForm: React.FC = () => {
           />
         </div>
 
-        {/* Submit Button */}
         <button
           type="submit"
           disabled={loading || success}
-          className="h-14 px-10 bg-red-600 hover:bg-red-500 text-white font-bold tracking-widest uppercase  transition-all disabled:opacity-70 disabled:cursor-not-allowed whitespace-nowrap shadow-lg flex items-center justify-center"
+          className="group relative h-16 px-12 bg-transparent text-white font-extrabold tracking-[0.2em] uppercase transition-all duration-500 disabled:opacity-60 disabled:cursor-not-allowed whitespace-nowrap flex items-center justify-center rounded-xl overflow-visible isolate scale-100 hover:scale-105 active:scale-95"
         >
-          {loading ? <span>...</span> : success ? "SENT" : "Get Consult"}
+          {/* 1. ALWAYS ON - OUTER BREATHING GLOW (Pichone thakbe) */}
+          <div className="absolute inset-[-4px] rounded-xl bg-[#EA393A]/60 blur-xl animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite] -z-20"></div>
+
+          {/* 2. EXTRA LAYER FOR INTENSE GLOW (Aro beshi glow er jonno) */}
+          <div className="absolute inset-0 rounded-xl bg-[#EA393A]/30 blur-md -z-20"></div>
+
+          {/* 3. GLOWING BORDER LAYER (Moving Gradient - Always active) */}
+          <div className="absolute inset-0 rounded-xl overflow-hidden -z-10 p-[2px]">
+            <div
+              className="absolute inset-[-400%] animate-[spin_3s_linear_infinite]"
+              style={{
+                background:
+                  "conic-gradient(from 180deg at 50% 50%, #FF0000 0%, #FFFFFF 10%, #FF0000 20%, transparent 40%, transparent 60%, #FF0000 80%, #FFFFFF 90%, #FF0000 100%)",
+              }}
+            ></div>
+          </div>
+
+          {/* 4. MAIN SOLID BACKGROUND */}
+          <div className="absolute inset-[1.5px] bg-gradient-to-br from-[#FF2B2C] via-[#EA393A] to-[#8E0E10] rounded-[10px] -z-10 transition-all duration-500 group-hover:from-slate-900 group-hover:to-slate-950"></div>
+
+          {/* 5. LIGHT STREAK EFFECT (Subtle reflection) */}
+          <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-transparent opacity-50 rounded-xl -z-10"></div>
+
+          {/* 6. CONTENT LAYER */}
+          <div className="relative z-10 flex items-center gap-3 drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]">
+            {loading ? (
+              <div className="flex gap-1.5 items-center">
+                <span className="w-1 h-5 bg-white rounded-full animate-[bounce_1s_infinite]"></span>
+                <span className="w-1 h-5 bg-white rounded-full animate-[bounce_1s_infinite_0.2s]"></span>
+                <span className="w-1 h-5 bg-white rounded-full animate-[bounce_1s_infinite_0.4s]"></span>
+              </div>
+            ) : success ? (
+              <div className="flex items-center gap-2.5 text-green-300">
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="3.5"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+                <span className="font-black">SENT</span>
+              </div>
+            ) : (
+              <>
+                <span className="bg-gradient-to-b from-white via-white to-slate-300 bg-clip-text text-transparent group-hover:tracking-[0.25em] transition-all duration-300">
+                  Get Consult
+                </span>
+                <svg
+                  className="w-5 h-5 text-white animate-[bounce_2s_infinite_horizontal] transition-transform duration-300 group-hover:translate-x-2"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="3"
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                  />
+                </svg>
+              </>
+            )}
+          </div>
         </button>
       </form>
     </div>
@@ -241,7 +308,7 @@ const Banner: React.FC = () => {
               }}
             >
               আপনার Culinary ক্যারিয়ার <br />
-              <span className="text-red-600 italic">শুরু হোক এখানেই</span>
+              <span className="text-[#ea393a] italic">শুরু হোক এখানেই</span>
             </h1>
 
             {/* Description */}
@@ -294,9 +361,8 @@ const Banner: React.FC = () => {
           </span>
           <div className="w-[1px] h-12 bg-gradient-to-b from-white to-transparent"></div>
         </div>
-      
       </section>
-        <ChoosePath></ChoosePath>
+      <ChoosePath></ChoosePath>
     </>
   );
 };

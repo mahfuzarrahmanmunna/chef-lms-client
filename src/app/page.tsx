@@ -21,7 +21,7 @@ export default function Home() {
       {/* <FeatureCourse/> */}
       <Features />
       <Courses />
-      <DisciplinesSection/>
+      {/* <DisciplinesSection/> */}
       <FacebookFeed />
       <Team />
       {/* <Recipes /> */}

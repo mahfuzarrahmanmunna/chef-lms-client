@@ -302,7 +302,7 @@ export default function CourseForm({
             className={`mx-6 mb-4 px-4 py-3 rounded-xl text-sm font-medium flex items-center gap-2 ${
               toast.type === "success"
                 ? "bg-green-50 text-green-700 border border-green-100"
-                : "bg-red-50 text-red-600 border border-red-100"
+                : "bg-red-50 text-[#ea393a] border border-red-100"
             }`}
           >
             {toast.type === "success" ? (

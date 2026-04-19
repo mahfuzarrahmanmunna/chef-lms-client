@@ -184,7 +184,7 @@ export default function EditCoursePage() {
             {/* Card 1: General Information */}
             <div className="bg-white border border-gray-200 rounded-none shadow-sm p-8 relative overflow-hidden">
               {/* Decorative Red Line */}
-              <div className="absolute top-0 left-0 w-1 h-full bg-red-700"></div>
+              <div className="absolute top-0 left-0 w-1 h-full bg-[#EA393A]"></div>
 
               <div className="mb-8">
                 <h2 className="text-2xl font-serif font-bold text-gray-900 mb-1">
@@ -234,7 +234,7 @@ export default function EditCoursePage() {
                         <div
                           className={`text-center py-4 text-sm font-medium border border-gray-200 transition-all duration-300 ${
                             watchedType === type
-                              ? "bg-red-700 border-red-700 text-white"
+                              ? "bg-[#EA393A] border-red-700 text-white"
                               : "bg-white text-gray-500 group-hover:border-red-200"
                           }`}
                         >
@@ -437,7 +437,7 @@ export default function EditCoursePage() {
                     type="checkbox"
                     className="sr-only peer"
                   />
-                  <div className="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-700"></div>
+                  <div className="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#EA393A]"></div>
                 </label>
               </div>
             </div>
@@ -447,7 +447,7 @@ export default function EditCoursePage() {
               type="button"
               onClick={handleSubmit(onSubmit)}
               disabled={isSubmitting}
-              className="w-full py-4 px-6 text-sm font-bold uppercase tracking-[0.2em] text-white bg-black hover:bg-red-700 transition-all shadow-md hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed angel-shape flex items-center justify-center gap-3 group"
+              className="w-full py-4 px-6 text-sm font-bold uppercase tracking-[0.2em] text-white bg-black hover:bg-[#EA393A] transition-all shadow-md hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed angel-shape flex items-center justify-center gap-3 group"
             >
               {isSubmitting ? (
                 <>
@@ -506,7 +506,7 @@ export default function EditCoursePage() {
             {toast.type === "success" ? (
               <span className="text-green-600">✔</span>
             ) : (
-              <span className="text-red-600">✖</span>
+              <span className="text-[#ea393a]">✖</span>
             )}
             {toast.message}
           </div>

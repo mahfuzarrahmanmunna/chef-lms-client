@@ -236,7 +236,7 @@ const Navbar: React.FC = () => {
                     href={item.href}
                     className={`relative px-5 py-2 text-[13px] font-medium uppercase tracking-widest transition-all duration-300 group ${
                       active
-                        ? "text-red-600"
+                        ? "text-[#ea393a]"
                         : scrolled
                           ? "text-white/70 hover:text-white"
                           : "text-gray-900 hover:text-red-700"
@@ -344,10 +344,10 @@ const Navbar: React.FC = () => {
                         onClick={handleSignOut}
                         className="w-full flex items-center gap-3 px-5 py-3 hover:bg-red-50 transition-colors text-left group/item"
                       >
-                        <div className="p-1.5 rounded bg-red-50 text-red-600 group-hover/item:bg-red-600 group-hover/item:text-white transition-colors">
+                        <div className="p-1.5 rounded bg-red-50 text-[#ea393a] group-hover/item:bg-red-600 group-hover/item:text-white transition-colors">
                           <LogOut className="w-4 h-4" />
                         </div>
-                        <span className="text-sm font-medium text-red-600 group-hover/item:text-red-700">
+                        <span className="text-sm font-medium text-[#ea393a] group-hover/item:text-red-700">
                           Sign Out
                         </span>
                       </button>
@@ -362,8 +362,8 @@ const Navbar: React.FC = () => {
               onClick={() => setMobileOpen(!mobileOpen)}
               className={`lg:hidden relative z-10 w-10 h-10 flex items-center justify-center transition-colors duration-300 focus:outline-none ${
                 scrolled
-                  ? "text-white/80 hover:text-red-600"
-                  : "text-gray-900 hover:text-red-600"
+                  ? "text-white/80 hover:text-[#ea393a]"
+                  : "text-gray-900 hover:text-[#ea393a]"
               }`}
               aria-label="Toggle menu"
             >
@@ -411,7 +411,7 @@ const Navbar: React.FC = () => {
                       : `opacity-0 translate-y-8`
                   } ${
                     active
-                      ? "text-red-600 pl-4"
+                      ? "text-[#ea393a] pl-4"
                       : "text-white/80 hover:text-white hover:pl-4"
                   }`}
                   style={{
@@ -434,7 +434,7 @@ const Navbar: React.FC = () => {
                   mobileOpen
                     ? `opacity-100 translate-y-0`
                     : `opacity-0 translate-y-8`
-                } text-red-600 hover:text-red-500 pl-4`}
+                } text-[#ea393a] hover:text-red-500 pl-4`}
                 style={{ transitionDelay: mobileOpen ? "0.6s" : "0s" }}
               >
                 Dashboard
@@ -480,10 +480,10 @@ const Navbar: React.FC = () => {
           <div className="absolute bottom-8 left-8 right-8 flex items-center justify-between text-white/20 text-[10px] uppercase tracking-widest">
             <span>© 2026 ChefAcademy</span>
             <div className="flex gap-4">
-              <a href="#" className="hover:text-red-600 transition-colors">
+              <a href="#" className="hover:text-[#ea393a] transition-colors">
                 Inst
               </a>
-              <a href="#" className="hover:text-red-600 transition-colors">
+              <a href="#" className="hover:text-[#ea393a] transition-colors">
                 Fb
               </a>
             </div>

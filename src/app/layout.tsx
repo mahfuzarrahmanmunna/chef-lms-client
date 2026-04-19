@@ -1,6 +1,5 @@
-// app/layout.tsx
 import type { Metadata } from "next";
-import { Raleway, Lato, Allura } from "next/font/google"; // 1. Import Great Vibes
+import { Raleway, Lato, Allura } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "./components/SmoothScroll/SmoothScroll";
 import NavbarWrapper from "./components/NavbarWrapper/NavbarWrapper";
@@ -23,11 +22,10 @@ const lato = Lato({
   display: "swap",
 });
 
-// 2. Initialize Great Vibes Font
 const allura = Allura({
   subsets: ["latin"],
   weight: ["400"],
-  variable: "--font-allura", // This creates the CSS variable
+  variable: "--font-allura",
   display: "swap",
 });
 
@@ -36,11 +34,30 @@ export const metadata: Metadata = {
   title: "Online Chef Courses | Learn Cooking from Experts",
   description:
     "Join professional chef courses online. Learn cooking, baking, and culinary skills from expert chefs.",
+
+  // 1. Fix the Icons (Browser Tabs)
   icons: {
-    icon: [{ url: "/logo.jpeg", type: "logo/jpeg" }],
-    apple: [
-      { url: "/logo.jpeg", sizes: "180x180", type: "logo/jpeg" },
+    icon: [{ url: "/logo.jpeg", type: "image/jpeg" }], // Fixed type
+    apple: [{ url: "/logo.jpeg", sizes: "180x180", type: "image/jpeg" }],
+  },
+
+  // 2. Add Open Graph for Link Previews (WhatsApp, FB, LinkedIn)
+  openGraph: {
+    title: "Online Chef Courses | Learn Cooking from Experts",
+    description:
+      "Join professional chef courses online. Learn cooking, baking, and culinary skills from expert chefs.",
+    url: "https://chef-project-seven.vercel.app",
+    siteName: "BPSTI Chef Training Institute",
+    images: [
+      {
+        url: "/logo.jpeg", // This is the image that will show in chat previews
+        width: 1200,
+        height: 630,
+        alt: "BPSTI Logo",
+      },
     ],
+    locale: "en_US",
+    type: "website",
   },
 };
 
@@ -53,7 +70,6 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      // 3. Add the new variable to the className
       className={`${raleway.variable} ${lato.variable} ${allura.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white text-gray-900 font-sans selection:bg-red-100 selection:text-red-900">

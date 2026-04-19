@@ -145,7 +145,6 @@ export default function HeroSection() {
   return (
     <section className="bg-white py-2 px-4  max-w-7xl mx-auto">
       <div className="flex flex-col lg:flex-row gap-10 items-center">
-
         {/* VIDEO */}
         <div
           className="relative w-full lg:w-[52%]  overflow-hidden"
@@ -181,7 +180,6 @@ export default function HeroSection() {
           {/* bottom controls */}
           {showControls && (
             <div className="absolute bottom-0 left-0 w-full px-3 pb-2">
-
               {/* SEEK BAR */}
               <div
                 className="w-full h-1 bg-white/30 cursor-pointer"
@@ -211,42 +209,42 @@ export default function HeroSection() {
             The World&apos;s Premier Culinary College
           </p> */}
 
-          <h1 className="text-3xl lg:text-[2.4rem] font-bold text-[#1a3a2a] mt-8">
-          Beyond the Plate: <br></br> The BPSTI Advantage
+          <h1 className="text-3xl lg:text-[2.4rem] font-bold text-[#EA393A] mt-8">
+            Beyond the Plate: <br></br> The BPSTI Advantage
           </h1>
 
           {/* <p className="text-sm text-gray-700">
             Experience world-class culinary education and real industry exposure.
           </p> */}
 
-         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-  {features.map((f, i) => (
-    <div key={i} className="flex gap-3 items-start">
-      
-      <div className="text-[#4a7c59] flex-shrink-0 mt-1">
-        {f.icon}
-      </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            {features.map((f, i) => (
+              <div key={i} className="flex gap-3 items-start">
+                <div className="text-[#EA393A] flex-shrink-0 mt-1">
+                  {f.icon}
+                </div>
 
-      <div className="flex flex-col">
-        {/* Title */}
-        <p className="text-sm font-semibold text-gray-800">
-          {f.text}
-        </p>
+                <div className="flex flex-col">
+                  {/* Title */}
+                  <p className="text-sm font-semibold text-gray-800">
+                    {f.text}
+                  </p>
 
-        {/* Description */}
-        <p className="text-xs text-gray-600 mt-1 leading-snug text-start">
-          {f.desc}
-        </p>
-      </div>
+                  {/* Description */}
+                  <p className="text-xs text-gray-600 mt-1 leading-snug text-start">
+                    {f.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <button className="relative group overflow-hidden bg-[#EA393A] text-white px-6 py-3 text-sm font-semibold w-fit ml-36 mt-4 transition-all duration-300 ease-out hover:bg-white hover:text-[#EA393A] border border-transparent hover:border-[#EA393A] active:scale-95 shadow-md hover:shadow-red-100">
+            <span className="relative z-10">Request More Info</span>
 
-    </div>
-  ))}
-</div>
-          <button className="bg-[#E87722] hover:bg-[#d06a1a] text-white px-6 py-3 rounded-full text-sm font-semibold w-fit ml-36 mt-4">
-            Request More Info
+            {/* Hover Shine Effect */}
+            <div className="absolute inset-0 w-1/4 h-full bg-white/20 skew-x-[-20deg] -translate-x-full group-hover:translate-x-[400%] transition-transform duration-700 ease-in-out"></div>
           </button>
         </div>
-
       </div>
     </section>
   );

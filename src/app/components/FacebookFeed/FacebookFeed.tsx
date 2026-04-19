@@ -58,7 +58,7 @@
 //   if (error) {
 //     return (
 //       <div className="border border-red-200 bg-red-50 p-6 rounded-lg mx-auto max-w-2xl">
-//         <h3 className="text-red-600 font-bold text-lg mb-2">
+//         <h3 className="text-[#ea393a] font-bold text-lg mb-2">
 //           Connection Error
 //         </h3>
 //         <p className="text-sm text-red-800 font-mono bg-white p-3 rounded border border-red-100 mb-2">

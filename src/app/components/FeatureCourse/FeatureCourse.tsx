@@ -71,7 +71,7 @@ export default function FeatureCourse() {
             <div className="lg:col-span-7 flex flex-col justify-center order-1 lg:order-2 lg:pl-10">
               {/* Pre-Header */}
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-8 h-[1px] bg-red-700"></div>
+                <div className="w-8 h-[1px] bg-[#EA393A]"></div>
                 <span className="text-red-700 font-sans-luxury font-bold tracking-[0.25em] text-[10px] uppercase">
                   Premium Promotion
                 </span>
@@ -147,7 +147,7 @@ export default function FeatureCourse() {
               {/* CTA Button - High Contrast */}
               <Link
                 href="/apply"
-                className="group inline-flex items-center gap-3 px-10 py-4 bg-black text-white font-sans-luxury font-bold tracking-[0.2em] text-xs uppercase transition-all duration-300 hover:bg-red-700 hover:shadow-xl hover:shadow-red-700/30 angel-btn"
+                className="group inline-flex items-center gap-3 px-10 py-4 bg-black text-white font-sans-luxury font-bold tracking-[0.2em] text-xs uppercase transition-all duration-300 hover:bg-[#EA393A] hover:shadow-xl hover:shadow-red-700/30 angel-btn"
               >
                 Enroll Now
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

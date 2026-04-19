@@ -158,7 +158,7 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
 
           {/* Certificate Badge (Top Right) */}
           {course.hasCertificate && (
-            <div className="absolute top-0 right-0 bg-red-700 text-white px-3 py-1.5 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wide z-20">
+            <div className="absolute top-0 right-0 bg-[#EA393A] text-white px-3 py-1.5 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wide z-20">
               <CheckCircle className="w-3 h-3" />
               <span>ফ্রি সার্টিফিকেট</span>
             </div>
@@ -223,7 +223,7 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
             </div>
 
             {/* Angel Shape Button */}
-            <div className="w-10 h-10 border border-gray-200 flex items-center justify-center bg-white text-gray-900 group-hover:bg-red-700 group-hover:border-red-700 group-hover:text-white transition-all duration-300 angel-shape">
+            <div className="w-10 h-10 border border-gray-200 flex items-center justify-center bg-white text-gray-900 group-hover:bg-[#EA393A] group-hover:border-red-700 group-hover:text-white transition-all duration-300 angel-shape">
               <ArrowRight className="w-5 h-5" />
             </div>
           </div>
@@ -290,7 +290,7 @@ export default function CourseCollections() {
                     ক্যারিয়ার উন্নয়নের জন্য বিস্তৃত প্রশিক্ষণ।
                   </p>
                 </div>
-                <div className="hidden md:block w-12 h-1 bg-red-700"></div>
+                <div className="hidden md:block w-12 h-1 bg-[#EA393A]"></div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

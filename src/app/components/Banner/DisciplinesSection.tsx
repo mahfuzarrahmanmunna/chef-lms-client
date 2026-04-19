@@ -33,7 +33,7 @@ const PathCard: React.FC<{
           0{index + 1}
         </span>
 
-        <div className="w-12 h-[2px] bg-red-700 mb-4 group-hover:w-full transition-all duration-500 ease-in-out"></div>
+        <div className="w-12 h-[2px] bg-[#EA393A] mb-4 group-hover:w-full transition-all duration-500 ease-in-out"></div>
 
         <h3 className="font-serif text-2xl md:text-3xl text-white font-medium mb-2 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
           {title}

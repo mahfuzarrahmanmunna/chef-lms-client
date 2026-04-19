@@ -86,7 +86,7 @@ export default function SingleCourseDetailsPage() {
 
   const isFlagship = course.tag === "Flagship";
   const accentBorder = isFlagship ? "border-red-700" : "border-gray-900";
-  const accentBg = isFlagship ? "bg-red-700" : "bg-gray-900";
+  const accentBg = isFlagship ? "bg-[#EA393A]" : "bg-gray-900";
   const accentText = isFlagship ? "text-red-700" : "text-gray-900";
   const accentLight = isFlagship ? "bg-red-50" : "bg-gray-50";
 

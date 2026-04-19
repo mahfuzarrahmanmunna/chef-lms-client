@@ -298,7 +298,7 @@ export default function RegisterPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-red-700 hover:bg-red-800 text-white font-bold py-4 uppercase tracking-widest text-xs transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 group disabled:opacity-70 disabled:cursor-not-allowed"
+              className="w-full bg-[#EA393A] hover:bg-red-800 text-white font-bold py-4 uppercase tracking-widest text-xs transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 group disabled:opacity-70 disabled:cursor-not-allowed"
             >
               {loading ? "Creating..." : "Create Account"}{" "}
               {!loading && (

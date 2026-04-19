@@ -68,7 +68,7 @@ const SwiperNavButton = ({
   return (
     <button
       onClick={onClick}
-      className={`absolute top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white border border-gray-200 shadow-xl flex items-center justify-center text-gray-900 hover:border-red-600 hover:text-red-600 transition-all duration-300 ${
+      className={`absolute top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white border border-gray-200 shadow-xl flex items-center justify-center text-gray-900 hover:border-red-600 hover:text-[#ea393a] transition-all duration-300 ${
         isPrev ? "left-4 md:-left-6" : "right-4 md:-right-6"
       }`}
     >
@@ -115,7 +115,7 @@ const EmployerSection: React.FC = () => {
         {/* Header Section */}
         <div className="text-center mb-16">
           {/* Red Accent Line */}
-          <div className="w-16 h-1 bg-red-700 mx-auto mb-6"></div>
+          <div className="w-16 h-1 bg-[#EA393A] mx-auto mb-6"></div>
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight max-w-4xl mx-auto">
             Some Esteemed Employers that Have Hired{" "}
             <br className="hidden md:inline" /> BSPTI

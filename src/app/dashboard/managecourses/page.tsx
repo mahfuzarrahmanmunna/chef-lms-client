@@ -158,7 +158,7 @@ export default function ManageCoursesPage() {
           </div>
           <button
             onClick={() => router.push("/dashboard/addcourses")}
-            className="px-6 py-3 text-xs font-bold uppercase tracking-[0.2em] text-white bg-black hover:bg-red-700 transition-all shadow-md angel-shape flex items-center gap-2"
+            className="px-6 py-3 text-xs font-bold uppercase tracking-[0.2em] text-white bg-black hover:bg-[#EA393A] transition-all shadow-md angel-shape flex items-center gap-2"
           >
             Add New
             <span className="text-lg leading-none">+</span>
@@ -289,7 +289,7 @@ export default function ManageCoursesPage() {
                       <button
                         onClick={() => handleDelete(course.id)} // FIXED: Changed from course._id
                         disabled={deletingId === course.id}
-                        className="w-9 h-9 flex items-center justify-center rounded-sm bg-red-700 text-white hover:bg-red-900 transition-all disabled:opacity-50 disabled:cursor-wait shadow-sm"
+                        className="w-9 h-9 flex items-center justify-center rounded-sm bg-[#EA393A] text-white hover:bg-red-900 transition-all disabled:opacity-50 disabled:cursor-wait shadow-sm"
                         title="Delete Course"
                       >
                         {deletingId === course.id ? (
@@ -318,7 +318,7 @@ export default function ManageCoursesPage() {
             {toast.type === "success" ? (
               <span className="text-green-600">✔</span>
             ) : (
-              <span className="text-red-600">✖</span>
+              <span className="text-[#ea393a]">✖</span>
             )}
             {toast.message}
           </div>

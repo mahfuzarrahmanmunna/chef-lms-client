@@ -237,7 +237,7 @@ const StoryCard: React.FC<{
             className="absolute inset-0 flex items-center justify-center cursor-pointer z-20"
             onClick={() => onPlay(story.id)}
           >
-            <div className="relative w-20 h-20 bg-red-600/90 rounded-full flex items-center justify-center pl-2 backdrop-blur-sm shadow-lg group-hover:bg-red-700 group-hover:scale-110 transition-all duration-300">
+            <div className="relative w-20 h-20 bg-red-600/90 rounded-full flex items-center justify-center pl-2 backdrop-blur-sm shadow-lg group-hover:bg-[#EA393A] group-hover:scale-110 transition-all duration-300">
               <Play className="w-8 h-8 text-white fill-current" />
             </div>
           </div>
@@ -287,7 +287,7 @@ const SuccessStoriesSlider = () => {
               Success Stories
             </span>
             <h2 className="text-3xl md:text-5xl font-serif font-bold text-gray-900 mb-4">
-              সফলতার <span className="text-red-600">গল্প</span>
+              সফলতার <span className="text-[#ea393a]">গল্প</span>
             </h2>
             <p className="text-gray-600 text-lg leading-relaxed">
               আমাদের প্রাক্তন শিক্ষার্থীরা আজ বিশ্বসেরা হোটেলে কাজ করছেন। তাদের

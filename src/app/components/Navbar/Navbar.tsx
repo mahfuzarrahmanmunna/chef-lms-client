@@ -206,8 +206,8 @@ const Navbar: React.FC = () => {
       <nav
         className={`fixed left-0 w-full z-40 transition-all duration-300 ease-out ${
           scrolled
-            ? "bg-[#0d0d0d]/95 backdrop-blur-xl top-0 text-white shadow-[0_8px_30px_rgba(0,0,0,0.12)] border-b border-white/[0.05] py-2"
-            : "bg-transparent text-gray-900 py-2 top-6"
+            ? "bg-[#ff0909]/5 backdrop-blur-xl top-0 text-black shadow-[0_8px_30px_rgba(0,0,0,0.12)] border-b border-white/[0.05] py-2"
+            : "bg-transparent text-gray-900 py-2 md:top-6"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
@@ -218,10 +218,10 @@ const Navbar: React.FC = () => {
               className="group flex items-center gap-3 relative z-50"
             >
               <Image
-                src="/logo1.jpeg"
+                src="/logo.png"
                 alt="Chef Academy Logo"
                 width={120}
-                height={60}
+                height={70}
                 loading="eager"
               />
             </Link>
@@ -238,7 +238,7 @@ const Navbar: React.FC = () => {
                       active
                         ? "text-[#ea393a]"
                         : scrolled
-                          ? "text-white/70 hover:text-white"
+                          ? "text-gray-900/75 hover:text-white"
                           : "text-gray-900 hover:text-red-700"
                     }`}
                   >

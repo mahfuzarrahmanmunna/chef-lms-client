@@ -47,7 +47,7 @@ const MinimalButton: React.FC<MinimalButtonProps> = ({
 const StatsBar: React.FC<{ delay: number }> = ({ delay }) => {
   return (
     <div
-      className="absolute bottom-10 right-10 z-20 flex flex-col items-end gap-2 text-white/80"
+      className="absolute hidden  bottom-10 right-10 z-20 md:flex flex-col items-end gap-2 text-white/80"
       style={{
         animation: `slowFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s forwards`,
         opacity: 0,

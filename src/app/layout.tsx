@@ -37,8 +37,8 @@ export const metadata: Metadata = {
 
   // 1. Fix the Icons (Browser Tabs)
   icons: {
-    icon: [{ url: "/logo.jpeg", type: "image/jpeg" }], // Fixed type
-    apple: [{ url: "/logo.jpeg", sizes: "180x180", type: "image/jpeg" }],
+    icon: [{ url: "/logo.png", type: "image/png" }], // Fixed type
+    apple: [{ url: "/logo.png", sizes: "180x180", type: "image/png" }],
   },
 
   // 2. Add Open Graph for Link Previews (WhatsApp, FB, LinkedIn)
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     siteName: "BPSTI Chef Training Institute",
     images: [
       {
-        url: "/logo.jpeg", // This is the image that will show in chat previews
+        url: "/logo.png", // This is the image that will show in chat previews
         width: 1200,
         height: 630,
         alt: "BPSTI Logo",

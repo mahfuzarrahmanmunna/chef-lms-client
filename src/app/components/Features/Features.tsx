@@ -69,12 +69,12 @@ export default function Features() {
         <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 py-32">
           <div className="max-w-7xl mx-auto">
             {/* Header Section */}
-            <div className="mb-20 text-center">
+            <div className="mb-20 ">
               <h2 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight uppercase">
                 Why Choose BPSTI
               </h2>
               {/* Sharp Decorative Line */}
-              <div className="h-2 w-20 bg-red-600 mx-auto" />
+              <div className="h-2 w-30 bg-red-600 " />
             </div>
 
             {/* Cards Grid */}

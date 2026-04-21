@@ -1,7 +1,7 @@
-"use client"; // ← এটা add করুন
+"use client"; // 
 
 import React from "react";
-import { useRouter } from "next/navigation"; // ← এটা add করুন
+import { useRouter } from "next/navigation"; 
 import { FaHeartbeat } from "react-icons/fa";
 import { FaBreadSlice, FaLeaf, FaStore, FaUtensils } from "react-icons/fa6";
 import { MdRestaurantMenu } from "react-icons/md";
@@ -70,11 +70,11 @@ const PathCard = ({ label, icon, onClick }: PathCardProps) => (
 );
 
 export default function ChoosePath() {
-  const router = useRouter(); // ← এটা add করুন
+  const router = useRouter(); 
 
   return (
-    <section className="w-full px-4 py-10">
-      <h2 className="text-center text-3xl font-bold text-gray-900 mb-6">
+    <section className="w-full px-4 py-10 mt-20">
+      <h2 className=" text-center text-3xl font-bold text-gray-900 mb-6">
         Choose Your Path
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 max-w-5xl mx-auto">
@@ -83,7 +83,7 @@ export default function ChoosePath() {
             key={path.id}
             label={path.label}
             icon={path.icon}
-            onClick={() => router.push(`/ChoosePath/${path.id}`)} // 
+            onClick={() => router.push(`/ChoosePath/${path.id}`)} 
           />
         ))}
       </div>

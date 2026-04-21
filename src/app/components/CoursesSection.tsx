@@ -193,12 +193,12 @@ export default function CoursesSection() {
   }
 
   return (
-    <section className="py-20 bg-white">
+    <section className="mt-32 bg-white">
       <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
 
         {/* Section Header */}
         <div className="mb-12">
-          <p className="text-[11px] font-bold uppercase tracking-widest text-red-700 mb-2">
+          <p className="text-[11px] p-4 font-bold uppercase tracking-widest text-red-700 mb-2">
             আমাদের কোর্সসমূহ
           </p>
           <h2 className="text-3xl md:text-5xl font-serif font-bold text-gray-900 leading-tight mb-4">

@@ -64,17 +64,18 @@ export default function Features() {
       <style jsx global>{`
         ${keyframes}
       `}</style>
-      <section className="relative text-black">
+      <section className=" mt-5 relative text-black">
        
         <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 py-32">
           <div className="max-w-7xl mx-auto">
             {/* Header Section */}
             <div className="mb-20 ">
-              <h2 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight uppercase">
-                Why Choose BPSTI
-              </h2>
+           <h1 className="text-3xl lg:text-[2.4rem] font-bold text-[#1a3a2a] mt-8">
+          Beyond the Plate: <br></br> The BPSTI Advantage
+          </h1>
+             
               {/* Sharp Decorative Line */}
-              <div className="h-2 w-30 bg-red-600 " />
+              <div className="h-2 w-30 mt-2 bg-red-600 " />
             </div>
 
             {/* Cards Grid */}

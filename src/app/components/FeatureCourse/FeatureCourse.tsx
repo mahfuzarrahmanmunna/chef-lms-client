@@ -32,7 +32,7 @@ export default function FeatureCourse() {
         {globalStyles}
       </style>
 
-      <section className="py-28 bg-white relative overflow-hidden border-t border-gray-100">
+      <section className="mt-20 bg-white relative overflow-hidden border-t border-gray-100">
         {/* Subtle Abstract Background Element */}
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-red-50/40 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 z-0" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gray-50 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2 z-0" />

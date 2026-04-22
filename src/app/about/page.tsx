@@ -83,24 +83,9 @@ export default function AboutUs() {
         <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Left: Image Collage */}
-            <div className="relative">
-              <div className="grid grid-cols-2 gap-4">
-                <img
-                  src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1000&auto=format&fit=crop"
-                  alt="Plating"
-                  className="w-full h-64 object-cover border border-gray-200"
-                />
-                <img
-                  src="https://images.unsplash.com/photo-1556910103-1c02745a30bf?q=80&w=1000&auto=format&fit=crop"
-                  alt="Kitchen"
-                  className="w-full h-64 object-cover border border-gray-200 translate-y-12"
-                />
-              </div>
-              {/* Decorative Element */}
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-red-50 -z-10 border border-red-100"></div>
-            </div>
+           
 
-            {/* Right: Text Content */}
+         
             <div>
               <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-8 leading-tight">
                 আমাদের মিশন
@@ -124,14 +109,31 @@ export default function AboutUs() {
                 </span>
               </div>
             </div>
+   {/* Right: Text Content */}
+             <div className="relative">
+              <div className="grid grid-cols-2 gap-4">
+                <img
+                  src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1000&auto=format&fit=crop"
+                  alt="Plating"
+                  className="w-full h-64 object-cover border border-gray-200"
+                />
+                <img
+                  src="https://images.unsplash.com/photo-1556910103-1c02745a30bf?q=80&w=1000&auto=format&fit=crop"
+                  alt="Kitchen"
+                  className="w-full h-64 object-cover border border-gray-200 translate-y-12"
+                />
+              </div>
+              {/* Decorative Element */}
+              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-red-50 -z-10 border border-red-100"></div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* IMPACT SECTION - Numbered Stats */}
       <section className="py-24 bg-gray-50">
-        <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
-          <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="container px-6 sm:px-10 lg:px-16 xl:px-24">
+          <div className=" mb-16">
             <h2 className="text-4xl font-serif font-bold text-gray-900 mb-4">
               আমাদের প্রভাব
             </h2>
@@ -163,7 +165,7 @@ export default function AboutUs() {
       {/* PHILOSOPHY SECTION */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
-          <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="mb-16">
             <h2 className="text-4xl font-serif font-bold text-gray-900 mb-4">
               আমাদের ফিলোসফি
             </h2>
@@ -195,9 +197,9 @@ export default function AboutUs() {
       {/* EXPERIENCE SECTION */}
       <section className="py-24 bg-gray-50">
         <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-gray-200 pb-8">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-10 border-b border-gray-200 pb-8">
             <div>
-              <span className="text-red-700 font-bold tracking-widest text-xs uppercase block mb-2">
+              <span className="text-red-700 font-bold tracking-widest text-xs uppercase block mb-4">
                 The Experience
               </span>
               <h2 className="text-4xl font-serif font-bold text-gray-900">
@@ -206,7 +208,7 @@ export default function AboutUs() {
             </div>
           </div>
 
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="">
             <p className="text-gray-600 text-lg leading-relaxed font-light">
               BPSTI-এর ট্রেনিং মানেই একটি immersive experience, যা আপনাকে একদম প্রফেশনাল commercial kitchen-এর স্বাদ দেবে। আপনি ফাস্ট ফুডের Big 5 নিখুঁত করা শিখুন কিংবা পারফেক্ট latte তৈরির কৌশল; আমাদের ল্যাবগুলো আপনাকে একটি high-pressure, high-reward environment প্রদান করবে। এখানে আপনি শুধু রান্না শিখছেন না; বরং ইন্ডাস্ট্রি মাস্টারদের নির্দেশনায় আপনি শিখছেন কীভাবে একটি টিমকে lead করতে হয় এবং প্রতিকূল পরিবেশেও নিজেকে সেরা প্রমাণ করতে হয়।
             </p>
@@ -256,8 +258,8 @@ export default function AboutUs() {
       {/* MASTERMIND SECTION */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <ChefHat className="w-12 h-12 text-red-700 mx-auto mb-6" />
+          <div className="max-w-xl mb-16">
+            <ChefHat className="w-12 h-12 text-red-700  mb-6" />
             <h2 className="text-4xl font-serif font-bold text-gray-900 mb-4">
               The Vision Behind the Flavor
             </h2>

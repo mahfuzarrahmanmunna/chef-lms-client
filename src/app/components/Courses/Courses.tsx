@@ -263,15 +263,15 @@ export default function CourseCollections() {
         {styles}
       </style> */}
 
-      <section id="courses" className="py-24 ">
+      <section id="courses" className="-mt-32 bg-[#faf9f6] font-sans-luxury">
         <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
           {/* SECTION HEADER - Updated Bengali */}
-          <div className="text-center max-w-3xl mx-auto mb-20">
-            <span className="text-red-700 font-bold tracking-[0.3em] text-xs uppercase mb-4 block">
+          <div className=" max-w-xl mb-10">
+            <span className="text-red-700 p-2 font-bold tracking-[0.3em] text-xs uppercase mb-2 block">
              Course Collections
             </span>
-            <h2 className="text-4xl md:text-5xl  font-bold text-gray-900 mb-6">
-              Explore and Select Courses
+            <h2 className="text-2xl md:text-3xl font-serif-luxury font-bold text-gray-900 mb-3 leading-12">
+              আপনার স্কিল এবং Culinary Arts ক্যারিয়ারকে আরও সমৃদ্ধ করতে বেছে নিন আমাদের বিশেষায়িত কোর্সগুলো
             </h2>
             <p className="text-gray-600 font-light leading-relaxed text-lg">
               স্পেশালাইজড প্রোগ্রাম যা আপনার দক্ষতা বাড়াতে এবং Culinary Arts ক্যারিয়ারকে এগিয়ে নিতে ডিজাইন করা হয়েছে।

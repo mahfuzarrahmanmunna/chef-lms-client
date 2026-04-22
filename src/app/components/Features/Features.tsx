@@ -48,17 +48,21 @@ const features = [
 export default function Features() {
   return (
     <>
-      <section className="relative text-black">
+      <style jsx global>{`
+        ${keyframes}
+      `}</style>
+      <section className=" mt-5 relative text-black">
        
         <div className="relative z-10 w-full">
           <div className="max-w-6xl mx-auto">
             {/* Header Section */}
-            <div className="mb-20 text-center">
-              <h2 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight uppercase">
-                Why Choose BPSTI
-              </h2>
+            <div className="mb-20 ">
+           <h1 className="text-3xl lg:text-[2.4rem] font-bold text-[#1a3a2a] mt-8">
+          Beyond the Plate: <br></br> The BPSTI Advantage
+          </h1>
+             
               {/* Sharp Decorative Line */}
-              <div className="h-2 w-20 bg-red-600 mx-auto" />
+              <div className="h-2 w-30 mt-2 bg-red-600 " />
             </div>
 
             {/* Cards Grid */}

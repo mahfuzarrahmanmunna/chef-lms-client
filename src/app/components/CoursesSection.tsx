@@ -212,25 +212,22 @@ export default function CoursesSection() {
   }
 
   return (
-    <section className="py-2">
+    <section className="mt-32 bg-white">
       <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
         {/* Section Header */}
-        <div className="relative mt-32 mb-10">
-          {/* FIXED: Changed overflow-x-clip to overflow-visible so the scaled image appears */}
-          <div className="bg-gray-100 px-8 md:px-12 flex flex-col md:flex-row items-end justify-between overflow-visible border border-gray-200 min-h-[300px] shadow-[inset_0_2px_10px_rgba(0,0,0,0.1)]">
-            {/* Text Content */}
-            <div className="w-full md:w-3/5 pb-12 md:pb-16 pt-12">
-              <p className="text-[11px] font-bold uppercase tracking-widest text-red-700 mb-2">
-                আমাদের কোর্সসমূহ
-              </p>
-              <h2 className="text-xl md:text-3xl font-serif font-bold text-gray-900 leading-tight mb-4">
-                রন্ধনশিল্প আপনার জন্য <br className="hidden md:block" />
-                উপযুক্ত কিনা তা যাচাই করে দেখুন।
-              </h2>
-              <p className="text-sm text-gray-500 max-w-xl leading-relaxed mb-6">
-                আমাদের প্রতিটি কোর্স ইন্ডাস্ট্রি-স্ট্যান্ডার্ড কারিকুলাম
-                অনুযায়ী ডিজাইন করা হয়েছে — শুরু থেকে শীর্ষে পৌঁছানোর জন্য।
-              </p>
+        <div className="mb-12">
+          <p className="text-[11px] p-4 font-bold uppercase tracking-widest text-red-700 mb-2">
+            আমাদের কোর্সসমূহ
+          </p>
+          <h2 className="text-3xl md:text-5xl font-serif font-bold text-gray-900 leading-tight mb-4">
+            আপনার লক্ষ্য অনুযায়ী <br className="hidden md:block" />
+            সঠিক কোর্সটি বেছে নিন।
+          </h2>
+          <p className="text-sm text-gray-500 max-w-xl leading-relaxed">
+            আমাদের প্রতিটি কোর্স ইন্ডাস্ট্রি-স্ট্যান্ডার্ড কারিকুলাম অনুযায়ী
+            ডিজাইন করা হয়েছে — শুরু থেকে শীর্ষে পৌঁছানোর জন্য।
+          </p>
+        </div>
 
               {/* Animated Button */}
               <button

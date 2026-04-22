@@ -209,9 +209,7 @@ export default function HeroSection() {
             The World&apos;s Premier Culinary College
           </p> */}
 
-          <h1 className="text-3xl lg:text-[2.4rem] font-bold text-[#EA393A] mt-8">
-            Beyond the Plate: <br></br> The BPSTI Advantage
-          </h1>
+        
 
           {/* <p className="text-sm text-gray-700">
             Experience world-class culinary education and real industry exposure.

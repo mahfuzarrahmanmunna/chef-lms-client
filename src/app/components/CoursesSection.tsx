@@ -1,7 +1,15 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Clock, Award, CheckCircle, ChevronRight, Sparkles } from "lucide-react";
+import {
+  Clock,
+  Award,
+  CheckCircle,
+  ChevronRight,
+  Sparkles,
+} from "lucide-react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface Module {
   title: string;
@@ -34,6 +42,8 @@ interface Course {
 const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
   const isFlagship = course.tag === "Flagship";
 
+  // Router logic moved to parent component (CoursesSection)
+
   return (
     <div
       className={`group relative bg-white border flex flex-col overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 ${
@@ -46,9 +56,7 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
       <div className="absolute top-4 left-4 z-10">
         <span
           className={`px-3 py-1 text-[10px] font-bold uppercase tracking-widest ${
-            isFlagship
-              ? "bg-red-700 text-white"
-              : "bg-gray-900 text-white"
+            isFlagship ? "bg-[#EA393A] text-white" : "bg-gray-900 text-white"
           }`}
         >
           {course.tag}
@@ -66,17 +74,16 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
 
       {/* Body */}
       <div className="flex flex-col flex-1 p-6 gap-5">
-
         {/* Title & Meta */}
         <div>
           <div className="flex items-center gap-3 mb-3 text-xs text-gray-500 font-medium">
             <span className="flex items-center gap-1">
-              <Clock className="w-3.5 h-3.5 text-red-600" />
+              <Clock className="w-3.5 h-3.5 text-[#ea393a]" />
               {course.duration}
             </span>
             <span className="w-px h-3 bg-gray-200" />
             <span className="flex items-center gap-1">
-              <Award className="w-3.5 h-3.5 text-red-600" />
+              <Award className="w-3.5 h-3.5 text-[#ea393a]" />
               {course.certification}
             </span>
           </div>
@@ -101,7 +108,9 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
                   <span className="text-sm font-semibold text-gray-800">
                     {mod.title}:{" "}
                   </span>
-                  <span className="text-sm text-gray-500">{mod.description}</span>
+                  <span className="text-sm text-gray-500">
+                    {mod.description}
+                  </span>
                 </div>
               </li>
             ))}
@@ -109,14 +118,16 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
         </div>
 
         {/* Highlights */}
-        <div className={`p-4 border-l-4 ${isFlagship ? "border-red-700 bg-red-50" : "border-gray-300 bg-gray-50"}`}>
+        <div
+          className={`p-4 border-l-4 ${isFlagship ? "border-red-700 bg-red-50" : "border-gray-300 bg-gray-50"}`}
+        >
           <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-3">
             আমাদের বিশেষত্ব
           </p>
           <ul className="space-y-2">
             {course.highlights.map((h, i) => (
               <li key={i} className="flex items-start gap-2 text-sm">
-                <Sparkles className="w-3.5 h-3.5 text-red-600 mt-0.5 flex-shrink-0" />
+                <Sparkles className="w-3.5 h-3.5 text-[#ea393a] mt-0.5 flex-shrink-0" />
                 <span>
                   <span className="font-bold text-gray-800">{h.label}: </span>
                   <span className="text-gray-600">{h.description}</span>
@@ -150,11 +161,11 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
             )}
           </div>
 
-          
-         <a    href={`/single-course-details/${course.id}`}
+          <a
+            href={`/single-course-details/${course.id}`}
             className={`flex items-center gap-1.5 font-bold text-xs uppercase tracking-widest px-5 py-3 transition-colors ${
               isFlagship
-                ? "bg-red-700 hover:bg-red-800 text-white"
+                ? "bg-[#EA393A] hover:bg-red-800 text-white"
                 : "bg-gray-900 hover:bg-gray-700 text-white"
             }`}
           >
@@ -170,6 +181,14 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
 export default function CoursesSection() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
+
+  // FIXED: Router hook initialized here
+  const router = useRouter();
+
+  // FIXED: Function defined here so it can be accessed in the JSX below
+  const handlePathChange = () => {
+    router.push("/quiz");
+  };
 
   useEffect(() => {
     fetch("/course.json")
@@ -195,7 +214,6 @@ export default function CoursesSection() {
   return (
     <section className="mt-32 bg-white">
       <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
-
         {/* Section Header */}
         <div className="mb-12">
           <p className="text-[11px] p-4 font-bold uppercase tracking-widest text-red-700 mb-2">
@@ -211,6 +229,31 @@ export default function CoursesSection() {
           </p>
         </div>
 
+              {/* Animated Button */}
+              <button
+                onClick={handlePathChange}
+                className="relative group overflow-hidden bg-red-600 text-white px-10 py-3 font-semibold transition-all duration-300 ease-out hover:bg-white hover:text-[#ea393a] border border-transparent hover:border-red-600 active:scale-95 shadow-md hover:shadow-red-200"
+              >
+                <span className="relative z-10">Take This Short Quiz</span>
+                <div className="absolute inset-0 w-1/4 h-full bg-white/20 skew-x-[-20deg] -translate-x-full group-hover:translate-x-[400%] transition-transform duration-700 ease-in-out"></div>
+              </button>
+            </div>
+
+            {/* Image Section - Bottom Aligned & Overflowing */}
+            <div className="w-full md:w-2/3 flex justify-center md:justify-end self-end relative z-0">
+              <div className="relative w-52 md:w-80 lg:w-[450px] leading-0">
+                <Image
+                  src={"/image.webp"}
+                  width={500}
+                  height={700}
+                  alt="Course Instructor"
+                  className="object-contain h-auto w-full transform scale-125 lg:scale-150 origin-bottom"
+                  priority
+                />
+              </div>
+            </div>
+          </div>
+        </div>
         {/* Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {courses.map((course) => (

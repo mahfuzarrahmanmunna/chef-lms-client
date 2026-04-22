@@ -1,13 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
 import { useAuth } from "@/hooks/useAuth";
 import { useForm } from "react-hook-form";
 import { unstable_noStore as noStore } from "next/cache";
 import { Image as ImageIcon } from "lucide-react";
-import Image from "next/image";
 
 // Force dynamic rendering
 export const dynamic = "force-dynamic";
@@ -45,11 +44,13 @@ const globalStyles = `
   }
 `;
 
-export default function AddCoursePage() {
+export default function EditCoursePage() {
   noStore();
 
   const { user, loading: authLoading, isAdmin } = useAuth();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const courseId = searchParams.get("id");
 
   const {
     register,
@@ -57,28 +58,16 @@ export default function AddCoursePage() {
     watch,
     formState: { errors, isSubmitting },
     reset,
-  } = useForm<CourseFormInputs>({
-    defaultValues: {
-      title: "",
-      type: "Short Course",
-      description: "",
-      price: 0,
-      oldPrice: 0,
-      currency: "৳",
-      duration: "",
-      region: "Local",
-      city: "",
-      image: "",
-      hasCertificate: false,
-    },
-  });
+  } = useForm<CourseFormInputs>();
 
   const [toast, setToast] = useState<Toast | null>(null);
   const [thumbError, setThumbError] = useState<boolean>(false);
+  const [isLoadingData, setIsLoadingData] = useState(true);
 
   const watchedImage = watch("image");
   const watchedType = watch("type");
 
+  // --- AUTH CHECK ---
   useEffect(() => {
     if (!authLoading) {
       if (!user) {
@@ -89,6 +78,39 @@ export default function AddCoursePage() {
     }
   }, [user, authLoading, isAdmin, router]);
 
+  // --- FETCH COURSE DATA TO PRE-FILL FORM ---
+  useEffect(() => {
+    const fetchCourseData = async () => {
+      if (!courseId) {
+        router.push("/dashboard/managecourses");
+        return;
+      }
+      try {
+        // Note: Since a GET /api/courses/[id] wasn't provided in your snippet,
+        // we fetch the full list and find the specific ID.
+        const response = await axios.get("/api/courses");
+        const course = response.data.find((c: any) => c.id === courseId);
+
+        if (course) {
+          reset(course);
+        } else {
+          showToast("Course not found", "error");
+          router.push("/dashboard/managecourses");
+        }
+      } catch (error) {
+        console.error("Failed to fetch course", error);
+        showToast("Failed to load course data", "error");
+      } finally {
+        setIsLoadingData(false);
+      }
+    };
+
+    if (user && isAdmin && courseId) {
+      fetchCourseData();
+    }
+  }, [courseId, user, isAdmin, reset, router]);
+
+  // --- TOAST LOGIC ---
   const showToast = (message: string, type: "success" | "error") => {
     setToast({ message, type });
     if (type === "success") {
@@ -96,28 +118,31 @@ export default function AddCoursePage() {
     }
   };
 
+  // --- SUBMIT (UPDATE) LOGIC ---
   const onSubmit = async (data: CourseFormInputs) => {
+    if (!courseId) return;
+
     setToast(null);
     try {
-      await axios.post("/api/courses", data);
-      showToast("Course added successfully!", "success");
-      reset();
+      await axios.put(`/api/courses/${courseId}`, data);
+      showToast("Course updated successfully!", "success");
       setTimeout(() => {
         router.push("/dashboard/managecourses");
-      }, 2000);
+      }, 1500);
     } catch (error: any) {
       console.error(error);
       if (error.response?.status === 401) showToast("Unauthorized.", "error");
       else if (error.response?.status === 403) showToast("Forbidden.", "error");
-      else showToast("Failed to add course.", "error");
+      else showToast("Failed to update course.", "error");
     }
   };
 
+  // --- IMAGE PREVIEW HANDLER ---
   useEffect(() => {
     if (watchedImage) setThumbError(false);
   }, [watchedImage]);
 
-  if (authLoading) {
+  if (authLoading || isLoadingData) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#faf9f6]">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-black"></div>
@@ -134,14 +159,14 @@ export default function AddCoursePage() {
       </style>
 
       <div className="min-h-screen bg-[#faf9f6] font-sans-luxury text-gray-900 p-4 md:p-8">
-        {/* Header Section - Luxury Serif Font */}
+        {/* Header Section */}
         <div className="max-w-6xl mx-auto mb-8 flex items-center justify-between border-b border-gray-200 pb-6">
           <div>
             <h1 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 tracking-tight">
-              Add New Course
+              Edit Course
             </h1>
             <p className="text-sm text-gray-500 mt-2 font-medium tracking-wide">
-              Create a new learning module for students.
+              Update course details and pricing.
             </p>
           </div>
           <button
@@ -369,11 +394,9 @@ export default function AddCoursePage() {
                 {/* Live Preview Box */}
                 <div className="relative w-full aspect-video bg-gray-50 border-2 border-dashed border-gray-300 overflow-hidden">
                   {watchedImage && !thumbError ? (
-                    <Image
+                    <img
                       src={watchedImage}
                       alt="Preview"
-                      width={120}
-                      height={120}
                       className="w-full h-full object-cover"
                       onError={() => setThumbError(true)}
                     />
@@ -447,11 +470,11 @@ export default function AddCoursePage() {
                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                     ></path>
                   </svg>
-                  Processing...
+                  Updating...
                 </>
               ) : (
                 <>
-                  Publish Course
+                  Update Course
                   <svg
                     className="w-4 h-4 group-hover:translate-x-1 transition-transform"
                     fill="none"
@@ -462,7 +485,7 @@ export default function AddCoursePage() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth="2"
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
                     />
                   </svg>
                 </>

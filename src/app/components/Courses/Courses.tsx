@@ -134,24 +134,11 @@ const coursesData: Course[] = [
   },
 ];
 
-/*  Shared Styles  */
-const styles = `
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600&display=swap');
-
-  .font-serif-luxury { font-family: 'Playfair Display', serif; }
-  .font-sans-luxury { font-family: 'Manrope', sans-serif; }
-
-  /* The Angel Shape (Cut Bottom-Right) */
-  .angel-shape {
-    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
-  }
-`;
-
 /*  Card Component  */
 const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
   return (
     <Link href={`/course-details/${course.id}`} className="block group h-full">
-      <div className="h-full flex flex-col bg-white border border-gray-200 hover:border-black transition-all duration-300 relative overflow-hidden shadow-sm hover:shadow-xl">
+      <div className="h-full flex flex-col border border-gray-200 hover:border-black transition-all duration-300 relative overflow-hidden shadow-sm hover:shadow-xl">
         {/* Image Section */}
         <div className="relative w-full aspect-[4/3] overflow-hidden bg-gray-100">
           <img
@@ -171,7 +158,7 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
 
           {/* Certificate Badge (Top Right) */}
           {course.hasCertificate && (
-            <div className="absolute top-0 right-0 bg-red-700 text-white px-3 py-1.5 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wide z-20">
+            <div className="absolute top-0 right-0 bg-[#EA393A] text-white px-3 py-1.5 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wide z-20">
               <CheckCircle className="w-3 h-3" />
               <span>ফ্রি সার্টিফিকেট</span>
             </div>
@@ -197,7 +184,7 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
           </div>
 
           {/* Title */}
-          <h3 className="text-xl font-serif-luxury font-bold text-gray-900 mb-3 leading-tight group-hover:text-red-700 transition-colors">
+          <h3 className="text-xl  font-bold text-gray-900 mb-3 leading-tight group-hover:text-red-700 transition-colors">
             {course.title}
           </h3>
 
@@ -223,7 +210,7 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
                       {course.oldPrice.toLocaleString()}
                     </span>
                   )}
-                  <span className="block text-2xl font-serif-luxury font-bold text-gray-900">
+                  <span className="block text-2xl  font-bold text-gray-900">
                     {course.currency}
                     {course.price.toLocaleString()}
                   </span>
@@ -236,7 +223,7 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
             </div>
 
             {/* Angel Shape Button */}
-            <div className="w-10 h-10 border border-gray-200 flex items-center justify-center bg-white text-gray-900 group-hover:bg-red-700 group-hover:border-red-700 group-hover:text-white transition-all duration-300 angel-shape">
+            <div className="w-10 h-10 border border-gray-200 flex items-center justify-center bg-white text-gray-900 group-hover:bg-[#EA393A] group-hover:border-red-700 group-hover:text-white transition-all duration-300 angel-shape">
               <ArrowRight className="w-5 h-5" />
             </div>
           </div>
@@ -272,9 +259,9 @@ export default function CourseCollections() {
 
   return (
     <>
-      <style jsx global>
+      {/* <style jsx global>
         {styles}
-      </style>
+      </style> */}
 
       <section id="courses" className="-mt-32 bg-[#faf9f6] font-sans-luxury">
         <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
@@ -296,14 +283,14 @@ export default function CourseCollections() {
             <div className="mb-24">
               <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-10 border-b border-gray-200 pb-4">
                 <div>
-                  <h3 className="text-2xl font-serif-luxury font-bold text-gray-900">
-                    প্রফেশনাল প্রোগ্রাম
+                  <h3 className="text-2xl  font-bold text-gray-900">
+                    Professional Programs
                   </h3>
                   <p className="text-sm text-gray-500 mt-2">
                     ক্যারিয়ার উন্নয়নের জন্য বিস্তৃত প্রশিক্ষণ।
                   </p>
                 </div>
-                <div className="hidden md:block w-12 h-1 bg-red-700"></div>
+                <div className="hidden md:block w-12 h-1 bg-[#EA393A]"></div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -319,8 +306,8 @@ export default function CourseCollections() {
             <div>
               <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-10 border-b border-gray-200 pb-4">
                 <div>
-                  <h3 className="text-2xl font-serif-luxury font-bold text-gray-900">
-                    শর্ট কোর্স
+                  <h3 className="text-2xl  font-bold text-gray-900">
+                    Short Courses
                   </h3>
                   <p className="text-sm text-gray-500 mt-2">
                     উৎসুকদের জন্য দ্রুত দক্ষতা অর্জন।

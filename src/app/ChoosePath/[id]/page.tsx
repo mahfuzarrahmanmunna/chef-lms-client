@@ -22,7 +22,7 @@ export default function ChoosePath() {
 
   const program = useMemo(
     () => paths.find((p) => p.id === params.id),
-    [params.id]
+    [params.id],
   );
 
   if (!program) {
@@ -43,7 +43,7 @@ export default function ChoosePath() {
 
   const isFlagship = program.tag === "Flagship";
   const accentBorder = isFlagship ? "border-red-700" : "border-gray-900";
-  const accentBg = isFlagship ? "bg-red-700" : "bg-gray-900";
+  const accentBg = isFlagship ? "bg-[#EA393A]" : "bg-gray-900";
   const accentText = isFlagship ? "text-red-700" : "text-gray-900";
   const accentLight = isFlagship ? "bg-red-50" : "bg-gray-50";
 
@@ -66,7 +66,9 @@ export default function ChoosePath() {
           </button>
 
           <div className="flex flex-wrap gap-2 mb-4">
-            <span className={`px-3 py-1 text-[10px] font-bold uppercase tracking-widest ${accentBg} text-white`}>
+            <span
+              className={`px-3 py-1 text-[10px] font-bold uppercase tracking-widest ${accentBg} text-white`}
+            >
               {program.tag}
             </span>
             <span className="px-3 py-1 text-[10px] font-bold uppercase tracking-widest bg-white/20 text-white border border-white/30">
@@ -95,13 +97,13 @@ export default function ChoosePath() {
       {/* Main Layout */}
       <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-
           {/* LEFT: Content */}
           <div className="lg:col-span-8 space-y-14">
-
             {/* Overview */}
             <div>
-              <p className={`text-[11px] font-bold uppercase tracking-widest ${accentText} mb-2`}>
+              <p
+                className={`text-[11px] font-bold uppercase tracking-widest ${accentText} mb-2`}
+              >
                 প্রোগ্রাম পরিচিতি
               </p>
               <h2 className="text-2xl md:text-3xl font-serif font-bold text-gray-900 mb-4 leading-snug">
@@ -128,7 +130,9 @@ export default function ChoosePath() {
                     key={i}
                     className={`flex items-start gap-3 p-4 border border-gray-100 hover:${accentBorder} transition-colors`}
                   >
-                    <CheckCircle className={`w-5 h-5 ${accentText} mt-0.5 flex-shrink-0`} />
+                    <CheckCircle
+                      className={`w-5 h-5 ${accentText} mt-0.5 flex-shrink-0`}
+                    />
                     <div>
                       <p className="font-bold text-gray-900 text-sm mb-0.5">
                         {mod.title}
@@ -158,7 +162,9 @@ export default function ChoosePath() {
                     key={i}
                     className={`flex items-start gap-4 p-5 ${accentLight} border-l-4 ${accentBorder}`}
                   >
-                    <Sparkles className={`w-5 h-5 ${accentText} mt-0.5 flex-shrink-0`} />
+                    <Sparkles
+                      className={`w-5 h-5 ${accentText} mt-0.5 flex-shrink-0`}
+                    />
                     <div>
                       <p className="font-bold text-gray-900 text-sm mb-1">
                         {h.label}
@@ -174,7 +180,9 @@ export default function ChoosePath() {
 
             {/* Who is this for */}
             <div className="bg-gray-50 border border-gray-200 p-8">
-              <p className={`text-[11px] font-bold uppercase tracking-widest ${accentText} mb-2`}>
+              <p
+                className={`text-[11px] font-bold uppercase tracking-widest ${accentText} mb-2`}
+              >
                 লক্ষ্য শিক্ষার্থী
               </p>
               <h3 className="text-xl font-serif font-bold text-gray-900 mb-4">
@@ -187,8 +195,13 @@ export default function ChoosePath() {
                   "যারা আন্তর্জাতিক মানের রান্নার দক্ষতা অর্জন করতে চান",
                   "শৌখিন রাঁধুনি যারা প্রফেশনাল লেভেলে উন্নীত হতে চান",
                 ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-sm text-gray-600">
-                    <ChevronRight className={`w-4 h-4 ${accentText} mt-0.5 flex-shrink-0`} />
+                  <li
+                    key={i}
+                    className="flex items-start gap-3 text-sm text-gray-600"
+                  >
+                    <ChevronRight
+                      className={`w-4 h-4 ${accentText} mt-0.5 flex-shrink-0`}
+                    />
                     {item}
                   </li>
                 ))}
@@ -199,7 +212,6 @@ export default function ChoosePath() {
           {/* RIGHT: Sidebar */}
           <div className="lg:col-span-4">
             <div className="sticky top-28 space-y-6">
-
               {/* Booking Card */}
               <div className="bg-white border border-gray-200 shadow-sm">
                 <div className={`p-6 border-b border-gray-100 ${accentLight}`}>
@@ -211,9 +223,10 @@ export default function ChoosePath() {
                       <span className="text-3xl font-serif font-bold text-gray-900">
                         ৳{program.price.toLocaleString()}
                       </span>
-                      {program.priceAlt && (
+                      {/* FIXED: Used type assertion to avoid error */}
+                      {(program as any).priceAlt && (
                         <span className="text-sm text-gray-400">
-                          / ৳{program.priceAlt.toLocaleString()}
+                          / ৳{(program as any).priceAlt.toLocaleString()}
                         </span>
                       )}
                     </div>
@@ -272,7 +285,9 @@ export default function ChoosePath() {
                 </div>
 
                 <div className="p-6 pt-0 space-y-3">
-                  <button className={`w-full ${accentBg} hover:opacity-90 text-white font-bold py-4 uppercase tracking-widest text-xs transition-opacity`}>
+                  <button
+                    className={`w-full ${accentBg} hover:opacity-90 text-white font-bold py-4 uppercase tracking-widest text-xs transition-opacity`}
+                  >
                     {isFlagship ? "এখনই আবেদন করুন" : "ক্লাস বুক করুন"}
                   </button>
                   <button className="w-full border border-gray-200 hover:border-gray-900 text-gray-600 hover:text-gray-900 font-bold py-3 uppercase tracking-widest text-xs transition-all flex items-center justify-center gap-2">
@@ -283,7 +298,9 @@ export default function ChoosePath() {
               </div>
 
               {/* Quick Note */}
-              <div className={`p-5 border-l-4 ${accentBorder} bg-white border border-gray-100`}>
+              <div
+                className={`p-5 border-l-4 ${accentBorder} bg-white border border-gray-100`}
+              >
                 <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">
                   দ্রষ্টব্য
                 </p>

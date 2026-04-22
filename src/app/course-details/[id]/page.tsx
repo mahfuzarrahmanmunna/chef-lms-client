@@ -70,12 +70,12 @@ const Breadcrumbs: React.FC = () => (
   <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-500 mb-6">
     <button
       onClick={() => window.history.back()}
-      className="hover:text-red-600 transition-colors"
+      className="hover:text-[#ea393a] transition-colors"
     >
       <ArrowLeft className="w-4 h-4" />
     </button>
     <span>/</span>
-    <span className="hover:text-red-600 cursor-pointer">Courses</span>
+    <span className="hover:text-[#ea393a] cursor-pointer">Courses</span>
     <span>/</span>
     <span className="text-gray-900">Details</span>
   </div>
@@ -224,7 +224,7 @@ export default function CourseDetailsPage() {
         </h2>
         <button
           onClick={() => router.push("/courses")}
-          className="text-red-600 hover:underline font-bold uppercase tracking-widest text-xs"
+          className="text-[#ea393a] hover:underline font-bold uppercase tracking-widest text-xs"
         >
           Back to Courses
         </button>
@@ -265,15 +265,15 @@ export default function CourseDetailsPage() {
 
               <div className="flex flex-wrap items-center gap-8 text-sm text-gray-500 font-medium">
                 <div className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-red-600" />
+                  <MapPin className="w-4 h-4 text-[#ea393a]" />
                   {course.city}, {course.region}
                 </div>
                 <div className="flex items-center gap-2">
-                  <Users className="w-4 h-4 text-red-600" />
+                  <Users className="w-4 h-4 text-[#ea393a]" />
                   Max 12 Students
                 </div>
                 <div className="flex items-center gap-2">
-                  <Globe className="w-4 h-4 text-red-600" />
+                  <Globe className="w-4 h-4 text-[#ea393a]" />
                   English / Spanish
                 </div>
               </div>
@@ -442,7 +442,7 @@ export default function CourseDetailsPage() {
                 </div>
 
                 <div className="p-6 pt-0 space-y-3">
-                  <button className="w-full bg-red-700 hover:bg-red-800 text-white font-bold py-4 uppercase tracking-widest text-xs transition-colors">
+                  <button className="w-full bg-[#EA393A] hover:bg-red-800 text-white font-bold py-4 uppercase tracking-widest text-xs transition-colors">
                     {isProfessional ? "Apply Now" : "Book Class"}
                   </button>
 

@@ -260,20 +260,20 @@ export default function FeaturedCourses() {
               <BookOpen className="w-6 h-6" />
             </div>
             <span className="font-serif text-2xl font-bold text-gray-900 tracking-tight">
-              Chef<span className="text-red-600">LMS</span>
+              Chef<span className="text-[#ea393a]">LMS</span>
             </span>
           </div>
           <nav className="hidden md:flex gap-8 text-sm font-bold text-gray-600 uppercase tracking-wider">
-            <a href="#" className="hover:text-red-600 transition-colors">
+            <a href="#" className="hover:text-[#ea393a] transition-colors">
               Dashboard
             </a>
-            <a href="#" className="text-red-600">
+            <a href="#" className="text-[#ea393a]">
               Courses
             </a>
-            <a href="#" className="hover:text-red-600 transition-colors">
+            <a href="#" className="hover:text-[#ea393a] transition-colors">
               Mentors
             </a>
-            <a href="#" className="hover:text-red-600 transition-colors">
+            <a href="#" className="hover:text-[#ea393a] transition-colors">
               Certifications
             </a>
           </nav>
@@ -291,7 +291,7 @@ export default function FeaturedCourses() {
           </span>
           <h1 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6 max-w-3xl mx-auto">
             Master the Art of{" "}
-            <span className="text-red-600">Professional Cooking</span>
+            <span className="text-[#ea393a]">Professional Cooking</span>
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Choose from our intensive 3-month professional programs with
@@ -360,7 +360,7 @@ export default function FeaturedCourses() {
             for the upcoming international internship batch.
           </p>
           <div className="flex justify-center gap-4">
-            <button className="px-8 py-3 bg-red-600 hover:bg-red-700 text-white font-bold uppercase tracking-widest rounded-lg transition-colors">
+            <button className="px-8 py-3 bg-red-600 hover:bg-[#EA393A] text-white font-bold uppercase tracking-widest rounded-lg transition-colors">
               Enroll Now
             </button>
             <button className="px-8 py-3 border border-gray-600 hover:border-white text-white font-bold uppercase tracking-widest rounded-lg transition-colors">

@@ -136,7 +136,7 @@ export default function ContactUs() {
             <div className="lg:col-span-7">
               <div className="bg-white border border-gray-200 p-8 md:p-12 relative">
                 {/* Decorative Top Line */}
-                <div className="absolute top-0 left-0 w-0 h-1 bg-red-700 transition-all duration-500"></div>
+                <div className="absolute top-0 left-0 w-0 h-1 bg-[#EA393A] transition-all duration-500"></div>
 
                 <h2 className="text-2xl font-serif font-bold text-gray-900 mb-2">
                   Send Us a Message
@@ -205,7 +205,7 @@ export default function ContactUs() {
                     ></textarea>
                   </div>
 
-                  <button className="w-full bg-gray-900 hover:bg-red-700 text-white font-bold py-4 uppercase tracking-widest text-xs transition-colors flex items-center justify-center gap-2 group">
+                  <button className="w-full bg-gray-900 hover:bg-[#EA393A] text-white font-bold py-4 uppercase tracking-widest text-xs transition-colors flex items-center justify-center gap-2 group">
                     Send Message{" "}
                     <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </button>
@@ -246,7 +246,7 @@ export default function ContactUs() {
                 <div className="absolute inset-0 bg-black/20 pointer-events-none"></div>
                 {/* Custom Pin Marker */}
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                  <div className="w-4 h-4 bg-red-700 rounded-full border-2 border-white shadow-lg animate-pulse"></div>
+                  <div className="w-4 h-4 bg-[#EA393A] rounded-full border-2 border-white shadow-lg animate-pulse"></div>
                 </div>
               </div>
             </div>
@@ -261,7 +261,7 @@ export default function ContactUs() {
             গ্লোবাল কিচেনে নিশ্চিত করুন আপনার উজ্জ্বল ভবিষ্যৎ।
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-red-700 hover:bg-red-600 text-white font-bold py-4 px-10 uppercase tracking-widest text-xs transition-colors">
+            <button className="bg-[#EA393A] hover:bg-red-600 text-white font-bold py-4 px-10 uppercase tracking-widest text-xs transition-colors">
               প্রস্পেক্টাস ডাউনলোড করুন
             </button>
             <button className="bg-transparent hover:bg-white hover:text-gray-900 text-white font-bold py-4 px-10 uppercase tracking-widest text-xs transition-colors border border-white/30">

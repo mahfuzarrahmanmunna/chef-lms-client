@@ -11,20 +11,23 @@ import VideoSection from "./components/VideoSection/VideoSection";
 import DisciplinesSection from "./components/Banner/DisciplinesSection";
 import FeatureCourse from "./components/FeatureCourse/FeatureCourse";
 import ContactCTA from "./components/CTA/CTA";
+import SuccessStories from "./components/SuccessStories/SuccessStories";
+import EmployerSection from "./components/EmployerSection/EmployerSection";
 
 export default function Home() {
   return (
     <div className=" bg-white">
       <Banner />
-      <FeatureCourse/>
+      {/* <FeatureCourse/> */}
       <Features />
       <Courses />
-      <DisciplinesSection/>
+      {/* <DisciplinesSection/> */}
       <FacebookFeed />
-      <MasterChef/>
       <Team />
       {/* <Recipes /> */}
       <VideoSection/>
+      <EmployerSection/>
+      <SuccessStories/>
       <ContactCTA/>
       {/* <FeaturedCourses /> */}
       {/* <div className="mt-24">bottom</div> */}

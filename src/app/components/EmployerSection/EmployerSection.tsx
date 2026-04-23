@@ -110,22 +110,9 @@ const LogoCard: React.FC<{ employer: (typeof employers)[0] }> = ({
 
 const EmployerSection: React.FC = () => {
   return (
-    <section className="relative w-full py-20 bg-white overflow-hidden">
+    <section className="relative w-full  bg-white overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
-        {/* Header Section */}
-        <div className="text-center mb-16">
-          {/* Red Accent Line */}
-          <div className="w-16 h-1 bg-[#EA393A] mx-auto mb-6"></div>
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight max-w-4xl mx-auto">
-            Some Esteemed Employers that Have Hired{" "}
-            <br className="hidden md:inline" /> BSPTI
-          </h2>
-
-          <p className="text-gray-500 text-sm md:text-base font-light max-w-2xl mx-auto leading-relaxed">
-            Our alumni have gone on to build careers at some of the world&apos;s most
-            prestigious hospitality and culinary brands.
-          </p>
-        </div>
+      
 
         {/* Swiper Container */}
         <div className="relative py-10 group/swiper">

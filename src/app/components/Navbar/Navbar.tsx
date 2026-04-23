@@ -217,13 +217,14 @@ const Navbar: React.FC = () => {
               href="/"
               className="group flex items-center gap-3 relative z-50"
             >
-              <Image
-                src="/logo.png"
-                alt="Chef Academy Logo"
-                width={120}
-                height={70}
-                loading="eager"
-              />
+              <div>
+                <h3 className="font-serif text-xl font-bold text-red-700 leading-tight">
+                  BPSTI
+                </h3>
+                <p className="text-xs text-gray-500 tracking-widest uppercase">
+                  Chef Training Institute
+                </p>
+              </div>
             </Link>
 
             {/* Desktop Menu */}

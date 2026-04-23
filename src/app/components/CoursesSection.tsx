@@ -42,8 +42,6 @@ interface Course {
 const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
   const isFlagship = course.tag === "Flagship";
 
-  // Router logic moved to parent component (CoursesSection)
-
   return (
     <div
       className={`group relative bg-white border flex flex-col overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 ${
@@ -182,10 +180,8 @@ export default function CoursesSection() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // FIXED: Router hook initialized here
   const router = useRouter();
 
-  // FIXED: Function defined here so it can be accessed in the JSX below
   const handlePathChange = () => {
     router.push("/quiz");
   };
@@ -215,7 +211,7 @@ export default function CoursesSection() {
     <section className="mt-32 bg-white">
       <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
         {/* Section Header */}
-        <div className="mb-12">
+        <div className="mb-12  max-h-24 shadow-[inset_5px_0px_7px_#ff2b2b_40%]">
           <p className="text-[11px] p-4 font-bold uppercase tracking-widest text-red-700 mb-2">
             আমাদের কোর্সসমূহ
           </p>
@@ -229,31 +225,34 @@ export default function CoursesSection() {
           </p>
         </div>
 
-              {/* Animated Button */}
-              <button
-                onClick={handlePathChange}
-                className="relative group overflow-hidden bg-red-600 text-white px-10 py-3 font-semibold transition-all duration-300 ease-out hover:bg-white hover:text-[#ea393a] border border-transparent hover:border-red-600 active:scale-95 shadow-md hover:shadow-red-200"
-              >
-                <span className="relative z-10">Take This Short Quiz</span>
-                <div className="absolute inset-0 w-1/4 h-full bg-white/20 skew-x-[-20deg] -translate-x-full group-hover:translate-x-[400%] transition-transform duration-700 ease-in-out"></div>
-              </button>
-            </div>
+        {/* Middle Section (Button + Image) Wrapper */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-16">
+          <div>
+            {/* Animated Button */}
+            <button
+              onClick={handlePathChange}
+              className="relative group overflow-hidden bg-red-600 text-white px-10 py-3 font-semibold transition-all duration-300 ease-out hover:bg-white hover:text-[#ea393a] border border-transparent hover:border-red-600 active:scale-95 shadow-md hover:shadow-red-200"
+            >
+              <span className="relative z-10">Take This Short Quiz</span>
+              <div className="absolute inset-0 w-1/4 h-full bg-white/20 skew-x-[-20deg] -translate-x-full group-hover:translate-x-[400%] transition-transform duration-700 ease-in-out"></div>
+            </button>
+          </div>
 
-            {/* Image Section - Bottom Aligned & Overflowing */}
-            <div className="w-full md:w-2/3 flex justify-center md:justify-end self-end relative z-0">
-              <div className="relative w-52 md:w-80 lg:w-[450px] leading-0">
-                <Image
-                  src={"/image.webp"}
-                  width={500}
-                  height={700}
-                  alt="Course Instructor"
-                  className="object-contain h-auto w-full transform scale-125 lg:scale-150 origin-bottom"
-                  priority
-                />
-              </div>
+          {/* Image Section */}
+          <div className="w-full md:w-2/3 flex justify-center md:justify-end self-end relative z-0">
+            <div className="relative w-52 md:w-80 lg:w-[450px] leading-0">
+              <Image
+                src={"/image.webp"}
+                width={500}
+                height={700}
+                alt="Course Instructor"
+                className="object-contain h-auto w-full transform scale-125 lg:scale-150 origin-bottom"
+                priority
+              />
             </div>
           </div>
         </div>
+
         {/* Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {courses.map((course) => (

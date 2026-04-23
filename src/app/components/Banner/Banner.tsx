@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 // Removed duplicate import below
-import ChoosePath from "../ChoosePath";
 
 /*  Sub-Components  */
 
@@ -330,7 +329,7 @@ const Banner: React.FC = () => {
                 opacity: 0,
               }}
             >
-              <ConsultForm />
+              {/* <ConsultForm /> */}
             </div>
 
             {/* Buttons */}
@@ -352,7 +351,7 @@ const Banner: React.FC = () => {
         </div>
 
         {/* Stats Bar - Small, Bottom Right */}
-        <StatsBar delay={mounted ? 1.2 : 0} />
+        {/* <StatsBar delay={mounted ? 1.2 : 0} /> */}
 
         {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-10 z-20 hidden md:flex flex-col items-center gap-2 opacity-50 animate-bounce">
@@ -362,7 +361,7 @@ const Banner: React.FC = () => {
           <div className="w-[1px] h-12 bg-gradient-to-b from-white to-transparent"></div>
         </div>
       </section>
-      <ChoosePath></ChoosePath>
+      {/* <ChoosePath></ChoosePath> */}
     </>
   );
 };

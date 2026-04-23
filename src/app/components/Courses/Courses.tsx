@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Clock, MapPin, ArrowRight, Award, CheckCircle } from "lucide-react";
-import CoursesSection from "../CoursesSection";
 
 
 /*  Types  */
@@ -189,7 +188,7 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
           </h3>
 
           {/* Description */}
-          <p className="text-sm text-gray-500 font-sans-luxury font-light leading-relaxed mb-6 line-clamp-3">
+          <p className="text-sm text-gray-500  font-light leading-relaxed mb-6 line-clamp-3">
             {course.description}
           </p>
 
@@ -263,7 +262,7 @@ export default function CourseCollections() {
         {styles}
       </style> */}
 
-      <section id="courses" className="-mt-32 bg-[#faf9f6] font-sans-luxury">
+      <section id="courses" className="-mt-32 bg-[#faf9f6] ">
         <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
           {/* SECTION HEADER - Updated Bengali */}
           <div className=" max-w-xl mb-10">
@@ -324,7 +323,6 @@ export default function CourseCollections() {
             </div>
           )}
         </div>
-       <CoursesSection></CoursesSection>
       </section>
     </>
   );

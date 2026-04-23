@@ -37,7 +37,7 @@ const globalStyles = `
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600&display=swap');
 
   .font-serif { font-family: 'Playfair Display', serif; }
-  .font-sans-luxury { font-family: 'Manrope', sans-serif; }
+  . { font-family: 'Manrope', sans-serif; }
 
   /* The Angel Shape */
   .angel-shape {
@@ -133,7 +133,7 @@ export default function AddCoursePage() {
         {globalStyles}
       </style>
 
-      <div className="min-h-screen bg-[#faf9f6] font-sans-luxury text-gray-900 p-4 md:p-8">
+      <div className="min-h-screen bg-[#faf9f6]  text-gray-900 p-4 md:p-8">
         {/* Header Section - Luxury Serif Font */}
         <div className="max-w-6xl mx-auto mb-8 flex items-center justify-between border-b border-gray-200 pb-6">
           <div>

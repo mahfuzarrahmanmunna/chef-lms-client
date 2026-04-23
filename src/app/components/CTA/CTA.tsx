@@ -64,7 +64,7 @@ const CountrySelector: React.FC<{
       >
         <div className="flex items-center gap-2">
           <span className="text-xl leading-none">{selected.flag}</span>
-          <span className="text-sm font-bold text-gray-900 font-sans-luxury">
+          <span className="text-sm font-bold text-gray-900 ">
             {selected.code}
           </span>
         </div>
@@ -83,7 +83,7 @@ const CountrySelector: React.FC<{
               <input
                 type="text"
                 placeholder="Search country..."
-                className="w-full pl-9 pr-8 py-2 text-sm border border-gray-200 rounded focus:outline-none focus:border-red-700 font-sans-luxury"
+                className="w-full pl-9 pr-8 py-2 text-sm border border-gray-200 rounded focus:outline-none focus:border-red-700 "
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 onClick={(e) => e.stopPropagation()}
@@ -114,7 +114,7 @@ const CountrySelector: React.FC<{
                 >
                   <span className="text-lg">{country.flag}</span>
                   <div className="flex flex-col">
-                    <span className="text-sm font-bold text-gray-900 font-sans-luxury">
+                    <span className="text-sm font-bold text-gray-900 ">
                       {country.name}
                     </span>
                     <span className="text-xs text-gray-500">
@@ -242,7 +242,7 @@ export default function ContactCTA() {
         . {
           font-family: "Playfair Display", serif;
         }
-        .font-sans-luxury {
+        . {
           font-family: "Manrope", sans-serif;
         }
 
@@ -257,7 +257,7 @@ export default function ContactCTA() {
         }
       `}</style>
 
-      <section id="ctaCard" className="py-24 font-sans-luxury overflow-hidden">
+      <section id="ctaCard" className="pb-24  overflow-hidden">
         <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
           <div className="bg-white rounded-sm shadow-lg border border-gray-100 overflow-hidden">
             <div className="flex flex-col lg:flex-row">
@@ -324,7 +324,7 @@ export default function ContactCTA() {
                       <input
                         type="text"
                         required
-                        className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:border-black focus:bg-white transition-all font-sans-luxury text-gray-900"
+                        className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:border-black focus:bg-white transition-all  text-gray-900"
                         placeholder="e.g. Rahim Ahmed"
                         value={formData.name}
                         onChange={(e) =>
@@ -344,7 +344,7 @@ export default function ContactCTA() {
                       <input
                         type="text"
                         required
-                        className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:border-black focus:bg-white transition-all font-sans-luxury text-gray-900"
+                        className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:border-black focus:bg-white transition-all  text-gray-900"
                         placeholder="House, Road, Area..."
                         value={formData.address}
                         onChange={(e) =>
@@ -375,7 +375,7 @@ export default function ContactCTA() {
                       <input
                         type="tel"
                         required
-                        className="flex-1 px-4 py-2 bg-white border-y border-r border-gray-200 rounded-r-md focus:outline-none focus:border-black transition-all font-sans-luxury text-gray-900"
+                        className="flex-1 px-4 py-2 bg-white border-y border-r border-gray-200 rounded-r-md focus:outline-none focus:border-black transition-all  text-gray-900"
                         placeholder="1XXXXXXXXXX"
                         value={formData.phone}
                         onChange={(e) =>
@@ -392,7 +392,7 @@ export default function ContactCTA() {
                     </label>
                     <select
                       required
-                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:border-black focus:bg-white transition-all font-sans-luxury text-gray-900 appearance-none cursor-pointer"
+                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:border-black focus:bg-white transition-all  text-gray-900 appearance-none cursor-pointer"
                       value={formData.program}
                       onChange={(e) =>
                         setFormData({ ...formData, program: e.target.value })

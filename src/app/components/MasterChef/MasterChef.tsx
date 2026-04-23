@@ -11,7 +11,7 @@ const styles = `
     font-family: 'Playfair Display', serif;
   }
   
-  .font-sans-luxury {
+  . {
     font-family: 'Raleway', sans-serif;
   }
 
@@ -87,7 +87,7 @@ export default function MasterChef() {
         {styles}
       </style>
 
-      <section className="relative py-24 bg-[#faf9f6] font-sans-luxury overflow-hidden">
+      <section className="relative py-24 bg-[#faf9f6]  overflow-hidden">
         {/* Decorative Background Elements */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#D4AF37]/5 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2" />
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-gray-200/50 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2" />

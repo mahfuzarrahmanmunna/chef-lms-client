@@ -1,30 +1,24 @@
-import Image from "next/image";
 import Banner from "./components/Banner/Banner";
 import Features from "./components/Features/Features";
 import Courses from "./components/Courses/Courses";
 import FacebookFeed from "./components/FacebookFeed/FacebookFeed";
 import Team from "./components/Team/Team";
-import Recipes from "./components/Recipes/Recipes";
-import FeaturedCourses from "./components/FeaturedCourse/FeaturedCourse";
-import MasterChef from "./components/MasterChef/MasterChef";
 import VideoSection from "./components/VideoSection/VideoSection";
-import DisciplinesSection from "./components/Banner/DisciplinesSection";
-import FeatureCourse from "./components/FeatureCourse/FeatureCourse";
 import ContactCTA from "./components/CTA/CTA";
 import SuccessStories from "./components/SuccessStories/SuccessStories";
 import EmployerSection from "./components/EmployerSection/EmployerSection";
+import CoursesSection from "./components/CoursesSection";
 
 export default function Home() {
   return (
-    <div className=" bg-white">
+    <div className="bg-white space-y-20">
       <Banner />
       {/* <FeatureCourse/> */}
+      <CoursesSection/>
       <Features />
       <Courses />
-      {/* <DisciplinesSection/> */}
-      <FacebookFeed />
+      {/* <FacebookFeed /> */}
       <Team />
-      {/* <Recipes /> */}
       <VideoSection/>
       <EmployerSection/>
       <SuccessStories/>

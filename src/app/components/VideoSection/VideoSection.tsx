@@ -198,7 +198,7 @@ const VideoSection: React.FC = () => {
   };
 
   return (
-    <section className="relative w-full py-24 bg-gray-50 overflow-hidden">
+    <section className="relative w-full  overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-12">

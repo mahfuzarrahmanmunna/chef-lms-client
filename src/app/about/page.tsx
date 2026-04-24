@@ -70,10 +70,10 @@ export default function AboutUs() {
             Est. 1995
           </span>
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold leading-[0.9] mb-8">
-            আমাদের গল্প
+            Our Story
           </h1>
           <p className="text-xl md:text-2xl font-light max-w-2xl mx-auto text-gray-200">
-            Culinary শ্রেষ্ঠত্ব এবং পেশাদার ক্ষমতায়নের এক যাত্রা।
+            A journey of culinary excellence and professional empowerment.
           </p>
         </div>
       </section>
@@ -85,16 +85,16 @@ export default function AboutUs() {
             {/* Left: Image Collage */}
            
 
-         
+            {/* Right: Text Content */}
             <div>
               <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-8 leading-tight">
-                আমাদের মিশন
+                Our Mission
               </h2>
 
               <p className="text-gray-600 text-lg leading-relaxed mb-6 font-light">
-                আমাদের মিশন হলো বিশ্বমানের culinary education প্রদানের মাধ্যমে বাংলাদেশের তরুণ প্রজন্মকে দক্ষ করে তোলা, যা সরাসরি তাদের একটি sustainable career নিশ্চিত করতে সাহায্য করবে। আমরা কারিগরি প্রশিক্ষণ এবং high-tier employment-এর মধ্যকার দূরত্ব ঘুচাতে প্রতিশ্রুতিবদ্ধ। আমাদের curriculum এমনভাবে তৈরি করা হয়েছে যেখানে উন্নত technical skill-এর পাশাপাশি soft skills এবং linguistic fluency বা ভাষাগত দক্ষতার ওপর সমান গুরুত্ব দেওয়া হয়।
+                Our mission is to empower the youth of Bangladesh with world-class culinary education that directly helps secure a sustainable career for them. We are committed to bridging the gap between technical training and high-tier employment. Our curriculum is designed to give equal importance to advanced technical skills, soft skills, and linguistic fluency.
 
-                কিচেনের গণ্ডি ছাড়িয়ে প্রতিটি শিক্ষার্থীর মধ্যে পেশাদার সততা এবং একটি global perspective তৈরি করাই আমাদের লক্ষ্য। এতে তারা শুধু স্থানীয় hospitality market-এই নয়, বরং আন্তর্জাতিক luxury hotels এবং overseas culinary opportunities-এর জন্য অত্যন্ত শক্তিশালী প্রতিযোগী হিসেবে গড়ে উঠবে। আমাদের 3 and 4-star hotel internship programs-এর মান বজায় রাখার মাধ্যমে আমরা এমন এক প্ল্যাটফর্ম হতে চাই, যেখান থেকে শেফরা গ্লোবাল gastronomic landscape-এ নেতৃত্ব দিতে এবং নতুনত্ব আনতে সক্ষম হবে।
+                Beyond the kitchen, our goal is to cultivate professional integrity and a global perspective in every student. This enables them to emerge as strong competitors not only in the local hospitality market but also for international luxury hotels and overseas culinary opportunities. By maintaining the quality of our 3 and 4-star hotel internship programs, we aim to become a platform from which chefs can lead and innovate in the global gastronomic landscape.
               </p>
 
               <div className="flex items-center gap-4 text-sm font-bold uppercase tracking-widest text-gray-900">
@@ -109,7 +109,6 @@ export default function AboutUs() {
                 </span>
               </div>
             </div>
-   {/* Right: Text Content */}
              <div className="relative">
               <div className="grid grid-cols-2 gap-4">
                 <img
@@ -133,30 +132,30 @@ export default function AboutUs() {
       {/* IMPACT SECTION - Numbered Stats */}
       <section className="py-24 bg-gray-50">
         <div className="container px-6 sm:px-10 lg:px-16 xl:px-24">
-          <div className=" mb-16">
+          <div className="mb-16">
             <h2 className="text-4xl font-serif font-bold text-gray-900 mb-4">
-              আমাদের প্রভাব
+              Our Impact
             </h2>
             <p className="text-gray-500">
-              তিনটি স্তম্ভ যা আমাদের একাডেমির শিক্ষার মানকে উচ্চতায় ধরে রাখে।
+              Three pillars that uphold the high standard of education at our academy.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <ValueCard
               icon={<Target className="w-10 h-10" />}
-              title="ইন্ডাস্ট্রি পার্টনারশিপ"
-              description="দেশের শীর্ষস্থানীয় 3 and 4-star hotels-এর সাথে আমাদের সরাসরি partnerships রয়েছে, যা আমাদের প্রতিটি স্টুডেন্টের জন্য নিশ্চিত internship opportunities এবং real-world exposure নিশ্চিত করে।"
+              title="Industry Partnership"
+              description="We have direct partnerships with the country's leading 3 and 4-star hotels, ensuring guaranteed internship opportunities and real-world exposure for every student."
             />
             <ValueCard
               icon={<Lightbulb className="w-10 h-10" />}
-              title="স্পেশালাইজড এক্সপার্টাইজ"
-              description="Master Barista techniques থেকে শুরু করে International and Arabian cuisine; আমাদের প্রতিটি curriculum আধুনিক ফুড ইন্ডাস্ট্রির high-demand sectors-গুলোর কথা মাথায় রেখেই ডিজাইন করা হয়েছে।"
+              title="Specialized Expertise"
+              description="From Master Barista techniques to International and Arabian cuisine, every curriculum of ours is designed keeping in mind the high-demand sectors of the modern food industry."
             />
             <ValueCard
               icon={<Globe className="w-10 h-10" />}
-              title="গ্লোবাল ক্যারিয়ার মোবিলিটি"
-              description="কিচেন ট্রেনিংয়ের পাশাপাশি, যারা বিদেশে ক্যারিয়ার গড়তে চান আমরা তাদের জন্য প্রয়োজনীয় language training প্রদান করি। এটি আপনাকে foreign markets এবং luxury hospitality-তে একটি সফল জীবন ও ক্যারিয়ার গড়তে সাহায্য করবে।"
+              title="Global Career Mobility"
+              description="Alongside kitchen training, we provide necessary language training for those aspiring to build careers abroad. This will help you establish a successful life and career in foreign markets and luxury hospitality."
             />
           </div>
         </div>
@@ -167,10 +166,10 @@ export default function AboutUs() {
         <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
           <div className="mb-16">
             <h2 className="text-4xl font-serif font-bold text-gray-900 mb-4">
-              আমাদের ফিলোসফি
+              Our Philosophy
             </h2>
             <p className="text-gray-500">
-              তিনটি স্তম্ভ যা আমাদের একাডেমির শিক্ষার মানকে উচ্চতায় ধরে রাখে।
+              Three pillars that uphold the high standard of education at our academy.
             </p>
           </div>
 
@@ -178,17 +177,17 @@ export default function AboutUs() {
             <ValueCard
               icon={<Target className="w-10 h-10" />}
               title="Active Technical Mastery"
-              description="আমরা বিশ্বাস করি কিচেনই হলো শ্রেষ্ঠ শ্রেণিকক্ষ। আমাদের মূল ফোকাস হলো Active Learning-এর ওপর, যেখানে শিক্ষার্থীরা ক্রমাগত প্র্যাকটিস এবং সরাসরি hands-on mentorship-এর মাধ্যমে তাদের দক্ষতা ঝালাই করে। এতে করে প্রতিটি টেকনিক্যাল কাজ তাদের সহজাত অভ্যাসে পরিণত হয়।"
+              description="We believe the kitchen is the best classroom. Our main focus is on Active Learning, where students continuously hone their skills through practice and direct hands-on mentorship. This makes every technical task become an ingrained habit for them."
             />
             <ValueCard
               icon={<BookOpen className="w-10 h-10" />}
               title="Commercial Logic & Ethics"
-              description="একজন ভালো শেফকে অবশ্যই একজন দক্ষ ম্যানেজার হতে হয়। আমরা শিক্ষার্থীদের kitchen logistics, food safety, এবং পেশাদার নৈতিকতা সম্পর্কে গভীর ধারণা প্রদান করি, যা তাদের উচ্চ-চাপযুক্ত commercial catering environment-এর বাস্তব চ্যালেঞ্জগুলো মোকাবিলা করতে প্রস্তুত করে।"
+              description="A good chef must also be a skilled manager. We provide students with in-depth understanding of kitchen logistics, food safety, and professional ethics, preparing them to face the real challenges of a high-pressure commercial catering environment."
             />
             <ValueCard
               icon={<Globe className="w-10 h-10" />}
               title="A Global Mindset"
-              description="আমরা culinary arts-কে একটি বিশ্বজনীন ভাষা হিসেবে দেখি। আমাদের দর্শন হলো শিক্ষার্থীদের বিশ্বমঞ্চের জন্য প্রস্তুত করা, যেখানে আমাদের ঐতিহ্যবাহী বাঙালি রান্নার গর্বের সাথে মিশে থাকবে আন্তর্জাতিক মান; যা বিশ্বের যেকোনো প্রান্তের luxury hotels-এ কাজের জন্য অপরিহার্য।"
+              description="We see culinary arts as a universal language. Our philosophy is to prepare students for the global stage, where the pride of our traditional Bengali cuisine blends with international standards—essential for working in luxury hotels anywhere in the world."
             />
           </div>
         </div>
@@ -203,14 +202,14 @@ export default function AboutUs() {
                 The Experience
               </span>
               <h2 className="text-4xl font-serif font-bold text-gray-900">
-                প্রশিক্ষণের অভিজ্ঞতা
+                Training Experience
               </h2>
             </div>
           </div>
 
           <div className="">
             <p className="text-gray-600 text-lg leading-relaxed font-light">
-              BPSTI-এর ট্রেনিং মানেই একটি immersive experience, যা আপনাকে একদম প্রফেশনাল commercial kitchen-এর স্বাদ দেবে। আপনি ফাস্ট ফুডের Big 5 নিখুঁত করা শিখুন কিংবা পারফেক্ট latte তৈরির কৌশল; আমাদের ল্যাবগুলো আপনাকে একটি high-pressure, high-reward environment প্রদান করবে। এখানে আপনি শুধু রান্না শিখছেন না; বরং ইন্ডাস্ট্রি মাস্টারদের নির্দেশনায় আপনি শিখছেন কীভাবে একটি টিমকে lead করতে হয় এবং প্রতিকূল পরিবেশেও নিজেকে সেরা প্রমাণ করতে হয়।
+              Training at BPSTI is an immersive experience that gives you a taste of a fully professional commercial kitchen. Whether you learn to perfect the Big 5 of fast food or master the art of making the perfect latte, our labs provide you with a high-pressure, high-reward environment. Here, you're not just learning to cook; under the guidance of industry masters, you're learning how to lead a team and prove yourself even in adverse conditions.
             </p>
           </div>
 
@@ -259,12 +258,12 @@ export default function AboutUs() {
       <section className="py-24 bg-white">
         <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
           <div className="max-w-xl mb-16">
-            <ChefHat className="w-12 h-12 text-red-700  mb-6" />
+            <ChefHat className="w-12 h-12 text-red-700 mb-6" />
             <h2 className="text-4xl font-serif font-bold text-gray-900 mb-4">
               The Vision Behind the Flavor
             </h2>
             <p className="text-gray-600 text-lg leading-relaxed mb-8">
-              BPSTI-তে আমরা বিশ্বাস করি, একজন শেফ হওয়া মানে শুধু রেসিপি শেখা নয়; এটি হলো discipline, timing, এবং art of service-এ পারদর্শী হয়ে ওঠা।
+              At BPSTI, we believe being a chef isn't just about learning recipes; it's about mastering discipline, timing, and the art of service.
             </p>
           </div>
 
@@ -272,17 +271,17 @@ export default function AboutUs() {
             <ValueCard
               icon={<Target className="w-10 h-10" />}
               title="Technical Precision"
-              description="Knife skills থেকে শুরু করে temperature control; আমরা বিশ্বমানের কিচেনগুলোতে ব্যবহৃত প্রতিটি মৌলিক অভ্যাস আপনার মাঝে গড়ে তুলি।"
+              description="From knife skills to temperature control, we instill in you every fundamental practice used in world-class kitchens."
             />
             <ValueCard
               icon={<Lightbulb className="w-10 h-10" />}
               title="Career Strategy"
-              description="আমরা শুধু শিক্ষার্থীদের প্রশিক্ষণ দেই না, আমরা তাদের ক্যারিয়ারের রূপকার বা career architect হিসেবে কাজ করি। Language training এবং hotel placements-এর সমন্বয় ঘটিয়ে আমরা ক্লাসরুম এবং ইন্ডাস্ট্রির মধ্যকার দূরত্ব কমিয়ে আনি।"
+              description="We don't just train students; we work as their career architects. By coordinating language training and hotel placements, we reduce the distance between the classroom and the industry."
             />
             <ValueCard
               icon={<Globe className="w-10 h-10" />}
               title="Cultural Fusion"
-              description="Arabian delicacies থেকে শুরু করে International Cuisine; সবকিছু শেখানোর মাধ্যমে আমরা আমাদের স্টুডেন্টদের এমনভাবে প্রস্তুত করি যাতে তারা বিশ্বের যেকোনো কিচেনে আত্মবিশ্বাসের সাথে নেতৃত্ব দিতে পারে।"
+              description="From Arabian delicacies to International Cuisine, we prepare our students to confidently lead in any kitchen around the world."
             />
           </div>
         </div>
@@ -293,17 +292,17 @@ export default function AboutUs() {
         <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 text-center">
           <ChefHat className="w-12 h-12 text-red-500 mx-auto mb-6" />
           <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
-            আপনার প্রফেশনাল ক্যারিয়ারের পথে প্রথম কদমটি বাড়ান।
+            Take the first step towards your professional career.
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-10 font-light">
-            আমাদের কমিউনিটিতে যুক্ত হয়ে জেনে নিন আমাদের আগামী কোর্সগুলোর deadlines এবং সব লেটেস্ট আপডেট।
+            Join our community to learn about deadlines for our upcoming courses and all the latest updates.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-red-700 hover:bg-red-600 text-white font-bold py-4 px-12 uppercase tracking-widest text-xs transition-colors border border-red-700">
-              কোর্সগুলো দেখুন
+            <button className="bg-[#EA393A] hover:bg-red-600 text-white font-bold py-4 px-12 uppercase tracking-widest text-xs transition-colors border border-red-700">
+              View Courses
             </button>
             <button className="bg-transparent hover:bg-white hover:text-gray-900 text-white font-bold py-4 px-12 uppercase tracking-widest text-xs transition-colors border border-white/30">
-              অ্যাডমিশন টিমের সাথে কথা বলুন
+              Speak with Admissions Team
             </button>
           </div>
         </div>

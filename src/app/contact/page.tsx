@@ -42,7 +42,7 @@ const InfoItem: React.FC<{
 export default function ContactUs() {
   return (
     <div className="bg-white min-h-screen">
-      {/* HERO BANNER SECTION - Updated Bengali */}
+      {/* HERO BANNER SECTION - English */}
       <section className="relative h-[70vh] w-full flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
@@ -54,19 +54,19 @@ export default function ContactUs() {
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
         </div>
 
-        <div className="relative z-10 container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 w-full mt-16 ">
+        <div className="relative z-10 container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 w-full mt-16">
           <div className="max-w-3xl">
             <span className="block text-red-500 font-bold tracking-[0.25em] text-xs uppercase mb-3">
-              যোগাযোগ করুন
+              Contact Us
             </span>
             <h1 className="text-5xl md:text-7xl font-serif font-bold text-white leading-20 mb-8">
-              চলুন শুরু করি <br />
+              Let's begin <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 italic">
-                আপনার প্রফেশনাল জার্নি।
+                your professional journey.
               </span>
             </h1>
             <p className="text-xl md:text-2xl font-light text-gray-300 leading-relaxed max-w-2xl border-l-4 border-red-600 pl-6">
-              আমাদের culinary programs, job placements, অথবা ভর্তি সংক্রান্ত কোনো প্রশ্ন আছে কি? আপনার chef career-এর পরবর্তী ধাপে এগিয়ে যেতে আমাদের টিম আপনাকে প্রয়োজনীয় guidance দিতে সবসময় প্রস্তুত।
+              Have any questions about our culinary programs, job placements, or admissions? Our team is always ready to provide you with the necessary guidance to take the next step in your chef career.
             </p>
           </div>
         </div>
@@ -76,26 +76,26 @@ export default function ContactUs() {
       <section className="py-24 bg-white">
         <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-            {/* LEFT COLUMN: Contact Info - Updated Bengali */}
+            {/* LEFT COLUMN: Contact Info - English */}
             <div className="lg:col-span-5 space-y-12">
               <div>
                 <h2 className="text-3xl font-serif font-bold text-gray-900 mb-2">
                   Contact Details
                 </h2>
                 <p className="text-gray-500 text-sm leading-relaxed">
-                  BPSTI-এর সাথে যোগাযোগ করুন।
+                  Get in touch with BPSTI.
                 </p>
               </div>
 
               <div className="space-y-6">
                 <InfoItem
                   icon={<MapPin className="w-5 h-5" />}
-                  label="অফিস ঠিকানা"
-                  value="2nd floor, SA-23/Ka, Adarsha Nagar Rd (বাড্ডা লিঙ্ক রোডের বিপরীতে), Dhaka, Bangladesh, 1212"
+                  label="Office Address"
+                  value="2nd floor, SA-23/Ka, Adarsha Nagar Rd (Opposite Badda Link Road), Dhaka, Bangladesh, 1212"
                 />
                 <InfoItem
                   icon={<Phone className="w-5 h-5" />}
-                  label="সরাসরি অনুসন্ধান"
+                  label="Direct Inquiry"
                   value="01886-880993, 01796-853789, 01886-880996"
                   isLink
                   linkHref="tel:+8801886880993"
@@ -109,12 +109,12 @@ export default function ContactUs() {
                 />
               </div>
 
-              {/* Hours Box - Updated Bengali */}
+              {/* Hours Box - English */}
               <div className="bg-gray-50 border border-gray-200 p-6">
                 <div className="flex items-center gap-2 mb-4">
                   <Clock className="w-5 h-5 text-red-700" />
                   <h3 className="font-bold text-gray-900 uppercase tracking-widest text-xs">
-                    অফিস সময়সূচী
+                    Office Hours
                   </h3>
                 </div>
                 <div className="space-y-2 text-sm text-gray-600 font-light">
@@ -132,7 +132,7 @@ export default function ContactUs() {
               </div>
             </div>
 
-            {/* RIGHT COLUMN: Contact Form - Updated Bengali */}
+            {/* RIGHT COLUMN: Contact Form - English */}
             <div className="lg:col-span-7">
               <div className="bg-white border border-gray-200 p-8 md:p-12 relative">
                 {/* Decorative Top Line */}
@@ -142,7 +142,7 @@ export default function ContactUs() {
                   Send Us a Message
                 </h2>
                 <p className="text-gray-500 text-sm mb-8">
-                  নিচের ফর্মটি পূরণ করুন এবং আমাদের একজন career counselor আগামী ২৪ ঘণ্টার মধ্যে আপনার সাথে যোগাযোগ করবেন।
+                  Fill out the form below and one of our career counselors will get in touch with you within the next 24 hours.
                 </p>
 
                 <form className="space-y-6">
@@ -201,7 +201,7 @@ export default function ContactUs() {
                     <textarea
                       rows={5}
                       className="w-full bg-gray-50 border border-gray-200 p-3 focus:outline-none focus:border-red-700 focus:bg-white transition-all text-sm text-gray-900 font-light placeholder-gray-400"
-                      placeholder="আমরা আপনাকে কীভাবে সাহায্য করতে পারি?"
+                      placeholder="How can we help you?"
                     ></textarea>
                   </div>
 
@@ -216,7 +216,7 @@ export default function ContactUs() {
         </div>
       </section>
 
-      {/* CAMPUS VISIT SECTION - Updated Bengali */}
+      {/* CAMPUS VISIT SECTION - English */}
       <section className="bg-gray-50 py-24">
         <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
@@ -225,10 +225,10 @@ export default function ContactUs() {
                 Visit Us
               </span>
               <h2 className="text-4xl font-serif font-bold text-gray-900 mb-6">
-                সরাসরি আমাদের ক্যাম্পাস ঘুরে দেখুন।
+                Come see our campus in person.
               </h2>
               <p className="text-gray-600 font-light leading-relaxed mb-8">
-                BPSTI-এর অভিজ্ঞতা সশরীরে দেখার চেয়ে ভালো আর কোনো উপায় নেই। চলে আসুন আমাদের state-of-the-art kitchens পরিদর্শন করতে, দেখা করুন আমাদের master chef-এর সাথে এবং সরাসরি দেখুন কীভাবে আমাদের Active Learning philosophy কাজ করে। আমরা কাউন্সিলিং-এর জন্য প্রতি সোম থেকে শুক্রবার, সকাল ৯:০০ টা থেকে সন্ধ্যা ৬:০০ টা পর্যন্ত খোলা আছি।
+                There's no better way to experience BPSTI than in person. Come visit our state-of-the-art kitchens, meet our master chefs, and see firsthand how our Active Learning philosophy works. We are open for counseling from Monday to Friday, 9:00 AM to 6:00 PM.
               </p>
               <button className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-900 border-b border-gray-300 pb-1 hover:text-red-700 hover:border-red-700 transition-all">
                 Get Directions <ArrowRight className="w-4 h-4" />
@@ -254,18 +254,18 @@ export default function ContactUs() {
         </div>
       </section>
 
-      {/* BOTTOM CTA SECTION - Updated Bengali */}
+      {/* BOTTOM CTA SECTION - English */}
       <section className="py-20 bg-gray-900 text-white">
         <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 text-center">
           <h2 className="text-3xl md:text-4xl font-serif font-bold mb-8">
-            গ্লোবাল কিচেনে নিশ্চিত করুন আপনার উজ্জ্বল ভবিষ্যৎ।
+            Secure your bright future in global kitchens.
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button className="bg-red-700 hover:bg-red-600 text-white font-bold py-4 px-10 uppercase tracking-widest text-xs transition-colors">
-              প্রস্পেক্টাস ডাউনলোড করুন
+              Download Prospectus
             </button>
             <button className="bg-transparent hover:bg-white hover:text-gray-900 text-white font-bold py-4 px-10 uppercase tracking-widest text-xs transition-colors border border-white/30">
-              এখনই কল করুন
+              Call Now
             </button>
           </div>
         </div>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [
   {
     "id": 1,
@@ -97,4 +98,106 @@
     "tag": "Short Course",
     "image": "https://images.unsplash.com/photo-1466637574441-749b8f19452f?auto=format&fit=crop&w=800&q=80"
   }
+=======
+[
+  {
+    "id": 1,
+    "title": "Professional Chef Course",
+    "titleBn": "প্রফেশনাল কিচেনের শিল্পে হয়ে উঠুন পারদর্শী",
+    "certification": "Professional Culinary Diploma",
+    "duration": "৩ মাস",
+    "durationEn": "3 Months",
+    "type": "Diploma",
+    "price":"৪০,০০০",
+    "priceAlt": "৪৫,০০০",
+    "headline": "প্রফেশনাল কিচেনের শিল্পে হয়ে উঠুন পারদর্শী।",
+    "subHeadline": "এই intensive 3-month program আমাদের একটি flagship course, যা মূলত ডিজাইন করা হয়েছে যারা 4-star hotels-এ সিনিয়র রোল অথবা international careers গড়তে চান তাদের জন্য।",
+    "modules": [
+      {
+        "title": "Fundamental Knife Skills",
+        "description": "নিখুঁত কাট এবং কিচেন সেফটির ওপর পূর্ণ নিয়ন্ত্রণ।"
+      },
+      {
+        "title": "Global Cuisine Mastery",
+        "description": "কন্টিনেন্টাল, অ্যারাবিয়ান এবং প্যান-এশিয়ান খাবারের ওপর ইন-ডেপথ ট্রেনিং।"
+      },
+      {
+        "title": "The Big 5 Specialized",
+        "description": "পিজা, বার্গার, পাস্তা, স্যান্ডউইচ এবং বেকিংয়ের প্রফেশনাল টেকনিক।"
+      },
+      {
+        "title": "Kitchen Management",
+        "description": "কিচেন SOPs, food costing, inventory, এবং হাইজিন (HACCP) সংক্রান্ত ধারণা।"
+      },
+      {
+        "title": "Language & Soft Skills",
+        "description": "গ্লোবাল ক্যারিয়ারের জন্য ইন্টিগ্রেটেড ইংলিশ এবং ফরেন ল্যাঙ্গুয়েজ ট্রেনিং।"
+      }
+    ],
+    "highlights": [
+      {
+        "label": "Internship",
+        "description": "Pan Pacific Sonargaon, InterContinental এবং Radisson Blu-তে নিশ্চিত ৩ মাসের ইন্টার্নশিপ।"
+      },
+      {
+        "label": "Job Guarantee",
+        "description": "সফলভাবে কোর্স সম্পন্ন করার পর ১০০% প্লেসমেন্ট অ্যাসিস্ট্যান্স।"
+      },
+      {
+        "label": "Career Path",
+        "description": "Executive Chef, Sous Chef, অথবা International Catering Lead।"
+      }
+    ],
+    "tag": "Flagship",
+    "image": "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "id": 2,
+    "title": "Basic Short Professional Chef Course",
+    "titleBn": "আপনার Culinary স্কিলকে করুন আরও গতিশীল",
+    "certification": "Professional Certificate in Culinary Arts",
+    "duration": "৩০ দিন",
+    "durationEn": "30 Days",
+    "type": "Certificate",
+    "price": " ৩,৫০০",
+    "priceAlt": "৫,০০০ ",
+    "headline": "আপনার Culinary স্কিলকে করুন আরও গতিশীল।",
+    "subHeadline": "নতুন উদ্যোক্তা, শৌখিন রাঁধুনি অথবা যারা দ্রুত এন্ট্রি-লেভেল ক্যারিয়ার শুরু করতে চান তাদের জন্য এই ৩০ দিনের কোর্স।",
+    "modules": [
+      {
+        "title": "Essential Culinary Techniques",
+        "description": "হিট কন্ট্রোল, সিজনিং এবং প্রফেশনাল ইকুইপমেন্ট ব্যবহারের প্রাথমিক ধারণা।"
+      },
+      {
+        "title": "Commercial Fast Food Mastery",
+        "description": "পাস্তা, পিজা এবং গুরমে স্যান্ডউইচ তৈরির high-speed preparation কৌশল।"
+      },
+      {
+        "title": "Traditional Catering Basics",
+        "description": "বিরিয়ানি এবং লোকাল কমার্শিয়াল ক্যাটারিংয়ের ভিত্তি।"
+      },
+      {
+        "title": "Hygiene & Presentation",
+        "description": "ফুড সেফটি স্ট্যান্ডার্ড এবং প্রফেশনাল প্লেটিংয়ের নান্দনিকতা।"
+      }
+    ],
+    "highlights": [
+      {
+        "label": "Efficiency",
+        "description": "মাত্র ৩০ দিনে কয়েক মাসের ট্রেনিংয়ের সমান দক্ষতা অর্জন করুন।"
+      },
+      {
+        "label": "Entrepreneurial Focus",
+        "description": "Cloud kitchen বা ছোট রেস্টুরেন্ট শুরু করতে চাইলে এটি আইডিয়াল।"
+      },
+       {
+        "label": "Skill Certification",
+        "description": "দ্রুত চাকুরিতে যোগদানের জন্য নিজের দক্ষতাকে প্রমাণ করতে সংগ্রহ করুন প্রফেশনাল সার্টিফিকেট।"
+
+      }
+    ],
+    "tag": "Short Course",
+    "image": "https://images.unsplash.com/photo-1466637574441-749b8f19452f?auto=format&fit=crop&w=800&q=80"
+  }
+>>>>>>> 7e293a1d71a129fc898b0c0a820200e81a1a5a2d
 ]

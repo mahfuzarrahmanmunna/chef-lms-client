@@ -64,7 +64,7 @@ const CountrySelector: React.FC<{
       >
         <div className="flex items-center gap-2">
           <span className="text-xl leading-none">{selected.flag}</span>
-          <span className="text-sm font-bold text-gray-900 font-sans-luxury">
+          <span className="text-sm font-bold text-gray-900 ">
             {selected.code}
           </span>
         </div>
@@ -83,7 +83,7 @@ const CountrySelector: React.FC<{
               <input
                 type="text"
                 placeholder="Search country..."
-                className="w-full pl-9 pr-8 py-2 text-sm border border-gray-200 rounded focus:outline-none focus:border-red-700 font-sans-luxury"
+                className="w-full pl-9 pr-8 py-2 text-sm border border-gray-200 rounded focus:outline-none focus:border-red-700 "
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 onClick={(e) => e.stopPropagation()}
@@ -114,7 +114,7 @@ const CountrySelector: React.FC<{
                 >
                   <span className="text-lg">{country.flag}</span>
                   <div className="flex flex-col">
-                    <span className="text-sm font-bold text-gray-900 font-sans-luxury">
+                    <span className="text-sm font-bold text-gray-900 ">
                       {country.name}
                     </span>
                     <span className="text-xs text-gray-500">
@@ -239,10 +239,10 @@ export default function ContactCTA() {
       {/* Global Styles for Fonts (Same as previous component) */}
       <style jsx global>{`
         @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600&display=swap");
-        .font-serif-luxury {
+        . {
           font-family: "Playfair Display", serif;
         }
-        .font-sans-luxury {
+        . {
           font-family: "Manrope", sans-serif;
         }
 
@@ -257,10 +257,7 @@ export default function ContactCTA() {
         }
       `}</style>
 
-      <section
-        id="ctaCard"
-        className="py-24  bg-[#faf9f6] font-sans-luxury overflow-hidden"
-      >
+      <section id="ctaCard" className="pb-24  overflow-hidden">
         <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
           <div className="bg-white rounded-sm shadow-lg border border-gray-100 overflow-hidden">
             <div className="flex flex-col lg:flex-row">
@@ -271,10 +268,10 @@ export default function ContactCTA() {
                   <MapPin className="w-32 h-32 text-white" />
                 </div>
 
-                <span className="text-red-600 font-bold tracking-[0.3em] text-xs uppercase mb-4">
+                <span className="text-[#ea393a] font-bold tracking-[0.3em] text-xs uppercase mb-4">
                   Get In Touch
                 </span>
-                <h2 className="text-4xl lg:text-5xl font-serif-luxury font-bold mb-6 leading-tight">
+                <h2 className="text-4xl lg:text-5xl  font-bold mb-6 leading-tight">
                   Start Your Culinary Journey Today
                 </h2>
                 <p className="text-gray-400 font-light leading-relaxed mb-8">
@@ -285,21 +282,19 @@ export default function ContactCTA() {
 
                 <div className="space-y-6 border-t border-gray-800 pt-8 mt-auto">
                   <div className="flex items-start gap-4">
-                    <div className="bg-gray-800 p-3 rounded-full text-red-600">
+                    <div className="bg-gray-800 p-3 rounded-full text-[#ea393a]">
                       <Phone className="w-5 h-5" />
                     </div>
                     <div>
                       <p className="text-xs text-gray-500 uppercase tracking-wider font-bold mb-1">
                         Call Us
                       </p>
-                      <p className="text-lg font-serif-luxury">
-                        +880 1234 567890
-                      </p>
+                      <p className="text-lg ">+880 1886-880993</p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="bg-gray-800 p-3 rounded-full text-red-600">
+                    <div className="bg-gray-800 p-3 rounded-full text-[#ea393a]">
                       <MapPin className="w-5 h-5" />
                     </div>
                     <div>
@@ -307,7 +302,7 @@ export default function ContactCTA() {
                         Visit Us
                       </p>
                       <p className="text-gray-300 leading-snug">
-                        Gulshan Avenue, Dhaka 1212
+                        Badda Link Road , Dhaka 1212
                         <br />
                         Bangladesh
                       </p>
@@ -329,7 +324,7 @@ export default function ContactCTA() {
                       <input
                         type="text"
                         required
-                        className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:border-black focus:bg-white transition-all font-sans-luxury text-gray-900"
+                        className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:border-black focus:bg-white transition-all  text-gray-900"
                         placeholder="e.g. Rahim Ahmed"
                         value={formData.name}
                         onChange={(e) =>
@@ -349,7 +344,7 @@ export default function ContactCTA() {
                       <input
                         type="text"
                         required
-                        className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:border-black focus:bg-white transition-all font-sans-luxury text-gray-900"
+                        className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:border-black focus:bg-white transition-all  text-gray-900"
                         placeholder="House, Road, Area..."
                         value={formData.address}
                         onChange={(e) =>
@@ -380,7 +375,7 @@ export default function ContactCTA() {
                       <input
                         type="tel"
                         required
-                        className="flex-1 px-4 py-2 bg-white border-y border-r border-gray-200 rounded-r-md focus:outline-none focus:border-black transition-all font-sans-luxury text-gray-900"
+                        className="flex-1 px-4 py-2 bg-white border-y border-r border-gray-200 rounded-r-md focus:outline-none focus:border-black transition-all  text-gray-900"
                         placeholder="1XXXXXXXXXX"
                         value={formData.phone}
                         onChange={(e) =>
@@ -397,7 +392,7 @@ export default function ContactCTA() {
                     </label>
                     <select
                       required
-                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:border-black focus:bg-white transition-all font-sans-luxury text-gray-900 appearance-none cursor-pointer"
+                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:border-black focus:bg-white transition-all  text-gray-900 appearance-none cursor-pointer"
                       value={formData.program}
                       onChange={(e) =>
                         setFormData({ ...formData, program: e.target.value })
@@ -421,7 +416,7 @@ export default function ContactCTA() {
                   {/* Submit Button (Angel Shape) */}
                   <button
                     type="submit"
-                    className="w-full sm:w-auto mt-4 bg-black text-white px-10 py-4 font-bold uppercase tracking-widest text-xs hover:bg-red-700 transition-colors duration-300 angel-shape flex items-center justify-center gap-3 group z-0"
+                    className="w-full sm:w-auto mt-4 bg-black text-white px-10 py-4 font-bold uppercase tracking-widest text-xs hover:bg-[#EA393A] transition-colors duration-300 angel-shape flex items-center justify-center gap-3 group z-0"
                   >
                     <span>Submit Application</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

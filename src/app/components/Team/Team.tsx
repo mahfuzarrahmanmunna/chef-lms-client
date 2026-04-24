@@ -4,9 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Award, ChefHat } from "lucide-react";
 import ReviewSection from "../ReviewSection";
 
-
-
-/*  Types  */
+/* Types */
 interface TeamMember {
   id: number;
   name: string;
@@ -17,65 +15,65 @@ interface TeamMember {
   awards: string[];
 }
 
-/*  Data - Updated with Bengali content  */
+/* Data - English Translation */
 const teamData: TeamMember[] = [
   {
     id: 1,
-    name: "মোঃ তানভীর হোসেন",
-    role: "প্রধান নির্বাহী কর্মকর্তা",
+    name: "Md. Tanvir Hossain",
+    role: "Chief Executive Officer",
     specialty: "Visionary Founder",
     image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1000&auto=format&fit=crop",
-    bio: "BPSTI-এর driving force হিসেবে আমাদের CEO বাংলাদেশের vocational training সেক্টরকে বদলে দিতে অঙ্গীকারবদ্ধ। Industrial innovation এবং global partnerships-এর ওপর গুরুত্ব দিয়ে তিনি প্রতিটি স্টুডেন্টের জন্য 4-star hotel এবং international employment-এর সরাসরি পথ নিশ্চিত করছেন।",
+    bio: "As the driving force behind BPSTI, our CEO is committed to transforming Bangladesh's vocational training sector. Focusing on industrial innovation and global partnerships, he ensures every student has a direct path to 4-star hotels and international employment.",
     awards: ["Industrial Innovation Award 2023"]
   },
   {
     id: 2,
-    name: "মোঃ ফারহান আহমেদ",
-    role: "অপারেশনস পরিচালক",
+    name: "Md. Farhan Ahmed",
+    role: "Operations Director",
     specialty: "Strategic Lead",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=1000&auto=format&fit=crop",
-    bio: "আমাদের ট্রেনিং ফ্যাসিলিটির প্রতিদিনের শ্রেষ্ঠত্ব তদারকি করেন তিনি। আমাদের Active Learning labs এবং internship programs যেন hospitality industry-র সর্বোচ্চ professional standards বজায় রাখে, তা নিশ্চিত করাই তার মূল লক্ষ্য।",
+    bio: "He oversees the day-to-day excellence of our training facilities. His main goal is to ensure that our Active Learning labs and internship programs maintain the highest professional standards of the hospitality industry.",
     awards: ["Operational Excellence Award"]
   },
   {
     id: 3,
-    name: "মোঃ রকিবুল ইসলাম",
-    role: "আন্তর্জাতিক সম্পর্ক প্রধান",
+    name: "Md. Rakibul Islam",
+    role: "Head of International Relations",
     specialty: "Career Strategist",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop",
-    bio: "Global mobility বিশেষজ্ঞ হিসেবে আমাদের Head of International Relations মূলত language integration programs এবং Europe ও Middle East-এ ক্যারিয়ার গড়তে ইচ্ছুক স্টুডেন্টদের overseas job placements সমন্বয় করেন।",
+    bio: "As a global mobility specialist, our Head of International Relations primarily coordinates language integration programs and overseas job placements for students aspiring to build careers in Europe and the Middle East.",
     awards: ["Global Partnership Excellence"]
   },
   {
     id: 4,
-    name: "মি. আরিফুল ইসলাম",
-    role: "ক্যারিয়ার প্লেসমেন্ট প্রধান",
+    name: "Mr. Ariful Islam",
+    role: "Head of Career Placement",
     specialty: "Industry Liaison",
     image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1000&auto=format&fit=crop",
-    bio: "স্টুডেন্ট এবং ইন্ডাস্ট্রির মধ্যে সেতুবন্ধন। তিনি ব্যক্তিগতভাবে Pan Pacific Sonargaon, InterContinental, এবং Radisson Blu-এর মতো 3 & 4-star hotels-এর সাথে সুসম্পর্ক বজায় রাখেন, যাতে প্রতিটি internship এবং জব প্লেসমেন্ট আমাদের স্টুডেন্টদের ক্যারিয়ার গোল পূরণ করে।",
+    bio: "The bridge between students and the industry. He personally maintains strong relationships with 3 & 4-star hotels like Pan Pacific Sonargaon, InterContinental, and Radisson Blu, ensuring every internship and job placement fulfills our students' career goals.",
     awards: ["Industry Relations Leadership"]
   },
   {
     id: 5,
-    name: "মিস সাদিয়া সুলতানা",
-    role: "একাডেমিক এক্সিলেন্স পরিচালক",
+    name: "Ms. Sadiya Sultana",
+    role: "Director of Academic Excellence",
     specialty: "Curriculum Strategist",
     image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000&auto=format&fit=crop",
-    bio: "আমাদের ট্রেনিং প্রোগ্রামগুলোকে আধুনিক রাখতে তিনি দায়বদ্ধ। Big 5 fast food mastery থেকে শুরু করে International Cuisine; প্রতিটি সেগমেন্ট যেন global professional certification-এর মানদণ্ড অতিক্রম করে, তা তিনি নিশ্চিত করেন।",
+    bio: "She is responsible for keeping our training programs modern. From Big 5 fast food mastery to International Cuisine, she ensures every segment exceeds global professional certification standards.",
     awards: ["Curriculum Innovation Award"]
   },
   {
     id: 6,
-    name: "মি. কামাল হোসেন",
-    role: "স্টুডেন্ট সাকসেস কোঅর্ডিনেটর",
+    name: "Mr. Kamal Hossain",
+    role: "Student Success Coordinator",
     specialty: "Welfare Lead",
     image: "https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=1000&auto=format&fit=crop",
-    bio: "প্রত্যেকটি শিক্ষার্থীর সফলতার কারিগর। আমাদের fast-track programs-এ ভর্তি থেকে শুরু করে overseas language training এবং international career-এ পদার্পণ পর্যন্ত সব ধরনের student support তিনি তদারকি করেন।",
+    bio: "The architect of every student's success. From enrollment in our fast-track programs to overseas language training and embarking on international careers, he oversees all types of student support.",
     awards: ["Student Welfare Excellence"]
   }
 ];
 
-/*  Sub-Component: Professional Team Card  */
+/* Sub-Component: Professional Team Card */
 const TeamCard: React.FC<{ member: TeamMember; index: number }> = ({
   member,
   index,
@@ -175,7 +173,7 @@ const TeamCard: React.FC<{ member: TeamMember; index: number }> = ({
   );
 };
 
-/*  Main Component  */
+/* Main Component */
 export default function Team() {
   const [team, setTeam] = useState<TeamMember[]>([]);
   const [loading, setLoading] = useState(true);
@@ -209,14 +207,14 @@ export default function Team() {
   return (
     <section className="py-24 bg-white">
       <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
-        {/* Section Header - Left Aligned Editorial Style - Updated Bengali */}
+        {/* Section Header - Left Aligned Editorial Style - English */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-16 border-b border-gray-200 pb-8">
           <div className="max-w-2xl">
             <div className="flex items-center gap-4 mb-3">
               <div className="w-1 h-8 bg-red-700"></div>
               <span className="text-red-700 font-bold tracking-[0.2em] text-xs uppercase flex items-center gap-2">
                 <ChefHat className="w-4 h-4" />
-             Meet the BPSTI Leaders
+                Meet the BPSTI Leaders
               </span>
             </div>
             <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900">
@@ -224,7 +222,7 @@ export default function Team() {
             </h2>
           </div>
           <p className="text-gray-500 text-sm max-w-md mt-6 md:mt-0 font-light leading-relaxed">
-            পরিচয় হয়ে নিন সেইসব strategic minds-দের সাথে, যারা culinary education এবং global career success-এর মধ্যকার দূরত্ব ঘুচাতে নিরলস কাজ করে যাচ্ছেন।
+            Get to know the strategic minds who are tirelessly working to bridge the gap between culinary education and global career success.
           </p>
         </div>
 
@@ -236,8 +234,7 @@ export default function Team() {
         </div>
       </div>
 
-<ReviewSection></ReviewSection>
+      <ReviewSection />
     </section>
-    
   );
 }

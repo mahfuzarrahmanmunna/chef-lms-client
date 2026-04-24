@@ -86,7 +86,7 @@ const StatsBar: React.FC<{ delay: number }> = ({ delay }) => {
           100%
         </span>
         <span className="text-gray-500 text-[10px] uppercase tracking-widest font-bold mt-1">
-          ইন্টার্নশিপ সাপোর্ট
+          INTERNSHIP SUPPORT
         </span>
       </div>
 
@@ -96,7 +96,7 @@ const StatsBar: React.FC<{ delay: number }> = ({ delay }) => {
           3-4
         </span>
         <span className="text-gray-500 text-[10px] uppercase tracking-widest font-bold mt-1">
-          স্টার হোটেলে প্লেসমেন্ট
+          STAR HOTEL PLACEMENT
         </span>
       </div>
 
@@ -106,7 +106,7 @@ const StatsBar: React.FC<{ delay: number }> = ({ delay }) => {
           No.1
         </span>
         <span className="text-gray-500 text-[10px] uppercase tracking-widest font-bold mt-1">
-          গ্লোবাল ক্যারিয়ার পাথওয়ে
+          GLOBAL CAREER PATHWAY
         </span>
       </div>
     </div>
@@ -170,7 +170,7 @@ const Banner: React.FC = () => {
                 opacity: 0,
               }}
             >
-              আপনার Culinary ক্যারিয়ার শুরু হোক এখানেই।
+              Start Your Culinary Career Here.
             </h1>
 
             {/* Description */}
@@ -181,19 +181,19 @@ const Banner: React.FC = () => {
                 opacity: 0,
               }}
             >
-              Global cuisine master করুন আমাদের expert training-এর মাধ্যমে। সাথে থাকছে guaranteed internships দেশের সবচাইতে prestigious hotels-এ, যেমন: Pan Pacific Sonargaon, InterContinental, এবং Radisson Blu.
+              Master global cuisine with our expert training. Get guaranteed internships at the most prestigious hotels in the country, such as: Pan Pacific Sonargaon, InterContinental, and Radisson Blu.
             </p>
 
             {/* Buttons */}
             <div className="flex flex-col sm:flex-row gap-6">
               <MinimalButton
-                text="আমাদের প্রোগ্রামগুলো দেখুন"
+                text="View Our Programs"
                 variant="filled"
                 delay={mounted ? 0.8 : 0}
                 onClick={scrollToCourses}
               />
               <MinimalButton
-                text="আজই এনরোল করুন"
+                text="Enroll Today"
                 variant="outline"
                 delay={mounted ? 0.9 : 0}
                 onClick={scrollToCTA}

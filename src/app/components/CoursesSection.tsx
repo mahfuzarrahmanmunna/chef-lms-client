@@ -88,11 +88,11 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
           </p>
         </div>
 
-        {/* Modules */}
-        <div>
-          <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-3">
-            মূল মডিউলসমূহ
-          </p>
+      {/* Modules */}
+<div>
+  <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-3">
+    Core Modules
+  </p>
           <ul className="space-y-2">
             {course.modules.map((mod, i) => (
               <li key={i} className="flex items-start gap-2">
@@ -108,11 +108,11 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
           </ul>
         </div>
 
-        {/* Highlights */}
-        <div className={`p-4 border-l-4 ${isFlagship ? "border-red-700 bg-red-50" : "border-gray-300 bg-gray-50"}`}>
-          <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-3">
-            আমাদের বিশেষত্ব
-          </p>
+      {/* Highlights */}
+<div className={`p-4 border-l-4 ${isFlagship ? "border-red-700 bg-red-50" : "border-gray-300 bg-gray-50"}`}>
+  <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-3">
+    Our Specialties
+  </p>
           <ul className="space-y-2">
             {course.highlights.map((h, i) => (
               <li key={i} className="flex items-start gap-2 text-sm">
@@ -131,9 +131,10 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
           <div>
             {course.price ? (
               <>
-                <p className="text-[10px] text-gray-400 uppercase tracking-wider font-bold mb-0.5">
-                  কোর্স ফি
-                </p>
+             
+<p className="text-[10px] text-gray-400 uppercase tracking-wider font-bold mb-0.5">
+  Course Fee
+</p>
                 <p className="text-xl font-serif font-bold text-gray-900">
                   ৳{course.price.toLocaleString()}
                   {course.priceAlt && (
@@ -145,22 +146,23 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
               </>
             ) : (
               <p className="text-sm font-semibold text-gray-500">
-                যোগাযোগ করুন
+                Contact Us
               </p>
             )}
           </div>
 
           
-         <a    href={`/single-course-details/${course.id}`}
-            className={`flex items-center gap-1.5 font-bold text-xs uppercase tracking-widest px-5 py-3 transition-colors ${
-              isFlagship
-                ? "bg-red-700 hover:bg-red-800 text-white"
-                : "bg-gray-900 hover:bg-gray-700 text-white"
-            }`}
-          >
-            বিস্তারিত দেখুন
-            <ChevronRight className="w-3.5 h-3.5" />
-          </a>
+      <a
+  href={`/single-course-details/${course.id}`}
+  className={`flex items-center gap-1.5 font-bold text-xs uppercase tracking-widest px-5 py-3 transition-colors ${
+    isFlagship
+      ? "bg-red-700 hover:bg-red-800 text-white"
+      : "bg-gray-900 hover:bg-gray-700 text-white"
+  }`}
+>
+  View Details
+  <ChevronRight className="w-3.5 h-3.5" />
+</a>
         </div>
       </div>
     </div>
@@ -198,17 +200,19 @@ export default function CoursesSection() {
 
         {/* Section Header */}
         <div className="mb-12">
-          <p className="text-[11px] p-4 font-bold uppercase tracking-widest text-red-700 mb-2">
-            আমাদের কোর্সসমূহ
-          </p>
-          <h2 className="text-3xl md:text-5xl font-serif font-bold text-gray-900 leading-tight mb-4">
-            আপনার লক্ষ্য অনুযায়ী <br className="hidden md:block" />
-            সঠিক কোর্সটি বেছে নিন।
-          </h2>
-          <p className="text-sm text-gray-500 max-w-xl leading-relaxed">
-            আমাদের প্রতিটি কোর্স ইন্ডাস্ট্রি-স্ট্যান্ডার্ড কারিকুলাম অনুযায়ী
-            ডিজাইন করা হয়েছে — শুরু থেকে শীর্ষে পৌঁছানোর জন্য।
-          </p>
+        {/* Section Header */}
+<p className="text-[11px] p-4 font-bold uppercase tracking-widest text-red-700 mb-2">
+  Our Courses
+</p>
+
+<h2 className="text-3xl md:text-5xl font-serif font-bold text-gray-900 leading-tight mb-4">
+  Choose the right course <br className="hidden md:block" />
+  based on your goals.
+</h2>
+
+<p className="text-sm text-gray-500 max-w-xl leading-relaxed">
+  Each of our courses is designed with industry-standard curriculum — helping you grow from beginner to expert.
+</p>
         </div>
 
         {/* Cards Grid */}

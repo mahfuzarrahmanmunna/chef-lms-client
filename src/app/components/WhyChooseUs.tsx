@@ -44,22 +44,22 @@ const features = [
   {
     icon: <InternshipIcon />,
     text: "Guaranteed Internships",
-    desc: "আমরা শুধু শেখাই না, কর্মসংস্থানের ব্যবস্থা করি। প্রতিটি স্টুডেন্ট পাচ্ছে prestigious 3 and 4-star hotels-এ real-world experience অর্জনের জন্য নিশ্চিত internship সুযোগ।",
+    desc: "We don't just teach, we arrange employment. Every student gets guaranteed internship opportunities to gain real-world experience at prestigious 3 and 4-star hotels.",
   },
   {
     icon: <LanguageIcon />,
     text: "Language Integration",
-    desc: "যারা Europe, Middle East বা তার বাইরে abroad chef careers গড়ার স্বপ্ন দেখছেন, তাদের জন্য আমাদের curriculum-এ থাকছে বিশেষ language training যা আপনার communication gap দূর করবে।",
+    desc: "For those dreaming of building abroad chef careers in Europe, Middle East or beyond, our curriculum includes specialized language training that will bridge your communication gap.",
   },
   {
     icon: <SpeedIcon />,
     text: "Fast-Track Learning",
-    desc: "আপনার সুবিধামতো বেছে নিন আমাদের intensive 3-month professional programs অথবা দ্রুত স্কিল অর্জনের জন্য 30-day basic short courses।",
+    desc: "Choose at your convenience our intensive 3-month professional programs or 30-day basic short courses for quick skill acquisition.",
   },
   {
     icon: <CertificateIcon />,
     text: "Professional Certification",
-    desc: "এমন একটি credential নিয়ে গ্র্যাজুয়েশন সম্পন্ন করুন যা hospitality industry-তে স্বীকৃত; যা দেশে এবং abroad; উভয় জায়গার কিচেনেই আপনার জন্য সাফল্যের দরজা খুলে দেবে।",
+desc: "Graduate with a credential recognized in the hospitality industry that will open doors to success in kitchens both domestically and abroad.",
   },
 ];
 

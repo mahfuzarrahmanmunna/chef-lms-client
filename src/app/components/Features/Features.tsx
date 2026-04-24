@@ -2,7 +2,7 @@
 
 import React from "react";
 import { DollarSign, MapPin, TrendingUp, Award, Carrot } from "lucide-react";
-import HeroSection from "../HeroSection";
+import WhyChooseUs from "../WhyChooseUs";
 
 /*  Keyframes & Fonts  */
 const keyframes = `
@@ -79,7 +79,7 @@ export default function Features() {
             </div>
 
             {/* Cards Grid */}
-          <HeroSection></HeroSection>
+          <WhyChooseUs></WhyChooseUs>
 
             {/* Spacer to ensure smooth scroll out of the sticky area */}
             <div className="h-32 flex items-center justify-center mt-12">

@@ -177,11 +177,11 @@ export default function Recipes() {
   if (error) {
     return (
       <div className="py-20 text-center px-6">
-        <div className="inline-block p-4 rounded-full bg-red-50 text-red-600 mb-4">
+        <div className="inline-block p-4 rounded-full bg-red-50 text-[#ea393a] mb-4">
           <Utensils className="w-8 h-8" />
         </div>
         <h3 className="text-lg font-bold text-gray-900 mb-2">Oops!</h3>
-        <p className="text-red-600">{error}</p>
+        <p className="text-[#ea393a]">{error}</p>
       </div>
     );
   }

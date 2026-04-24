@@ -7,11 +7,11 @@ import { Award, Star, Quote, MapPin, Calendar } from "lucide-react";
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Raleway:wght@300;400;500;600&display=swap');
 
-  .font-serif-luxury {
+  . {
     font-family: 'Playfair Display', serif;
   }
   
-  .font-sans-luxury {
+  . {
     font-family: 'Raleway', sans-serif;
   }
 
@@ -68,7 +68,7 @@ const StatCard = ({ label, value, icon }: StatCardProps) => (
     <div className="angel-shape bg-gray-50 p-4 h-full border border-gray-100 group-hover:bg-[#faf9f6] transition-colors">
       <div className="flex items-center justify-between mb-2">
         <div className="text-[#D4AF37]">{icon}</div>
-        <span className="text-3xl font-serif-luxury font-bold text-gray-900">
+        <span className="text-3xl  font-bold text-gray-900">
           {value}
         </span>
       </div>
@@ -87,7 +87,7 @@ export default function MasterChef() {
         {styles}
       </style>
 
-      <section className="relative py-24 bg-[#faf9f6] font-sans-luxury overflow-hidden">
+      <section className="relative py-24 bg-[#faf9f6]  overflow-hidden">
         {/* Decorative Background Elements */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#D4AF37]/5 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2" />
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-gray-200/50 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2" />
@@ -98,10 +98,10 @@ export default function MasterChef() {
             <span className="inline-block py-1 px-3 border border-[#D4AF37] text-[#D4AF37] text-[10px] font-bold uppercase tracking-[0.3em] mb-4">
               Meet The Visionary
             </span>
-            <h2 className="text-5xl md:text-7xl font-serif-luxury font-bold text-gray-900 mb-2">
+            <h2 className="text-5xl md:text-7xl  font-bold text-gray-900 mb-2">
               {chefData.name}
             </h2>
-            <p className="text-lg text-gray-600 italic font-serif-luxury">
+            <p className="text-lg text-gray-600 italic ">
               {chefData.role}
             </p>
           </div>
@@ -123,7 +123,7 @@ export default function MasterChef() {
 
                   {/* Floating Signature Tag */}
                   <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
-                    <p className="font-serif-luxury text-white text-xl italic opacity-90">
+                    <p className=" text-white text-xl italic opacity-90">
                       {chefData.signature}
                     </p>
                   </div>
@@ -136,7 +136,7 @@ export default function MasterChef() {
               {/* Quote Block */}
               <div className="relative pl-8 border-l-2 border-[#D4AF37]">
                 <Quote className="absolute top-0 left-0 -translate-x-1/2 -translate-y-2 text-[#D4AF37] w-6 h-6 bg-[#faf9f6] p-1" />
-                <p className="text-2xl md:text-3xl font-serif-luxury text-gray-800 italic leading-relaxed mb-6">
+                <p className="text-2xl md:text-3xl  text-gray-800 italic leading-relaxed mb-6">
                   &ldquo;{chefData.quote}&ldquo;
                 </p>
               </div>

@@ -39,7 +39,7 @@ export default function RegisterPage() {
     const result = await register(form.name, form.email, form.password, form.role);
     
     if (result.success) {
-      router.push('/login');
+      router.push("/signin");
     } else {
       setError(result.error || 'Registration failed');
     }
@@ -54,7 +54,7 @@ export default function RegisterPage() {
         <p className="text-center text-gray-600 mb-8">Join our learning community</p>
         
         {error && (
-          <div className="bg-red-50 text-red-600 p-3 rounded-lg mb-4 text-sm">
+          <div className="bg-red-50 text-[#ea393a] p-3 rounded-lg mb-4 text-sm">
             {error}
           </div>
         )}
@@ -137,7 +137,7 @@ export default function RegisterPage() {
         
         <p className="text-center mt-6 text-sm text-gray-600">
           Already have an account?{' '}
-          <Link href="/login" className="text-indigo-600 hover:underline font-medium">
+          <Link href="/signin" className="text-indigo-600 hover:underline font-medium">
             Login here
           </Link>
         </p>

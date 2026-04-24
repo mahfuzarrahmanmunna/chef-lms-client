@@ -10,8 +10,8 @@ const globalStyles = `
   /* Relying on Layout for Allura, but ensuring Serif/Sans here for fallback */
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600&display=swap');
 
-  .font-serif-luxury { font-family: 'Playfair Display', serif; }
-  .font-sans-luxury { font-family: 'Manrope', sans-serif; }
+  . { font-family: 'Playfair Display', serif; }
+  . { font-family: 'Manrope', sans-serif; }
 
   /* The Angel Shape (Cut Bottom-Right - More Aggressive Cut for Modern Look) */
   .angel-shape {
@@ -57,7 +57,7 @@ export default function FeatureCourse() {
                   <span className="text-[10px] uppercase tracking-[0.2em] text-gray-500 font-bold mb-1">
                     Exclusive
                   </span>
-                  <span className="font-serif-luxury text-2xl font-bold text-gray-900 italic">
+                  <span className=" text-2xl font-bold text-gray-900 italic">
                     Top Pick
                   </span>
                 </div>
@@ -71,14 +71,14 @@ export default function FeatureCourse() {
             <div className="lg:col-span-7 flex flex-col justify-center order-1 lg:order-2 lg:pl-10">
               {/* Pre-Header */}
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-8 h-[1px] bg-red-700"></div>
-                <span className="text-red-700 font-sans-luxury font-bold tracking-[0.25em] text-[10px] uppercase">
+                <div className="w-8 h-[1px] bg-[#EA393A]"></div>
+                <span className="text-red-700  font-bold tracking-[0.25em] text-[10px] uppercase">
                   Premium Promotion
                 </span>
               </div>
 
               {/* Main Title */}
-              <h2 className="text-5xl md:text-6xl font-serif-luxury font-bold text-gray-900 mb-2 leading-[1.1]">
+              <h2 className="text-5xl md:text-6xl  font-bold text-gray-900 mb-2 leading-[1.1]">
                 Professional Chef Course
               </h2>
 
@@ -95,7 +95,7 @@ export default function FeatureCourse() {
                   <span className="block text-xs text-gray-500 font-bold uppercase tracking-widest mb-1">
                     Full Package Price
                   </span>
-                  <span className="text-4xl font-serif-luxury font-bold text-gray-900">
+                  <span className="text-4xl  font-bold text-gray-900">
                     Tk. 45,000
                   </span>
                 </div>
@@ -110,7 +110,7 @@ export default function FeatureCourse() {
                     <span className="text-xs text-gray-400 font-bold uppercase">
                       Duration
                     </span>
-                    <span className="text-lg font-serif-luxury font-bold">
+                    <span className="text-lg  font-bold">
                       3 Months
                     </span>
                   </div>
@@ -118,7 +118,7 @@ export default function FeatureCourse() {
               </div>
 
               {/* Description */}
-              <p className="text-gray-600 font-sans-luxury font-light leading-relaxed mb-10 text-lg border-l-2 border-red-100 pl-6">
+              <p className="text-gray-600  font-light leading-relaxed mb-10 text-lg border-l-2 border-red-100 pl-6">
                 This comprehensive bundle includes professional chef courses
                 along with specialized language training, specifically designed
                 for students preparing to go abroad.
@@ -147,7 +147,7 @@ export default function FeatureCourse() {
               {/* CTA Button - High Contrast */}
               <Link
                 href="/apply"
-                className="group inline-flex items-center gap-3 px-10 py-4 bg-black text-white font-sans-luxury font-bold tracking-[0.2em] text-xs uppercase transition-all duration-300 hover:bg-red-700 hover:shadow-xl hover:shadow-red-700/30 angel-btn"
+                className="group inline-flex items-center gap-3 px-10 py-4 bg-black text-white  font-bold tracking-[0.2em] text-xs uppercase transition-all duration-300 hover:bg-[#EA393A] hover:shadow-xl hover:shadow-red-700/30 angel-btn"
               >
                 Enroll Now
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -171,7 +171,7 @@ const FeatureItem: React.FC<{ icon: React.ReactNode; text: string }> = ({
       <div className="w-10 h-10 border border-gray-200 flex items-center justify-center text-gray-800 bg-white transition-all group-hover:border-red-700 group-hover:text-red-700">
         {icon}
       </div>
-      <span className="text-gray-700 font-sans-luxury font-medium group-hover:text-red-700 transition-colors">
+      <span className="text-gray-700  font-medium group-hover:text-red-700 transition-colors">
         {text}
       </span>
      

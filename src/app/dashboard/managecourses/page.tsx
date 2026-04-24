@@ -4,14 +4,23 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { useAuth } from "@/hooks/useAuth";
-import { useForm } from "react-hook-form";
 import { unstable_noStore as noStore } from "next/cache";
+import {
+  Trash2,
+  Edit,
+  Image as ImageIcon,
+  CheckCircle,
+  XCircle,
+  MoreHorizontal,
+} from "lucide-react";
 
 // Force dynamic rendering
 export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
 
-interface CourseFormInputs {
+// Interface updated to match API response (id instead of _id)
+interface Course {
+  id: string;
   title: string;
   type: "Professional" | "Short Course";
   description: string;
@@ -23,6 +32,7 @@ interface CourseFormInputs {
   city: string;
   image: string;
   hasCertificate: boolean;
+  createdAt?: string;
 }
 
 interface Toast {
@@ -30,12 +40,12 @@ interface Toast {
   type: "success" | "error";
 }
 
-// Shared Styles for Luxury Branding
+// Shared Styles for Luxury Branding (Identical to Add Course)
 const globalStyles = `
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600&display=swap');
 
-  .font-serif-luxury { font-family: 'Playfair Display', serif; }
-  .font-sans-luxury { font-family: 'Manrope', sans-serif; }
+  .font-serif { font-family: 'Playfair Display', serif; }
+  . { font-family: 'Manrope', sans-serif; }
 
   /* The Angel Shape */
   .angel-shape {
@@ -43,50 +53,47 @@ const globalStyles = `
   }
 `;
 
-export default function AddCoursePage() {
+export default function ManageCoursesPage() {
   noStore();
 
   const { user, loading: authLoading, isAdmin } = useAuth();
   const router = useRouter();
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors, isSubmitting },
-    reset,
-  } = useForm<CourseFormInputs>({
-    defaultValues: {
-      title: "",
-      type: "Short Course",
-      description: "",
-      price: 0,
-      oldPrice: 0,
-      currency: "৳",
-      duration: "",
-      region: "Local",
-      city: "",
-      image: "",
-      hasCertificate: false,
-    },
-  });
-
+  const [courses, setCourses] = useState<Course[]>([]);
+  const [loading, setLoading] = useState(true);
   const [toast, setToast] = useState<Toast | null>(null);
-  const [thumbError, setThumbError] = useState<boolean>(false);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
 
-  const watchedImage = watch("image");
-  const watchedType = watch("type");
-
+  // --- AUTH CHECK ---
   useEffect(() => {
     if (!authLoading) {
       if (!user) {
-        router.push("/login");
+        router.push("/signin");
       } else if (!isAdmin) {
         router.push("/");
       }
     }
   }, [user, authLoading, isAdmin, router]);
 
+  // --- FETCH COURSES ---
+  const fetchCourses = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get("/api/courses");
+      setCourses(response.data);
+    } catch (error) {
+      console.error("Failed to fetch courses", error);
+      showToast("Failed to load courses.", "error");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (user && isAdmin) fetchCourses();
+  }, [user, isAdmin]);
+
+  // --- TOAST LOGIC ---
   const showToast = (message: string, type: "success" | "error") => {
     setToast({ message, type });
     if (type === "success") {
@@ -94,28 +101,35 @@ export default function AddCoursePage() {
     }
   };
 
-  const onSubmit = async (data: CourseFormInputs) => {
-    setToast(null);
+  // --- DELETE COURSE ---
+  const handleDelete = async (id: string) => {
+    if (
+      !confirm(
+        "Are you sure you want to delete this course? This action cannot be undone.",
+      )
+    )
+      return;
+
+    setDeletingId(id);
     try {
-      await axios.post("/api/courses", data);
-      showToast("Course added successfully!", "success");
-      reset();
-      setTimeout(() => {
-        router.push("/dashboard/managecourses");
-      }, 2000);
+      // The API expects the string ID
+      await axios.delete(`/api/courses/${id}`);
+      showToast("Course deleted successfully.", "success");
+      setCourses((prev) => prev.filter((c) => c.id !== id)); // Filter by 'id'
     } catch (error: any) {
       console.error(error);
-      if (error.response?.status === 401) showToast("Unauthorized.", "error");
-      else if (error.response?.status === 403) showToast("Forbidden.", "error");
-      else showToast("Failed to add course.", "error");
+      showToast("Failed to delete course.", "error");
+    } finally {
+      setDeletingId(null);
     }
   };
 
-  useEffect(() => {
-    if (watchedImage) setThumbError(false);
-  }, [watchedImage]);
+  // --- REDIRECT TO EDIT ---
+  const handleEdit = (id: string) => {
+    router.push(`/dashboard/editcourses?id=${id}`);
+  };
 
-  if (authLoading) {
+  if (authLoading || (!user && !authLoading)) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#faf9f6]">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-black"></div>
@@ -131,357 +145,168 @@ export default function AddCoursePage() {
         {globalStyles}
       </style>
 
-      <div className="min-h-screen bg-[#faf9f6] font-sans-luxury text-gray-900 p-4 md:p-8">
+      <div className="min-h-screen bg-[#faf9f6]  text-gray-900 p-4 md:p-8">
         {/* Header Section - Luxury Serif Font */}
-        <div className="max-w-6xl mx-auto mb-8 flex items-center justify-between border-b border-gray-200 pb-6">
+        <div className="max-w-7xl mx-auto mb-8 flex items-center justify-between border-b border-gray-200 pb-6">
           <div>
-            <h1 className="text-3xl md:text-4xl font-serif-luxury font-bold text-gray-900 tracking-tight">
-              Add New Course
+            <h1 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 tracking-tight">
+              Manage Courses
             </h1>
             <p className="text-sm text-gray-500 mt-2 font-medium tracking-wide">
-              Create a new learning module for students.
+              View, edit, or remove available courses.
             </p>
           </div>
           <button
-            onClick={() => router.back()}
-            className="text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-red-700 transition-colors"
+            onClick={() => router.push("/dashboard/addcourses")}
+            className="px-6 py-3 text-xs font-bold uppercase tracking-[0.2em] text-white bg-black hover:bg-[#EA393A] transition-all shadow-md angel-shape flex items-center gap-2"
           >
-            Cancel
+            Add New
+            <span className="text-lg leading-none">+</span>
           </button>
         </div>
 
-        {/* Main Layout: 2/3 Content, 1/3 Sidebar */}
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-10">
-          {/* LEFT COLUMN: Main Details */}
-          <div className="lg:col-span-2 space-y-8">
-            {/* Card 1: General Information */}
-            <div className="bg-white border border-gray-200 rounded-none shadow-sm p-8 relative overflow-hidden">
-              {/* Decorative Red Line */}
-              <div className="absolute top-0 left-0 w-1 h-full bg-red-700"></div>
-
-              <div className="mb-8">
-                <h2 className="text-2xl font-serif-luxury font-bold text-gray-900 mb-1">
-                  General Information
-                </h2>
-                <p className="text-xs text-gray-400 uppercase tracking-widest">
-                  Basic Details
-                </p>
-              </div>
-
-              <div className="space-y-6">
-                {/* Title */}
-                <div className="group">
-                  <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">
-                    Course Title
-                  </label>
-                  <input
-                    {...register("title", { required: "Title is required" })}
-                    type="text"
-                    placeholder="e.g. Advanced Pastry Arts"
-                    className={`w-full text-sm font-medium bg-[#faf9f6] border-b-2 border-gray-200 py-3 px-2 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-red-700 transition-all ${errors.title ? "border-red-300" : ""}`}
-                  />
-                  {errors.title && (
-                    <p className="text-xs text-red-700 mt-2 font-medium">
-                      {errors.title.message}
-                    </p>
-                  )}
-                </div>
-
-                {/* Type Selection - Pill Style */}
-                <div>
-                  <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">
-                    Course Type
-                  </label>
-                  <div className="grid grid-cols-2 gap-4">
-                    {["Professional", "Short Course"].map((type) => (
-                      <label
-                        key={type}
-                        className="cursor-pointer relative group"
-                      >
-                        <input
-                          {...register("type")}
-                          type="radio"
-                          value={type}
-                          className="peer sr-only"
-                        />
-                        <div
-                          className={`text-center py-4 text-sm font-medium border border-gray-200 transition-all duration-300 ${
-                            watchedType === type
-                              ? "bg-red-700 border-red-700 text-white"
-                              : "bg-white text-gray-500 group-hover:border-red-200"
-                          }`}
-                        >
-                          {type}
-                        </div>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Description */}
-                <div>
-                  <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">
-                    Course Description
-                  </label>
-                  <textarea
-                    {...register("description", {
-                      required: "Description is required",
-                    })}
-                    placeholder="Provide a detailed overview of the curriculum..."
-                    rows={6}
-                    className={`w-full text-sm font-medium bg-[#faf9f6] border-b-2 border-gray-200 py-3 px-2 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-red-700 transition-all resize-none leading-relaxed ${errors.description ? "border-red-300" : ""}`}
-                  />
-                </div>
-              </div>
+        {/* Main Content */}
+        <div className="max-w-7xl mx-auto">
+          {loading ? (
+            <div className="w-full h-64 flex items-center justify-center bg-white border border-gray-100">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-black"></div>
             </div>
-
-            {/* Card 2: Pricing & Logistics */}
-            <div className="bg-white border border-gray-200 rounded-none shadow-sm p-8 relative overflow-hidden">
-              {/* Decorative Black Line */}
-              <div className="absolute top-0 left-0 w-1 h-full bg-black"></div>
-
-              <div className="mb-8">
-                <h2 className="text-2xl font-serif-luxury font-bold text-gray-900 mb-1">
-                  Pricing & Logistics
-                </h2>
-                <p className="text-xs text-gray-400 uppercase tracking-widest">
-                  Fees & Location
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Currency */}
-                <div>
-                  <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">
-                    Currency
-                  </label>
-                  <select
-                    {...register("currency")}
-                    className="w-full text-sm font-medium bg-[#faf9f6] border-b-2 border-gray-200 py-3 px-2 text-gray-900 focus:outline-none focus:border-red-700 transition-all"
-                  >
-                    <option value="৳">BDT (৳)</option>
-                    <option value="$">USD ($)</option>
-                    <option value="€">EUR (€)</option>
-                    <option value="£">GBP (£)</option>
-                  </select>
-                </div>
-
-                {/* Price */}
-                <div>
-                  <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">
-                    Current Price
-                  </label>
-                  <input
-                    {...register("price", { required: true, min: 0 })}
-                    type="number"
-                    step="0.01"
-                    placeholder="0.00"
-                    className={`w-full text-sm font-medium bg-[#faf9f6] border-b-2 border-gray-200 py-3 px-2 text-gray-900 focus:outline-none focus:border-red-700 transition-all ${errors.price ? "border-red-300" : ""}`}
-                  />
-                </div>
-
-                {/* Old Price */}
-                <div>
-                  <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">
-                    Original Price (Optional)
-                  </label>
-                  <input
-                    {...register("oldPrice")}
-                    type="number"
-                    step="0.01"
-                    placeholder="0.00"
-                    className="w-full text-sm font-medium bg-[#faf9f6] border-b-2 border-gray-200 py-3 px-2 text-gray-900 focus:outline-none focus:border-red-700 transition-all"
-                  />
-                </div>
-
-                {/* Duration */}
-                <div>
-                  <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">
-                    Duration
-                  </label>
-                  <input
-                    {...register("duration", { required: true })}
-                    type="text"
-                    placeholder="e.g. 3 Months"
-                    className={`w-full text-sm font-medium bg-[#faf9f6] border-b-2 border-gray-200 py-3 px-2 text-gray-900 focus:outline-none focus:border-red-700 transition-all ${errors.duration ? "border-red-300" : ""}`}
-                  />
-                </div>
-
-                {/* Region */}
-                <div>
-                  <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">
-                    Region
-                  </label>
-                  <select
-                    {...register("region", { required: true })}
-                    className="w-full text-sm font-medium bg-[#faf9f6] border-b-2 border-gray-200 py-3 px-2 text-gray-900 focus:outline-none focus:border-red-700 transition-all"
-                  >
-                    <option value="Local">Local</option>
-                    <option value="Global">Global</option>
-                    <option value="International">International</option>
-                  </select>
-                </div>
-
-                {/* City */}
-                <div>
-                  <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">
-                    City
-                  </label>
-                  <input
-                    {...register("city", { required: "City is required" })}
-                    type="text"
-                    placeholder="e.g. Dhaka"
-                    className={`w-full text-sm font-medium bg-[#faf9f6] border-b-2 border-gray-200 py-3 px-2 text-gray-900 focus:outline-none focus:border-red-700 transition-all ${errors.city ? "border-red-300" : ""}`}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* RIGHT COLUMN: Sidebar & Media */}
-          <div className="space-y-8">
-            {/* Card 3: Media Upload */}
-            <div className="bg-white border border-gray-200 rounded-none shadow-sm p-8">
-              <div className="mb-6">
-                <h2 className="text-2xl font-serif-luxury font-bold text-gray-900 mb-1">
-                  Course Cover
-                </h2>
-                <p className="text-xs text-gray-400 uppercase tracking-widest">
-                  Visuals
-                </p>
-              </div>
-
-              <div className="space-y-6">
-                <div>
-                  <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">
-                    Image URL
-                  </label>
-                  <input
-                    {...register("image")}
-                    type="text"
-                    placeholder="https://..."
-                    className="w-full text-sm font-medium bg-[#faf9f6] border-b-2 border-gray-200 py-3 px-2 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-red-700 transition-all"
-                  />
-                </div>
-
-                {/* Live Preview Box */}
-                <div className="relative w-full aspect-video bg-gray-50 border-2 border-dashed border-gray-300 overflow-hidden">
-                  {watchedImage && !thumbError ? (
-                    <img
-                      src={watchedImage}
-                      alt="Preview"
-                      className="w-full h-full object-cover"
-                      onError={() => setThumbError(true)}
-                    />
-                  ) : (
-                    <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-400">
-                      <svg
-                        className="w-10 h-10 mb-3 opacity-30"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="1.5"
-                          d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                        ></path>
-                      </svg>
-                      <span className="text-xs font-medium uppercase tracking-wide">
-                        No Image
-                      </span>
-                    </div>
-                  )}
-                </div>
-                <p className="text-xs text-gray-400 leading-relaxed">
-                  Recommended size: 1200x800px. High-quality JPG or PNG.
-                </p>
-              </div>
-            </div>
-
-            {/* Card 4: Settings */}
-            <div className="bg-[#1a1a1a] text-white p-8">
-              <h2 className="text-2xl font-serif-luxury font-bold mb-1">
-                Settings
-              </h2>
-              <p className="text-xs text-gray-400 uppercase tracking-widest mb-6">
-                Options
+          ) : courses.length === 0 ? (
+            <div className="text-center py-20 bg-white border border-gray-200 rounded-none">
+              <ImageIcon className="mx-auto h-16 w-16 text-gray-300 mb-4" />
+              <h3 className="mt-2 text-sm font-bold uppercase tracking-widest text-gray-900">
+                No Courses Found
+              </h3>
+              <p className="mt-1 text-sm text-gray-500">
+                Get started by creating a new course.
               </p>
-
-              <div className="flex items-center justify-between py-2 border-b border-gray-700">
-                <div>
-                  <p className="text-sm font-serif font-medium">
-                    Free Certificate
-                  </p>
-                  <p className="text-xs text-gray-500 mt-1 font-sans">
-                    Include certificate upon completion
-                  </p>
-                </div>
-                <label className="relative inline-flex items-center cursor-pointer">
-                  <input
-                    {...register("hasCertificate")}
-                    type="checkbox"
-                    className="sr-only peer"
-                  />
-                  <div className="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-700"></div>
-                </label>
+              <div className="mt-6">
+                <button
+                  onClick={() => router.push("/dashboard/addcourses")}
+                  className="text-sm font-bold uppercase tracking-widest text-red-700 hover:text-black transition-colors"
+                >
+                  Create Course
+                </button>
               </div>
             </div>
+          ) : (
+            <div className="bg-white border border-gray-200 rounded-none shadow-sm overflow-hidden">
+              {/* Table Header */}
+              <div className="grid grid-cols-12 bg-gray-50 border-b border-gray-200 py-4 px-6 text-xs font-bold uppercase tracking-widest text-gray-500">
+                <div className="col-span-6 md:col-span-5">Course Details</div>
+                <div className="hidden md:block md:col-span-2">Logistics</div>
+                <div className="hidden md:block md:col-span-2">Price</div>
+                <div className="col-span-6 md:col-span-3 text-right">
+                  Actions
+                </div>
+              </div>
 
-            {/* Submit Action - Angel Shape Button */}
-            <button
-              type="button"
-              onClick={handleSubmit(onSubmit)}
-              disabled={isSubmitting}
-              className="w-full py-4 px-6 text-sm font-bold uppercase tracking-[0.2em] text-white bg-black hover:bg-red-700 transition-all shadow-md hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed angel-shape flex items-center justify-center gap-3 group"
-            >
-              {isSubmitting ? (
-                <>
-                  <svg
-                    className="animate-spin h-4 w-4 text-white"
-                    fill="none"
-                    viewBox="0 0 24 24"
+              {/* Table Rows */}
+              <div className="divide-y divide-gray-100">
+                {courses.map((course) => (
+                  <div
+                    key={course.id} // FIXED: Changed from course._id to course.id
+                    className="grid grid-cols-12 items-center py-5 px-6 hover:bg-[#faf9f6] transition-colors duration-200 group"
                   >
-                    <circle
-                      className="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                    ></circle>
-                    <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                    ></path>
-                  </svg>
-                  Processing...
-                </>
-              ) : (
-                <>
-                  Publish Course
-                  <svg
-                    className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </>
-              )}
-            </button>
-          </div>
+                    {/* 1. Image & Info */}
+                    <div className="col-span-6 md:col-span-5 flex items-start gap-4">
+                      <div className="relative w-20 h-20 flex-shrink-0 bg-gray-100 border border-gray-200 overflow-hidden rounded-sm">
+                        {course.image ? (
+                          <img
+                            src={course.image}
+                            alt={course.title}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.currentTarget.src =
+                                "https://via.placeholder.com/100x100?text=No+Img";
+                            }}
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center text-gray-300">
+                            <ImageIcon size={24} />
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex flex-col justify-center min-w-0">
+                        <h4 className="font-serif text-lg font-bold text-gray-900 truncate">
+                          {course.title}
+                        </h4>
+                        <div className="flex items-center gap-2 mt-1">
+                          <span
+                            className={`px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide border ${
+                              course.type === "Professional"
+                                ? "bg-white text-black border-black"
+                                : "bg-gray-100 text-gray-600 border-gray-300"
+                            }`}
+                          >
+                            {course.type}
+                          </span>
+                          {course.hasCertificate && (
+                            <div
+                              className="flex items-center gap-1 text-green-700"
+                              title="Certificate Included"
+                            >
+                              <CheckCircle size={12} />
+                            </div>
+                          )}
+                        </div>
+                        <p className="text-xs text-gray-400 mt-1 truncate line-clamp-1">
+                          {course.description}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* 2. Logistics (Hidden Mobile) */}
+                    <div className="hidden md:block md:col-span-2 text-sm text-gray-600">
+                      <p className="font-medium">{course.duration}</p>
+                      <p className="text-xs text-gray-400 uppercase mt-0.5">
+                        {course.city}, {course.region}
+                      </p>
+                    </div>
+
+                    {/* 3. Price (Hidden Mobile) */}
+                    <div className="hidden md:block md:col-span-2 text-sm">
+                      <p className="font-serif font-bold text-lg text-gray-900">
+                        {course.currency} {course.price.toLocaleString()}
+                      </p>
+                      {course.oldPrice && course.oldPrice > 0 && (
+                        <p className="text-xs text-gray-400 line-through">
+                          {course.currency} {course.oldPrice.toLocaleString()}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* 4. Actions */}
+                    <div className="col-span-6 md:col-span-3 flex items-center justify-end gap-3 pl-4 md:pl-0">
+                      <button
+                        onClick={() => handleEdit(course.id)} // FIXED: Changed from course._id
+                        className="w-9 h-9 flex items-center justify-center rounded-sm border border-gray-200 text-gray-600 hover:border-black hover:text-black hover:bg-white transition-all"
+                        title="Edit Course"
+                      >
+                        <Edit size={16} />
+                      </button>
+
+                      <button
+                        onClick={() => handleDelete(course.id)} // FIXED: Changed from course._id
+                        disabled={deletingId === course.id}
+                        className="w-9 h-9 flex items-center justify-center rounded-sm bg-[#EA393A] text-white hover:bg-red-900 transition-all disabled:opacity-50 disabled:cursor-wait shadow-sm"
+                        title="Delete Course"
+                      >
+                        {deletingId === course.id ? (
+                          <div className="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        ) : (
+                          <Trash2 size={16} />
+                        )}
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
-        {/* Toast Notification - Minimalist */}
+        {/* Toast Notification - Minimalist (Same as Add Course) */}
         {toast && (
           <div
             className={`fixed bottom-8 right-8 px-8 py-4 shadow-2xl text-sm font-bold tracking-wide flex items-center gap-3 animate-bounce-in z-50 border-l-4 ${
@@ -493,7 +318,7 @@ export default function AddCoursePage() {
             {toast.type === "success" ? (
               <span className="text-green-600">✔</span>
             ) : (
-              <span className="text-red-600">✖</span>
+              <span className="text-[#ea393a]">✖</span>
             )}
             {toast.message}
           </div>

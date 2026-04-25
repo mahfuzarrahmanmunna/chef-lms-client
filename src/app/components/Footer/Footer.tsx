@@ -131,7 +131,7 @@ const Footer: React.FC = () => {
                 <FaFacebookF className="w-5 h-5" />
               </a>
               <p className="mt-3 text-xs italic text-gray-400">
-                "দক্ষতা অর্জন। নিশ্চিত ভবিষ্যৎ।"
+               "Acquire Skills. Secure Future."
               </p>
             </div>
           </div>

@@ -104,7 +104,7 @@ export default function ChoosePath() {
               <p
                 className={`text-[11px] font-bold uppercase tracking-widest ${accentText} mb-2`}
               >
-                প্রোগ্রাম পরিচিতি
+                Program Overview
               </p>
               <h2 className="text-2xl md:text-3xl font-serif font-bold text-gray-900 mb-4 leading-snug">
                 {program.headline}
@@ -118,10 +118,10 @@ export default function ChoosePath() {
             <div>
               <div className={`border-l-4 ${accentBorder} pl-4 mb-6`}>
                 <p className="text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-1">
-                  কারিকুলাম
+                  Curriculum
                 </p>
                 <h3 className="text-xl font-serif font-bold text-gray-900">
-                  মূল মডিউলসমূহ
+                  Core Modules
                 </h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -150,10 +150,10 @@ export default function ChoosePath() {
             <div>
               <div className={`border-l-4 ${accentBorder} pl-4 mb-6`}>
                 <p className="text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-1">
-                  কেন এই প্রোগ্রাম?
+                  Why This Program?
                 </p>
                 <h3 className="text-xl font-serif font-bold text-gray-900">
-                  আমাদের বিশেষত্ব
+                  Our Specialties
                 </h3>
               </div>
               <div className="space-y-4">
@@ -183,17 +183,17 @@ export default function ChoosePath() {
               <p
                 className={`text-[11px] font-bold uppercase tracking-widest ${accentText} mb-2`}
               >
-                লক্ষ্য শিক্ষার্থী
+                Target Students
               </p>
               <h3 className="text-xl font-serif font-bold text-gray-900 mb-4">
-                এই প্রোগ্রামটি কাদের জন্য?
+                Who is this program for?
               </h3>
               <ul className="space-y-3">
                 {[
-                  "যারা হোটেল বা রেস্তোরাঁয় প্রফেশনাল ক্যারিয়ার শুরু করতে চান",
-                  "নতুন উদ্যোক্তা যারা নিজের ফুড বিজনেস শুরু করতে চান",
-                  "যারা আন্তর্জাতিক মানের রান্নার দক্ষতা অর্জন করতে চান",
-                  "শৌখিন রাঁধুনি যারা প্রফেশনাল লেভেলে উন্নীত হতে চান",
+                  "Those who want to start a professional career in hotels or restaurants",
+                  "New entrepreneurs who want to start their own food business",
+                  "Those who want to acquire international standard cooking skills",
+                  "Hobbyist cooks who want to elevate to a professional level",
                 ].map((item, i) => (
                   <li
                     key={i}
@@ -216,7 +216,7 @@ export default function ChoosePath() {
               <div className="bg-white border border-gray-200 shadow-sm">
                 <div className={`p-6 border-b border-gray-100 ${accentLight}`}>
                   <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">
-                    প্রোগ্রাম ফি
+                    Program Fee
                   </p>
                   {program.price ? (
                     <div className="flex items-baseline gap-2">
@@ -232,7 +232,7 @@ export default function ChoosePath() {
                     </div>
                   ) : (
                     <p className="text-lg font-serif font-bold text-gray-900">
-                      যোগাযোগ করুন
+                      Contact Us
                     </p>
                   )}
                 </div>
@@ -242,7 +242,7 @@ export default function ChoosePath() {
                     <Calendar className="w-5 h-5 text-gray-400" />
                     <div>
                       <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">
-                        সময়কাল
+                        Duration
                       </p>
                       <p className="font-semibold text-gray-900 text-sm">
                         {program.duration} ({program.durationEn})
@@ -253,7 +253,7 @@ export default function ChoosePath() {
                     <Award className="w-5 h-5 text-gray-400" />
                     <div>
                       <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">
-                        সার্টিফিকেশন
+                        Certification
                       </p>
                       <p className="font-semibold text-gray-900 text-sm">
                         {program.certification}
@@ -264,10 +264,10 @@ export default function ChoosePath() {
                     <Users className="w-5 h-5 text-gray-400" />
                     <div>
                       <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">
-                        ক্লাস সাইজ
+                        Class Size
                       </p>
                       <p className="font-semibold text-gray-900 text-sm">
-                        সর্বোচ্চ ১৫ জন
+                        Maximum 15 Students
                       </p>
                     </div>
                   </div>
@@ -275,7 +275,7 @@ export default function ChoosePath() {
                     <BookOpen className="w-5 h-5 text-gray-400" />
                     <div>
                       <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">
-                        ধরন
+                        Type
                       </p>
                       <p className="font-semibold text-gray-900 text-sm">
                         {program.type}
@@ -288,11 +288,11 @@ export default function ChoosePath() {
                   <button
                     className={`w-full ${accentBg} hover:opacity-90 text-white font-bold py-4 uppercase tracking-widest text-xs transition-opacity`}
                   >
-                    {isFlagship ? "এখনই আবেদন করুন" : "ক্লাস বুক করুন"}
+                    {isFlagship ? "Apply Now" : "Book Class"}
                   </button>
                   <button className="w-full border border-gray-200 hover:border-gray-900 text-gray-600 hover:text-gray-900 font-bold py-3 uppercase tracking-widest text-xs transition-all flex items-center justify-center gap-2">
                     <Phone className="w-4 h-4" />
-                    যোগাযোগ করুন
+                    Contact Us
                   </button>
                 </div>
               </div>
@@ -302,12 +302,12 @@ export default function ChoosePath() {
                 className={`p-5 border-l-4 ${accentBorder} bg-white border border-gray-100`}
               >
                 <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">
-                  দ্রষ্টব্য
+                  Note
                 </p>
                 <p className="text-sm text-gray-600 leading-relaxed">
                   {isFlagship
-                    ? "আসন সংখ্যা সীমিত। দ্রুত আবেদন করুন এবং আপনার স্বপ্নের ক্যারিয়ার শুরু করুন।"
-                    : "এই প্রোগ্রামটি rolling basis-এ চলে। যেকোনো সময় যোগ দিতে পারবেন।"}
+                    ? "Seats are limited. Apply quickly and start your dream career."
+                    : "This program runs on a rolling basis. You can join at any time."}
                 </p>
               </div>
             </div>

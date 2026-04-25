@@ -46,7 +46,7 @@ const MinimalButton: React.FC<MinimalButtonProps> = ({
 const StatsBar: React.FC<{ delay: number }> = ({ delay }) => {
   return (
     <div
-      className="absolute hidden  bottom-10 right-10 z-20 md:flex flex-col items-end gap-2 text-white/80"
+      className="absolute hidden bottom-10 right-10 z-20 md:flex flex-col items-end gap-2 text-white/80"
       style={{
         animation: `slowFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s forwards`,
         opacity: 0,
@@ -58,7 +58,7 @@ const StatsBar: React.FC<{ delay: number }> = ({ delay }) => {
           100%
         </span>
         <span className="text-gray-300 text-[10px] uppercase tracking-widest font-bold mt-1">
-          ইন্টার্নশিপ সাপোর্ট
+          Internship Support
         </span>
       </div>
 
@@ -68,7 +68,7 @@ const StatsBar: React.FC<{ delay: number }> = ({ delay }) => {
           3-4
         </span>
         <span className="text-gray-300 text-[10px] uppercase tracking-widest font-bold mt-1">
-          স্টার হোটেলে প্লেসমেন্ট
+          Placements in Star Hotels
         </span>
         <span className="text-sm font-bold italic">3-4 Star Hotels</span>
       </div>
@@ -79,7 +79,7 @@ const StatsBar: React.FC<{ delay: number }> = ({ delay }) => {
           No.1
         </span>
         <span className="text-gray-300 text-[10px] uppercase tracking-widest font-bold mt-1">
-          গ্লোবাল ক্যারিয়ার পাথওয়ে
+          Global Career Pathway
         </span>
         <span className="text-sm font-bold italic">No. 1 Career Pathway</span>
       </div>
@@ -139,7 +139,7 @@ const ConsultForm: React.FC = () => {
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             placeholder="YOUR NAME"
-            className="w-full h-14 bg-white/10 backdrop-blur-md border border-white/30 text-white placeholder-white/60 px-6  focus:outline-none focus:border-blue-400 focus:bg-white/20 transition-all"
+            className="w-full h-14 bg-white/10 backdrop-blur-md border border-white/30 text-white placeholder-white/60 px-6 focus:outline-none focus:border-blue-400 focus:bg-white/20 transition-all"
             disabled={success}
           />
         </div>
@@ -154,7 +154,7 @@ const ConsultForm: React.FC = () => {
               setFormData({ ...formData, phone: e.target.value })
             }
             placeholder="PHONE NUMBER"
-            className="w-full h-14 bg-white/10 backdrop-blur-md border border-white/30 text-white placeholder-white/60 px-6  focus:outline-none focus:border-blue-400 focus:bg-white/20 transition-all"
+            className="w-full h-14 bg-white/10 backdrop-blur-md border border-white/30 text-white placeholder-white/60 px-6 focus:outline-none focus:border-blue-400 focus:bg-white/20 transition-all"
             disabled={success}
           />
         </div>
@@ -164,10 +164,10 @@ const ConsultForm: React.FC = () => {
           disabled={loading || success}
           className="group relative h-16 px-12 bg-transparent text-white font-extrabold tracking-[0.2em] uppercase transition-all duration-500 disabled:opacity-60 disabled:cursor-not-allowed whitespace-nowrap flex items-center justify-center rounded-xl overflow-visible isolate scale-100 hover:scale-105 active:scale-95"
         >
-          {/* 1. ALWAYS ON - OUTER BREATHING GLOW (Pichone thakbe) */}
+          {/* 1. ALWAYS ON - OUTER BREATHING GLOW (Stays at back) */}
           <div className="absolute inset-[-4px] rounded-xl bg-[#EA393A]/60 blur-xl animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite] -z-20"></div>
 
-          {/* 2. EXTRA LAYER FOR INTENSE GLOW (Aro beshi glow er jonno) */}
+          {/* 2. EXTRA LAYER FOR INTENSE GLOW (For more glow) */}
           <div className="absolute inset-0 rounded-xl bg-[#EA393A]/30 blur-md -z-20"></div>
 
           {/* 3. GLOWING BORDER LAYER (Moving Gradient - Always active) */}
@@ -306,8 +306,8 @@ const Banner: React.FC = () => {
                 opacity: 0,
               }}
             >
-              আপনার Culinary ক্যারিয়ার <br />
-              <span className="text-[#ea393a] italic">শুরু হোক এখানেই</span>
+              Start your culinary career <br />
+              <span className="text-[#ea393a] italic">right here</span>
             </h1>
 
             {/* Description */}
@@ -318,8 +318,8 @@ const Banner: React.FC = () => {
                 opacity: 0,
               }}
             >
-              Global cuisine master করুন আমাদের expert training-এর মাধ্যমে।
-              Guaranteed internships দেশের সেরা prestigious hotels-এ।
+              Master global cuisine through our expert training. Guaranteed
+              internships at the country's best prestigious hotels.
             </p>
 
             {/* Consultation Form */}

@@ -2,49 +2,49 @@
   {
     "id": 1,
     "title": "Professional Chef Course",
-    "titleBn": "প্রফেশনাল কিচেনের শিল্পে হয়ে উঠুন পারদর্শী",
+    "titleBn": "Become proficient in the art of professional kitchens",
     "certification": "Professional Culinary Diploma",
-    "duration": "৩ মাস",
+    "duration": "3 months",
     "durationEn": "3 Months",
     "type": "Diploma",
-    "price":"৪০,০০০",
-    "priceAlt": "৪৫,০০০",
-    "headline": "প্রফেশনাল কিচেনের শিল্পে হয়ে উঠুন পারদর্শী।",
-    "subHeadline": "এই intensive 3-month program আমাদের একটি flagship course, যা মূলত ডিজাইন করা হয়েছে যারা 4-star hotels-এ সিনিয়র রোল অথবা international careers গড়তে চান তাদের জন্য।",
+    "price": "40,000",
+    "priceAlt": "45,000",
+    "headline": "Become proficient in the art of professional kitchens.",
+    "subHeadline": "This intensive 3-month program is our flagship course, designed for those who want to build senior roles in 4-star hotels or international careers.",
     "modules": [
       {
         "title": "Fundamental Knife Skills",
-        "description": "নিখুঁত কাট এবং কিচেন সেফটির ওপর পূর্ণ নিয়ন্ত্রণ।"
+        "description": "Perfect cuts and complete control over kitchen safety."
       },
       {
         "title": "Global Cuisine Mastery",
-        "description": "কন্টিনেন্টাল, অ্যারাবিয়ান এবং প্যান-এশিয়ান খাবারের ওপর ইন-ডেপথ ট্রেনিং।"
+        "description": "In-depth training on Continental, Arabian, and Pan-Asian cuisines."
       },
       {
         "title": "The Big 5 Specialized",
-        "description": "পিজা, বার্গার, পাস্তা, স্যান্ডউইচ এবং বেকিংয়ের প্রফেশনাল টেকনিক।"
+        "description": "Professional techniques for pizza, burgers, pasta, sandwiches, and baking."
       },
       {
         "title": "Kitchen Management",
-        "description": "কিচেন SOPs, food costing, inventory, এবং হাইজিন (HACCP) সংক্রান্ত ধারণা।"
+        "description": "Kitchen SOPs, food costing, inventory, and hygiene (HACCP) concepts."
       },
       {
         "title": "Language & Soft Skills",
-        "description": "গ্লোবাল ক্যারিয়ারের জন্য ইন্টিগ্রেটেড ইংলিশ এবং ফরেন ল্যাঙ্গুয়েজ ট্রেনিং।"
+        "description": "Integrated English and foreign language training for global careers."
       }
     ],
     "highlights": [
       {
         "label": "Internship",
-        "description": "Pan Pacific Sonargaon, InterContinental এবং Radisson Blu-তে নিশ্চিত ৩ মাসের ইন্টার্নশিপ।"
+        "description": "Guaranteed 3-month internship at Pan Pacific Sonargaon, InterContinental, and Radisson Blu."
       },
       {
         "label": "Job Guarantee",
-        "description": "সফলভাবে কোর্স সম্পন্ন করার পর ১০০% প্লেসমেন্ট অ্যাসিস্ট্যান্স।"
+        "description": "100% placement assistance after successful course completion."
       },
       {
         "label": "Career Path",
-        "description": "Executive Chef, Sous Chef, অথবা International Catering Lead।"
+        "description": "Executive Chef, Sous Chef, or International Catering Lead."
       }
     ],
     "tag": "Flagship",
@@ -53,46 +53,45 @@
   {
     "id": 2,
     "title": "Basic Short Professional Chef Course",
-    "titleBn": "আপনার Culinary স্কিলকে করুন আরও গতিশীল",
+    "titleBn": "Make your culinary skills more dynamic",
     "certification": "Professional Certificate in Culinary Arts",
-    "duration": "৩০ দিন",
+    "duration": "30 days",
     "durationEn": "30 Days",
     "type": "Certificate",
-    "price": " ৩,৫০০",
-    "priceAlt": "৫,০০০ ",
-    "headline": "আপনার Culinary স্কিলকে করুন আরও গতিশীল।",
-    "subHeadline": "নতুন উদ্যোক্তা, শৌখিন রাঁধুনি অথবা যারা দ্রুত এন্ট্রি-লেভেল ক্যারিয়ার শুরু করতে চান তাদের জন্য এই ৩০ দিনের কোর্স।",
+    "price": "3,500",
+    "priceAlt": "5,000",
+    "headline": "Make your culinary skills more dynamic.",
+    "subHeadline": "This 30-day course is for new entrepreneurs, hobbyist cooks, or those who want to start an entry-level career quickly.",
     "modules": [
       {
         "title": "Essential Culinary Techniques",
-        "description": "হিট কন্ট্রোল, সিজনিং এবং প্রফেশনাল ইকুইপমেন্ট ব্যবহারের প্রাথমিক ধারণা।"
+        "description": "Basic concepts of heat control, seasoning, and using professional equipment."
       },
       {
         "title": "Commercial Fast Food Mastery",
-        "description": "পাস্তা, পিজা এবং গুরমে স্যান্ডউইচ তৈরির high-speed preparation কৌশল।"
+        "description": "High-speed preparation techniques for pasta, pizza, and gourmet sandwiches."
       },
       {
         "title": "Traditional Catering Basics",
-        "description": "বিরিয়ানি এবং লোকাল কমার্শিয়াল ক্যাটারিংয়ের ভিত্তি।"
+        "description": "Foundations of Biryani and local commercial catering."
       },
       {
         "title": "Hygiene & Presentation",
-        "description": "ফুড সেফটি স্ট্যান্ডার্ড এবং প্রফেশনাল প্লেটিংয়ের নান্দনিকতা।"
+        "description": "Food safety standards and the aesthetics of professional plating."
       }
     ],
     "highlights": [
       {
         "label": "Efficiency",
-        "description": "মাত্র ৩০ দিনে কয়েক মাসের ট্রেনিংয়ের সমান দক্ষতা অর্জন করুন।"
+        "description": "Acquire skills equivalent to months of training in just 30 days."
       },
       {
         "label": "Entrepreneurial Focus",
-        "description": "Cloud kitchen বা ছোট রেস্টুরেন্ট শুরু করতে চাইলে এটি আইডিয়াল।"
+        "description": "Ideal if you want to start a cloud kitchen or small restaurant."
       },
-       {
+      {
         "label": "Skill Certification",
-        "description": "দ্রুত চাকুরিতে যোগদানের জন্য নিজের দক্ষতাকে প্রমাণ করতে সংগ্রহ করুন প্রফেশনাল সার্টিফিকেট।"
-
+        "description": "Collect a professional certificate to prove your skills and join the workforce quickly."
       }
     ],
     "tag": "Short Course",

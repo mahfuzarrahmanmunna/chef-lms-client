@@ -12,9 +12,7 @@ import { FaYoutube } from "react-icons/fa6";
 
 // Import Swiper styles
 import "swiper/css";
-// @ts-ignore
 import "swiper/css/navigation";
-// @ts-ignore
 import "swiper/css/pagination";
 
 // --- TYPES ---
@@ -30,36 +28,36 @@ interface VideoStory {
 const stories: VideoStory[] = [
   {
     id: "1",
-    title: "আব্দুর রহিম",
-    subtitle: "পাঁচ তারকা হোটেলের সিনিয়র শেফ",
+    title: "Abdur Rahim",
+    subtitle: "Senior Chef at a Five Star Hotel",
     type: "short",
     videoId: "aqz-KE-bpKQ",
   },
   {
     id: "2",
-    title: "ফারহানা আক্তার",
-    subtitle: "পেস্ট্রি শেফ হিসেবে সাফল্য",
+    title: "Farhana Akhtar",
+    subtitle: "Success as a Pastry Chef",
     type: "short",
     videoId: "YE7VzlLtp-4",
   },
   {
     id: "3",
-    title: "তানভীর আহমেদ",
-    subtitle: "প্রাক্তন শিক্ষার্থী - সাক্ষাৎকার",
+    title: "Tanvir Ahmed",
+    subtitle: "Alumni Interview",
     type: "video",
     videoId: "M7lc1UVf-VE",
   },
   {
     id: "4",
-    title: "রাকিব হাসান",
-    subtitle: "বিদেশে ক্যারিয়ার গড়ার গল্প",
+    title: "Rakib Hasan",
+    subtitle: "The Story of Building a Career Abroad",
     type: "short",
     videoId: "aqz-KE-bpKQ",
   },
   {
     id: "5",
-    title: "নাজমা বেগম",
-    subtitle: "কুকিং আর্টে পারদর্শী",
+    title: "Najma Begum",
+    subtitle: "Proficient in Culinary Arts",
     type: "short",
     videoId: "YE7VzlLtp-4",
   },
@@ -67,12 +65,14 @@ const stories: VideoStory[] = [
 
 /* ──────────────── SUB-COMPONENTS ──────────────── */
 
-const SwiperNavButton = ({
-  direction,
-  onClick,
-}: {
+interface SwiperNavButtonProps {
   direction: "prev" | "next";
   onClick?: () => void;
+}
+
+const SwiperNavButton: React.FC<SwiperNavButtonProps> = ({
+  direction,
+  onClick,
 }) => {
   const isPrev = direction === "prev";
   return (
@@ -92,12 +92,17 @@ const SwiperNavButton = ({
 };
 
 // --- VIDEO.JS PLAYER COMPONENT (FULL WIDTH) ---
-const InlineVideoPlayer: React.FC<{
+interface InlineVideoPlayerProps {
   videoId: string;
   type: "short" | "video";
-}> = ({ videoId, type }) => {
+}
+
+const InlineVideoPlayer: React.FC<InlineVideoPlayerProps> = ({ 
+  videoId, 
+  type 
+}) => {
   const videoRef = useRef<HTMLDivElement>(null);
-  const playerRef = useRef<any>(null);
+  const playerRef = useRef<videojs.Player | null>(null);
 
   useEffect(() => {
     // Prevent double init
@@ -107,10 +112,9 @@ const InlineVideoPlayer: React.FC<{
     const initTimer = setTimeout(() => {
       if (!videoRef.current || !videoRef.current.parentNode) return;
 
-      const origin =
-        typeof window !== "undefined" ? window.location.origin : "";
+      const origin = typeof window !== "undefined" ? window.location.origin : "";
 
-      const options = {
+      const options: videojs.PlayerOptions = {
         controls: true,
         responsive: true,
         fluid: false, // We use absolute positioning
@@ -143,21 +147,20 @@ const InlineVideoPlayer: React.FC<{
 
       playerRef.current = player;
 
-      // Safe Disposal
-      return () => {
-        if (playerRef.current && !playerRef.current.isDisposed()) {
-          try {
-            playerRef.current.dispose();
-          } catch (e) {
-            // Suppress crash
-          }
-        }
-        playerRef.current = null;
-      };
     }, 50); // Short delay
 
+    // Cleanup function
     return () => {
       clearTimeout(initTimer);
+      if (playerRef.current && !playerRef.current.isDisposed()) {
+        try {
+          playerRef.current.dispose();
+        } catch (e) {
+          // Suppress crash
+          console.warn("Error disposing player:", e);
+        }
+      }
+      playerRef.current = null;
     };
   }, [videoId, type]);
 
@@ -166,7 +169,7 @@ const InlineVideoPlayer: React.FC<{
       <div data-vjs-player className="w-full h-full">
         <div
           ref={videoRef}
-          className={`video-js vjs-default-skin vjs-big-play-centered w-full h-full`}
+          className="video-js vjs-default-skin vjs-big-play-centered w-full h-full"
         />
       </div>
     </div>
@@ -174,12 +177,19 @@ const InlineVideoPlayer: React.FC<{
 };
 
 // --- STORY CARD COMPONENT ---
-const StoryCard: React.FC<{
+interface StoryCardProps {
   story: VideoStory;
   isActive: boolean;
   onPlay: (id: string) => void;
   onStop: () => void;
-}> = ({ story, isActive, onPlay, onStop }) => {
+}
+
+const StoryCard: React.FC<StoryCardProps> = ({ 
+  story, 
+  isActive, 
+  onPlay, 
+  onStop 
+}) => {
   const thumbnailUrl = `https://img.youtube.com/vi/${story.videoId}/hqdefault.jpg`;
 
   return (
@@ -202,6 +212,7 @@ const StoryCard: React.FC<{
           <button
             onClick={onStop}
             className="absolute top-4 right-4 z-40 w-10 h-10 rounded-full bg-black/60 text-white hover:bg-red-600 flex items-center justify-center transition-all backdrop-blur-sm shadow-lg"
+            aria-label="Close video"
           >
             <X size={18} />
           </button>
@@ -211,6 +222,7 @@ const StoryCard: React.FC<{
         <>
           {/* Thumbnail Image */}
           <div className="absolute inset-0">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={thumbnailUrl}
               alt={story.title}
@@ -261,7 +273,7 @@ const StoryCard: React.FC<{
 
 /* ──────────────── MAIN COMPONENT ──────────────── */
 
-const SuccessStoriesSlider = () => {
+const SuccessStoriesSlider: React.FC = () => {
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
 
   const handlePlay = (id: string) => {
@@ -287,11 +299,10 @@ const SuccessStoriesSlider = () => {
               Success Stories
             </span>
             <h2 className="text-3xl md:text-5xl font-serif font-bold text-gray-900 mb-4">
-              সফলতার <span className="text-[#ea393a]">গল্প</span>
+              Stories of <span className="text-[#ea393a]">Success</span>
             </h2>
             <p className="text-gray-600 text-lg leading-relaxed">
-              আমাদের প্রাক্তন শিক্ষার্থীরা আজ বিশ্বসেরা হোটেলে কাজ করছেন। তাদের
-              অভিজ্ঞতা শুনুন এবং অনুপ্রাণিত হোন।
+              Our alumni are now working at the world's best hotels. Listen to their experiences and get inspired.
             </p>
           </div>
 

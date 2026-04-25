@@ -28,7 +28,7 @@ export default function ChoosePath() {
   if (!program) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-white gap-4">
-        <h2 className="text-2xl font-serif font-bold text-gray-900">
+        <h2 className="text-2xl  font-bold text-gray-900">
           Program not found
         </h2>
         <button
@@ -76,7 +76,7 @@ export default function ChoosePath() {
             </span>
           </div>
 
-          <h1 className="text-3xl md:text-5xl font-serif font-bold text-white leading-tight mb-3 max-w-3xl">
+          <h1 className="text-3xl md:text-5xl  font-bold text-white leading-tight mb-3 max-w-3xl">
             {program.label}
           </h1>
 
@@ -95,7 +95,7 @@ export default function ChoosePath() {
       </div>
 
       {/* Main Layout */}
-      <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 py-16">
+      <div className="container mx-auto px-6 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* LEFT: Content */}
           <div className="lg:col-span-8 space-y-14">
@@ -106,7 +106,7 @@ export default function ChoosePath() {
               >
                 প্রোগ্রাম পরিচিতি
               </p>
-              <h2 className="text-2xl md:text-3xl font-serif font-bold text-gray-900 mb-4 leading-snug">
+              <h2 className="text-2xl md:text-3xl  font-bold text-gray-900 mb-4 leading-snug">
                 {program.headline}
               </h2>
               <p className="text-base text-gray-500 leading-relaxed">
@@ -120,7 +120,7 @@ export default function ChoosePath() {
                 <p className="text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-1">
                   কারিকুলাম
                 </p>
-                <h3 className="text-xl font-serif font-bold text-gray-900">
+                <h3 className="text-xl  font-bold text-gray-900">
                   মূল মডিউলসমূহ
                 </h3>
               </div>
@@ -152,7 +152,7 @@ export default function ChoosePath() {
                 <p className="text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-1">
                   কেন এই প্রোগ্রাম?
                 </p>
-                <h3 className="text-xl font-serif font-bold text-gray-900">
+                <h3 className="text-xl  font-bold text-gray-900">
                   আমাদের বিশেষত্ব
                 </h3>
               </div>
@@ -185,7 +185,7 @@ export default function ChoosePath() {
               >
                 লক্ষ্য শিক্ষার্থী
               </p>
-              <h3 className="text-xl font-serif font-bold text-gray-900 mb-4">
+              <h3 className="text-xl  font-bold text-gray-900 mb-4">
                 এই প্রোগ্রামটি কাদের জন্য?
               </h3>
               <ul className="space-y-3">
@@ -220,7 +220,7 @@ export default function ChoosePath() {
                   </p>
                   {program.price ? (
                     <div className="flex items-baseline gap-2">
-                      <span className="text-3xl font-serif font-bold text-gray-900">
+                      <span className="text-3xl  font-bold text-gray-900">
                         ৳{program.price.toLocaleString()}
                       </span>
                       {/* FIXED: Used type assertion to avoid error */}
@@ -231,7 +231,7 @@ export default function ChoosePath() {
                       )}
                     </div>
                   ) : (
-                    <p className="text-lg font-serif font-bold text-gray-900">
+                    <p className="text-lg  font-bold text-gray-900">
                       যোগাযোগ করুন
                     </p>
                   )}

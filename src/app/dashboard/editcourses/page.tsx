@@ -35,7 +35,7 @@ interface Toast {
 const globalStyles = `
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600&display=swap');
 
-  .font-serif { font-family: 'Playfair Display', serif; }
+  . { font-family: 'Playfair Display', serif; }
   . { font-family: 'Manrope', sans-serif; }
 
   /* The Angel Shape */
@@ -162,7 +162,7 @@ export default function EditCoursePage() {
         {/* Header Section */}
         <div className="max-w-6xl mx-auto mb-8 flex items-center justify-between border-b border-gray-200 pb-6">
           <div>
-            <h1 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 tracking-tight">
+            <h1 className="text-3xl md:text-4xl  font-bold text-gray-900 tracking-tight">
               Edit Course
             </h1>
             <p className="text-sm text-gray-500 mt-2 font-medium tracking-wide">
@@ -187,7 +187,7 @@ export default function EditCoursePage() {
               <div className="absolute top-0 left-0 w-1 h-full bg-[#EA393A]"></div>
 
               <div className="mb-8">
-                <h2 className="text-2xl font-serif font-bold text-gray-900 mb-1">
+                <h2 className="text-2xl  font-bold text-gray-900 mb-1">
                   General Information
                 </h2>
                 <p className="text-xs text-gray-400 uppercase tracking-widest">
@@ -268,7 +268,7 @@ export default function EditCoursePage() {
               <div className="absolute top-0 left-0 w-1 h-full bg-black"></div>
 
               <div className="mb-8">
-                <h2 className="text-2xl font-serif font-bold text-gray-900 mb-1">
+                <h2 className="text-2xl  font-bold text-gray-900 mb-1">
                   Pricing & Logistics
                 </h2>
                 <p className="text-xs text-gray-400 uppercase tracking-widest">
@@ -370,7 +370,7 @@ export default function EditCoursePage() {
             {/* Card 3: Media Upload */}
             <div className="bg-white border border-gray-200 rounded-none shadow-sm p-8">
               <div className="mb-6">
-                <h2 className="text-2xl font-serif font-bold text-gray-900 mb-1">
+                <h2 className="text-2xl  font-bold text-gray-900 mb-1">
                   Course Cover
                 </h2>
                 <p className="text-xs text-gray-400 uppercase tracking-widest">
@@ -417,14 +417,14 @@ export default function EditCoursePage() {
 
             {/* Card 4: Settings */}
             <div className="bg-[#1a1a1a] text-white p-8">
-              <h2 className="text-2xl font-serif font-bold mb-1">Settings</h2>
+              <h2 className="text-2xl  font-bold mb-1">Settings</h2>
               <p className="text-xs text-gray-400 uppercase tracking-widest mb-6">
                 Options
               </p>
 
               <div className="flex items-center justify-between py-2 border-b border-gray-700">
                 <div>
-                  <p className="text-sm font-serif font-medium">
+                  <p className="text-sm  font-medium">
                     Free Certificate
                   </p>
                   <p className="text-xs text-gray-500 mt-1 font-sans">

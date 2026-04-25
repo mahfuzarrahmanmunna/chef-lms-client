@@ -44,7 +44,7 @@ interface Toast {
 const globalStyles = `
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600&display=swap');
 
-  .font-serif { font-family: 'Playfair Display', serif; }
+  . { font-family: 'Playfair Display', serif; }
   . { font-family: 'Manrope', sans-serif; }
 
   /* The Angel Shape */
@@ -149,7 +149,7 @@ export default function ManageCoursesPage() {
         {/* Header Section - Luxury Serif Font */}
         <div className="max-w-7xl mx-auto mb-8 flex items-center justify-between border-b border-gray-200 pb-6">
           <div>
-            <h1 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 tracking-tight">
+            <h1 className="text-3xl md:text-4xl  font-bold text-gray-900 tracking-tight">
               Manage Courses
             </h1>
             <p className="text-sm text-gray-500 mt-2 font-medium tracking-wide">
@@ -228,7 +228,7 @@ export default function ManageCoursesPage() {
                         )}
                       </div>
                       <div className="flex flex-col justify-center min-w-0">
-                        <h4 className="font-serif text-lg font-bold text-gray-900 truncate">
+                        <h4 className=" text-lg font-bold text-gray-900 truncate">
                           {course.title}
                         </h4>
                         <div className="flex items-center gap-2 mt-1">
@@ -266,7 +266,7 @@ export default function ManageCoursesPage() {
 
                     {/* 3. Price (Hidden Mobile) */}
                     <div className="hidden md:block md:col-span-2 text-sm">
-                      <p className="font-serif font-bold text-lg text-gray-900">
+                      <p className=" font-bold text-lg text-gray-900">
                         {course.currency} {course.price.toLocaleString()}
                       </p>
                       {course.oldPrice && course.oldPrice > 0 && (

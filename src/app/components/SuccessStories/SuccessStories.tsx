@@ -7,7 +7,7 @@ import "videojs-youtube";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
-import { Play, ArrowRight, ArrowLeft, X } from "lucide-react";
+import { Play, ArrowRight, X, Volume2, ArrowLeft } from "lucide-react";
 import { FaYoutube } from "react-icons/fa6";
 
 // Import Swiper styles
@@ -33,35 +33,35 @@ const stories: VideoStory[] = [
     title: "আব্দুর রহিম",
     subtitle: "পাঁচ তারকা হোটেলের সিনিয়র শেফ",
     type: "short",
-    videoId: "aqz-KE-bpKQ",
+    videoId: "j19HFPplMQ0",
   },
   {
     id: "2",
     title: "ফারহানা আক্তার",
     subtitle: "পেস্ট্রি শেফ হিসেবে সাফল্য",
     type: "short",
-    videoId: "YE7VzlLtp-4",
+    videoId: "VrydNMFT8f4",
   },
   {
     id: "3",
     title: "তানভীর আহমেদ",
     subtitle: "প্রাক্তন শিক্ষার্থী - সাক্ষাৎকার",
     type: "video",
-    videoId: "M7lc1UVf-VE",
+    videoId: "qgwHxIXuyvQ",
   },
   {
     id: "4",
     title: "রাকিব হাসান",
     subtitle: "বিদেশে ক্যারিয়ার গড়ার গল্প",
     type: "short",
-    videoId: "aqz-KE-bpKQ",
+    videoId: "lVfNStAU178",
   },
   {
     id: "5",
     title: "নাজমা বেগম",
     subtitle: "কুকিং আর্টে পারদর্শী",
     type: "short",
-    videoId: "YE7VzlLtp-4",
+    videoId: "YYsg_vZEDng",
   },
 ];
 
@@ -78,20 +78,20 @@ const SwiperNavButton = ({
   return (
     <button
       onClick={onClick}
-      className={`absolute top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white shadow-xl flex items-center justify-center text-red-700 hover:bg-red-600 hover:text-white transition-all duration-300 group ${
-        isPrev ? "left-4 md:-left-6" : "right-4 md:-right-6"
+      className={`absolute top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/90 backdrop-blur shadow-lg flex items-center justify-center text-gray-900 hover:bg-[#ea393a] hover:text-white transition-all duration-300 ${
+        isPrev ? "left-0 md:-left-6" : "right-0 md:-right-6"
       }`}
     >
       {isPrev ? (
-        <ArrowLeft className="w-5 h-5 group-hover:-translate-x-0.5 transition-transform" />
+        <ArrowLeft className="w-5 h-5" />
       ) : (
-        <ArrowRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
+        <ArrowRight className="w-5 h-5" />
       )}
     </button>
   );
 };
 
-// --- VIDEO.JS PLAYER COMPONENT (FULL WIDTH) ---
+// --- VIDEO.JS PLAYER COMPONENT ---
 const InlineVideoPlayer: React.FC<{
   videoId: string;
   type: "short" | "video";
@@ -103,7 +103,6 @@ const InlineVideoPlayer: React.FC<{
     // Prevent double init
     if (!videoRef.current || playerRef.current) return;
 
-    // Delay initialization to ensure React DOM is ready
     const initTimer = setTimeout(() => {
       if (!videoRef.current || !videoRef.current.parentNode) return;
 
@@ -113,10 +112,10 @@ const InlineVideoPlayer: React.FC<{
       const options = {
         controls: true,
         responsive: true,
-        fluid: false, // We use absolute positioning
+        fluid: false,
         autoplay: true,
         preload: "auto",
-        fill: true, // Fills container
+        fill: true, // Ensures it fills the parent
         techOrder: ["youtube"],
         sources: [
           {
@@ -134,7 +133,7 @@ const InlineVideoPlayer: React.FC<{
 
       const player = videojs(videoRef.current, options);
 
-      // Handle Aspect Ratio
+      // Enforce Aspect Ratio
       if (type === "short") {
         player.aspectRatio("9:16");
       } else {
@@ -143,7 +142,6 @@ const InlineVideoPlayer: React.FC<{
 
       playerRef.current = player;
 
-      // Safe Disposal
       return () => {
         if (playerRef.current && !playerRef.current.isDisposed()) {
           try {
@@ -154,7 +152,7 @@ const InlineVideoPlayer: React.FC<{
         }
         playerRef.current = null;
       };
-    }, 50); // Short delay
+    }, 50);
 
     return () => {
       clearTimeout(initTimer);
@@ -162,94 +160,90 @@ const InlineVideoPlayer: React.FC<{
   }, [videoId, type]);
 
   return (
-    <div className="w-full h-full absolute inset-0 bg-black z-20">
+    <div className="absolute inset-0 bg-black z-30">
       <div data-vjs-player className="w-full h-full">
         <div
           ref={videoRef}
-          className={`video-js vjs-default-skin vjs-big-play-centered w-full h-full`}
+          className="video-js vjs-default-skin vjs-big-play-centered w-full h-full"
         />
       </div>
     </div>
   );
 };
 
-// --- STORY CARD COMPONENT ---
+// --- STORY CARD COMPONENT (9:16 Shorts Style) ---
 const StoryCard: React.FC<{
   story: VideoStory;
   isActive: boolean;
   onPlay: (id: string) => void;
   onStop: () => void;
 }> = ({ story, isActive, onPlay, onStop }) => {
-  const thumbnailUrl = `https://img.youtube.com/vi/${story.videoId}/hqdefault.jpg`;
+  const thumbnailUrl = `https://img.youtube.com/vi/${story.videoId}/maxresdefault.jpg`; // Higher quality
 
   return (
     <div
-      className={`group relative h-[450px] w-full bg-gray-100 shadow-sm hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200 ${
-        isActive ? "ring-2 ring-red-600 z-10" : ""
-      }`}
-      // ANGEL SHAPE: Bottom right cut
-      style={{
-        clipPath:
-          "polygon(0 0, 100% 0, 100% calc(100% - 40px), calc(100% - 40px) 100%, 0 100%)",
-      }}
+      className={`
+        group relative w-full bg-gray-900 shadow-xl transition-all duration-500 ease-out
+        aspect-[9/16]  overflow-hidden cursor-pointer
+        ${isActive ? "ring-4 ring-red-600 scale-[0.98]" : "hover:scale-[1.02]"}
+      `}
+      onClick={() => !isActive && onPlay(story.id)}
     >
       {isActive ? (
-        // --- PLAYER MODE (FULL WIDTH) ---
-        <div className="absolute inset-0 z-30">
+        // --- PLAYER MODE ---
+        <>
           <InlineVideoPlayer videoId={story.videoId} type={story.type} />
 
-          {/* Close Button for Player */}
+          {/* Close Button */}
           <button
-            onClick={onStop}
-            className="absolute top-4 right-4 z-40 w-10 h-10 rounded-full bg-black/60 text-white hover:bg-red-600 flex items-center justify-center transition-all backdrop-blur-sm shadow-lg"
+            onClick={(e) => {
+              e.stopPropagation();
+              onStop();
+            }}
+            className="absolute top-4 right-4 z-50 w-8 h-8 rounded-full bg-black/50 hover:bg-white text-white hover:text-black backdrop-blur flex items-center justify-center transition-colors"
           >
-            <X size={18} />
+            <X size={16} />
           </button>
-        </div>
+        </>
       ) : (
-        /* --- THUMBNAIL MODE --- */
+        // --- THUMBNAIL MODE ---
         <>
-          {/* Thumbnail Image */}
-          <div className="absolute inset-0">
-            <img
-              src={thumbnailUrl}
-              alt={story.title}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
-          </div>
+          {/* Image */}
+          <img
+            src={thumbnailUrl}
+            alt={story.title}
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          />
 
-          {/* Type Badge */}
-          <div className="absolute top-6 left-6 z-10">
-            <span
-              className={`text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-sm backdrop-blur-md shadow-sm ${
-                story.type === "short"
-                  ? "bg-red-600 text-white"
-                  : "bg-white/20 text-white border border-white/30"
-              }`}
-            >
-              {story.type === "short" ? "Shorts" : "Video"}
+          {/* Gradient Overlay (Darker at bottom) */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/90" />
+
+          {/* Top Left Badge */}
+          <div className="absolute top-4 left-4 z-10">
+            <span className="px-2.5 py-1 bg-white/10 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold uppercase tracking-wider rounded-md">
+              {story.type === "short" ? "Short" : "Video"}
             </span>
           </div>
 
-          {/* Play Button Area */}
-          <div
-            className="absolute inset-0 flex items-center justify-center cursor-pointer z-20"
-            onClick={() => onPlay(story.id)}
-          >
-            <div className="relative w-20 h-20 bg-red-600/90 rounded-full flex items-center justify-center pl-2 backdrop-blur-sm shadow-lg group-hover:bg-[#EA393A] group-hover:scale-110 transition-all duration-300">
-              <Play className="w-8 h-8 text-white fill-current" />
+          {/* Center Play Button */}
+          <div className="absolute inset-0 flex items-center justify-center z-10">
+            <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm border border-white/40 flex items-center justify-center group-hover:bg-[#ea393a] group-hover:scale-110 group-hover:border-[#ea393a] transition-all duration-300">
+              <Play className="w-6 h-6 text-white fill-white ml-1" />
             </div>
           </div>
 
-          {/* Text Info (Bottom) */}
-          <div className="absolute bottom-0 left-0 w-full p-8 z-10">
-            <h3 className="font-serif text-3xl text-white font-bold leading-tight mb-2 group-hover:text-red-500 transition-colors">
+          {/* Bottom Info */}
+          <div className="absolute bottom-0 left-0 w-full p-5 z-10">
+            <div className="flex items-center gap-2 mb-2">
+              <FaYoutube className="text-red-600 w-4 h-4" />
+              <span className="text-xs text-gray-300 font-medium uppercase tracking-wide">
+                Success Story
+              </span>
+            </div>
+            <h3 className="text-xl md:text-2xl font-bold text-white leading-tight mb-1">
               {story.title}
             </h3>
-            <div className="h-1 w-12 bg-red-600 mb-3 transition-all group-hover:w-20"></div>
-            <p className="text-base text-gray-200 flex items-center gap-2">
-              <FaYoutube className="w-4 h-4" />
+            <p className="text-sm text-gray-300 font-light line-clamp-2">
               {story.subtitle}
             </p>
           </div>
@@ -273,41 +267,51 @@ const SuccessStoriesSlider = () => {
   };
 
   const handleSlideChange = () => {
-    // Stop video when sliding to prevent audio overlap
     setActiveVideoId(null);
   };
 
   return (
-    <section className="relative w-full py-24 bg-white overflow-hidden">
+    <section className=" relative w-full py-24 bg-gray-50 overflow-hidden">
+      {/* Background Pattern */}
+      <div
+        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(#000 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
+        }}
+      ></div>
+
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-16">
-          <div className="max-w-2xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-red-100 text-red-700 text-[10px] font-bold uppercase tracking-widest mb-4">
-              Success Stories
+          <div className="max-w-xl">
+            <span className="inline-flex items-center gap-2 text-[#ea393a] font-bold tracking-[0.2em] text-xs uppercase mb-3">
+              <div className="w-8 h-[1px] bg-[#ea393a]"></div>
+              Testimonials
             </span>
-            <h2 className="text-3xl md:text-5xl font-serif font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl md:text-5xl  font-bold text-gray-900 mb-4 leading-tight">
               সফলতার <span className="text-[#ea393a]">গল্প</span>
             </h2>
-            <p className="text-gray-600 text-lg leading-relaxed">
-              আমাদের প্রাক্তন শিক্ষার্থীরা আজ বিশ্বসেরা হোটেলে কাজ করছেন। তাদের
-              অভিজ্ঞতা শুনুন এবং অনুপ্রাণিত হোন।
+            <p className="text-gray-600 text-lg leading-relaxed font-light">
+              আমাদের প্রাক্তন শিক্ষার্থীদের অভিজ্ঞতা এবং সাফল্যের গল্প দেখুন।
+              তারা কিভাবে প্রফেশনাল কুকিং শিখে নিজেদের ক্যারিয়ার গড়েছেন।
             </p>
           </div>
 
-          <div className="mt-6 md:mt-0 hidden sm:block">
+          <div className="mt-8 md:mt-0">
             <a
               href="#"
-              className="text-sm font-bold text-red-700 hover:text-red-800 uppercase tracking-widest flex items-center gap-2 transition-colors group"
+              className="group flex items-center gap-2 text-sm font-bold text-gray-900 border-b-2 border-transparent hover:border-[#ea393a] pb-1 transition-all"
             >
-              View All Stories{" "}
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              সব গল্প দেখুন
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </a>
           </div>
         </div>
 
         {/* Swiper Container */}
-        <div className="relative py-10 group/swiper">
+        <div className="relative group/swiper">
+          {/* Navigation */}
           <div className="swiper-button-prev custom-swiper-btn opacity-0 group-hover/swiper:opacity-100 transition-opacity duration-300">
             <SwiperNavButton direction="prev" />
           </div>
@@ -317,17 +321,23 @@ const SuccessStoriesSlider = () => {
 
           <Swiper
             modules={[Navigation, Pagination]}
-            spaceBetween={30}
+            spaceBetween={24}
             slidesPerView={1}
+            centeredSlides={false}
             breakpoints={{
               640: {
                 slidesPerView: 2,
+                spaceBetween: 20,
               },
               1024: {
                 slidesPerView: 3,
+                spaceBetween: 30,
+              },
+              1280: {
+                slidesPerView: 4,
+                spaceBetween: 30,
               },
             }}
-            // CRITICAL: loop={false} prevents removeChild crash with VideoJS
             loop={false}
             navigation={{
               nextEl: ".swiper-button-next",
@@ -340,7 +350,7 @@ const SuccessStoriesSlider = () => {
               bulletActiveClass: "custom-bullet-active",
             }}
             onSlideChange={handleSlideChange}
-            className="!pb-12"
+            className="!pb-16"
           >
             {stories.map((story) => (
               <SwiperSlide key={story.id}>
@@ -358,22 +368,22 @@ const SuccessStoriesSlider = () => {
         </div>
       </div>
 
-      {/* Decorative Background Elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-red-600/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-gray-900/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
-
       <style jsx global>{`
         .custom-bullet {
-          width: 10px;
-          height: 10px;
-          background: #e5e7eb;
+          width: 8px;
+          height: 8px;
+          background: #d1d5db;
           opacity: 1;
           transition: all 0.3s ease;
         }
         .custom-bullet-active {
-          width: 30px;
-          background: #dc2626;
-          border-radius: 10px;
+          width: 24px;
+          background: #ea393a;
+          border-radius: 4px;
+        }
+        /* Hide videojs default big play button since we have our own overlay */
+        .vjs-big-play-button {
+          display: none !important;
         }
       `}</style>
     </section>

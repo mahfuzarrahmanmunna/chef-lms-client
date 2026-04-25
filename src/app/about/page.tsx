@@ -20,7 +20,7 @@ const StatItem: React.FC<{ value: string; label: string }> = ({
   label,
 }) => (
   <div className="border-l border-gray-200 pl-8">
-    <span className="block text-4xl font-serif font-bold text-gray-900">
+    <span className="block text-4xl  font-bold text-gray-900">
       {value}
     </span>
     <span className="text-xs font-bold uppercase tracking-widest text-gray-500">
@@ -36,7 +36,7 @@ const ValueCard: React.FC<{
 }> = ({ icon, title, description }) => (
   <div className="group p-8 border border-gray-200 hover:border-red-700 transition-colors duration-300 bg-white relative">
     <div className="mb-6 text-red-700">{icon}</div>
-    <h3 className="text-xl font-serif font-bold text-gray-900 mb-3 group-hover:text-red-700 transition-colors">
+    <h3 className="text-xl  font-bold text-gray-900 mb-3 group-hover:text-red-700 transition-colors">
       {title}
     </h3>
     <p className="text-sm text-gray-600 leading-relaxed font-light">
@@ -69,7 +69,7 @@ export default function AboutUs() {
           <span className="block text-red-500 font-bold tracking-[0.3em] text-xs uppercase mb-4 animate-pulse">
             Est. 1995
           </span>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold leading-[0.9] mb-8">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl  font-bold leading-[0.9] mb-8">
             আমাদের গল্প
           </h1>
           <p className="text-xl md:text-2xl font-light max-w-2xl mx-auto text-gray-200">
@@ -80,19 +80,19 @@ export default function AboutUs() {
 
       {/* MISSION SECTION */}
       <section className="py-24 bg-white">
-        <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
+        <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Left: Image Collage */}
            
 
          
             <div>
-              <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-8 leading-tight">
+              <h2 className="text-4xl md:text-5xl  font-bold text-gray-900 mb-8 leading-tight">
                 আমাদের মিশন
               </h2>
 
               <p className="text-gray-600 text-lg leading-relaxed mb-6 font-light">
-                আমাদের মিশন হলো বিশ্বমানের culinary education প্রদানের মাধ্যমে বাংলাদেশের তরুণ প্রজন্মকে দক্ষ করে তোলা, যা সরাসরি তাদের একটি sustainable career নিশ্চিত করতে সাহায্য করবে। আমরা কারিগরি প্রশিক্ষণ এবং high-tier employment-এর মধ্যকার দূরত্ব ঘুচাতে প্রতিশ্রুতিবদ্ধ। আমাদের curriculum এমনভাবে তৈরি করা হয়েছে যেখানে উন্নত technical skill-এর পাশাপাশি soft skills এবং linguistic fluency বা ভাষাগত দক্ষতার ওপর সমান গুরুত্ব দেওয়া হয়।
+                আমাদের মিশন হলো বিশ্বমানের culinary Course প্রদানের মাধ্যমে বাংলাদেশের তরুণ প্রজন্মকে দক্ষ করে তোলা, যা সরাসরি তাদের একটি sustainable career নিশ্চিত করতে সাহায্য করবে। আমরা কারিগরি প্রশিক্ষণ এবং high-tier employment-এর মধ্যকার দূরত্ব ঘুচাতে প্রতিশ্রুতিবদ্ধ। আমাদের curriculum এমনভাবে তৈরি করা হয়েছে যেখানে উন্নত Kitchen skill-এর পাশাপাশি soft skills এবং linguistic fluency বা ভাষাগত দক্ষতার ওপর সমান গুরুত্ব দেওয়া হয়।
 
                 কিচেনের গণ্ডি ছাড়িয়ে প্রতিটি শিক্ষার্থীর মধ্যে পেশাদার সততা এবং একটি global perspective তৈরি করাই আমাদের লক্ষ্য। এতে তারা শুধু স্থানীয় hospitality market-এই নয়, বরং আন্তর্জাতিক luxury hotels এবং overseas culinary opportunities-এর জন্য অত্যন্ত শক্তিশালী প্রতিযোগী হিসেবে গড়ে উঠবে। আমাদের 3 and 4-star hotel internship programs-এর মান বজায় রাখার মাধ্যমে আমরা এমন এক প্ল্যাটফর্ম হতে চাই, যেখান থেকে শেফরা গ্লোবাল gastronomic landscape-এ নেতৃত্ব দিতে এবং নতুনত্ব আনতে সক্ষম হবে।
               </p>
@@ -132,9 +132,9 @@ export default function AboutUs() {
 
       {/* IMPACT SECTION - Numbered Stats */}
       <section className="py-24 bg-gray-50">
-        <div className="container px-6 sm:px-10 lg:px-16 xl:px-24">
+        <div className="container px-6">
           <div className=" mb-16">
-            <h2 className="text-4xl font-serif font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl  font-bold text-gray-900 mb-4">
               আমাদের প্রভাব
             </h2>
             <p className="text-gray-500">
@@ -164,9 +164,9 @@ export default function AboutUs() {
 
       {/* PHILOSOPHY SECTION */}
       <section className="py-24 bg-white">
-        <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
+        <div className="container mx-auto px-6">
           <div className="mb-16">
-            <h2 className="text-4xl font-serif font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl  font-bold text-gray-900 mb-4">
               আমাদের ফিলোসফি
             </h2>
             <p className="text-gray-500">
@@ -177,7 +177,7 @@ export default function AboutUs() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <ValueCard
               icon={<Target className="w-10 h-10" />}
-              title="Active Technical Mastery"
+              title="Active Kitchen Mastery"
               description="আমরা বিশ্বাস করি কিচেনই হলো শ্রেষ্ঠ শ্রেণিকক্ষ। আমাদের মূল ফোকাস হলো Active Learning-এর ওপর, যেখানে শিক্ষার্থীরা ক্রমাগত প্র্যাকটিস এবং সরাসরি hands-on mentorship-এর মাধ্যমে তাদের দক্ষতা ঝালাই করে। এতে করে প্রতিটি টেকনিক্যাল কাজ তাদের সহজাত অভ্যাসে পরিণত হয়।"
             />
             <ValueCard
@@ -196,13 +196,13 @@ export default function AboutUs() {
 
       {/* EXPERIENCE SECTION */}
       <section className="py-24 bg-gray-50">
-        <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
+        <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-end mb-10 border-b border-gray-200 pb-8">
             <div>
               <span className="text-red-700 font-bold tracking-widest text-xs uppercase block mb-4">
                 The Experience
               </span>
-              <h2 className="text-4xl font-serif font-bold text-gray-900">
+              <h2 className="text-4xl  font-bold text-gray-900">
                 প্রশিক্ষণের অভিজ্ঞতা
               </h2>
             </div>
@@ -244,7 +244,7 @@ export default function AboutUs() {
                 />
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors flex items-end">
                   <div className="p-4 w-full border-t border-white/20 bg-black/60 backdrop-blur-sm translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                    <span className="text-white font-serif font-bold text-lg block">
+                    <span className="text-white  font-bold text-lg block">
                       {item.title}
                     </span>
                   </div>
@@ -257,10 +257,10 @@ export default function AboutUs() {
 
       {/* MASTERMIND SECTION */}
       <section className="py-24 bg-white">
-        <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
+        <div className="container mx-auto px-6">
           <div className="max-w-xl mb-16">
             <ChefHat className="w-12 h-12 text-red-700  mb-6" />
-            <h2 className="text-4xl font-serif font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl  font-bold text-gray-900 mb-4">
               The Vision Behind the Flavor
             </h2>
             <p className="text-gray-600 text-lg leading-relaxed mb-8">
@@ -271,7 +271,7 @@ export default function AboutUs() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <ValueCard
               icon={<Target className="w-10 h-10" />}
-              title="Technical Precision"
+              title="Kitchen Precision"
               description="Knife skills থেকে শুরু করে temperature control; আমরা বিশ্বমানের কিচেনগুলোতে ব্যবহৃত প্রতিটি মৌলিক অভ্যাস আপনার মাঝে গড়ে তুলি।"
             />
             <ValueCard
@@ -290,9 +290,9 @@ export default function AboutUs() {
 
       {/* CTA SECTION - Updated */}
       <section className="py-24 bg-gray-900 text-white">
-        <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 text-center">
+        <div className="container mx-auto px-6 text-center">
           <ChefHat className="w-12 h-12 text-red-500 mx-auto mb-6" />
-          <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
+          <h2 className="text-4xl md:text-5xl  font-bold mb-6">
             আপনার প্রফেশনাল ক্যারিয়ারের পথে প্রথম কদমটি বাড়ান।
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-10 font-light">

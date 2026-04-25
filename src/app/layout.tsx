@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Raleway, Lato, Allura } from "next/font/google";
+import { Raleway } from "next/font/google"; // Removed Lato and Allura
 import "./globals.css";
 import SmoothScroll from "./components/SmoothScroll/SmoothScroll";
 import NavbarWrapper from "./components/NavbarWrapper/NavbarWrapper";
@@ -7,25 +7,11 @@ import Footer from "./components/Footer/Footer";
 import { AuthProvider } from "@/hooks/useAuth";
 import FooterWrapper from "./components/FooterWraper/FooterWraper";
 
-/*  Font Configuration  */
+/*  Font Configuration - ONLY RALEWAY  */
 const raleway = Raleway({
   subsets: ["latin"],
   weight: ["100", "300", "400", "500", "600", "700", "800", "900"],
   variable: "--font-raleway",
-  display: "swap",
-});
-
-const lato = Lato({
-  subsets: ["latin"],
-  weight: ["100", "300", "400", "700", "900"],
-  variable: "--font-lato",
-  display: "swap",
-});
-
-const allura = Allura({
-  subsets: ["latin"],
-  weight: ["400"],
-  variable: "--font-allura",
   display: "swap",
 });
 
@@ -37,11 +23,11 @@ export const metadata: Metadata = {
 
   // 1. Fix the Icons (Browser Tabs)
   icons: {
-    icon: [{ url: "/logo.png", type: "image/png" }], // Fixed type
+    icon: [{ url: "/logo.png", type: "image/png" }],
     apple: [{ url: "/logo.png", sizes: "180x180", type: "image/png" }],
   },
 
-  // 2. Add Open Graph for Link Previews (WhatsApp, FB, LinkedIn)
+  // 2. Add Open Graph for Link Previews
   openGraph: {
     title: "Online Chef Courses | Learn Cooking from Experts",
     description:
@@ -50,7 +36,7 @@ export const metadata: Metadata = {
     siteName: "BPSTI Chef Training Institute",
     images: [
       {
-        url: "/logo.png", // This is the image that will show in chat previews
+        url: "/logo.png",
         width: 1200,
         height: 630,
         alt: "BPSTI Logo",
@@ -70,7 +56,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${raleway.variable} ${lato.variable} ${allura.variable} h-full antialiased`}
+      className={`${raleway.variable} h-full antialiased`} // Removed lato and allura variables
     >
       <body className="min-h-full flex flex-col bg-white text-gray-900 font-sans selection:bg-red-100 selection:text-red-900">
         <AuthProvider>

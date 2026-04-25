@@ -48,11 +48,7 @@ const features = [
 export default function Features() {
   return (
     <>
-      {/* <style jsx global>{`
-        ${keyframes}
-      `}</style> */}
-      <section className="relative text-black">
-       
+      <section className=" text-black">
         <div className="relative z-10 w-full">
           <div className="max-w-6xl mx-auto">
             {/* Header Section */}
@@ -67,13 +63,6 @@ export default function Features() {
 
             {/* Cards Grid */}
           <HeroSection></HeroSection>
-
-            {/* Spacer to ensure smooth scroll out of the sticky area */}
-            <div className="h-32 flex items-center justify-center mt-12">
-              <p className="text-white/40 text-sm tracking-[0.2em] uppercase animate-pulse">
-                Continue Scrolling
-              </p>
-            </div>
           </div>
         </div>
       </section>

@@ -92,7 +92,7 @@ const ReviewCard: React.FC<{ review: Review }> = ({ review }) => {
           className="w-12 h-12 object-cover border border-gray-200"
         />
         <div>
-          <h4 className="font-serif font-bold text-gray-900 text-lg">
+          <h4 className=" font-bold text-gray-900 text-lg">
             {review.name}
           </h4>
           <p className="text-xs uppercase tracking-wider text-gray-500 mb-1">
@@ -140,7 +140,7 @@ const SimilarCourseCard: React.FC<{ course: Course }> = ({ course }) => {
         </div>
       </div>
       <div className="p-4">
-        <h4 className="font-serif font-bold text-gray-900 mb-2 group-hover:text-red-700 transition-colors">
+        <h4 className=" font-bold text-gray-900 mb-2 group-hover:text-red-700 transition-colors">
           {course.title}
         </h4>
         <div className="flex justify-between items-center text-sm">
@@ -219,7 +219,7 @@ export default function CourseDetailsPage() {
   if (!course) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white flex-col gap-4">
-        <h2 className="text-2xl font-serif font-bold text-gray-900">
+        <h2 className="text-2xl  font-bold text-gray-900">
           Course not found
         </h2>
         <button
@@ -239,7 +239,7 @@ export default function CourseDetailsPage() {
 
   return (
     <div className="bg-white min-h-screen py-24">
-      <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 pt-12">
+      <div className="container mx-auto px-6 pt-12">
         {/* Breadcrumbs */}
         <Breadcrumbs />
 
@@ -259,7 +259,7 @@ export default function CourseDetailsPage() {
                 )}
               </div>
 
-              <h1 className="text-4xl md:text-6xl font-serif font-bold text-gray-900 mb-6 leading-[1.1]">
+              <h1 className="text-4xl md:text-6xl  font-bold text-gray-900 mb-6 leading-[1.1]">
                 {course.title}
               </h1>
 
@@ -290,7 +290,7 @@ export default function CourseDetailsPage() {
 
             {/* Description */}
             <div>
-              <h3 className="text-2xl font-serif font-bold text-gray-900 mb-6 pb-2 border-b border-gray-100">
+              <h3 className="text-2xl  font-bold text-gray-900 mb-6 pb-2 border-b border-gray-100">
                 Overview
               </h3>
               <p className="text-lg text-gray-600 leading-relaxed font-light">
@@ -305,7 +305,7 @@ export default function CourseDetailsPage() {
 
             {/* Curriculum */}
             <div>
-              <h3 className="text-2xl font-serif font-bold text-gray-900 mb-6 pb-2 border-b border-gray-100">
+              <h3 className="text-2xl  font-bold text-gray-900 mb-6 pb-2 border-b border-gray-100">
                 Curriculum Highlights
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -323,6 +323,53 @@ export default function CourseDetailsPage() {
               </div>
             </div>
 
+            {isProfessional && (
+              <div className="bg-gray-900 text-white p-6 border-l-4 border-red-600">
+                <h3 className=" font-bold text-lg mb-4 flex items-center gap-2">
+                  <Briefcase className="w-5 h-5 text-red-500" />
+                  Career Guarantee
+                </h3>
+
+                {course.features.internshipIncluded && (
+                  <div className="mb-4">
+                    <div className="flex items-center gap-2 mb-1">
+                      <CheckCircle className="w-4 h-4 text-green-400" />
+                      <span className="text-sm font-bold">
+                        3-Month Internship
+                      </span>
+                    </div>
+                    <p className="text-xs text-gray-400 pl-6">
+                      Mandatory placement in partner hotels.
+                    </p>
+                  </div>
+                )}
+
+                {course.features.placementSupport && (
+                  <div className="">
+                    <p className="text-[10px] font-bold uppercase text-gray-500 mb-2 tracking-wider">
+                      Job Tracks
+                    </p>
+                    <ul className="space-y-2">
+                      {course.features.placementTracks?.map((track, idx) => (
+                        <li
+                          key={idx}
+                          className="text-xs text-gray-300 border-l border-gray-700 pl-3"
+                        >
+                          {track.type}:{" "}
+                          <span className="text-white">
+                            {track.description}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                    <div>
+                      <img src="" alt="" />
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
             {/* Chef Instructor */}
             <div className="bg-gray-50 border border-gray-200 p-8">
               <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
@@ -335,7 +382,7 @@ export default function CourseDetailsPage() {
                   <p className="text-red-700 text-xs font-bold uppercase tracking-widest mb-2">
                     Your Instructor
                   </p>
-                  <h4 className="text-2xl font-serif font-bold text-gray-900">
+                  <h4 className="text-2xl  font-bold text-gray-900">
                     {course.chef}
                   </h4>
                   <p className="text-gray-500 mb-4 text-sm">
@@ -354,7 +401,7 @@ export default function CourseDetailsPage() {
             {/* Reviews Section */}
             <div>
               <div className="flex items-center justify-between mb-8 border-b border-gray-200 pb-4">
-                <h3 className="text-2xl font-serif font-bold text-gray-900">
+                <h3 className="text-2xl  font-bold text-gray-900">
                   Student Reviews
                 </h3>
                 <div className="flex items-center gap-1 text-yellow-500">
@@ -384,7 +431,7 @@ export default function CourseDetailsPage() {
                     Total Cost
                   </p>
                   <div className="flex items-baseline gap-2">
-                    <span className="text-4xl font-serif font-bold text-gray-900">
+                    <span className="text-4xl  font-bold text-gray-900">
                       ${course.price}
                     </span>
                     <span className="text-sm text-gray-500">/ course</span>
@@ -453,51 +500,6 @@ export default function CourseDetailsPage() {
                 </div>
               </div>
 
-              {/* Career Support (Professional Only) */}
-              {isProfessional && (
-                <div className="bg-gray-900 text-white p-6 border-l-4 border-red-600">
-                  <h3 className="font-serif font-bold text-lg mb-4 flex items-center gap-2">
-                    <Briefcase className="w-5 h-5 text-red-500" />
-                    Career Guarantee
-                  </h3>
-
-                  {course.features.internshipIncluded && (
-                    <div className="mb-4">
-                      <div className="flex items-center gap-2 mb-1">
-                        <CheckCircle className="w-4 h-4 text-green-400" />
-                        <span className="text-sm font-bold">
-                          3-Month Internship
-                        </span>
-                      </div>
-                      <p className="text-xs text-gray-400 pl-6">
-                        Mandatory placement in partner hotels.
-                      </p>
-                    </div>
-                  )}
-
-                  {course.features.placementSupport && (
-                    <div>
-                      <p className="text-[10px] font-bold uppercase text-gray-500 mb-2 tracking-wider">
-                        Job Tracks
-                      </p>
-                      <ul className="space-y-2">
-                        {course.features.placementTracks?.map((track, idx) => (
-                          <li
-                            key={idx}
-                            className="text-xs text-gray-300 border-l border-gray-700 pl-3"
-                          >
-                            {track.type}:{" "}
-                            <span className="text-white">
-                              {track.description}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </div>
-              )}
-
               {/* Contact CTA */}
               <div className="bg-gray-50 border border-gray-200 p-6 text-center">
                 <p className="text-sm text-gray-600 mb-4">
@@ -514,7 +516,7 @@ export default function CourseDetailsPage() {
         {/* Similar Courses Section */}
         {similarCourses.length > 0 && (
           <div className="mt-24 border-t border-gray-200 pt-16">
-            <h2 className="text-3xl font-serif font-bold text-gray-900 mb-8">
+            <h2 className="text-3xl  font-bold text-gray-900 mb-8">
               You Might Also Like
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

@@ -87,7 +87,7 @@ const LogoCard: React.FC<{ employer: (typeof employers)[0] }> = ({
   return (
     <div className="group h-24 w-full flex items-center justify-center bg-white border border-gray-100 rounded-lg hover:border-red-200 transition-all duration-300 cursor-default">
       {/* Text Logo (Clean, Reliable) */}
-      <h3 className="font-serif text-2xl md:text-3xl text-gray-300 font-medium group-hover:text-gray-800 transition-colors tracking-wide">
+      <h3 className=" text-2xl md:text-3xl text-gray-300 font-medium group-hover:text-gray-800 transition-colors tracking-wide">
         {employer.initials}
       </h3>
 

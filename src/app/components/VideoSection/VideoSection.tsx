@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay, Pagination } from "swiper/modules";
-import { Play, ArrowRight, ArrowLeft, X, VolumeX } from "lucide-react";
+import { Play, ArrowRight, ArrowLeft, X, VolumeX, Video } from "lucide-react";
 import { FaYoutube } from "react-icons/fa6";
 
 // Import Swiper styles
@@ -161,7 +161,7 @@ const VideoCard: React.FC<{
               </span>
             </div>
 
-            <h3 className="font-serif text-xl text-white font-bold leading-tight mb-1 group-hover:text-red-500 transition-colors">
+            <h3 className=" text-xl text-white font-bold leading-tight mb-1 group-hover:text-red-500 transition-colors">
               {video.title}
             </h3>
 
@@ -199,15 +199,19 @@ const VideoSection: React.FC = () => {
 
   return (
     <section className="relative w-full  overflow-hidden">
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-6 relative z-10 lg:px-20">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-12">
           <div className="max-w-2xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-red-100 text-red-700 text-[10px] font-bold uppercase tracking-widest mb-4">
-              Culinary TV
-            </span>
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4">
-              Watch. Learn. Cook.
+            <div className="flex items-center gap-4 mb-3">
+              <div className="w-1 h-8 bg-red-400"></div>
+              <span className="text-red-400 font-bold tracking-[0.2em] text-xs uppercase flex items-center gap-2">
+                <Video className="w-4 h-4" />
+                Culinary TV
+              </span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              The Industry Standard: Skills on Display
             </h2>
             <p className="text-gray-600 leading-relaxed">
               Dive into our library of instructional videos featuring

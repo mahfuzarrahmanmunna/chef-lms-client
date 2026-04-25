@@ -85,7 +85,7 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
               {course.certification}
             </span>
           </div>
-          <h3 className="text-xl font-serif font-bold text-gray-900 leading-snug mb-2">
+          <h3 className="text-xl  font-bold text-gray-900 leading-snug mb-2">
             {course.title}
           </h3>
           <p className="text-sm text-gray-500 leading-relaxed">
@@ -143,7 +143,7 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
                 <p className="text-[10px] text-gray-400 uppercase tracking-wider font-bold mb-0.5">
                   কোর্স ফি
                 </p>
-                <p className="text-xl font-serif font-bold text-gray-900">
+                <p className="text-xl  font-bold text-gray-900">
                   ৳{course.price.toLocaleString()}
                   {course.priceAlt && (
                     <span className="text-sm font-normal text-gray-400 ml-1">
@@ -209,46 +209,49 @@ export default function CoursesSection() {
 
   return (
     <section className="mt-32 bg-white">
-      <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
+      <div className="container mx-auto  px-6">
         {/* Section Header */}
-        <div className="mb-12  max-h-24 shadow-[inset_5px_0px_7px_#ff2b2b_40%]">
-          <p className="text-[11px] p-4 font-bold uppercase tracking-widest text-red-700 mb-2">
-            আমাদের কোর্সসমূহ
-          </p>
-          <h2 className="text-3xl md:text-5xl font-serif font-bold text-gray-900 leading-tight mb-4">
-            আপনার লক্ষ্য অনুযায়ী <br className="hidden md:block" />
-            সঠিক কোর্সটি বেছে নিন।
-          </h2>
-          <p className="text-sm text-gray-500 max-w-xl leading-relaxed">
-            আমাদের প্রতিটি কোর্স ইন্ডাস্ট্রি-স্ট্যান্ডার্ড কারিকুলাম অনুযায়ী
-            ডিজাইন করা হয়েছে — শুরু থেকে শীর্ষে পৌঁছানোর জন্য।
-          </p>
-        </div>
+        <div className="shadow-[inset_1px_0.5px_15px_red] px-12 overflow-x-clip">
+          {/* Middle Section (Button + Image) Wrapper */}
+          <div className="">
+            <div className="mb-12  max-h-24 ">
+              <p className="text-[11px] p-4 font-bold uppercase tracking-widest text-red-700 mb-2">
+                আমাদের কোর্সসমূহ
+              </p>
+              <h2 className="text-3xl md:text-5xl  font-bold text-gray-900 leading-tight mb-4">
+                আপনার লক্ষ্য অনুযায়ী <br className="hidden md:block" />
+                সঠিক কোর্সটি বেছে নিন।
+              </h2>
+              <p className="text-sm text-gray-500 max-w-xl leading-relaxed">
+                আমাদের প্রতিটি কোর্স ইন্ডাস্ট্রি-স্ট্যান্ডার্ড কারিকুলাম
+                অনুযায়ী ডিজাইন করা হয়েছে — শুরু থেকে শীর্ষে পৌঁছানোর জন্য।
+              </p>
+            </div>
+            <div className="flex flex-col md:flex-row items-center  justify-between gap-8 mb-16">
+              <div>
+                {/* Animated Button */}
+                <button
+                  onClick={handlePathChange}
+                  className="relative group overflow-hidden bg-red-600 text-white px-10 py-3 font-semibold transition-all duration-300 ease-out hover:bg-white hover:text-[#ea393a] border border-transparent hover:border-red-600 active:scale-95 shadow-md hover:shadow-red-200"
+                >
+                  <span className="relative z-10">Take This Short Quiz</span>
+                  <div className="absolute inset-0 w-1/4 h-full bg-white/20 skew-x-[-20deg] -translate-x-full group-hover:translate-x-[400%] transition-transform duration-700 ease-in-out"></div>
+                </button>
+              </div>
 
-        {/* Middle Section (Button + Image) Wrapper */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-16">
-          <div>
-            {/* Animated Button */}
-            <button
-              onClick={handlePathChange}
-              className="relative group overflow-hidden bg-red-600 text-white px-10 py-3 font-semibold transition-all duration-300 ease-out hover:bg-white hover:text-[#ea393a] border border-transparent hover:border-red-600 active:scale-95 shadow-md hover:shadow-red-200"
-            >
-              <span className="relative z-10">Take This Short Quiz</span>
-              <div className="absolute inset-0 w-1/4 h-full bg-white/20 skew-x-[-20deg] -translate-x-full group-hover:translate-x-[400%] transition-transform duration-700 ease-in-out"></div>
-            </button>
-          </div>
-
-          {/* Image Section */}
-          <div className="w-full md:w-2/3 flex justify-center md:justify-end self-end relative z-0">
-            <div className="relative w-52 md:w-80 lg:w-[450px] leading-0">
-              <Image
-                src={"/image.webp"}
-                width={500}
-                height={700}
-                alt="Course Instructor"
-                className="object-contain h-auto w-full transform scale-125 lg:scale-150 origin-bottom"
-                priority
-              />
+              {/* Image Section */}
+              <div className="w-full md:w-2/3 flex justify-center md:justify-end self-end relative z-0">
+                <div className="relative w-52 md:w-80 lg:w-[450px] leading-0">
+                  <Image
+                    src={"/image.webp"}
+                    width={500}
+                    height={700}
+                    alt="Course Instructor"
+                    className="object-contain h-auto w-full transform scale-125 lg:scale-150 origin-bottom"
+                    priority
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>

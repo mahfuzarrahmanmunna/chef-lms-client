@@ -178,7 +178,7 @@ const CourseCard = ({ course, layout = "grid" }) => {
         </div>
 
         <h3
-          className={`font-serif font-bold text-gray-900 mb-2 group-hover:text-red-700 transition-colors ${isFeaturedLayout ? "text-2xl" : "text-xl"}`}
+          className={` font-bold text-gray-900 mb-2 group-hover:text-red-700 transition-colors ${isFeaturedLayout ? "text-2xl" : "text-xl"}`}
         >
           {course.title}
         </h3>
@@ -259,7 +259,7 @@ export default function FeaturedCourses() {
             <div className="bg-red-600 text-white p-2 rounded-lg">
               <BookOpen className="w-6 h-6" />
             </div>
-            <span className="font-serif text-2xl font-bold text-gray-900 tracking-tight">
+            <span className=" text-2xl font-bold text-gray-900 tracking-tight">
               Chef<span className="text-[#ea393a]">LMS</span>
             </span>
           </div>
@@ -289,7 +289,7 @@ export default function FeaturedCourses() {
           <span className="inline-block py-1 px-3 rounded-full bg-red-50 text-red-700 text-xs font-bold uppercase tracking-widest mb-4">
             Learning Management System
           </span>
-          <h1 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6 max-w-3xl mx-auto">
+          <h1 className="text-4xl md:text-5xl  font-bold text-gray-900 mb-6 max-w-3xl mx-auto">
             Master the Art of{" "}
             <span className="text-[#ea393a]">Professional Cooking</span>
           </h1>
@@ -307,7 +307,7 @@ export default function FeaturedCourses() {
           <div className="container mx-auto px-6">
             <div className="flex items-end justify-between mb-10">
               <div>
-                <h2 className="text-2xl md:text-3xl font-serif font-bold text-gray-900 flex items-center gap-3">
+                <h2 className="text-2xl md:text-3xl  font-bold text-gray-900 flex items-center gap-3">
                   <Award className="w-8 h-8 text-amber-500" />
                   Featured Professional Programs
                 </h2>
@@ -331,7 +331,7 @@ export default function FeaturedCourses() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-6">
           <div className="mb-10 border-l-4 border-blue-600 pl-6">
-            <h2 className="text-2xl md:text-3xl font-serif font-bold text-gray-900">
+            <h2 className="text-2xl md:text-3xl  font-bold text-gray-900">
               Short Courses
             </h2>
             <p className="text-gray-500 mt-2">
@@ -352,7 +352,7 @@ export default function FeaturedCourses() {
       <section className="py-20 bg-gray-900 text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1556910103-1c02745a30bf?q=80&w=1200')] bg-cover bg-center opacity-20" />
         <div className="container mx-auto px-6 relative z-10 text-center">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6">
+          <h2 className="text-3xl md:text-4xl  font-bold mb-6">
             Ready to Start Your Culinary Journey?
           </h2>
           <p className="text-gray-300 mb-8 max-w-2xl mx-auto">

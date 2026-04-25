@@ -2,7 +2,7 @@
   {
     "id": 1,
     "title": "Professional Chef Course",
-    "titleBn": "প্রফেশনাল কিচেনের শিল্পে হয়ে উঠুন পারদর্শী",
+    "titleBn": "প্রফেশনাল কিচেনের শিল্পে হয়ে উঠুন পারদর্শী ।",
     "certification": "Professional Culinary Diploma",
     "duration": "৩ মাস",
     "durationEn": "3 Months",
@@ -10,7 +10,7 @@
     "price":"৪০,০০০",
     "priceAlt": "৪৫,০০০",
     "headline": "প্রফেশনাল কিচেনের শিল্পে হয়ে উঠুন পারদর্শী।",
-    "subHeadline": "এই intensive 3-month program আমাদের একটি flagship course, যা মূলত ডিজাইন করা হয়েছে যারা 4-star hotels-এ সিনিয়র রোল অথবা international careers গড়তে চান তাদের জন্য।",
+    "subHeadline": "এই intensive 3-month program আমাদের একটি flagship course, যা মূলত ডিজাইন করা হয়েছে যারা 4-star hotels-এ সিনিয়র রোল অথবা international careers গড়তে চান তাদের জন্য। এটি আপনাকে foundational skills থেকে সরাসরি advanced kitchen management-এ দক্ষ করে তুলবে।",
     "modules": [
       {
         "title": "Fundamental Knife Skills",
@@ -26,7 +26,7 @@
       },
       {
         "title": "Kitchen Management",
-        "description": "কিচেন SOPs, food costing, inventory, এবং হাইজিন (HACCP) সংক্রান্ত ধারণা।"
+        "description": "কিচেন SOPs (Standard Operating Procedure), food costing, inventory, এবং হাইজিন (HACCP- Hazard Analysis Critical Control Point ) সংক্রান্ত ধারণা।"
       },
       {
         "title": "Language & Soft Skills",
@@ -60,8 +60,7 @@
     "type": "Certificate",
     "price": " ৩,৫০০",
     "priceAlt": "৫,০০০ ",
-    "headline": "আপনার Culinary স্কিলকে করুন আরও গতিশীল।",
-    "subHeadline": "নতুন উদ্যোক্তা, শৌখিন রাঁধুনি অথবা যারা দ্রুত এন্ট্রি-লেভেল ক্যারিয়ার শুরু করতে চান তাদের জন্য এই ৩০ দিনের কোর্স।",
+    "subHeadline": "নতুন উদ্যোক্তা (entrepreneurs), শৌখিন রাঁধুনি (hobbyists) অথবা যারা দ্রুত এন্ট্রি-লেভেল ক্যারিয়ার শুরু করতে চান; তাদের জন্য আমাদের এই ৩০ দিনের কোর্স। এটি মডার্ন ফুড সার্ভিস ইন্ডাস্ট্রির সবচাইতে high-demand skills-এর ওপর ফোকাস করে ডিজাইন করা হয়েছে।",
     "modules": [
       {
         "title": "Essential Culinary Techniques",

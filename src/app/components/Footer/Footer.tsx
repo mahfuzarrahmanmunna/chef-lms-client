@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
                 <ChefHat className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h3 className="font-serif text-xl font-bold text-white leading-tight">
+                <h3 className=" text-xl font-bold text-white leading-tight">
                   BPSTI
                 </h3>
                 <p className="text-xs text-gray-500 tracking-widest uppercase">

@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { Award, Star, Quote, MapPin, Calendar, ChefHat } from "lucide-react";
+import { Award, Star, Quote, Calendar, ChefHat } from "lucide-react";
+import Image from "next/image";
 
 
 /*  Team Data Interface  */
@@ -81,15 +82,15 @@ const teamData: TeamMember[] = [
     image:
       "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop",
   },
-  {
-    id: 6,
-    name: "Mr. Kamal Hossain",
-    title: "Board Member & Welfare Lead",
-    specialty: "Student Success Coordinator",
-    bio: "প্রতিটি শিক্ষার্থীর সফলতার কারিগর। আমাদের fast-track programs-এ ভর্তি থেকে শুরু করে overseas language training এবং international career-এ পদার্পণ পর্যন্ত সব ধরনের student support তিনি তদারকি করেন।",
-    image:
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=600&auto=format&fit=crop",
-  },
+  // {
+  //   id: 6,
+  //   name: "Mr. Kamal Hossain",
+  //   title: "Board Member & Welfare Lead",
+  //   specialty: "Student Success Coordinator",
+  //   bio: "প্রতিটি শিক্ষার্থীর সফলতার কারিগর। আমাদের fast-track programs-এ ভর্তি থেকে শুরু করে overseas language training এবং international career-এ পদার্পণ পর্যন্ত সব ধরনের student support তিনি তদারকি করেন।",
+  //   image:
+  //     "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=600&auto=format&fit=crop",
+  // },
 ];
 
 /*  Interfaces  */
@@ -118,9 +119,9 @@ const StatCard = ({ label, value, icon }: StatCardProps) => (
 
 /*  Sub-Component: Small Mini Card (For Bottom Section) */
 const SmallCard = ({ member }: { member: TeamMember }) => (
-  <div className="group relative font-lato bg-[#faf9f6] border border-gray-200 hover:border-blue-400 transition-all duration-300 flex flex-col shadow-sm hover:shadow-md">
+  <div className="group relative bg-[#faf9f6] border border-gray-200 hover:border-blue-400 transition-all duration-300 shadow-sm hover:shadow-md">
     {/* Image Section - Very Compact */}
-    <div className="relative w-full h-[140px] overflow-hidden bg-gray-100">
+    <div className="h-45 overflow-hidden bg-gray-100">
       <img
         src={member.image}
         alt={member.name}
@@ -128,11 +129,11 @@ const SmallCard = ({ member }: { member: TeamMember }) => (
       />
 
       {/* Specialty Tag - Top Left */}
-      <div className="absolute top-0 left-0 bg-white/95 backdrop-blur-sm px-2 py-1 border-r border-b border-gray-200 z-20">
-        <span className="text-[7px] font-bold uppercase tracking-[0.2em] font-lato text-gray-900 block">
+      {/* <div className="absolute top-0 left-0 bg-white/95 backdrop-blur-sm px-2 py-1 border-r border-b border-gray-200 z-20">
+        <span className="text-[7px] font-bold uppercase tracking-[0.2em]  text-gray-900 block">
           {member.specialty}
         </span>
-      </div>
+      </div> */}
     </div>
 
     {/* Content Section - Compact */}
@@ -159,8 +160,8 @@ export default function Team() {
 
   return (
     <>
-      <section className="font-lato">
-        <div className=" mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
+      <section >
+        <div className="container mx-auto px-6">
           {/* Section Header */}
           <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12 border-b border-gray-200 pb-6">
             <div className="max-w-2xl">
@@ -171,13 +172,13 @@ export default function Team() {
                   Leadership
                 </span>
               </div>
-              <h2 className="text-4xl md:text-5xl  font-bold text-gray-900">
+              <h2 className="text-4xl md:text-5xl font-sans  font-bold text-gray-900">
                 The Visionaries Behind The Institute
               </h2>
             </div>
             <p className="text-gray-500 text-sm max-w-md mt-6 md:mt-0 font-light leading-relaxed">
               পরিচয় হয়ে নিন সেইসব strategic minds-দের সাথে, যারা culinary
-              education এবং global career success-এর মধ্যকার দূরত্ব ঘুচাতে নিরলস
+              Course এবং global career success-এর মধ্যকার দূরত্ব ঘুচাতে নিরলস
               কাজ করে যাচ্ছেন।
             </p>
           </div>
@@ -246,7 +247,7 @@ export default function Team() {
                     Board Members
                   </span>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {otherMembers.map((member) => (
                     <SmallCard key={member.id} member={member} />
                   ))}

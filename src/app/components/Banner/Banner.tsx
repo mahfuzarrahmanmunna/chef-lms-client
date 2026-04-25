@@ -36,7 +36,7 @@ const MinimalButton: React.FC<MinimalButtonProps> = ({
         opacity: 0,
       }}
     >
-      <span className="relative z-10 font-sans font-semibold tracking-[0.15em] text-sm uppercase">
+      <span className="relative z-10 font-semibold tracking-[0.15em] text-sm uppercase">
         {text}
       </span>
     </button>
@@ -54,7 +54,7 @@ const StatsBar: React.FC<{ delay: number }> = ({ delay }) => {
     >
       {/* Stat 1 */}
       <div className="flex flex-col border-r border-white/30 pr-8">
-        <span className="text-[#ea393a] font-serif text-3xl italic font-bold">
+        <span className="text-[#ea393a]  text-3xl italic font-bold">
           100%
         </span>
         <span className="text-gray-300 text-[10px] uppercase tracking-widest font-bold mt-1">
@@ -64,7 +64,7 @@ const StatsBar: React.FC<{ delay: number }> = ({ delay }) => {
 
       {/* Stat 2 */}
       <div className="flex flex-col border-r border-white/30 pr-8">
-        <span className="text-[#ea393a] font-serif text-3xl italic font-bold">
+        <span className="text-[#ea393a]  text-3xl italic font-bold">
           3-4
         </span>
         <span className="text-gray-300 text-[10px] uppercase tracking-widest font-bold mt-1">
@@ -75,7 +75,7 @@ const StatsBar: React.FC<{ delay: number }> = ({ delay }) => {
 
       {/* Stat 3 */}
       <div className="flex flex-col">
-        <span className="text-[#ea393a] font-serif text-3xl italic font-bold">
+        <span className="text-[#ea393a]  text-3xl italic font-bold">
           No.1
         </span>
         <span className="text-gray-300 text-[10px] uppercase tracking-widest font-bold mt-1">
@@ -300,7 +300,7 @@ const Banner: React.FC = () => {
           <div className="w-full max-w-6xl mx-auto">
             {/* Headline */}
             <h1
-              className="text-4xl md:text-6xl lg:text-7xl text-white font-serif leading-tight mb-6"
+              className="text-4xl md:text-6xl lg:text-7xl text-white  leading-tight mb-6"
               style={{
                 animation: `slowFadeIn 1s ease-out ${mounted ? 0.4 : 0}s forwards`,
                 opacity: 0,
@@ -318,8 +318,9 @@ const Banner: React.FC = () => {
                 opacity: 0,
               }}
             >
-              Global cuisine master করুন আমাদের expert training-এর মাধ্যমে।
-              Guaranteed internships দেশের সেরা prestigious hotels-এ।
+              Global cuisine master করুন আমাদের expert training-এর মাধ্যমে। সাথে
+              থাকছে guaranteed internships দেশের সবচাইতে prestigious hotels-এ,
+              যেমন: Pan Pacific Sonargaon, InterContinental, এবং Radisson Blu.
             </p>
 
             {/* Consultation Form */}
@@ -355,7 +356,7 @@ const Banner: React.FC = () => {
 
         {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-10 z-20 hidden md:flex flex-col items-center gap-2 opacity-50 animate-bounce">
-          <span className="text-[10px] uppercase tracking-widest text-white font-sans">
+          <span className="text-[10px] uppercase tracking-widest text-white ">
             Scroll
           </span>
           <div className="w-[1px] h-12 bg-gradient-to-b from-white to-transparent"></div>

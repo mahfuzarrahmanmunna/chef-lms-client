@@ -139,7 +139,7 @@ export default function SingleCourseDetailsPage() {
       </div>
 
       {/* Main Layout */}
-      <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 py-16">
+      <div className="container mx-auto px-6 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
 
           {/* LEFT: Content */}

@@ -212,7 +212,7 @@ export default function HeroSection() {
         
 
           {/* <p className="text-sm text-gray-700">
-            Experience world-class culinary education and real industry exposure.
+            Experience world-class culinary Course and real industry exposure.
           </p> */}
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">

@@ -97,7 +97,7 @@ const ManageQuiz = () => {
         {/* Header Section */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
           <div>
-            <h1 className="text-3xl font-bold font-serif mb-2">
+            <h1 className="text-3xl font-bold  mb-2">
               Manage Quiz Leads
             </h1>
             <p className="text-gray-500">View and export student inquiries.</p>

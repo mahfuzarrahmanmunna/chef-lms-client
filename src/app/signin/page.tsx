@@ -51,7 +51,7 @@ export default function LoginPage() {
             <span className="text-red-500 font-bold tracking-[0.3em] text-xs uppercase mb-6 block">
               Welcome Back
             </span>
-            <h1 className="text-5xl xl:text-6xl font-serif font-bold text-white leading-[1.1] mb-8">
+            <h1 className="text-5xl xl:text-6xl  font-bold text-white leading-[1.1] mb-8">
               Continue Your <br />
               <span className="italic text-gray-300">Journey.</span>
             </h1>
@@ -68,7 +68,7 @@ export default function LoginPage() {
         <div className="w-full max-w-md">
           {/* Mobile Only Header */}
           <div className="md:hidden mb-10 text-center">
-            <h1 className="text-3xl font-serif font-bold text-gray-900">
+            <h1 className="text-3xl  font-bold text-gray-900">
               Welcome Back
             </h1>
             <p className="text-gray-500 text-sm mt-2">
@@ -78,7 +78,7 @@ export default function LoginPage() {
 
           {/* Desktop Header */}
           <div className="hidden md:block mb-10">
-            <h2 className="text-3xl font-serif font-bold text-gray-900 mb-2">
+            <h2 className="text-3xl  font-bold text-gray-900 mb-2">
               Sign In
             </h2>
             <p className="text-gray-500">

@@ -218,7 +218,7 @@ const Navbar: React.FC = () => {
               className="group flex items-center gap-3 relative z-50"
             >
               <div>
-                <h3 className="font-serif text-xl font-bold text-red-700 leading-tight">
+                <h3 className=" text-xl font-bold text-red-700 leading-tight">
                   BPSTI
                 </h3>
                 <p className="text-xs text-gray-500 tracking-widest uppercase">
@@ -303,7 +303,7 @@ const Navbar: React.FC = () => {
                         <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">
                           Signed in as
                         </p>
-                        <p className="text-sm font-serif font-bold text-gray-900 truncate">
+                        <p className="text-sm  font-bold text-gray-900 truncate">
                           {user.name}
                         </p>
                         <p className="text-xs text-gray-500 truncate">
@@ -406,7 +406,7 @@ const Navbar: React.FC = () => {
                   key={item.label}
                   href={item.href}
                   onClick={handleLinkClick}
-                  className={`block py-4 text-3xl font-serif font-semibold tracking-wide transition-all duration-500 border-b border-white/[0.03] hover:border-red-600/20 ${
+                  className={`block py-4 text-3xl  font-semibold tracking-wide transition-all duration-500 border-b border-white/[0.03] hover:border-red-600/20 ${
                     mobileOpen
                       ? `opacity-100 translate-y-0`
                       : `opacity-0 translate-y-8`
@@ -431,7 +431,7 @@ const Navbar: React.FC = () => {
               <Link
                 href="/dashboard"
                 onClick={handleLinkClick}
-                className={`block py-4 text-2xl font-serif font-semibold tracking-wide transition-all duration-500 border-b border-white/[0.03] hover:border-red-600/20 ${
+                className={`block py-4 text-2xl  font-semibold tracking-wide transition-all duration-500 border-b border-white/[0.03] hover:border-red-600/20 ${
                   mobileOpen
                     ? `opacity-100 translate-y-0`
                     : `opacity-0 translate-y-8`
@@ -465,7 +465,7 @@ const Navbar: React.FC = () => {
                 <div className="text-center text-white/50 text-xs uppercase tracking-widest">
                   Welcome back
                 </div>
-                <div className="text-center text-2xl font-serif text-white">
+                <div className="text-center text-2xl  text-white">
                   {user.name}
                 </div>
                 <button

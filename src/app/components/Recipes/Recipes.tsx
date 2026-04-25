@@ -76,7 +76,7 @@ const RecipeCard: React.FC<{ recipe: Recipe }> = ({ recipe }) => {
       <div className="p-6 flex flex-col flex-1">
         {/* Header: Title & Chef */}
         <div className="mb-3">
-          <h3 className="text-xl font-serif font-bold text-gray-900 tracking-tight leading-snug mb-2 group-hover:text-[#c9a96e] transition-colors">
+          <h3 className="text-xl  font-bold text-gray-900 tracking-tight leading-snug mb-2 group-hover:text-[#c9a96e] transition-colors">
             {recipe.title}
           </h3>
           <div className="flex items-center gap-1.5 text-xs font-medium text-gray-500">
@@ -200,7 +200,7 @@ export default function Recipes() {
           <span className="inline-block py-1 px-3 rounded-full bg-red-50 text-red-700 text-[10px] font-bold uppercase tracking-widest mb-4 border border-red-100">
             From Our Kitchen
           </span>
-          <h2 className="text-3xl md:text-5xl font-serif font-bold text-gray-900 mb-6 tracking-tight">
+          <h2 className="text-3xl md:text-5xl  font-bold text-gray-900 mb-6 tracking-tight">
             Featured Recipes
           </h2>
           <div className="flex items-center justify-center gap-2 mb-6">

@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { Clock, MapPin, ArrowRight, Award, CheckCircle } from "lucide-react";
-
+import { Clock, MapPin, ArrowRight, Award, CheckCircle, ChefHat } from "lucide-react";
+import { FaUniversity } from "react-icons/fa";
 
 /*  Types  */
 interface Course {
@@ -66,10 +66,14 @@ const coursesData: Course[] = [
     image:
       "https://images.unsplash.com/photo-1544025162-d76690b68f4d?q=80&w=1000&auto=format&fit=crop",
     region: "Middle East",
+    /* The `city: "` in the `Course` interface is defining a property named `city` with a type of
+    string. The `"` after the colon is just a part of the syntax for defining a string property in
+    TypeScript interfaces. It indicates that the value assigned to the `city` property should be a
+    string. */
     city: "Dubai/Doha",
     currency: "৳",
     hasCertificate: true,
-    priceLabel: "দাম জানতে যোগাযোগ করুন",
+    priceLabel: "বিস্তারিত জানতে যোগাযোগ করুন",
   },
   {
     id: 4,
@@ -84,7 +88,7 @@ const coursesData: Course[] = [
     city: "Dhaka",
     currency: "৳",
     hasCertificate: true,
-    priceLabel: "দাম জানতে যোগাযোগ করুন",
+    priceLabel: "বিস্তারিত জানতে যোগাযোগ করুন",
   },
   {
     id: 5,
@@ -99,7 +103,7 @@ const coursesData: Course[] = [
     city: "Dhaka",
     currency: "৳",
     hasCertificate: true,
-    priceLabel: "দাম জানতে যোগাযোগ করুন",
+    priceLabel: "বিস্তারিত জানতে যোগাযোগ করুন",
   },
   {
     id: 6,
@@ -114,7 +118,7 @@ const coursesData: Course[] = [
     city: "Dhaka",
     currency: "৳",
     hasCertificate: true,
-    priceLabel: "দাম জানতে যোগাযোগ করুন",
+    priceLabel: "বিস্তারিত জানতে যোগাযোগ করুন",
   },
   {
     id: 7,
@@ -129,7 +133,7 @@ const coursesData: Course[] = [
     city: "Dhaka",
     currency: "৳",
     hasCertificate: true,
-    priceLabel: "দাম জানতে যোগাযোগ করুন",
+    priceLabel: "বিস্তারিত জানতে যোগাযোগ করুন",
   },
 ];
 
@@ -175,20 +179,20 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
         {/* Content Section */}
         <div className="p-6 flex flex-col flex-1 relative bg-white">
           {/* Location */}
-          <div className="flex items-center gap-2 mb-3">
+          {/* <div className="flex items-center gap-2 mb-3">
             <MapPin className="w-3 h-3 text-red-700" />
             <span className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em]">
               {course.city}, {course.region}
             </span>
-          </div>
+          </div> */}
 
           {/* Title */}
-          <h3 className="text-xl  font-bold text-gray-900 mb-3 leading-tight group-hover:text-red-700 transition-colors">
+          <h3 className="text-xl font-bold text-gray-900 mb-3 leading-tight group-hover:text-red-700 transition-colors">
             {course.title}
           </h3>
 
           {/* Description */}
-          <p className="text-sm text-gray-500  font-light leading-relaxed mb-6 line-clamp-3">
+          <p className="text-sm text-gray-500 font-light leading-relaxed mb-6 line-clamp-3">
             {course.description}
           </p>
 
@@ -209,7 +213,7 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
                       {course.oldPrice.toLocaleString()}
                     </span>
                   )}
-                  <span className="block text-2xl  font-bold text-gray-900">
+                  <span className="block text-2xl font-bold text-gray-900">
                     {course.currency}
                     {course.price.toLocaleString()}
                   </span>
@@ -245,9 +249,6 @@ export default function CourseCollections() {
     return () => clearTimeout(timer);
   }, []);
 
-  const professionalCourses = courses.filter((c) => c.type === "Professional");
-  const shortCourses = courses.filter((c) => c.type === "Short Course");
-
   if (loading) {
     return (
       <div className="py-32 flex justify-center items-center min-h-[400px] bg-white">
@@ -257,73 +258,39 @@ export default function CourseCollections() {
   }
 
   return (
-    <>
-      {/* <style jsx global>
-        {styles}
-      </style> */}
-
-      <section id="courses" className="-mt-32 bg-[#faf9f6] ">
-        <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
-          {/* SECTION HEADER - Updated Bengali */}
-          <div className=" max-w-xl mb-10">
-            <span className="text-red-700 p-2 font-bold tracking-[0.3em] text-xs uppercase mb-2 block">
-             Course Collections
+    <section id="courses">
+      <div className="container mx-auto px-6">
+        {/* SECTION HEADER */}
+        <div className="">
+          <div className="flex items-center gap-4 mb-3">
+            <div className="w-1 h-8 bg-red-400"></div>
+            <span className="text-red-400 font-bold tracking-[0.2em] text-xs uppercase flex items-center gap-2">
+              <FaUniversity className="w-4 h-4" />
+              Course Collections
             </span>
-            <h2 className="text-2xl md:text-3xl font-serif-luxury font-bold text-gray-900 mb-3 leading-12">
-              আপনার স্কিল এবং Culinary Arts ক্যারিয়ারকে আরও সমৃদ্ধ করতে বেছে নিন আমাদের বিশেষায়িত কোর্সগুলো
+          </div>
+          <div className="flex justify-between ">
+            <h2 className="text-2xl md:text-3xl -luxury font-bold text-gray-900 mb-3 leading-12">
+              আপনার স্কিল এবং Culinary Arts <br className="md:flex hidden" />{" "}
+              ক্যারিয়ারকে আরও সমৃদ্ধ করতে <br className="md:flex hidden" /> বেছে
+              নিন আমাদের বিশেষায়িত কোর্সগুলো
             </h2>
-            <p className="text-gray-600 font-light leading-relaxed text-lg">
-              স্পেশালাইজড প্রোগ্রাম যা আপনার দক্ষতা বাড়াতে এবং Culinary Arts ক্যারিয়ারকে এগিয়ে নিতে ডিজাইন করা হয়েছে।
+            <p className="text-gray-600 text-end flex items-end font-light leading-relaxed text-lg">
+              স্পেশালাইজড প্রোগ্রাম যা আপনার দক্ষতা বাড়াতে এবং{" "}
+              <br className="md:flex hidden" /> Culinary Arts ক্যারিয়ারকে এগিয়ে
+              নিতে ডিজাইন করা হয়েছে।
             </p>
           </div>
-
-          {/* SECTION 1: PROFESSIONAL COURSES */}
-          {professionalCourses.length > 0 && (
-            <div className="mb-24">
-              <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-10 border-b border-gray-200 pb-4">
-                <div>
-                  <h3 className="text-2xl  font-bold text-gray-900">
-                    Professional Programs
-                  </h3>
-                  <p className="text-sm text-gray-500 mt-2">
-                    ক্যারিয়ার উন্নয়নের জন্য বিস্তৃত প্রশিক্ষণ।
-                  </p>
-                </div>
-                <div className="hidden md:block w-12 h-1 bg-[#EA393A]"></div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {professionalCourses.map((course) => (
-                  <CourseCard key={course.id} course={course} />
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* SECTION 2: SHORT COURSES */}
-          {shortCourses.length > 0 && (
-            <div>
-              <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-10 border-b border-gray-200 pb-4">
-                <div>
-                  <h3 className="text-2xl  font-bold text-gray-900">
-                    Short Courses
-                  </h3>
-                  <p className="text-sm text-gray-500 mt-2">
-                    উৎসুকদের জন্য দ্রুত দক্ষতা অর্জন।
-                  </p>
-                </div>
-                <div className="hidden md:block w-12 h-1 bg-gray-900"></div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {shortCourses.map((course) => (
-                  <CourseCard key={course.id} course={course} />
-                ))}
-              </div>
-            </div>
-          )}
         </div>
-      </section>
-    </>
+        <div className="border-b border-gray-300 my-5" />
+
+        {/* SINGLE SECTION: ALL COURSES GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {courses.map((course) => (
+            <CourseCard key={course.id} course={course} />
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }

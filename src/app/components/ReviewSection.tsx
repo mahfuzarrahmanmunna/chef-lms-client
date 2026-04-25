@@ -95,7 +95,7 @@ const ReviewCard: React.FC<{ review: Review }> = ({ review }) => (
     </div>
     <div className="border-l-2 border-red-100 pl-3">
       <p className="text-[13px] text-gray-500 leading-relaxed italic">
-        "{review.comment}"
+        `{review.comment}`
       </p>
     </div>
   </div>
@@ -104,14 +104,14 @@ const ReviewCard: React.FC<{ review: Review }> = ({ review }) => (
 export default function ReviewsSection() {
   return (
     <section className="py-16 bg-white">
-      <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
+      <div className="container mx-auto px-6">
 
         {/* Header */}
         <div className="mb-8">
           <p className="text-[11px] font-bold uppercase tracking-widest text-red-700 mb-2">
             Graduate success stories
           </p>
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 leading-tight mb-3">
+          <h2 className="text-3xl md:text-4xl  font-bold text-gray-900 leading-tight mb-3">
             Real stories, real success
           </h2>
           <p className="text-sm text-gray-500 leading-relaxed max-w-2xl">
@@ -146,7 +146,7 @@ export default function ReviewsSection() {
         {/* CTA Banner */}
         <div className="mt-12 bg-gray-50 border border-gray-200 rounded-xl px-7 py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
           <div>
-            <h3 className="font-serif font-bold text-gray-900 text-xl leading-snug">
+            <h3 className=" font-bold text-gray-900 text-xl leading-snug">
               আপনার সফলতার গল্প কি এখান থেকেই শুরু হবে?
             </h3>
             <p className="text-sm text-gray-500 mt-1">

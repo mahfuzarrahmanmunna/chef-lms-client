@@ -253,7 +253,7 @@ const QuizPage = () => {
       <div className="container mx-auto px-4 max-w-5xl py-12">
         {/* Progress Header */}
         <div className="text-center mb-8">
-          <h1 className="text-2xl md:text-4xl font-serif font-bold text-gray-900 mb-6">
+          <h1 className="text-2xl md:text-4xl  font-bold text-gray-900 mb-6">
             Unlock Your Culinary School Roadmap!
           </h1>
 
@@ -482,7 +482,7 @@ const QuizPage = () => {
                   />
                 </div>
 
-                <h3 className="text-2xl font-serif font-bold mb-6">
+                <h3 className="text-2xl  font-bold mb-6">
                   What’s Inside?
                 </h3>
 

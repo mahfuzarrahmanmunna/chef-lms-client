@@ -29,13 +29,13 @@ const PathCard: React.FC<{
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
 
       <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-10">
-        <span className="absolute top-6 right-6 font-serif text-5xl text-white/10 font-bold italic group-hover:text-white/20 transition-colors duration-500">
+        <span className="absolute top-6 right-6  text-5xl text-white/10 font-bold italic group-hover:text-white/20 transition-colors duration-500">
           0{index + 1}
         </span>
 
         <div className="w-12 h-[2px] bg-[#EA393A] mb-4 group-hover:w-full transition-all duration-500 ease-in-out"></div>
 
-        <h3 className="font-serif text-2xl md:text-3xl text-white font-medium mb-2 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+        <h3 className=" text-2xl md:text-3xl text-white font-medium mb-2 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
           {title}
         </h3>
 
@@ -119,7 +119,7 @@ const DisciplinesSection: React.FC = () => {
         {/* Section Header */}
         <div className="container mx-auto mb-20 flex flex-col md:flex-row justify-between items-end border-b border-gray-200 pb-8">
           <div>
-            <h2 className="font-serif text-3xl md:text-4xl text-gray-900 mb-2">
+            <h2 className=" text-3xl md:text-4xl text-gray-900 mb-2">
               Disciplines of Excellence
             </h2>
             <p className="text-gray-500 font-light max-w-md">

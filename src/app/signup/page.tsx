@@ -86,7 +86,7 @@ export default function RegisterPage() {
             <span className="text-red-500 font-bold tracking-[0.3em] text-xs uppercase mb-6 block">
               Join the Elite
             </span>
-            <h1 className="text-5xl xl:text-6xl font-serif font-bold text-white leading-[1.1] mb-8">
+            <h1 className="text-5xl xl:text-6xl  font-bold text-white leading-[1.1] mb-8">
               Define Your <br />
               <span className="italic text-gray-300">Culinary Future.</span>
             </h1>
@@ -98,7 +98,7 @@ export default function RegisterPage() {
             {/* Trust Indicators */}
             <div className="flex gap-8">
               <div>
-                <span className="block text-3xl font-serif font-bold text-white mb-1">
+                <span className="block text-3xl  font-bold text-white mb-1">
                   20k+
                 </span>
                 <span className="text-xs text-gray-400 uppercase tracking-widest">
@@ -106,7 +106,7 @@ export default function RegisterPage() {
                 </span>
               </div>
               <div>
-                <span className="block text-3xl font-serif font-bold text-white mb-1">
+                <span className="block text-3xl  font-bold text-white mb-1">
                   15
                 </span>
                 <span className="text-xs text-gray-400 uppercase tracking-widest">
@@ -123,7 +123,7 @@ export default function RegisterPage() {
         <div className="w-full max-w-md">
           {/* Mobile Only Header */}
           <div className="md:hidden mb-10 text-center">
-            <h1 className="text-3xl font-serif font-bold text-gray-900">
+            <h1 className="text-3xl  font-bold text-gray-900">
               Create Account
             </h1>
             <p className="text-gray-500 text-sm mt-2">
@@ -133,7 +133,7 @@ export default function RegisterPage() {
 
           {/* Desktop Header */}
           <div className="hidden md:block mb-10">
-            <h2 className="text-3xl font-serif font-bold text-gray-900 mb-2">
+            <h2 className="text-3xl  font-bold text-gray-900 mb-2">
               Register Student
             </h2>
             <p className="text-gray-500">

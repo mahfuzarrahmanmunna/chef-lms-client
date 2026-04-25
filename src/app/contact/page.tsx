@@ -24,12 +24,12 @@ const InfoItem: React.FC<{
         {isLink ? (
           <a
             href={linkHref}
-            className="text-lg font-serif font-bold text-gray-900 hover:text-red-700 transition-colors"
+            className="text-lg  font-bold text-gray-900 hover:text-red-700 transition-colors"
           >
             {value}
           </a>
         ) : (
-          <span className="text-lg font-serif font-bold text-gray-900 block">
+          <span className="text-lg  font-bold text-gray-900 block">
             {value}
           </span>
         )}
@@ -54,12 +54,12 @@ export default function ContactUs() {
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
         </div>
 
-        <div className="relative z-10 container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 w-full mt-16 ">
+        <div className="relative z-10 container mx-auto px-6 w-full mt-16 ">
           <div className="max-w-3xl">
             <span className="block text-red-500 font-bold tracking-[0.25em] text-xs uppercase mb-3">
               যোগাযোগ করুন
             </span>
-            <h1 className="text-5xl md:text-7xl font-serif font-bold text-white leading-20 mb-8">
+            <h1 className="text-5xl md:text-7xl  font-bold text-white leading-20 mb-8">
               চলুন শুরু করি <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 italic">
                 আপনার প্রফেশনাল জার্নি।
@@ -74,12 +74,12 @@ export default function ContactUs() {
 
       {/* MAIN CONTACT SECTION */}
       <section className="py-24 bg-white">
-        <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
+        <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
             {/* LEFT COLUMN: Contact Info - Updated Bengali */}
             <div className="lg:col-span-5 space-y-12">
               <div>
-                <h2 className="text-3xl font-serif font-bold text-gray-900 mb-2">
+                <h2 className="text-3xl  font-bold text-gray-900 mb-2">
                   Contact Details
                 </h2>
                 <p className="text-gray-500 text-sm leading-relaxed">
@@ -138,7 +138,7 @@ export default function ContactUs() {
                 {/* Decorative Top Line */}
                 <div className="absolute top-0 left-0 w-0 h-1 bg-[#EA393A] transition-all duration-500"></div>
 
-                <h2 className="text-2xl font-serif font-bold text-gray-900 mb-2">
+                <h2 className="text-2xl  font-bold text-gray-900 mb-2">
                   Send Us a Message
                 </h2>
                 <p className="text-gray-500 text-sm mb-8">
@@ -218,13 +218,13 @@ export default function ContactUs() {
 
       {/* CAMPUS VISIT SECTION - Updated Bengali */}
       <section className="bg-gray-50 py-24">
-        <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
+        <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
             <div className="lg:col-span-1">
               <span className="text-red-700 font-bold tracking-[0.2em] text-xs uppercase block mb-4">
                 Visit Us
               </span>
-              <h2 className="text-4xl font-serif font-bold text-gray-900 mb-6">
+              <h2 className="text-4xl  font-bold text-gray-900 mb-6">
                 সরাসরি আমাদের ক্যাম্পাস ঘুরে দেখুন।
               </h2>
               <p className="text-gray-600 font-light leading-relaxed mb-8">
@@ -256,8 +256,8 @@ export default function ContactUs() {
 
       {/* BOTTOM CTA SECTION - Updated Bengali */}
       <section className="py-20 bg-gray-900 text-white">
-        <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 text-center">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold mb-8">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-3xl md:text-4xl  font-bold mb-8">
             গ্লোবাল কিচেনে নিশ্চিত করুন আপনার উজ্জ্বল ভবিষ্যৎ।
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

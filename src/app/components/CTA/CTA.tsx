@@ -258,7 +258,7 @@ export default function ContactCTA() {
       `}</style>
 
       <section id="ctaCard" className="pb-24  overflow-hidden">
-        <div className="container mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
+        <div className="container mx-auto px-6">
           <div className="bg-white rounded-sm shadow-lg border border-gray-100 overflow-hidden">
             <div className="flex flex-col lg:flex-row">
               {/* --- LEFT SIDE: Design Info --- */}

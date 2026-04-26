@@ -3,7 +3,7 @@ import CourseCollections from '../components/Courses/Courses';
 
 const CoursesPage = () => {
     return (
-      <div className='bg-white'>
+      <div className='bg-white py-28'>
         <CourseCollections />
       </div>
     );

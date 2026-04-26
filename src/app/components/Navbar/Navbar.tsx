@@ -14,7 +14,6 @@ import {
 import Image from "next/image";
 import { useAuth } from "@/hooks/useAuth";
 
-
 /*  Types  */
 interface NavItem {
   label: string;
@@ -207,7 +206,7 @@ const Navbar: React.FC = () => {
         className={`fixed left-0 w-full z-40 transition-all duration-300 ease-out ${
           scrolled
             ? "bg-[#ff0909]/5 backdrop-blur-xl top-0 text-black shadow-[0_8px_30px_rgba(0,0,0,0.12)] border-b border-white/[0.05] py-2"
-            : "bg-transparent text-gray-900 py-2 md:top-6"
+            : "bg-transparent text-white py-2 md:top-6"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
@@ -239,8 +238,8 @@ const Navbar: React.FC = () => {
                       active
                         ? "text-[#ea393a]"
                         : scrolled
-                          ? "text-gray-900/75 hover:text-white"
-                          : "text-gray-900 hover:text-red-700"
+                          ? "text-gray-900 hover:text-black"
+                          : "text-white hover:text-white/80"
                     }`}
                   >
                     {item.label}
@@ -257,8 +256,8 @@ const Navbar: React.FC = () => {
               <div
                 className={`w-[1px] h-6 mx-4 transition-opacity duration-300 ${
                   scrolled
-                    ? "bg-gradient-to-b from-transparent via-white/10 to-transparent"
-                    : "bg-gradient-to-b from-transparent via-gray-200 to-transparent"
+                    ? "bg-gradient-to-b from-transparent via-black/10 to-transparent"
+                    : "bg-gradient-to-b from-transparent via-white/20 to-transparent"
                 }`}
               />
 
@@ -362,9 +361,7 @@ const Navbar: React.FC = () => {
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className={`lg:hidden relative z-10 w-10 h-10 flex items-center justify-center transition-colors duration-300 focus:outline-none ${
-                scrolled
-                  ? "text-white/80 hover:text-[#ea393a]"
-                  : "text-gray-900 hover:text-[#ea393a]"
+                !scrolled ? "text-white" : "text-gray-900"
               }`}
               aria-label="Toggle menu"
             >
@@ -522,7 +519,6 @@ const Navbar: React.FC = () => {
       `}</style>
     </>
   );
- 
 };
 
 export default Navbar;

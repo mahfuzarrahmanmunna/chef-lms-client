@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { Clock, MapPin, ArrowRight, Award, CheckCircle, ChefHat } from "lucide-react";
+import { Clock, ArrowRight, CheckCircle } from "lucide-react";
 import { FaUniversity } from "react-icons/fa";
 
 /*  Types  */
@@ -21,121 +21,6 @@ interface Course {
   hasCertificate: boolean;
   priceLabel?: string;
 }
-
-/*  Data: Updated with Bengali content  */
-const coursesData: Course[] = [
-  {
-    id: 1,
-    title: "প্রফেশনাল শেফ কোর্স",
-    type: "Professional",
-    description:
-      "প্রফেশনাল কিচেনের basic and advanced techniques-এ দক্ষ হয়ে উঠুন। এই comprehensive 3-month journey আপনাকে একজন home cook থেকে সরাসরি workplace-ready professional হিসেবে তৈরি করবে।",
-    duration: "৩ মাস",
-    image:
-      "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?q=80&w=1000&auto=format&fit=crop",
-    region: "Global",
-    city: "Dhaka",
-    price: 40000,
-    oldPrice: 45000,
-    currency: "৳",
-    hasCertificate: true,
-  },
-  {
-    id: 2,
-    title: "বেসিক শর্ট কোর্স",
-    type: "Short Course",
-    description:
-      "যারা একদম শুরু থেকে শিখছেন (beginners) অথবা শখের বশে (hobbyists) প্রফেশনাল পরিবেশে রান্নার বেসিক শিখতে চান, তাদের জন্য এই কোর্সটি পারফেক্ট।",
-    duration: "৩০ দিন",
-    image:
-      "https://images.unsplash.com/photo-1556910103-1c02745a30bf?q=80&w=1000&auto=format&fit=crop",
-    region: "Local",
-    city: "Dhaka",
-    price: 3500,
-    oldPrice: 5000,
-    currency: "৳",
-    hasCertificate: true,
-  },
-  {
-    id: 3,
-    title: "ইন্টারন্যাশনাল ও আরবিয়ান কিউজিন",
-    type: "Professional",
-    description:
-      "বিশ্বের সব জনপ্রিয় স্বাদ নিয়ে কাজ করুন। Mediterranean classics থেকে শুরু করে Arabian food-এর সমৃদ্ধ ঐতিহ্য; শিখুন সেইসব রেসিপি এবং presentation styles যা বড় বড় high-end hotels-এর ডিমান্ড।",
-    duration: "২ মাস",
-    image:
-      "https://images.unsplash.com/photo-1544025162-d76690b68f4d?q=80&w=1000&auto=format&fit=crop",
-    region: "Middle East",
-    /* The `city: "` in the `Course` interface is defining a property named `city` with a type of
-    string. The `"` after the colon is just a part of the syntax for defining a string property in
-    TypeScript interfaces. It indicates that the value assigned to the `city` property should be a
-    string. */
-    city: "Dubai/Doha",
-    currency: "৳",
-    hasCertificate: true,
-    priceLabel: "বিস্তারিত জানতে যোগাযোগ করুন",
-  },
-  {
-    id: 4,
-    title: "প্রফেশনাল বারিস্তা কোর্স",
-    type: "Professional",
-    description:
-      "কফি কালচারের আধুনিক দুনিয়ায় পা রাখুন। একজন certified barista হতে ইন্ডাস্ট্রি এক্সপার্টদের কাছ থেকে শিখুন bean selection, milk texturing, এবং latte art।",
-    duration: "১ মাস",
-    image:
-      "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1000&auto=format&fit=crop",
-    region: "Global",
-    city: "Dhaka",
-    currency: "৳",
-    hasCertificate: true,
-    priceLabel: "বিস্তারিত জানতে যোগাযোগ করুন",
-  },
-  {
-    id: 5,
-    title: "ফাস্ট ফুড ও বেকিং মাস্টারি",
-    type: "Professional",
-    description:
-      "মডার্ন ক্যাফেগুলোর Big 5 নিয়ে আমাদের এই স্পেশাল কোর্স: Pizza, Burgers, Pasta, Sandwiches, এবং সাথে থাকছে প্রফেশনাল Baking techniques।",
-    duration: "২ মাস",
-    image:
-      "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1000&auto=format&fit=crop",
-    region: "International",
-    city: "Dhaka",
-    currency: "৳",
-    hasCertificate: true,
-    priceLabel: "বিস্তারিত জানতে যোগাযোগ করুন",
-  },
-  {
-    id: 6,
-    title: "কেটারিং ও বিরিয়ানি স্পেশালিস্ট",
-    type: "Professional",
-    description:
-      "Bulk catering এবং অথেনটিক বিরিয়ানি তৈরির নিখুঁত কৌশল শিখুন। যারা নিজস্ব catering business শুরু করতে চান বা কমার্শিয়াল কিচেনে লিড দিতে চান, তাদের জন্য এটি আইডিয়াল কোর্স।",
-    duration: "১.৫ মাস",
-    image:
-      "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?q=80&w=1000&auto=format&fit=crop",
-    region: "Local",
-    city: "Dhaka",
-    currency: "৳",
-    hasCertificate: true,
-    priceLabel: "বিস্তারিত জানতে যোগাযোগ করুন",
-  },
-  {
-    id: 7,
-    title: "বিদেশ ক্যারিয়ার ও ভাষা প্রশিক্ষণ",
-    type: "Professional",
-    description:
-      "বিদেশে কাজ করার পরিকল্পনা আছে? আমরা প্রফেশনাল শেফ ট্রেনিংয়ের সাথে প্রয়োজনীয় ভাষা শিক্ষা একত্রিত করেছি যাতে আপনি আন্তর্জাতিক জব মার্কেটের জন্য সম্পূর্ণ প্রস্তুত থাকেন।",
-    duration: "৩ মাস",
-    image:
-      "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1000&auto=format&fit=crop",
-    region: "Global",
-    city: "Dhaka",
-    currency: "৳",
-    hasCertificate: true,
-    priceLabel: "বিস্তারিত জানতে যোগাযোগ করুন",
-  },
-];
 
 /*  Card Component  */
 const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
@@ -178,14 +63,6 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
 
         {/* Content Section */}
         <div className="p-6 flex flex-col flex-1 relative bg-white">
-          {/* Location */}
-          {/* <div className="flex items-center gap-2 mb-3">
-            <MapPin className="w-3 h-3 text-red-700" />
-            <span className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em]">
-              {course.city}, {course.region}
-            </span>
-          </div> */}
-
           {/* Title */}
           <h3 className="text-xl font-bold text-gray-900 mb-3 leading-tight group-hover:text-red-700 transition-colors">
             {course.title}
@@ -242,11 +119,23 @@ export default function CourseCollections() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setCourses(coursesData);
-      setLoading(false);
-    }, 500);
-    return () => clearTimeout(timer);
+    const fetchCourses = async () => {
+      try {
+        // Ensure courses.json is placed in the 'public' folder
+        const response = await fetch("/courses.json");
+        if (!response.ok) {
+          throw new Error("Failed to fetch courses");
+        }
+        const data: Course[] = await response.json();
+        setCourses(data);
+      } catch (error) {
+        console.error("Error fetching course data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCourses();
   }, []);
 
   if (loading) {

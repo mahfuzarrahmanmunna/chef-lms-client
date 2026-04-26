@@ -44,7 +44,7 @@ const ValueCard: React.FC<{
     </p>
 
     {/* Sharp Corner Accent */}
-    <div className="absolute top-0 right-0 w-0 h-0 border-t-[20px] border-r-[20px] border-t-red-700 border-r-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+    <div className="absolute top-0 right-0 w-0 h-0 border-t-20 border-r-20 border-t-red-700 border-r-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
   </div>
 );
 
@@ -57,8 +57,7 @@ export default function AboutUs() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1556910103-1c02745a30bf?q=80&w=2070&auto=format&fit=crop"
-            alt="Chef creating a dish"
+            src="/about.avif"
             className="w-full h-full object-cover"
           />
           {/* Dark Overlay for Readability */}

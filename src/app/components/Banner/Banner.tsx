@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-// Removed duplicate import below
+import React, { useEffect, useState, useRef } from "react";
 
-/*  Sub-Components  */
+/* --- Sub-Components --- */
 
 interface MinimalButtonProps {
   text: string;
@@ -22,233 +21,46 @@ const MinimalButton: React.FC<MinimalButtonProps> = ({
     "relative px-8 py-3 overflow-hidden transition-all duration-500 ease-out shadow-lg group border border-transparent";
 
   const styles = {
-    filled: "bg-red-600 text-white hover:bg-red-500 border-[#D4AF37]", // Gold filled
+    filled:
+      "bg-red-600 text-white hover:bg-red-500 border-[#d43737] shadow-red-900/40",
     outline:
-      "bg-transparent border border-white text-white hover:bg-white hover:text-black",
+      "bg-white/5 backdrop-blur-sm border border-white/20 text-white hover:bg-white hover:text-black",
   };
 
   return (
     <button
       onClick={onClick}
-      className={`${base} ${styles[variant]}`}
+      className={`${base} ${styles[variant]} rounded-sm`}
       style={{
         animation: `slowFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s forwards`,
         opacity: 0,
       }}
     >
-      <span className="relative z-10 font-semibold tracking-[0.15em] text-sm uppercase">
+      <span className="relative z-10 font-semibold tracking-[0.2em] text-sm uppercase">
         {text}
       </span>
     </button>
   );
 };
 
-const StatsBar: React.FC<{ delay: number }> = ({ delay }) => {
-  return (
-    <div
-      className="absolute hidden  bottom-10 right-10 z-20 md:flex flex-col items-end gap-2 text-white/80"
-      style={{
-        animation: `slowFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s forwards`,
-        opacity: 0,
-      }}
-    >
-      {/* Stat 1 */}
-      <div className="flex flex-col border-r border-white/30 pr-8">
-        <span className="text-[#ea393a]  text-3xl italic font-bold">
-          100%
-        </span>
-        <span className="text-gray-300 text-[10px] uppercase tracking-widest font-bold mt-1">
-          ইন্টার্নশিপ সাপোর্ট
-        </span>
-      </div>
-
-      {/* Stat 2 */}
-      <div className="flex flex-col border-r border-white/30 pr-8">
-        <span className="text-[#ea393a]  text-3xl italic font-bold">
-          3-4
-        </span>
-        <span className="text-gray-300 text-[10px] uppercase tracking-widest font-bold mt-1">
-          স্টার হোটেলে প্লেসমেন্ট
-        </span>
-        <span className="text-sm font-bold italic">3-4 Star Hotels</span>
-      </div>
-
-      {/* Stat 3 */}
-      <div className="flex flex-col">
-        <span className="text-[#ea393a]  text-3xl italic font-bold">
-          No.1
-        </span>
-        <span className="text-gray-300 text-[10px] uppercase tracking-widest font-bold mt-1">
-          গ্লোবাল ক্যারিয়ার পাথওয়ে
-        </span>
-        <span className="text-sm font-bold italic">No. 1 Career Pathway</span>
-      </div>
-    </div>
-  );
-};
-
-/*  ConsultForm Component - Fixed Layout (Single Definition) */
-const ConsultForm: React.FC = () => {
-  const [formData, setFormData] = useState({ name: "", phone: "" });
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-
-    try {
-      const res = await fetch("/api/bannerlead", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.message || "Something went wrong");
-      }
-
-      const data = await res.json();
-      console.log("Success:", data);
-      setSuccess(true); // This disables inputs and changes button text to "SENT"
-
-      // Optional: Reset form after success
-      // setFormData({ name: "", phone: "" });
-    } catch (error) {
-      console.error("Submission Error:", error);
-      alert("Failed to send request. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return (
-    <div className="w-full max-w-4xl mx-auto mt-8 relative z-30">
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col md:flex-row gap-3 items-stretch"
-      >
-        {/* Input 1 */}
-        <div className="flex-1">
-          <input
-            type="text"
-            required
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            placeholder="YOUR NAME"
-            className="w-full h-14 bg-white/10 backdrop-blur-md border border-white/30 text-white placeholder-white/60 px-6  focus:outline-none focus:border-blue-400 focus:bg-white/20 transition-all"
-            disabled={success}
-          />
-        </div>
-
-        {/* Input 2 */}
-        <div className="flex-1">
-          <input
-            type="tel"
-            required
-            value={formData.phone}
-            onChange={(e) =>
-              setFormData({ ...formData, phone: e.target.value })
-            }
-            placeholder="PHONE NUMBER"
-            className="w-full h-14 bg-white/10 backdrop-blur-md border border-white/30 text-white placeholder-white/60 px-6  focus:outline-none focus:border-blue-400 focus:bg-white/20 transition-all"
-            disabled={success}
-          />
-        </div>
-
-        <button
-          type="submit"
-          disabled={loading || success}
-          className="group relative h-16 px-12 bg-transparent text-white font-extrabold tracking-[0.2em] uppercase transition-all duration-500 disabled:opacity-60 disabled:cursor-not-allowed whitespace-nowrap flex items-center justify-center rounded-xl overflow-visible isolate scale-100 hover:scale-105 active:scale-95"
-        >
-          {/* 1. ALWAYS ON - OUTER BREATHING GLOW (Pichone thakbe) */}
-          <div className="absolute inset-[-4px] rounded-xl bg-[#EA393A]/60 blur-xl animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite] -z-20"></div>
-
-          {/* 2. EXTRA LAYER FOR INTENSE GLOW (Aro beshi glow er jonno) */}
-          <div className="absolute inset-0 rounded-xl bg-[#EA393A]/30 blur-md -z-20"></div>
-
-          {/* 3. GLOWING BORDER LAYER (Moving Gradient - Always active) */}
-          <div className="absolute inset-0 rounded-xl overflow-hidden -z-10 p-[2px]">
-            <div
-              className="absolute inset-[-400%] animate-[spin_3s_linear_infinite]"
-              style={{
-                background:
-                  "conic-gradient(from 180deg at 50% 50%, #FF0000 0%, #FFFFFF 10%, #FF0000 20%, transparent 40%, transparent 60%, #FF0000 80%, #FFFFFF 90%, #FF0000 100%)",
-              }}
-            ></div>
-          </div>
-
-          {/* 4. MAIN SOLID BACKGROUND */}
-          <div className="absolute inset-[1.5px] bg-gradient-to-br from-[#FF2B2C] via-[#EA393A] to-[#8E0E10] rounded-[10px] -z-10 transition-all duration-500 group-hover:from-slate-900 group-hover:to-slate-950"></div>
-
-          {/* 5. LIGHT STREAK EFFECT (Subtle reflection) */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-transparent opacity-50 rounded-xl -z-10"></div>
-
-          {/* 6. CONTENT LAYER */}
-          <div className="relative z-10 flex items-center gap-3 drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]">
-            {loading ? (
-              <div className="flex gap-1.5 items-center">
-                <span className="w-1 h-5 bg-white rounded-full animate-[bounce_1s_infinite]"></span>
-                <span className="w-1 h-5 bg-white rounded-full animate-[bounce_1s_infinite_0.2s]"></span>
-                <span className="w-1 h-5 bg-white rounded-full animate-[bounce_1s_infinite_0.4s]"></span>
-              </div>
-            ) : success ? (
-              <div className="flex items-center gap-2.5 text-green-300">
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="3.5"
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-                <span className="font-black">SENT</span>
-              </div>
-            ) : (
-              <>
-                <span className="bg-gradient-to-b from-white via-white to-slate-300 bg-clip-text text-transparent group-hover:tracking-[0.25em] transition-all duration-300">
-                  Get Consult
-                </span>
-                <svg
-                  className="w-5 h-5 text-white animate-[bounce_2s_infinite_horizontal] transition-transform duration-300 group-hover:translate-x-2"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="3"
-                    d="M13 7l5 5m0 0l-5 5m5-5H6"
-                  />
-                </svg>
-              </>
-            )}
-          </div>
-        </button>
-      </form>
-    </div>
-  );
-};
-
 /*  Main Component  */
 const Banner: React.FC = () => {
   const [mounted, setMounted] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setMounted(true);
-    }, 100);
+    const timer = setTimeout(() => setMounted(true), 100);
     return () => clearTimeout(timer);
   }, []);
+
+  // Toggle Mute
+  const toggleMute = () => {
+    setIsMuted((prev) => !prev);
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+    }
+  };
 
   const scrollToCTA = () => {
     const ctaSection = document.getElementById("ctaCard");
@@ -266,7 +78,7 @@ const Banner: React.FC = () => {
 
   return (
     <>
-      {/* Injecting keyframes directly here to fix the visibility issue */}
+      {/* Global Keyframes */}
       <style jsx global>{`
         @keyframes slowFadeIn {
           from {
@@ -278,49 +90,71 @@ const Banner: React.FC = () => {
             transform: translateY(0);
           }
         }
+        @keyframes pulse-ring {
+          0% {
+            transform: scale(1);
+            box-shadow: 0 0 0 0 rgba(212, 55, 55, 0.7);
+          }
+          70% {
+            transform: scale(1);
+            box-shadow: 0 0 0 10px rgba(212, 55, 55, 0);
+          }
+          100% {
+            transform: scale(1);
+            box-shadow: 0 0 0 0 rgba(212, 55, 55, 0);
+          }
+        }
       `}</style>
 
       <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-black">
-        {/* Video Background */}
+        {/* --- Video Background Layer --- */}
         <div className="absolute inset-0 z-0 w-full h-full bg-gray-900">
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/80 z-10"></div>
+          {/* Professional Overlay */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#000000_120%)] z-10"></div>
+          <div className="absolute inset-0 bg-red-900/20 mix-blend-overlay z-10"></div>
 
           <video
-            className="absolute top-0 left-0 w-full h-full object-cover opacity-60"
-            src="/banner1.mp4"
+            ref={videoRef}
+            className="absolute top-0 left-0 w-full h-full object-cover opacity-80"
+            src="/herobackground.mp4"
             autoPlay
             loop
-            muted
+            muted={isMuted}
             playsInline
           />
         </div>
 
-        {/* Hero Content */}
+        {/* --- Hero Content --- */}
         <div className="relative z-20 container mx-auto px-6 h-full flex flex-col justify-center py-20">
           <div className="w-full max-w-6xl mx-auto">
             {/* Headline */}
             <h1
-              className="text-4xl md:text-6xl lg:text-7xl text-white  leading-tight mb-6"
+              className="text-5xl md:text-7xl lg:text-8xl text-white font-black leading-tight mb-6 tracking-tight"
               style={{
                 animation: `slowFadeIn 1s ease-out ${mounted ? 0.4 : 0}s forwards`,
                 opacity: 0,
+                textShadow: "0 4px 30px rgba(0,0,0,0.6)",
               }}
             >
-              আপনার Culinary ক্যারিয়ার <br />
-              <span className="text-[#ea393a] italic">শুরু হোক এখানেই</span>
+              আপনার Culinary <br />
+              <span className="text-red-600 italic drop-shadow-lg">
+                ক্যারিয়ার শুরু হোক এখানেই
+              </span>
             </h1>
 
             {/* Description */}
             <p
-              className="text-white/90 text-lg md:text-xl max-w-2xl mb-10 font-light leading-relaxed border-l-4 border-[#D4AF37] pl-6"
+              className="text-white/90 text-lg md:text-xl max-w-2xl mb-12 font-light leading-relaxed border-l-2 border-[#d43737] pl-6 backdrop-blur-sm"
               style={{
                 animation: `slowFadeIn 1s ease-out ${mounted ? 0.6 : 0}s forwards`,
                 opacity: 0,
               }}
             >
               Global cuisine master করুন আমাদের expert training-এর মাধ্যমে। সাথে
-              থাকছে guaranteed internships দেশের সবচাইতে prestigious hotels-এ,
-              যেমন: Pan Pacific Sonargaon, InterContinental, এবং Radisson Blu.
+              <span className="block text-white/60 mt-2 text-base">
+                থাকছে guaranteed internships দেশের সবচাইতে prestigious hotels-এ,
+                যেমন: Pan Pacific Sonargaon, InterContinental, এবং Radisson Blu.
+              </span>
             </p>
 
             {/* Consultation Form */}
@@ -334,35 +168,87 @@ const Banner: React.FC = () => {
             </div>
 
             {/* Buttons */}
-            {/* <div className="flex flex-wrap gap-6 mt-12">
+            <div
+              className="flex flex-wrap gap-6 mt-12"
+              style={{
+                animation: `slowFadeIn 1s ease-out ${mounted ? 1.0 : 0}s forwards`,
+                opacity: 0,
+              }}
+            >
               <MinimalButton
                 text="View Programs"
-                variant="filled"
-                delay={mounted ? 1.0 : 0}
+                variant="outline"
+                delay={0}
                 onClick={scrollToCourses}
               />
               <MinimalButton
                 text="Enroll Now"
-                variant="outline"
-                delay={mounted ? 1.1 : 0}
+                variant="filled"
+                delay={0.1}
                 onClick={scrollToCTA}
               />
-            </div> */}
+            </div>
           </div>
         </div>
 
-        {/* Stats Bar - Small, Bottom Right */}
-        {/* <StatsBar delay={mounted ? 1.2 : 0} /> */}
+        {/* --- Sound Toggle Button (Absolute - Only in Banner) --- */}
+        {/* Changed from 'fixed' to 'absolute' to stay within this section */}
+        <button
+          onClick={toggleMute}
+          className="absolute bottom-8 right-8 z-50 w-12 h-12 rounded-full bg-black/30 backdrop-blur-md border border-white/10 text-white hover:bg-white/20 hover:border-[#d43737]/50 hover:scale-110 transition-all duration-300 flex items-center justify-center group shadow-2xl"
+          aria-label="Toggle Sound"
+        >
+          {/* Pulse animation when sound is active (not muted) */}
+          {!isMuted && (
+            <span className="absolute inset-0 rounded-full animate-[pulse-ring_2s_cubic-bezier(0.4,0,0.6,1)_infinite] bg-[#d43737] z-[-1] opacity-50"></span>
+          )}
+
+          {isMuted ? (
+            <svg
+              className="w-5 h-5 opacity-80 group-hover:opacity-100 transition-opacity"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                clipRule="evenodd"
+              />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"
+              />
+            </svg>
+          ) : (
+            <svg
+              className="w-5 h-5 text-[#d43737] opacity-100 transition-all"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                clipRule="evenodd"
+              />
+            </svg>
+          )}
+        </button>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-10 z-20 hidden md:flex flex-col items-center gap-2 opacity-50 animate-bounce">
-          <span className="text-[10px] uppercase tracking-widest text-white ">
-            Scroll
+        {/* <div className="absolute bottom-8 left-10 z-20 hidden md:flex flex-col items-center gap-2 opacity-40 hover:opacity-100 transition-opacity">
+          <span className="text-[10px] uppercase tracking-[0.2em] text-white">
+            Scroll Down
           </span>
-          <div className="w-[1px] h-12 bg-gradient-to-b from-white to-transparent"></div>
-        </div>
+          <div className="w-[1px] h-16 bg-gradient-to-b from-[#d43737] to-transparent"></div>
+        </div> */}
       </section>
-      {/* <ChoosePath></ChoosePath> */}
     </>
   );
 };

@@ -92,9 +92,7 @@ const ReviewCard: React.FC<{ review: Review }> = ({ review }) => {
           className="w-12 h-12 object-cover border border-gray-200"
         />
         <div>
-          <h4 className=" font-bold text-gray-900 text-lg">
-            {review.name}
-          </h4>
+          <h4 className=" font-bold text-gray-900 text-lg">{review.name}</h4>
           <p className="text-xs uppercase tracking-wider text-gray-500 mb-1">
             {review.role} • {review.date}
           </p>
@@ -113,7 +111,7 @@ const ReviewCard: React.FC<{ review: Review }> = ({ review }) => {
       <div className="relative pl-4 border-l-2 border-gray-100">
         <Quote className="absolute -top-2 -left-2 w-6 h-6 text-gray-200" />
         <p className="text-gray-600 leading-relaxed italic">
-          "{review.comment}"
+          `{review.comment}`
         </p>
       </div>
     </div>
